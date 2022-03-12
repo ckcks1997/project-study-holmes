@@ -174,7 +174,14 @@
 							<table class="table table-sm table-borderless">
 								<tr>
 									<td>ㅇㅇㅇ</td>
+<<<<<<< HEAD
 									<td>4일 전</td>
+=======
+
+								
+									<td>3일 전</td>
+
+>>>>>>> branch 'master' of git@github.com:ckcks1997/project-study-holmes.git
 								</tr>
 							</table>
 							<div></div>
