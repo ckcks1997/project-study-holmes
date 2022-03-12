@@ -174,8 +174,11 @@
 							<table class="table table-sm table-borderless">
 								<tr>
 									<td>ㅇㅇㅇ</td>
+						
+
 									<td>1일 전</td>
 
+									
 								</tr>
 							</table>
 							<div></div>
