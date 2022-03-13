@@ -174,9 +174,12 @@
 							<table class="table table-sm table-borderless">
 								<tr>
 									<td>ㅇㅇㅇ</td>
+			         <td>하이요</td>
+
 
 
 							        <td>반갑습니다</td>
+
 
 
 								</tr>
