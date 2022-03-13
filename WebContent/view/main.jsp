@@ -174,9 +174,9 @@
 							<table class="table table-sm table-borderless">
 								<tr>
 									<td>ㅇㅇㅇ</td>
+			         <td>4일 전</td>
 
-									<td>4일 전</td>
-													
+
 								</tr>
 							</table>
 							<div></div>
