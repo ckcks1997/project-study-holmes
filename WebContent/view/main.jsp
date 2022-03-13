@@ -177,7 +177,11 @@
 			         <td>4일 전</td>
 
 
-									<td>eunziii</td>
+
+					
+
+									<td>안녕하세요</td>
+
 
 								</tr>
 							</table>
