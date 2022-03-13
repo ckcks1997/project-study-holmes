@@ -175,7 +175,7 @@
 								<tr>
 									<td>ㅇㅇㅇ</td>
 
-									<td>3일 전</td>
+									<td>eunziii</td>
 
 								</tr>
 							</table>
