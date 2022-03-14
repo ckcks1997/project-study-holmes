@@ -245,8 +245,9 @@ input[type=text]:placeholder {
 			<form action="<%=request.getContextPath()%>/studymember/loginPro">
 				<input type="text" id="id" class="fadeIn second" name="id" placeholder="email id"> 
 				<input type="password" id="password" class="fadeIn third" name="password" placeholder="password"> 
-				<input	type="submit" class="fadeIn fourth my-1" value="로그인"> 
-					<input type="submit" class="fadeIn fourth my-1" value="회원가입"> <input type="submit" class="fadeIn fourth my-1" value="비밀번호 찾기">
+				<input	type="submit" class="fadeIn fourth my-1" value="로그인"> <br>
+				<a class="btn" href="join">회원가입</a>
+				<a class="btn" href="findPassword">비밀번호 찾기</a>
 				<br> <br>
 			</form>
 

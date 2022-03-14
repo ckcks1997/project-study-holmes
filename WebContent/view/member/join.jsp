@@ -228,6 +228,13 @@ input[type=text]:placeholder {
 	width: 60%;
 }
 </style>
+<script>
+function win_upload(){
+    const op = "width=500, height=150, left=150, top=150";
+    open('<%=request.getContextPath()%>/studymember/pictureForm', "",op);
+}
+
+</script>
 </head>
 <body>
 
@@ -241,14 +248,25 @@ input[type=text]:placeholder {
 			</div>
 
 			<!-- Login Form -->
-			<form action="<%=request.getContextPath()%>/member/loginPro">
+			<form action="<%=request.getContextPath()%>/studymember/joinPro" name="f">
+			    <input type="hidden" name="picture">
+                <input type="hidden" name="chk">
 				<input type="text" id="email" class="fadeIn second" name="email" placeholder="example@studyhomles.com"> 
 				<input type="text" id="emailvalid" class="fadeIn second" name="emailvalid"
-					placeholder="이메일을 확인해주세요">
-					 <input type="password" id="password" class="fadeIn second" name="password" placeholder="비밀번호를 입력해주세요"> 
-					 <input type="password" id="password_valid"
+					placeholder="이메일을 확인해주세요"> 
+					<input type="password" id="password" class="fadeIn second" name="password" placeholder="비밀번호를 입력해주세요"> 
+					<input type="password" id="password_valid"
 					class="fadeIn third" name="password_valid" placeholder="비밀번호를 확인해주세요"> 
-					<input type="submit" class="fadeIn fourth my-1" value="회원가입"> <br> <br>
+					<input type="text" placeholder="이름" name="name"> 
+					<input type="text" placeholder="닉네임" name="nickname"> 
+					<input type="text" 	placeholder="전화번호" name="tel">
+					
+				<div class="col-3 mx-auto  bg-none">
+					<img src="" width="100" height="100" id="pic"> <br>
+					<button type="button" class="btn btn-sm btn-dark" onclick="win_upload()">사진등록</button>
+				</div>
+
+				<br> <input type="submit" class="fadeIn fourth my-1" value="회원가입"> <br> <br>
 			</form>
 
 			<div id="formFooter">

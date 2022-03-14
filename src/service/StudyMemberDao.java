@@ -3,6 +3,8 @@ package service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.catalina.connector.Request;
 import org.apache.ibatis.session.SqlSession; 
 import model.StudyMember;
 import util.MybatisConnection;
@@ -28,11 +30,20 @@ public class StudyMemberDao {
   }
 
    
-  public int insertStudyMember(StudyMember m) {
+  public int insertStudyMember(HttpServletRequest req) {
     SqlSession sqlSession = MybatisConnection.getConnection();
      
     try {
-      return sqlSession.insert(NS + "insertStudyMember",m );
+      StudyMember m = new StudyMember();
+      m.setEmail(req.getParameter("email"));
+      m.setName(req.getParameter("name"));
+      m.setNickname(req.getParameter("nickname"));
+      m.setPassword(req.getParameter("password"));
+      m.setTel(req.getParameter("tel"));
+      m.setPicture(req.getParameter("picture"));
+      
+      
+      return sqlSession.insert(NS + "insertStudyMember", m );
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
@@ -41,5 +52,6 @@ public class StudyMemberDao {
     return 0;
     
   }
+  
   
 }

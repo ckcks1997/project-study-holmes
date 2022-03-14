@@ -112,21 +112,21 @@
 		<div class="container">
 			<h2>지금 뜨는 컨텐츠</h2>
 			<hr align="left" width="350px" style="border: 0.5px solid #c47100" />
-			<div class="d-inline-flex p-2">
+			<div class="d-flex justify-content-between " >
 				<div class="container">
-					<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="" width="300px" height="200px" />
+					<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="" width="100%" height="200px" />
 					<h4 class="py-3">리엑트 스터디</h4>
 					<p class="my-0">경기도 부천시</p>
 					<div class=" ">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
 				</div>
 				<div class="container">
-					<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="" width="300px" height="200px" />
+					<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="" width="100%" height="200px" />
 					<h4 class="py-3">리엑트 스터디</h4>
 					<p class="my-0">경기도 부천시</p>
 					<div class=" ">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
 				</div>
 				<div class="container">
-					<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="" width="300px" height="200px" />
+					<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="" width="100%" height="200px" />
 					<h4 class="py-3">리엑트 스터디</h4>
 					<p class="my-0">경기도 부천시</p>
 					<div class=" ">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
@@ -134,11 +134,15 @@
 			</div>
 			<br> <br>
 			<div class="container pt-5">
-				<div class="row">
+				<div class="d-flex justify-content-between">
 					<div class="col-sm" width="20%">
 						<h3>공지사항</h3>
-						<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
+						<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
 						<table class="table table-sm table-borderless">
+				    		<tr>
+							   <th width="80%">제목</td>
+	                           <th width="20%">날짜</td>
+							</tr>
 							<tr>
 								<td>운영과 관련한 공지</td>
 								<td>3일 전</td>
@@ -157,20 +161,28 @@
 					<div class="col-sm" width="20%">
 						<h3>질문 & 답글</h3>
 						<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
-						<table class="table table-sm table-borderless">
+						<table class="table table-sm table-borderless ">
+						    <tr>
+                               <th >제목</td>
+                               <th >날짜</td>
+                            </tr>
 							<tr>
-								<td>ㅁㅁㅁ</td>
-								<td>3일 전</td>
+								<td >ㅁㅁㅁ</td>
+								<td >3일 전</td>
 							</tr>
 						</table>
 						<div></div>
 					</div>
 					<div class="col-sm" width="20%">
 						<h3>자유주제</h3>
-						<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
+						<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
 						<table class="table table-sm table-borderless">
+						    <tr>
+                               <th width="80%">제목</td>
+                               <th width="20%">날짜</td>
+                            </tr>
 							<tr>
-								<td>ㅁㅁㅁ</td>
+								<td >ㅁㅁㅁ</td>
 								<td>3일 전</td>
 							</tr>
 						</table>

@@ -100,6 +100,7 @@ a:hover {
 						<li class="nav-item"><a class="nav-link" href="#"> <img src="<%=request.getContextPath()%>/img/chat.jpg" width="50px" />
 						</a></li>
 						<div class="d-flex align-items-center">
+						<%-- 로그인 세션이 없는경우 --%>
 							<c:choose>
 								<c:when test="${sessionScope.memberID eq null}">
 									<button class="btn btn-sm btn-dark">
@@ -107,11 +108,25 @@ a:hover {
 									</button>
 							             &nbsp;
 							             <button class="btn btn-sm btn-danger">
-										<a class="a-no-deco" href="join.html">회원가입</a>
+										<a class="a-no-deco" href="<%=request.getContextPath()%>/studymember/join">회원가입</a>
 									</button>
 								</c:when>
+								<%--/*로그인 된 경우 */--%>
 								<c:otherwise>
-									<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/studymember/logout">로그아웃</a></li>
+									<div class="dropdown">
+										<button class="btn btn-light dropdown-toggle" 
+										type="button" id="dropdownMenuButton" 
+										data-toggle="dropdown" aria-haspopup="true" 
+										aria-expanded="false">
+										${memberID} 님
+										</button>
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									       <img src="<%=request.getContextPath()%>/upload/${memberPicture}" width="200" height="200" id="pic"> 
+									       <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/studymember/logout">로그아웃</a></li>
+										  <a class="dropdown-item" href="#">Action</a> 
+ 
+										</div>
+									</div>
 								</c:otherwise>
 							</c:choose>
 						</div>

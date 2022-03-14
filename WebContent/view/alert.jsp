@@ -9,9 +9,8 @@
 </head>
 <body>
 	<script>
-    <c:if test= "${msg} != ''">
     alert("${msg}");
-	</c:if>
+
 	location.href="${url}";
     </script>
 </body>
