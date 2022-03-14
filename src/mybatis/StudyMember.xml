@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="studymember">
+
+	<select id="studyMemberOne" resultType="studymember"
+		parameterType="string">
+		select * from study_member where email=#{value}
+	</select> 
+
+	<insert id="insertStudyMember" parameterType="studymember">
+		insert into study_member values(#{email},#{password},#{nickname},#{name},#{tel},#{picture})
+	</insert>
+
+
+</mapper>
