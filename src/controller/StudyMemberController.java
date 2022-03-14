@@ -43,7 +43,7 @@ public class StudyMemberController extends MskimRequestMapping {
   /*
    * 로그인 과정
    * 
-   * 로그인 성공시에는 memberID(이메일)와 memberNickname(닉네임, 이름x!!) 두가지 세션이 생성됩니다.
+   * 로그인 성공시에는 memberID(이메일)와 memberNickname(닉네임, 이름x!!),memberPicture 3가지 세션이 생성됩니다.
    * */
   
   @RequestMapping("loginPro")
@@ -148,7 +148,7 @@ public class StudyMemberController extends MskimRequestMapping {
   @RequestMapping("logout")
   public String logout(HttpServletRequest request, HttpServletResponse response) {
     HttpSession session = request.getSession();
-    String login = (String) session.getAttribute("memberID");
+    String login = (String) session.getAttribute("memberNickname");
     session.invalidate();
     request.setAttribute("msg", login + "로그아웃");
     request.setAttribute("url", request.getContextPath() + "/studymember/loginForm");

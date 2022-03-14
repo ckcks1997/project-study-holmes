@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>Title</title>
+<title>회원가입</title>
 <style>
 
 /* button */
@@ -10,6 +10,11 @@
 	border-radius: 24px;
 }
 
+.login-font{
+    font-weight: bold;
+    font-size: 1.2rem;
+    color:#fff;
+}
 a {
 	color: white;
 	text-decoration: none;
@@ -119,9 +124,10 @@ body {
 	-webkit-border-radius: 10px 10px 10px 10px;
 	border-radius: 10px 10px 10px 10px;
 	background: #fff;
+	margin-top:30px;
 	padding: 30px;
 	width: 90%;
-	max-width: 450px;
+	max-width: 600px;
 	position: relative;
 	padding: 0px;
 	-webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.3);
@@ -139,6 +145,8 @@ body {
 }
 
 /* FORM TYPOGRAPHY*/
+ 
+
 input[type=button], input[type=submit], input[type=reset] {
 	background-color: #C47100;
 	border: none;
@@ -188,7 +196,7 @@ input[type=text], input[type=password] {
 	border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+input[type=text]:focus, input[type=password]:focus{
 	background-color: #fff;
 	border-bottom: 2px solid #C47100;
 }
@@ -206,13 +214,13 @@ input[type=text]:placeholder {
 	bottom: -10px;
 	width: 0;
 	height: 2px;
-	background-color: #C47100;
+	background-color: #F8F8F8;
 	content: "";
 	transition: width 0.2s;
 }
 
 .underlineHover:hover {
-	color: #0d0d0d;
+	/*color: #333B3D;*/
 }
 
 .underlineHover:hover:after {
@@ -227,6 +235,28 @@ input[type=text]:placeholder {
 #icon {
 	width: 60%;
 }
+.nameholder{
+    text-align: left;
+	padding:0;
+	margin:0;
+	padding-left:50px;
+	margin-top:5px;
+}
+.btn-brown{
+    background:#c47100;
+    color:white;
+}
+.btn-brown:hover{
+    background:#c47100;
+    color:white;
+}
+.sns-bg{
+    padding: 10px;
+    font-weight:bold;
+    background: #f55555;
+    border-radius:15px;
+}
+
 </style>
 <script>
 function win_upload(){
@@ -241,38 +271,48 @@ function win_upload(){
 	<div class="wrapper ">
 		<div id="formContent">
 
-			<div class="fadeIn first px-4 py-4 text-left">
+			<div class=" first px-4 py-4 text-left">
 				<h1>회원가입</h1>
 				<p>스터디 홈즈에서 가치를 높이세요</p>
-				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
+				<hr align="left" width="300px" style="border: 0.5px solid #c47100" />
 			</div>
 
 			<!-- Login Form -->
 			<form action="<%=request.getContextPath()%>/studymember/joinPro" name="f">
 			    <input type="hidden" name="picture">
-                <input type="hidden" name="chk">
-				<input type="text" id="email" class="fadeIn second" name="email" placeholder="example@studyhomles.com"> 
-				<input type="text" id="emailvalid" class="fadeIn second" name="emailvalid"
+                <input type="hidden" name="chk"> <br>
+                <p class="nameholder">email</p>
+				<input type="text" id="email" class="m-2 " name="email" placeholder="example@studyhomles.com"> 
+				<p class="nameholder">email 확인</p>
+				<input type="text" id="emailvalid" class="m-2 " name="emailvalid"
 					placeholder="이메일을 확인해주세요"> 
-					<input type="password" id="password" class="fadeIn second" name="password" placeholder="비밀번호를 입력해주세요"> 
-					<input type="password" id="password_valid"
-					class="fadeIn third" name="password_valid" placeholder="비밀번호를 확인해주세요"> 
-					<input type="text" placeholder="이름" name="name"> 
-					<input type="text" placeholder="닉네임" name="nickname"> 
-					<input type="text" 	placeholder="전화번호" name="tel">
-					
-				<div class="col-3 mx-auto  bg-none">
-					<img src="" width="100" height="100" id="pic"> <br>
-					<button type="button" class="btn btn-sm btn-dark" onclick="win_upload()">사진등록</button>
+				<p class="nameholder">비밀번호</p>
+				<input type="password" id="password" class="m-2" name="password" placeholder="비밀번호를 입력해주세요"> 
+				<p class="nameholder">비밀번호 확인</p>
+				<input type="password" id="password_valid"
+					class="m-2 " name="password_valid" placeholder="비밀번호를 확인해주세요"> 
+					<p class="nameholder">이름</p>
+				<input type="text" placeholder="이름" name="name" class="m-2"> 
+				<p class="nameholder">닉네임</p>
+				<input type="text" placeholder="닉네임" name="nickname" class="m-2"> 
+				<p class="nameholder">전화번호</p>
+				<input type="text" 	placeholder="전화번호" name="tel" class="m-2">
+					<p class="nameholder">프로필 사진</p>
+				<div class="col-4 mx-auto my-2 bg-none">
+					<img src="" width="100" height="100" id="pic" onerror="this.src='<%=request.getContextPath()%>/img/profile_empty.jpg'"> <br>
+					<button type="button" class="btn btn-sm m-2 btn-brown" onclick="win_upload()">프로필 사진등록</button>
 				</div>
 
-				<br> <input type="submit" class="fadeIn fourth my-1" value="회원가입"> <br> <br>
+				<br> <input type="submit" class=" btn-brown" value="회원가입"> <br> <br>
 			</form>
 
 			<div id="formFooter">
 				<h5>간편 회원가입</h5>
 				<p>SNS 계정으로 간편하게 로그인하세요</p>
-				<a class="underlineHover" href="#" style="color: #0d0d0d;">구글 로그인</a> <a class="underlineHover" href="#" style="color: #0d0d0d;">네이버 로그인</a>
+				<div class="container d-inline-flex justify-content-center sns-bg">
+				    <a class="underlineHover login-font" href="#" >구글 로그인</a> &nbsp;|&nbsp;
+				    <a class="underlineHover login-font" href="#" >네이버 로그인</a>
+				</div>
 			</div>
 
 		</div>
@@ -282,11 +322,6 @@ function win_upload(){
 	<br />
 	<br />
 	<br />
-	<footer class="footer">
-		<div class="container footer-content">
-			<h3>footer</h3>
-		</div>
-	</footer>
-
+ 
 </body>
 </html>

@@ -2,14 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>Title</title>
+<title>로그인</title>
 <style>
 
 /* button */
 .btn-round {
 	border-radius: 24px;
 }
-
+.login-font{
+    font-weight: bold;
+    font-size: 1.2rem;
+    color:#fff;
+}
 a {
 	color: white;
 	text-decoration: none;
@@ -201,22 +205,22 @@ input[type=text]:placeholder {
 
 /* Simple CSS3 Fade-in Animation */
 .underlineHover:after {
-	display: block;
-	left: 0;
-	bottom: -10px;
-	width: 0;
-	height: 2px;
-	background-color: #C47100;
-	content: "";
-	transition: width 0.2s;
+    display: block;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 2px;
+    background-color: #F8F8F8;
+    content: "";
+    transition: width 0.2s;
 }
 
 .underlineHover:hover {
-	color: #0d0d0d;
+    /*color: #333B3D;*/
 }
 
 .underlineHover:hover:after {
-	width: 100%;
+    width: 100%;
 }
 
 /* OTHERS */
@@ -227,6 +231,14 @@ input[type=text]:placeholder {
 #icon {
 	width: 60%;
 }
+
+.sns-bg{
+    padding: 10px;
+    font-weight:bold;
+    background: #f55555;
+    border-radius:15px;
+}
+
 </style>
 </head>
 <body>
@@ -252,10 +264,14 @@ input[type=text]:placeholder {
 			</form>
 
 			<!-- Remind Passowrd -->
-			<div id="formFooter">
-				<h5>SNS 로그인</h5>
-				<a class="underlineHover" href="#" style="color: #0d0d0d;">구글 계정 로그인</a>
-			</div>
+            <div id="formFooter">
+                <h5>간편 회원가입</h5>
+                <p>SNS 계정으로 간편하게 로그인하세요</p>
+                <div class="container d-inline-flex justify-content-center sns-bg">
+                    <a class="underlineHover login-font" href="#" >구글 로그인</a> &nbsp;|&nbsp;
+                    <a class="underlineHover login-font" href="#" >네이버 로그인</a>
+                </div>
+            </div>
 
 		</div>
 	</div>

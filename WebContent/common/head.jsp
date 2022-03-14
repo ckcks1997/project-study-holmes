@@ -69,6 +69,7 @@ a:hover {
 	right: 5%;
 	height: 10px;
 }
+
 </style>
 </head>
 <body>
@@ -118,12 +119,16 @@ a:hover {
 										type="button" id="dropdownMenuButton" 
 										data-toggle="dropdown" aria-haspopup="true" 
 										aria-expanded="false">
-										${memberID} 님
+										${memberNickname} 님
 										</button>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									       <img src="<%=request.getContextPath()%>/upload/${memberPicture}" width="200" height="200" id="pic"> 
-									       <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/studymember/logout">로그아웃</a></li>
-										  <a class="dropdown-item" href="#">Action</a> 
+									       <img class="profile" 
+									       src="<%=request.getContextPath()%>/upload/${memberPicture}" 
+									       width="200" height="200" id="pic" 
+									       onerror="this.src='<%=request.getContextPath()%>/img/profile_empty.jpg'"/> 
+									       <li class="nav-item">
+									       <a class="dropdown-item" href="<%=request.getContextPath()%>/studymember/logout">로그아웃</a></li>
+										   <a class="dropdown-item" href="#">마이페이지</a> 
  
 										</div>
 									</div>
