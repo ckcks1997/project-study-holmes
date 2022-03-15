@@ -114,6 +114,26 @@ public class StudyMemberController extends MskimRequestMapping {
     request.setAttribute("url", url);
     return "/view/alert.jsp";
   }
+  /*
+   * id중복체크
+   * */
+  @RequestMapping("idexist")
+  public String idExist(HttpServletRequest request, HttpServletResponse response) {
+
+    try {
+      request.setCharacterEncoding("utf-8");
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+    String idExist = request.getParameter("id");  
+    System.out.println("id="+idExist);
+    StudyMemberDao md = new StudyMemberDao();
+    int mem = md.studyMemberIdExist(idExist); 
+    System.out.println("result="+mem);
+    request.setAttribute("chk", mem); 
+    return "/single/readId.jsp";
+  }
+  
   
   /*
    * 회원가입 내 사진등록 창
@@ -155,7 +175,17 @@ public class StudyMemberController extends MskimRequestMapping {
     return "/view/alert.jsp";
   }
 
-
+  @RequestMapping("mypage")
+  public String mypage(HttpServletRequest request, HttpServletResponse response) {
+ 
+    return "/view/study/mypage.jsp";
+  }
+  
+  @RequestMapping("myprofile")
+  public String myprofile(HttpServletRequest request, HttpServletResponse response) {
+ 
+    return "/view/study/myprofile.jsp";
+  }
 }
 
 

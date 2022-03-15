@@ -42,6 +42,7 @@ public class StudyMemberDao {
       m.setTel(req.getParameter("tel"));
       m.setPicture(req.getParameter("picture"));
       
+      System.out.println(m);
       
       return sqlSession.insert(NS + "insertStudyMember", m );
     } catch (Exception e) {
@@ -52,6 +53,17 @@ public class StudyMemberDao {
     return 0;
     
   }
-  
+  public int studyMemberIdExist(String id) {
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try {
+      return sqlSession.selectOne(NS + "studyMemberIdExist", id);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MybatisConnection.close(sqlSession);
+    }
+
+    return 1;
+  }
   
 }

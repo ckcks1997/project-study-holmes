@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
@@ -69,7 +69,6 @@ a:hover {
 	right: 5%;
 	height: 10px;
 }
-
 </style>
 </head>
 <body>
@@ -101,7 +100,7 @@ a:hover {
 						<li class="nav-item"><a class="nav-link" href="#"> <img src="<%=request.getContextPath()%>/img/chat.jpg" width="50px" />
 						</a></li>
 						<div class="d-flex align-items-center">
-						<%-- 로그인 세션이 없는경우 --%>
+							<%-- 로그인 세션이 없는경우 --%>
 							<c:choose>
 								<c:when test="${sessionScope.memberID eq null}">
 									<button class="btn btn-sm btn-dark">
@@ -115,21 +114,12 @@ a:hover {
 								<%--/*로그인 된 경우 */--%>
 								<c:otherwise>
 									<div class="dropdown">
-										<button class="btn btn-light dropdown-toggle" 
-										type="button" id="dropdownMenuButton" 
-										data-toggle="dropdown" aria-haspopup="true" 
-										aria-expanded="false">
-										${memberNickname} 님
-										</button>
+										<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${memberNickname} 님</button>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									       <img class="profile" 
-									       src="<%=request.getContextPath()%>/upload/${memberPicture}" 
-									       width="200" height="200" id="pic" 
-									       onerror="this.src='<%=request.getContextPath()%>/img/profile_empty.jpg'"/> 
-									       <li class="nav-item">
-									       <a class="dropdown-item" href="<%=request.getContextPath()%>/studymember/logout">로그아웃</a></li>
-										   <a class="dropdown-item" href="#">마이페이지</a> 
- 
+											<img class="profile" src="<%=request.getContextPath()%>/upload/${memberPicture}" width="200" height="200" id="pic" onerror="this.src='<%=request.getContextPath()%>/img/profile_empty.jpg'" />
+											<li class="nav-item"><a class="dropdown-item" href="<%=request.getContextPath()%>/studymember/logout">로그아웃</a></li> <a class="dropdown-item"
+												href="<%=request.getContextPath()%>/studymember/mypage">마이페이지</a>
+
 										</div>
 									</div>
 								</c:otherwise>

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
+<script   src="<%=request.getContextPath()%>/js/ajax.js"></script>
 <title>회원가입</title>
 <style>
 
@@ -256,7 +257,9 @@ input[type=text]:placeholder {
     background: #f55555;
     border-radius:15px;
 }
-
+#validation-view{
+    display:none;
+}
 </style>
 <script>
 function win_upload(){
@@ -276,21 +279,26 @@ function win_upload(){
 				<p>스터디 홈즈에서 가치를 높이세요</p>
 				<hr align="left" width="300px" style="border: 0.5px solid #c47100" />
 			</div>
-
+			<div class="container">
+				<div class="alert  " id="validation-view" role="alert" >
+				 
+    			</div>
+			</div>
 			<!-- Login Form -->
 			<form action="<%=request.getContextPath()%>/studymember/joinPro" name="f">
 			    <input type="hidden" name="picture">
                 <input type="hidden" name="chk"> <br>
+                
                 <p class="nameholder">email</p>
-				<input type="text" id="email" class="m-2 " name="email" placeholder="example@studyhomles.com"> 
-				<p class="nameholder">email 확인</p>
-				<input type="text" id="emailvalid" class="m-2 " name="emailvalid"
-					placeholder="이메일을 확인해주세요"> 
+				<input type="text" id="email" class="m-2 " name="email" placeholder="example@studyhomles.com"  > 
+				 
+				<br>	
+				<button class="btn btn-brown" id="emailChk" type="button" onclick="idChk()">이메일 확인</button>
 				<p class="nameholder">비밀번호</p>
 				<input type="password" id="password" class="m-2" name="password" placeholder="비밀번호를 입력해주세요"> 
 				<p class="nameholder">비밀번호 확인</p>
 				<input type="password" id="password_valid"
-					class="m-2 " name="password_valid" placeholder="비밀번호를 확인해주세요"> 
+					class="m-2 " name="password_valid" placeholder="비밀번호를 확인해주세요" onkeyup="pwChk()"> 
 					<p class="nameholder">이름</p>
 				<input type="text" placeholder="이름" name="name" class="m-2"> 
 				<p class="nameholder">닉네임</p>
@@ -323,5 +331,62 @@ function win_upload(){
 	<br />
 	<br />
  
+ <script>
+	    let result = document.querySelector("#validation-view");
+	    
+	    
+		 function idChk() {
+			 const id = document.querySelector("#email").value; 
+			 const param = "id="+id; 
+			    if(id.length<5){ 
+			         result.style.display="block";
+			         result.classList.remove("alert-primary");
+			         result.classList.add("alert-danger");
+			        result.innerHTML = '올바른 이메일을 입력하세요'; 
+			    }  
+			    else{
+			        ajax("<%=request.getContextPath()%>/studymember/idexist", param, callback, 'get');
+			    }
+			}
+		 
+         function pwChk() {
+             const pw = document.querySelector("#password").value;
+             const pw2 = document.querySelector("#password_valid").value;
+                if(pw.length<5){ 
+                     result.style.display="block";
+                     result.classList.remove("alert-primary");
+                     result.classList.add("alert-danger");
+                    result.innerHTML = '비밀번호를 5자 이상 입력하세요'; 
+                } else if (pw != pw2){
+                    result.style.display="block";
+                    result.classList.remove("alert-primary");
+                    result.classList.add("alert-danger");
+                   result.innerHTML = '두 비밀번호가 서로 다릅니다'; 
+                }
+                else{
+                     result.style.display="none";
+                }
+                 
+            }
+		function callback(){
+		    if (this.readyState == 4 && this.status == 200) {
+		         
+		        let chk = this.responseText.trim();
+		        console.log(chk);
+		        if(chk=='0'){ 
+		        	 result.style.display="block"; 
+		             result.classList.remove("alert-danger");
+		             result.classList.add("alert-primary");
+                     result.innerHTML = '가입 가능한 메일입니다'; 
+		        }
+		        else{ 
+		        	  result.style.display="block";
+		              result.classList.remove("alert-primary");
+		              result.classList.add("alert-danger");
+		             result.innerHTML = '이미 가입된 메일입니다'; 
+		        } 
+		    }  
+		}
+ </script>
 </body>
 </html>

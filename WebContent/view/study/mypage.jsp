@@ -44,77 +44,43 @@ a:hover {
 }
 
 /* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */
-.search {
-	display: inline-block;
-}
-
-.tagbox {
-	display: inline-block;
-	width: 50px;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
-	background-color: #c47100;
-	border-radius: 15%;
-}
-
-.tagbox-etc {
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
-	background-color: #f55555;
-	border-radius: 15%;
-}
-
-.tagbox>a {
-	color: white;
-	font-size: 0.8 rem;
-}
-
-/* 스터디글 상자 */
-.study-box {
-	width: 230px;
-	height: 300px;
-	background: rgb(255, 255, 255);
-	margin: 10px;
-	margin-bottom: 40px;
-}
-
-.img {
-	
-}
-
-.img>img {
-	width: 100%;
-	height: 100%;
-}
-
-.b-h5 {
-	font-weight: bold;
-	margin: 0;
-}
-
-.b-p {
-	margin-bottom: 0;
-}
-
-.b-people {
-	margin: 0;
-}
-
-.b-rep {
-	font-size: 12px;
-}
-
-.b-price {
-	margin-bottom: 0;
-	font-size: 1.2rem;
-	font-weight: bold;
-	color: #175cbe;
-}
-}
+ /* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */
+            .pic_box{ 
+                width: 150px;
+                height: 150px; 
+                border-radius: 70%;
+                overflow: hidden;
+            }
+            .pic_box_pic{
+                width: 100%;
+                height:100%;
+                object-fit: cover;
+            }
+            .face_img{
+                width: 100%;
+                height: 100%;
+            }
+            .face_img > img{
+                width: 50px;
+                height: 50px;
+            }
+            .font-sm{
+                font-size: 0.8rem;
+            }
+            h1,h3,h5{
+                font-weight: bold;
+            }
+            .container-css{
+                background: #f8f8f8;
+                border-radius: 20px;
+            }
+            .icon-red{
+                color:white;
+                background: red;
+                padding: 2px;
+                border-radius:10px;
+            }
+        }
 </style>
 </head>
 <body>
@@ -131,233 +97,135 @@ a:hover {
         </div>
         <div class="container">
             <div class="row pt-5">
-                <aside class="col-sm-3">
+                <aside class="col-lg-3">
                     <div class="col aside">
                         <div class="aside-content">
-                            <li class=""><a href=""> 전체 스터디 </a></li>
+                            <li class=""><a href=""> 마이페이지 </a></li>
                         </div>
                         <div class="aside-content">
-                            <li class=""><a href=""> 개발/프로그래밍 </a></li>
+                            <li class=""><a href="myprofile">  프로필 </a></li>
                            
                         </div>
                         <div class="aside-content">
-                            <li class=""><a href=""> 보안/네트워크 </a></li>
+                            <li class=""><a href=""> 작성한 게시글 </a></li>
                         </div>
-                        <div class="aside-content">
-                            <li class=""><a href=""> 크리에이티브 </a></li>
-                        </div>
-                        <div class="aside-content">
-                            <li class=""><a href=""> 직무/마케팅 </a></li>
-                        </div>
-                        <div class="aside-content">
-                            <li class=""><a href=""> 학문/외국어 </a></li>
-                        </div>
-                        <div class="aside-content">
-                            <li class=""><a href=""> 교양 </a></li>
-                        </div>
+ 
                 </aside>
-                <div class="col-sm-9">
-                    <h1>오프라인 스터디</h1>
+                <br>
+                <br>
+                <div class="col-lg-9">
+                    <h1>마이 페이지</h1>
                     <hr align="left" width="350px" style="border: 0.5px solid #c47100" />
-                    <br>
-                    <h4>전체 스터디</h4>
-                    <div class="flex ">
-                        <div>
-                            <div class="input-group rounded">
-                                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                                <span class="input-group-text border-0" id="search-addon">
-                                  <i class="fas fa-search"></i>
-                                </span>
+                    <br> 
+                     
+                     <div class="container shadow-sm container-css p-5">
+                         <div class="d-flex justify-content-center">
+                             <div class="container col-md-3 text-center">
+                                 <div class=" ">
+                                     <img class="pic_box_pic"src="../img/profile_empty.jpg" alt="" srcset=""  >
+                                 </div>
+                                 <br>
+                                 <div class="d-flex justify-content-center">
+                                     <button class="btn btn-primary">사진 변경</button>
+                                 </div>
+                             </div>
+                              <div class="constainer col-md-9">
+                                  <div class="container m-1">
+                                      aa 님
+                                </div>
+                                
+                                <div class="container m-1">
+                                    
+                                    포인트:
+                                  </div>
+                                  <div class="container m-1">
+                                    
+                                    스터디 횟수: 
+                                  </div>
+                                  <div class="container m-1">
+                                    
+                                    가입일: 
+                                  </div>
                               </div>
-
-                        </div>
-                        <div class="flex mt-3">
-                            <div class="tagbox"><a href="#">#서울</a></div>
-                            <div class="tagbox"><a href="#">#부산</a></div>
-                            <div class="tagbox"><a href="#">#대구</a></div>
-                            <div class="tagbox tagbox-etc"><a href="#">...</a></div>
-                        </div>
-                          
-                    </div>
-                    <button class="btn btn-info d-block ml-auto"><a href="study-write.html" style="color: white;">글쓰기 </a></button>
-                    <div class="container d-flex justify-content-between flex-wrap">
-                        <div class="study-box ">
-                            <a href="studyDetailedScreen.html">
-
-                                <div class="img">
-                                    <img src="img/study-img.JPG" alt=""  >
-                                </div>
-                                <div class="px-2 pt-3">
-                                    <h5 class="b-h5">자바 스터디</h5>
-                                    <p class="b-price">무료</p>
-                                    <p class="b-people"><i class="fa-solid fa-user-group"></i> 2/4</p>
-                                    <p class="b-p">경기도 부천시</p>
-                                    <div>
-                                        <p class="b-p d-inline-block"> &#11088;&#11088;&#11088;&#11088;&#11088; </p>
-                                        <p class="b-p b-rep d-inline-block ">평가: 100%</p>
+                         </div>
+                     </div>
+                     <br>
+                     <div class="container shadow-sm container-css p-5">
+                         
+                         <div class="d-md-flex justify-content-center">
+                             <div class="container col-md-6 px-0"> 
+                                 <h5>나의 매너표정</h5>
+                                 <div class="d-md-flex justify-content-between  align-items-center ">
+                                     <div class="d-flex col-md-3 face_img  ">
+                                         <img class=" my-auto " src="../img/good.png" alt="">
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p class="my-1">스터디 리더를 23번 했어요 </p>  
+                                            <p class="my-1">스터디원을 12번 했어요 </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="study-box ">
-                            <a href="">
+                            <br>
+                            <div class="d-md-flex justify-content-center align-items-center col-md-6 px-0">
+                                <div class="container ">
+                                    <h5>받은 매너평가 </h5> 
+                                    <p class="my-1">시간 약속을 잘 지켜요</p>
+                                    <p class="my-1">시간 약속을 잘 지켜요</p>
+                                    <p class="my-1">시간 약속을 잘 지켜요</p>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                     <br>
 
-                                <div class="img">
-                                    <img src="img/study-img.JPG" alt=""  >
-                                </div>
-                                <div class="px-2 pt-3">
-                                    <h5 class="b-h5">자바 스터디</h5>
-                                    <p class="b-price">무료</p>
-                                    <p class="b-p">경기도 부천시</p>
-                                    <div>
-                                        <p class="b-p d-inline-block"> &#11088;&#11088;&#11088;&#11088;&#11088; </p>
-                                        <p class="b-p b-rep d-inline-block ">평가: 100%</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="study-box ">
-                            <a href="">
+                     <div class="d-md-flex shadow-sm container-css p-5">
+                         <div class="container">
+                             <h5>현재 스터디</h5>
+                            <table class="font-sm" width="100%">
+                                <tr>
+                                    <td width="70%">리액트 스터디 <span class="icon-red">오프</span></td>
+                                    <td class="text-right"> 2022.03.09</td>
+                                </tr>
+                                <tr>
+                                    <td width="70%">리액트 스터디</td>
+                                    <td class="text-right"> 2022.03.09</td>
+                                </tr>
+                                <tr>
+                                    <td width="70%">리액트 스터디</td>
+                                    <td class="text-right"> 2022.03.09</td>
+                                </tr>
+ 
+                            </table>
+                         </div>
+                         <br>
+                         <div class="container">
+                            <h5>이전 스터디</h5>
+                           <table class="font-sm" width="100%">
+                               <tr>
+                                   <td width="70%">리액트 스터디</td>
+                                   <td class="text-right"> 2022.03.09</td>
+                               </tr>
+                               <tr>
+                                   <td width="70%">리액트 스터디</td>
+                                   <td class="text-right"> 2022.03.09</td>
+                               </tr>
+                               <tr>
+                                   <td width="70%">리액트 스터디</td>
+                                   <td class="text-right"> 2022.03.09</td>
+                               </tr>
 
-                                <div class="img">
-                                    <img src="img/study-img.JPG" alt=""  >
-                                </div>
-                                <div class="px-2 pt-3">
-                                    <h5 class="b-h5">자바 스터디</h5>
-                                    <p class="b-price">무료</p>
-                                    <p class="b-p">경기도 부천시</p>
-                                    <div>
-                                        <p class="b-p d-inline-block"> &#11088;&#11088;&#11088;&#11088;&#11088; </p>
-                                        <p class="b-p b-rep d-inline-block ">평가: 100%</p>
-                                    </div>
-                                </div>
-                            </a>
+                           </table>
                         </div>
-                        <div class="study-box ">
-                            <a href="">
-
-                                <div class="img">
-                                    <img src="img/study-img.JPG" alt=""  >
-                                </div>
-                                <div class="px-2 pt-3">
-                                    <h5 class="b-h5">자바 스터디</h5>
-                                    <p class="b-price">무료</p>
-                                    <p class="b-p">경기도 부천시</p>
-                                    <div>
-                                        <p class="b-p d-inline-block"> &#11088;&#11088;&#11088;&#11088;&#11088; </p>
-                                        <p class="b-p b-rep d-inline-block ">평가: 100%</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="study-box ">
-                            <a href="">
-
-                                <div class="img">
-                                    <img src="img/study-img.JPG" alt=""  >
-                                </div>
-                                <div class="px-2 pt-3">
-                                    <h5 class="b-h5">자바 스터디</h5>
-                                    <p class="b-price">무료</p>
-                                    <p class="b-p">경기도 부천시</p>
-                                    <div>
-                                        <p class="b-p d-inline-block"> &#11088;&#11088;&#11088;&#11088;&#11088; </p>
-                                        <p class="b-p b-rep d-inline-block ">평가: 100%</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="study-box ">
-                            <a href="">
-
-                                <div class="img">
-                                    <img src="img/study-img.JPG" alt=""  >
-                                </div>
-                                <div class="px-2 pt-3">
-                                    <h5 class="b-h5">자바 스터디</h5>
-                                    <p class="b-price">무료</p>
-                                    <p class="b-p">경기도 부천시</p>
-                                    <div>
-                                        <p class="b-p d-inline-block"> &#11088;&#11088;&#11088;&#11088;&#11088; </p>
-                                        <p class="b-p b-rep d-inline-block ">평가: 100%</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="study-box ">
-                            <a href="">
-
-                                <div class="img">
-                                    <img src="img/study-img.JPG" alt=""  >
-                                </div>
-                                <div class="px-2 pt-3">
-                                    <h5 class="b-h5">자바 스터디</h5>
-                                    <p class="b-price">무료</p>
-                                    <p class="b-p">경기도 부천시</p>
-                                    <div>
-                                        <p class="b-p d-inline-block"> &#11088;&#11088;&#11088;&#11088;&#11088; </p>
-                                        <p class="b-p b-rep d-inline-block ">평가: 100%</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="study-box ">
-                            <a href="">
-
-                                <div class="img">
-                                    <img src="img/study-img.JPG" alt=""  >
-                                </div>
-                                <div class="px-2 pt-3">
-                                    <h5 class="b-h5">자바 스터디</h5>
-                                    <p class="b-price">무료</p>
-                                    <p class="b-p">경기도 부천시</p>
-                                    <div>
-                                        <p class="b-p d-inline-block"> &#11088;&#11088;&#11088;&#11088;&#11088; </p>
-                                        <p class="b-p b-rep d-inline-block ">평가: 100%</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="study-box ">
-                            <a href="">
-
-                                <div class="img">
-                                    <img src="img/study-img.JPG" alt=""  >
-                                </div>
-                                <div class="px-2 pt-3">
-                                    <h5 class="b-h5">자바 스터디</h5>
-                                    <p class="b-price">무료</p>
-                                    <p class="b-p">경기도 부천시</p>
-                                    <div>
-                                        <p class="b-p d-inline-block"> &#11088;&#11088;&#11088;&#11088;&#11088; </p>
-                                        <p class="b-p b-rep d-inline-block ">평가: 100%</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                     </div>
 
                     <br>
                     <br>
-                        <nav class="container">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link " href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item ">
-                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+
  
                 </div>
             </div>
         </div>
+
 
 </body>
 </html>
