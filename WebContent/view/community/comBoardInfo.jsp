@@ -84,18 +84,43 @@ a:hover {
 					</div>
 				</div>
 			</aside>
-			
+
 			<div class="main col-sm-9">
+
 				<h2 style="font-weight: bold">
-				${com.boardid }</h2>
+					<c:if test="${com.boardid =='1'}"> 질문 & 답변</c:if>
+					<c:if test="${com.boardid =='2'}"> 자유</c:if>
+					<c:if test="${com.boardid =='3'}"> 정보공유</c:if>
+					<c:if test="${com.boardid =='4'}"> 공지사항</c:if>
+					<c:if test="${com.boardid =='5'}"> 블로그</c:if>
+				</h2>
+
+
+
+
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
-				<h5 style="font-weight: bold">${com.subject}</h5>
-				<p style="color: grey">닉네임 · ${com.regdate}</p>
+
+				<c:if test="${com.boardid =='1'}">
+					<h5 style="font-weight: bold">Q: ${com.subject}</h5>
+				</c:if>
+				<c:if test="${com.boardid != '1'}">
+					<h5 style="font-weight: bold">${com.subject}</h5>
+				</c:if>
+
+				<div class="row">
+					<div class="col-sm-10">
+						<p style="color: grey">닉네임 · ${com.regdate}</p>
+					</div>
+					<div class="col-sm-2">
+					<button type="button" class="btn btn-light" onclick = "location.href='<%=request.getContextPath() %>/community/comBoardUpdateForm'">수정</button>
+					</div>
+				</div>
+
 				<br />
-				<p>
-					${com.content}
-				</p>
-				<br /><br /><br />
+				<p>${com.content}</p>
+				<br />
+				<br />
+				<br />
 
 				<div>
 					<h5 style="font-weight: bold">댓글 2</h5>
@@ -108,8 +133,18 @@ a:hover {
 					<p>저도 면접 준비중인데 ... 같이 하실래요..?</p>
 					<hr style="border: 0.5px solid 333b3d" />
 
-					<textarea class="form-control" id="comment" rows="3"></textarea>
-					<button type="button" class="btn btn-danger mt-3">작성</button>
+					<form class="form-group" name="ccf" action="#">
+						<div class="row">
+							<div class="col-xs-12 col-sm-11 col-md-10">
+								<textarea class="form-control" name="comment"
+									placeholder="댓글을 달아주세요"></textarea>
+							</div>
+							<div class="col-xs-12 col-sm-1 col-md-2">
+								<button type="submit" class="btn btn-danger">작성</button>
+							</div>
+						</div>
+
+					</form>
 					<button type="button" class="btn btn-dark mt-3">목록으로</button>
 					<button type="button" class="btn btn-dark mt-3">신고</button>
 					<button type="button" class="btn btn-dark mt-3">삭제</button>
@@ -117,6 +152,6 @@ a:hover {
 			</div>
 		</div>
 	</div>
-			
+
 </body>
 </html>

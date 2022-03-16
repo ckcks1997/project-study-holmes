@@ -93,11 +93,11 @@ a:hover {
 			<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
 			<form class="form-group">
 				<div class="row">
-					<div class="col-xs-12 col-sm-11 col-md-11">
+					<div class="col-xs-12 col-sm-11 col-md-10">
 						<input type="text" name="serch" class="form-control"
 							placeholder="대화내용을 검색해보세요!" />
 					</div>
-					<div class="col-xs-12 col-sm-1 col-md-1 btn-search">
+					<div class="col-xs-12 col-sm-1 col-md-2 btn-search">
 						<button class="btn btn-dark" type="submit">검색</button>
 					</div>
 				</div>
@@ -105,11 +105,11 @@ a:hover {
 
 			<form class="form-group">
 				<div class="row">
-					<div class="col-xs-12 col-sm-11 col-md-11">
+					<div class="col-xs-12 col-sm-11 col-md-10">
 						<input type="text" name="tag" class="form-control"
 							placeholder="태그로 검색해보세요!" />
 					</div>
-					<div class="col-xs-12 col-sm-1 col-md-1 btn-search">
+					<div class="col-xs-12 col-sm-1 col-md-2 btn-search">
 						<button class="btn btn-dark" type="submit">검색</button>
 					</div>
 				</div>

@@ -60,7 +60,7 @@ public class CommunityController extends MskimRequestMapping{
 	  case "5" : boardName = "블로그"; break;
 	  case "4" : boardName = "공지사항"; break;
 	  case "3" : boardName = "정보공유"; break;
-	  case "2" : boardName = "자유주제"; break;
+	  case "2" : boardName = "자유"; break;
 	
 	  }
 	   request.setAttribute("boardName",boardName);
@@ -146,6 +146,13 @@ public class CommunityController extends MskimRequestMapping{
 	  return "/view/community/comBoardInfo.jsp";
   }
   
+  
+  
+  @RequestMapping("comBoardUpdateForm")
+ public String comBoardUpdateForm(HttpServletRequest request,  HttpServletResponse response) {
+	  
+	  return "/view/community/comBoardUpdateForm.jsp";
+  }
   
   
   @RequestMapping("main")
