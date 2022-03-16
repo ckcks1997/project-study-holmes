@@ -175,12 +175,27 @@ public class StudyMemberController extends MskimRequestMapping {
     return "/view/alert.jsp";
   }
 
+  /*
+   * 마이페이지
+   * */
   @RequestMapping("mypage")
   public String mypage(HttpServletRequest request, HttpServletResponse response) {
- 
+    
+    HttpSession session = request.getSession();
+    
+    if(session != null) {
+      String memberID = (String) session.getAttribute("memberID");
+      StudyMemberDao md = new StudyMemberDao();
+      StudyMember mem = md.studyMemberOne(memberID);
+      request.setAttribute("memberInfo", mem);
+    }
+    
     return "/view/study/mypage.jsp";
   }
   
+  /*
+   * 프로필
+   * */
   @RequestMapping("myprofile")
   public String myprofile(HttpServletRequest request, HttpServletResponse response) {
  

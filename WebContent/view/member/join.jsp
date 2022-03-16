@@ -274,35 +274,36 @@ function win_upload(){
 	<div class="wrapper ">
 		<div id="formContent">
 
-			<div class=" first px-4 py-4 text-left">
+			<div class=" first px-4 pt-4 text-left">
 				<h1>회원가입</h1>
 				<p>스터디 홈즈에서 가치를 높이세요</p>
 				<hr align="left" width="300px" style="border: 0.5px solid #c47100" />
 			</div>
-			<div class="container">
-				<div class="alert  " id="validation-view" role="alert" >
-				 
-    			</div>
+			<div class="container px-5 py-0">
+				<div class="alert py-0 " id="validation-view" role="alert" display="none"></div>
+				 <div class="alert py-0 my-0" id="validation-view2" role="alert"  display="none"></div>
 			</div>
 			<!-- Login Form -->
-			<form action="<%=request.getContextPath()%>/studymember/joinPro" name="f">
+			<form action="<%=request.getContextPath()%>/studymember/joinPro" name="f"  >
 			    <input type="hidden" name="picture">
-                <input type="hidden" name="chk"> <br>
+                <input type="hidden" id="idchk" name="idchk"> 
+                <input type="hidden" id="pwchk" name="pwchk">
+                <br>
                 
                 <p class="nameholder">email</p>
-				<input type="text" id="email" class="m-2 " name="email" placeholder="example@studyhomles.com"  > 
+				<input type="text" id="email" class="m-2 " name="email" placeholder="example@studyhomles.com" required  > 
 				 
 				<br>	
 				<button class="btn btn-brown" id="emailChk" type="button" onclick="idChk()">이메일 확인</button>
 				<p class="nameholder">비밀번호</p>
-				<input type="password" id="password" class="m-2" name="password" placeholder="비밀번호를 입력해주세요"> 
+				<input type="password" id="password" class="m-2" name="password" placeholder="비밀번호를 입력해주세요" onkeyup="pwChk()" required > 
 				<p class="nameholder">비밀번호 확인</p>
 				<input type="password" id="password_valid"
-					class="m-2 " name="password_valid" placeholder="비밀번호를 확인해주세요" onkeyup="pwChk()"> 
+					class="m-2 " name="password_valid" placeholder="비밀번호를 확인해주세요" onkeyup="pwChk()" required > 
 					<p class="nameholder">이름</p>
-				<input type="text" placeholder="이름" name="name" class="m-2"> 
+				<input type="text" placeholder="이름" name="name" class="m-2" required > 
 				<p class="nameholder">닉네임</p>
-				<input type="text" placeholder="닉네임" name="nickname" class="m-2"> 
+				<input type="text" placeholder="닉네임" name="nickname" class="m-2" required > 
 				<p class="nameholder">전화번호</p>
 				<input type="text" 	placeholder="전화번호" name="tel" class="m-2">
 					<p class="nameholder">프로필 사진</p>
@@ -332,9 +333,13 @@ function win_upload(){
 	<br />
  
  <script>
-	    let result = document.querySelector("#validation-view");
+	   
 	    
-	    
+			 const result = document.querySelector("#validation-view");
+			 const result2 = document.querySelector("#validation-view2");
+			 const idchk = document.querySelector("#idchk");
+             const pwchk = document.querySelector("#pwchk");
+             
 		 function idChk() {
 			 const id = document.querySelector("#email").value; 
 			 const param = "id="+id; 
@@ -343,6 +348,7 @@ function win_upload(){
 			         result.classList.remove("alert-primary");
 			         result.classList.add("alert-danger");
 			        result.innerHTML = '올바른 이메일을 입력하세요'; 
+			        idchk.value=0;
 			    }  
 			    else{
 			        ajax("<%=request.getContextPath()%>/studymember/idexist", param, callback, 'get');
@@ -350,25 +356,29 @@ function win_upload(){
 			}
 		 
          function pwChk() {
+        	  
              const pw = document.querySelector("#password").value;
              const pw2 = document.querySelector("#password_valid").value;
                 if(pw.length<5){ 
-                     result.style.display="block";
-                     result.classList.remove("alert-primary");
-                     result.classList.add("alert-danger");
-                    result.innerHTML = '비밀번호를 5자 이상 입력하세요'; 
+                     result2.style.display="block";
+                     result2.classList.remove("alert-primary");
+                     result2.classList.add("alert-danger");
+                    result2.innerHTML = '비밀번호를 5자 이상 입력하세요'; 
+                    pwchk.value=0;
                 } else if (pw != pw2){
-                    result.style.display="block";
-                    result.classList.remove("alert-primary");
-                    result.classList.add("alert-danger");
-                   result.innerHTML = '두 비밀번호가 서로 다릅니다'; 
+                    result2.style.display="block";
+                    result2.classList.remove("alert-primary");
+                    result2.classList.add("alert-danger");
+                   result2.innerHTML = '두 비밀번호가 서로 다릅니다'; 
+                   pwchk.value=0;
                 }
-                else{
-                     result.style.display="none";
+                else{ 
+                     result2.style.display="none";
+                     pwchk.value=1;
                 }
                  
             }
-		function callback(){
+		function callback(){ 
 		    if (this.readyState == 4 && this.status == 200) {
 		         
 		        let chk = this.responseText.trim();
@@ -378,15 +388,20 @@ function win_upload(){
 		             result.classList.remove("alert-danger");
 		             result.classList.add("alert-primary");
                      result.innerHTML = '가입 가능한 메일입니다'; 
+                     idchk.value=1;
 		        }
 		        else{ 
 		        	  result.style.display="block";
 		              result.classList.remove("alert-primary");
 		              result.classList.add("alert-danger");
 		             result.innerHTML = '이미 가입된 메일입니다'; 
+		             idchk.value=0;
 		        } 
 		    }  
 		}
+		
+		
+ 
  </script>
 </body>
 </html>

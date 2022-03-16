@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <html>
 <head>
 <title>마이페이지</title>
@@ -131,7 +132,7 @@ a:hover {
                              </div>
                               <div class="constainer col-md-9">
                                   <div class="container m-1">
-                                      aa 님
+                                      ${memberInfo.nickname} 님
                                 </div>
                                 
                                 <div class="container m-1">
@@ -143,8 +144,8 @@ a:hover {
                                     스터디 횟수: 
                                   </div>
                                   <div class="container m-1">
-                                    
-                                    가입일: 
+                                     
+                                    가입일: <fmt:formatDate value="${memberInfo.joindate}" pattern="yyyy년 M월 d일"/>
                                   </div>
                               </div>
                          </div>

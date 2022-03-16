@@ -69,6 +69,9 @@ a:hover {
 	right: 5%;
 	height: 10px;
 }
+.fa-solid{
+    font-size:1.5rem;
+}
 </style>
 </head>
 <body>
@@ -95,10 +98,9 @@ a:hover {
 				</ul>
 
 				<div>
-					<ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-3">
-						<li class="nav-item active"><a class="nav-link" href="#"><img src="<%=request.getContextPath()%>/img/alarm.png" width="50px" /> </a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <img src="<%=request.getContextPath()%>/img/chat.jpg" width="50px" />
-						</a></li>
+					<ul class="navbar-nav  mt-2 mt-lg-0 ml-3">
+						<li class="nav-item "><a class="nav-link" href="#"><i class="fa-solid fa-bell"></i> </a></li>
+						<li class="nav-item mr-2"><a class="nav-link" href="#"> <i class="fa-solid fa-comments"></i></a></li>
 						<div class="d-flex align-items-center">
 							<%-- 로그인 세션이 없는경우 --%>
 							<c:choose>
@@ -114,7 +116,7 @@ a:hover {
 								<%--/*로그인 된 경우 */--%>
 								<c:otherwise>
 									<div class="dropdown">
-										<button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${memberNickname} 님</button>
+										<button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${memberNickname} 님</button>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											<img class="profile" src="<%=request.getContextPath()%>/upload/${memberPicture}" width="200" height="200" id="pic" onerror="this.src='<%=request.getContextPath()%>/img/profile_empty.jpg'" />
 											<li class="nav-item"><a class="dropdown-item" href="<%=request.getContextPath()%>/studymember/logout">로그아웃</a></li> <a class="dropdown-item"

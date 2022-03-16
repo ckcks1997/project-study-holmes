@@ -163,8 +163,8 @@
 						<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
 						<table class="table table-sm table-borderless ">
 						    <tr>
-                               <th >제목</td>
-                               <th >날짜</td>
+                               <th width="80%">제목</td>
+                               <th width="20%">날짜</td>
                             </tr>
 							<tr>
 								<td >ㅁㅁㅁ</td>
