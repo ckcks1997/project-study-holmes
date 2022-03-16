@@ -11,6 +11,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
+
 <link
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
 	rel="stylesheet">
@@ -100,7 +101,7 @@ a:hover {
 				<form name="cf"
 					action="<%=request.getContextPath()%>/community/comBoardUpdatePro"
 					enctype="multipart/form-data" method="post">
-					<input type = "hidden" namd = "num" value = "${com.num}">
+					<input type = "hidden" name = "num" value = "${com.num}">
 					<br /> <br />
 					
 					
@@ -117,7 +118,7 @@ a:hover {
 					<div class="form-group">
 						<label>내용 :</label>
 						<textarea class="summernote" name="content"
-							placeholder="Leave a comment here" id="content" value = "${com.content}"></textarea>
+							placeholder="Leave a comment here" id="content" value = "${com.content}"/></textarea>
 
 					</div>
 
@@ -125,7 +126,7 @@ a:hover {
 
 					<div class="d-grid gap-2 " style="float: right;">
 						<button class="btn btn-dark" type="button">취소</button>
-						<button class="btn btn-dark" type="submit">저장</button>
+						<button class="btn btn-dark" type="submit">수정</button>
 					</div>
 				</form>
 			</div>

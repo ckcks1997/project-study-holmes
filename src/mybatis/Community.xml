@@ -28,7 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select comboard_seq.nextval from dual
 </select>
 
-<update id = "comRefStepAdd" parameterType = "map">
-	update community set refstep = refstep + 1 where ref = #{ref} and refstep >#{refstep}
+<update id = "comBoardUpdate" parameterType = "community">
+	update community set subject = #{subject}, content = #{content},
+			tag = #{tag} where num = #{num}
 </update>
 </mapper>

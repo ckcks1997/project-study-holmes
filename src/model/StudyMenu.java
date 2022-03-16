@@ -1,7 +1,7 @@
 package model;
 
 public class StudyMenu {
-	
+	 
 	private String subject;
 	private int free;
 	private int pernum;
