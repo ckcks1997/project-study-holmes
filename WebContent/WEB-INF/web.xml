@@ -46,4 +46,21 @@
 	</servlet-mapping>
 
 
+
+	<servlet>
+		<servlet-name>studyMenuController</servlet-name>
+		<servlet-class>controller.StudyMenuController</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>studyMenuController</servlet-name>
+		<url-pattern>/studymenu/*</url-pattern>
+
+
+
+
+	</servlet-mapping>
+
+
 </web-app>
