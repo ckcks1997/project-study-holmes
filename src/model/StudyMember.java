@@ -10,7 +10,7 @@ public class StudyMember {
   private String tel; 
   private String picture;
   private Date joindate;
-  
+   
   
   
   public StudyMember() {  }
