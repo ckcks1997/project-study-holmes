@@ -11,13 +11,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select> 
 
 	<insert id="insertStudyMember" parameterType="studymember">
-		insert into study_member (email, password, nickname, name, tel, picture, joindate)
-		values(#{email},#{password},#{nickname},#{name},#{tel},#{picture}, sysdate)
+		insert into study_member (email, password, nickname, name, tel, picture, point, joindate)
+		values(#{email},#{password},#{nickname},#{name},#{tel},#{picture}, 50, sysdate)
 	</insert>
 
     <select id="studyMemberIdExist" parameterType="string" resultType="int">
         select count(*) from study_member where email = #{value}
     </select> 
-
+    
+    <select id="studyMemberNicknameExist" parameterType="string" resultType="int">
+        select count(*) from study_member where nickname = #{nickname}
+    </select> 
+    
+    
 
 </mapper>

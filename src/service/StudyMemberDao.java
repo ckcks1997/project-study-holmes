@@ -67,4 +67,16 @@ public class StudyMemberDao {
     return 1;
   }
   
+  public int studyMemberNicknameExist(String nickname) {
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try {
+      return sqlSession.selectOne(NS + "studyMemberNicknameExist", nickname);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MybatisConnection.close(sqlSession);
+    }
+
+    return 1;
+  }
 }

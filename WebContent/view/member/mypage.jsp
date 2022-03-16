@@ -137,7 +137,7 @@ a:hover {
                                 
                                 <div class="container m-1">
                                     
-                                    포인트:
+                                    포인트:${memberInfo.point}  
                                   </div>
                                   <div class="container m-1">
                                     
