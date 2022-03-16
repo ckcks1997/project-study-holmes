@@ -32,7 +32,7 @@ public class StudyMemberDao {
     SqlSession sqlSession = MybatisConnection.getConnection();
      
     try {
-      return sqlSession.insert(NS + "insertStudyMember",m );
+      return sqlSession.insert(NS + "insertStudyMember", m);
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
