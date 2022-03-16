@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import model.Community;
+import model.Community; 
 import util.MybatisConnection;
 
 public class CommunityBoardDao {
