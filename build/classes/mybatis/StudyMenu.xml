@@ -1,0 +1,25 @@
+<?xml version="1.0"	encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="studymenu">
+
+	<select id="menuCount" resultType="int" parameterType="string">
+		select count(*) from study_menu where menuid = #{menuid}
+	</select>
+
+	<select id="menuList" resultType="studymenu" parameterType="map">
+		select * from ( select rownum rnum, a.* from (
+		select * from study_menu where menuid = #{menuid}) a)
+		where rnum BETWEEN #{start} and #{end}
+	</select>
+		
+	<insert id="insertMenu" parameterType="studymenu">
+	insert into study_menu values 
+	(#{subject},#{free},#{pernum},#{region},#{menuid})
+	</insert>
+	
+	
+	
+	
+</mapper>
