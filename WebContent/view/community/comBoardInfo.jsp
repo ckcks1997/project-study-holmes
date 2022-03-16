@@ -155,7 +155,7 @@ a:hover {
 					</form>
 					<button type="button" class="btn btn-dark mt-3">목록으로</button>
 					<button type="button" class="btn btn-dark mt-3">신고</button>
-					<button type="button" class="btn btn-dark mt-3">삭제</button>
+					
 				</div>
 			</div>
 		</div>

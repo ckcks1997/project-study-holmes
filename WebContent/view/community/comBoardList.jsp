@@ -9,9 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-
 <style>
-
 
 body {
 	height: 100vh;
@@ -167,16 +165,7 @@ a:hover {
 		</div>
 	</div>
 	
-	
-	
-	
-	
-	<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-	<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-	<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
 	
 </body>
 </html>
