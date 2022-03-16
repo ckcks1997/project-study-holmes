@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 public class StudyMember {
   private String email; 
   private String password; 
@@ -7,20 +9,24 @@ public class StudyMember {
   private String name; 
   private String tel; 
   private String picture;
-  
+  private Date joindate;
   
   
   
   public StudyMember() {  }
+   
   public StudyMember(String email, String password, String nickname, String name, String tel,
-      String picture) {
+      String picture, Date joindate) {
+    super();
     this.email = email;
     this.password = password;
     this.nickname = nickname;
     this.name = name;
     this.tel = tel;
     this.picture = picture;
+    this.joindate = joindate;
   }
+
   public String getEmail() {
     return email;
   }
@@ -57,12 +63,22 @@ public class StudyMember {
   public void setPicture(String picture) {
     this.picture = picture;
   }
-  
+
+  public Date getJoindate() {
+    return joindate;
+  }
+
+  public void setJoindate(Date joindate) {
+    this.joindate = joindate;
+  }
+
   @Override
   public String toString() {
     return "StudyMember [email=" + email + ", password=" + password + ", nickname=" + nickname
         + ", name=" + name + ", tel=" + tel + ", picture=" + picture + "]";
-  } 
+  }
+  
+   
   
   
 }

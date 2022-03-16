@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
@@ -63,12 +63,17 @@
 		font-family: "kita";
 	}
 
-	.star {
-		position: absolute;
-		top: 10%;
-		right: 5%;
-		height: 10px;
-	}
+
+.star {
+	position: absolute;
+	top: 10%;
+	right: 5%;
+	height: 10px;
+}
+.fa-solid{
+    font-size:1.5rem;
+}
+
 </style>
 </head>
 <body>
@@ -98,11 +103,11 @@
 				</ul>
 
 				<div>
-					<ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-3">
-						<li class="nav-item active"><a class="nav-link" href="#"><img src="<%=request.getContextPath()%>/img/alarm.png" width="50px" /> </a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <img src="<%=request.getContextPath()%>/img/chat.jpg" width="50px" />
-						</a></li>
+					<ul class="navbar-nav  mt-2 mt-lg-0 ml-3">
+						<li class="nav-item "><a class="nav-link" href="#"><i class="fa-solid fa-bell"></i> </a></li>
+						<li class="nav-item mr-2"><a class="nav-link" href="#"> <i class="fa-solid fa-comments"></i></a></li>
 						<div class="d-flex align-items-center">
+							<%-- 로그인 세션이 없는경우 --%>
 							<c:choose>
 								<c:when test="${sessionScope.memberID eq null}">
 									<button class="btn btn-sm btn-dark">
@@ -110,11 +115,20 @@
 									</button>
 							             &nbsp;
 							             <button class="btn btn-sm btn-danger">
-										<a class="a-no-deco" href="join.html">회원가입</a>
+										<a class="a-no-deco" href="<%=request.getContextPath()%>/studymember/join">회원가입</a>
 									</button>
 								</c:when>
+								<%--/*로그인 된 경우 */--%>
 								<c:otherwise>
-									<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/studymember/logout">로그아웃</a></li>
+									<div class="dropdown">
+										<button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${memberNickname} 님</button>
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											<img class="profile" src="<%=request.getContextPath()%>/upload/${memberPicture}" width="200" height="200" id="pic" onerror="this.src='<%=request.getContextPath()%>/img/profile_empty.jpg'" />
+											<li class="nav-item"><a class="dropdown-item" href="<%=request.getContextPath()%>/studymember/logout">로그아웃</a></li> <a class="dropdown-item"
+												href="<%=request.getContextPath()%>/studymember/mypage">마이페이지</a>
+
+										</div>
+									</div>
 								</c:otherwise>
 							</c:choose>
 						</div>

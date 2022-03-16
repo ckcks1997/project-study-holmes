@@ -1,0 +1,232 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<html>
+<head>
+<title>마이페이지</title>
+<style>
+/* 명언 */
+.famous-saying-box {
+	height: 150px;
+	background-color: #333b3d;
+}
+
+.color-white {
+	color: white;
+}
+
+.footer-content {
+	padding-top: 50px;
+}
+
+/* aside */
+ul, li {
+	list-style: none;
+}
+
+li>a {
+	color: rgb(10, 10, 10);
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.aside-content {
+	display: block;
+	width: 200px;
+	/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
+	height: 40px;
+	line-height: 40px;
+	background: rgb(233, 233, 233);
+	text-align: left;
+	padding-left: 10px;
+	border: 1px solid rgb(223, 223, 223);
+}
+
+/* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */
+ /* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */
+            .pic_box{ 
+                width: 150px;
+                height: 150px; 
+                border-radius: 70%;
+                overflow: hidden;
+            }
+            .pic_box_pic{
+                width: 100%;
+                height:100%;
+                object-fit: cover;
+            }
+            .face_img{
+                width: 100%;
+                height: 100%;
+            }
+            .face_img > img{
+                width: 50px;
+                height: 50px;
+            }
+            .font-sm{
+                font-size: 0.8rem;
+            }
+            h1,h3,h5{
+                font-weight: bold;
+            }
+            .container-css{
+                background: #f8f8f8;
+                border-radius: 20px;
+            }
+            .icon-red{
+                color:white;
+                background: red;
+                padding: 2px;
+                border-radius:10px;
+            }
+        }
+</style>
+</head>
+<body>
+<div class="container-fluid famous-saying-box">
+            <div class="container p-3 ">
+                <div class=" mt-3">
+                    <h3 class="color-white ">오늘의 명언</h3>
+                    <div class="color-white">
+                        생각 없이 배우기만 하면 얻는 것이 없고, 생각만 하고 배우지 않으면 오류나 독단에 빠질 위험이 있다. -공자
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row pt-5">
+                <aside class="col-lg-3">
+                    <div class="col aside">
+                        <div class="aside-content">
+                            <li class=""><a href=""> 마이페이지 </a></li>
+                        </div>
+                        <div class="aside-content">
+                            <li class=""><a href="myprofile">  프로필 </a></li>
+                           
+                        </div>
+                        <div class="aside-content">
+                            <li class=""><a href=""> 작성한 게시글 </a></li>
+                        </div>
+ 
+                </aside>
+                <br>
+                <br>
+                <div class="col-lg-9">
+                    <h1>마이 페이지</h1>
+                    <hr align="left" width="350px" style="border: 0.5px solid #c47100" />
+                    <br> 
+                     
+                     <div class="container shadow-sm container-css p-5">
+                         <div class="d-flex justify-content-center">
+                             <div class="container col-md-3 text-center">
+                                 <div class=" ">
+                                     <img class="pic_box_pic"src="../img/profile_empty.jpg" alt="" srcset=""  >
+                                 </div>
+                                 <br>
+                                 <div class="d-flex justify-content-center">
+                                     <button class="btn btn-primary">사진 변경</button>
+                                 </div>
+                             </div>
+                              <div class="constainer col-md-9">
+                                  <div class="container m-1">
+                                      ${memberInfo.nickname} 님
+                                </div>
+                                
+                                <div class="container m-1">
+                                    
+                                    포인트:
+                                  </div>
+                                  <div class="container m-1">
+                                    
+                                    스터디 횟수: 
+                                  </div>
+                                  <div class="container m-1">
+                                     
+                                    가입일: <fmt:formatDate value="${memberInfo.joindate}" pattern="yyyy년 M월 d일"/>
+                                  </div>
+                              </div>
+                         </div>
+                     </div>
+                     <br>
+                     <div class="container shadow-sm container-css p-5">
+                         
+                         <div class="d-md-flex justify-content-center">
+                             <div class="container col-md-6 px-0"> 
+                                 <h5>나의 매너표정</h5>
+                                 <div class="d-md-flex justify-content-between  align-items-center ">
+                                     <div class="d-flex col-md-3 face_img  ">
+                                         <img class=" my-auto " src="../img/good.png" alt="">
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p class="my-1">스터디 리더를 23번 했어요 </p>  
+                                            <p class="my-1">스터디원을 12번 했어요 </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <br>
+                            <div class="d-md-flex justify-content-center align-items-center col-md-6 px-0">
+                                <div class="container ">
+                                    <h5>받은 매너평가 </h5> 
+                                    <p class="my-1">시간 약속을 잘 지켜요</p>
+                                    <p class="my-1">시간 약속을 잘 지켜요</p>
+                                    <p class="my-1">시간 약속을 잘 지켜요</p>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                     <br>
+
+                     <div class="d-md-flex shadow-sm container-css p-5">
+                         <div class="container">
+                             <h5>현재 스터디</h5>
+                            <table class="font-sm" width="100%">
+                                <tr>
+                                    <td width="70%">리액트 스터디 <span class="icon-red">오프</span></td>
+                                    <td class="text-right"> 2022.03.09</td>
+                                </tr>
+                                <tr>
+                                    <td width="70%">리액트 스터디</td>
+                                    <td class="text-right"> 2022.03.09</td>
+                                </tr>
+                                <tr>
+                                    <td width="70%">리액트 스터디</td>
+                                    <td class="text-right"> 2022.03.09</td>
+                                </tr>
+ 
+                            </table>
+                         </div>
+                         <br>
+                         <div class="container">
+                            <h5>이전 스터디</h5>
+                           <table class="font-sm" width="100%">
+                               <tr>
+                                   <td width="70%">리액트 스터디</td>
+                                   <td class="text-right"> 2022.03.09</td>
+                               </tr>
+                               <tr>
+                                   <td width="70%">리액트 스터디</td>
+                                   <td class="text-right"> 2022.03.09</td>
+                               </tr>
+                               <tr>
+                                   <td width="70%">리액트 스터디</td>
+                                   <td class="text-right"> 2022.03.09</td>
+                               </tr>
+
+                           </table>
+                        </div>
+                     </div>
+
+                    <br>
+                    <br>
+
+ 
+                </div>
+            </div>
+        </div>
+
+
+</body>
+</html>
