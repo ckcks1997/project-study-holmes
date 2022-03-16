@@ -9,7 +9,7 @@ public class StudyMenu {
 	private String menuid;
 	
 	
-	
+	  
 	public StudyMenu() {
 
 	}

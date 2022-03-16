@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class MybatisConnection {
-
+ 
   
   private static SqlSessionFactory sqlmap;
   static {

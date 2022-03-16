@@ -22,7 +22,7 @@
 		</jsp-property-group>
 	</jsp-config>
 
-
+ 
 
 	<servlet>
 		<servlet-name>boardController</servlet-name>
