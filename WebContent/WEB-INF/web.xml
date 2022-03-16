@@ -32,7 +32,6 @@
 	<servlet-mapping>
 		<servlet-name>boardController</servlet-name>
 		<url-pattern>/board/*</url-pattern>
-
 	</servlet-mapping>
 
 	<servlet>
@@ -43,6 +42,16 @@
 	<servlet-mapping>
 		<servlet-name>studymemberController</servlet-name>
 		<url-pattern>/studymember/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CommunityController</servlet-name>
+		<servlet-class>controller.CommunityController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CommunityController</servlet-name>
+		<url-pattern>/community/*</url-pattern>
 	</servlet-mapping>
 
 

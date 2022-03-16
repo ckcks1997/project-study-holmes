@@ -15,60 +15,60 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 /*폰트 용량이 너무 큼*/
-@font-face {
-	font-family: "kita";
-	src: url("<%=request.getContextPath()%>/common/fonts/KITA.ttf")
-		format("truetype");
-	font-weight: normal;
-	font-style: normal;
-}
+	@font-face {
+		font-family: "kita";
+		src: url("<%=request.getContextPath()%>/common/fonts/KITA.ttf")
+			format("truetype");
+		font-weight: normal;
+		font-style: normal;
+	}
 
-/* button */
-.btn-round {
-	border-radius: 20px;
-}
+		/* button */
+	.btn-round {
+		border-radius: 20px;
+	}
 
-a {
-	color: white;
-	text-decoration: none;
-}
+	a {
+		color: white;
+		text-decoration: none;
+	}
 
-a:hover {
-	color: white;
-	text-decoration: none;
-}
-/* navbar */
-.form-control {
-	height: 40px !important;
-	background: #fff !important;
-	color: #3a4348 !important;
-	font-size: 16px;
-	border-radius: 0px;
-	-webkit-box-shadow: none !important;
-	box-shadow: none !important;
-}
+	a:hover {
+		color: white;
+		text-decoration: none;
+	}
+	/* navbar */
+	.form-control {
+		height: 40px !important;
+		background: #fff !important;
+		color: #3a4348 !important;
+		font-size: 16px;
+		border-radius: 0px;
+		-webkit-box-shadow: none !important;
+		box-shadow: none !important;
+	}
 
-.search-domain {
-	background: #22d47b;
-	border: 2px solid #22d47b;
-	color: #fff;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	-ms-border-radius: 0;
-	border-radius: 0;
-}
+	.search-domain {
+		background: #22d47b;
+		border: 2px solid #22d47b;
+		color: #fff;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		-ms-border-radius: 0;
+		border-radius: 0;
+	}
 
-.navbar-brand {
-	position: relative;
-	font-family: "kita";
-}
+	.navbar-brand {
+		position: relative;
+		font-family: "kita";
+	}
 
-.star {
-	position: absolute;
-	top: 10%;
-	right: 5%;
-	height: 10px;
-}
+	.star {
+		position: absolute;
+		top: 10%;
+		right: 5%;
+		height: 10px;
+	}
 </style>
 </head>
 <body>
@@ -87,8 +87,11 @@ a:hover {
 						</div></li>
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 커뮤니티 </a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">질문&답글</a> <a class="dropdown-item" href="community.html">자유게시판</a> <a class="dropdown-item" href="#">정보공유</a> <a class="dropdown-item" href="#">공지사항</a> <a
-								class="dropdown-item" href="board/studycheck.html">출석체크</a>
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=1">질문&답글</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=2">자유게시판</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=3">정보공유</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">공지사항</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=5">블로그</a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link" href="#">스터디룸</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">만든이</a></li>
