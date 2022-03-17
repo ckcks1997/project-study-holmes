@@ -10,13 +10,13 @@ public class StudyMember {
   private String tel; 
   private String picture;
   private Date joindate;
-   
-  
+  private int point;
+  private String profile_intro;//자기소개
   
   public StudyMember() {  }
    
   public StudyMember(String email, String password, String nickname, String name, String tel,
-      String picture, Date joindate) {
+      String picture, Date joindate, int point, String profile_intro) {
     super();
     this.email = email;
     this.password = password;
@@ -25,6 +25,8 @@ public class StudyMember {
     this.tel = tel;
     this.picture = picture;
     this.joindate = joindate;
+    this.point = point;
+    this.profile_intro = profile_intro;
   }
 
   public String getEmail() {
@@ -72,13 +74,28 @@ public class StudyMember {
     this.joindate = joindate;
   }
 
+  public int getPoint() {
+    return point;
+  }
+
+  public void setPoint(int point) {
+    this.point = point;
+  }
+
+  public String getProfile_intro() {
+    return profile_intro;
+  }
+
+  public void setProfile_intro(String profile_intro) {
+    this.profile_intro = profile_intro;
+  }
+
   @Override
   public String toString() {
     return "StudyMember [email=" + email + ", password=" + password + ", nickname=" + nickname
-        + ", name=" + name + ", tel=" + tel + ", picture=" + picture + "]";
+        + ", name=" + name + ", tel=" + tel + ", picture=" + picture + ", joindate=" + joindate
+        + ", point=" + point + ", profile_intro=" + profile_intro + "]";
   }
-  
-   
   
   
 }

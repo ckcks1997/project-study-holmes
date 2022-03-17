@@ -151,7 +151,55 @@ public class CommunityController extends MskimRequestMapping{
   @RequestMapping("comBoardUpdateForm")
  public String comBoardUpdateForm(HttpServletRequest request,  HttpServletResponse response) {
 	  
+	  int num = Integer.parseInt(request.getParameter("num"));
+	  CommunityBoardDao cbd = new CommunityBoardDao();
+	  Community com = cbd.comBoardOne(num);
+	  request.setAttribute("com", com);
+	  
 	  return "/view/community/comBoardUpdateForm.jsp";
+  }
+  
+  
+  @RequestMapping("comBoardUpdatePro")
+  public String comBoardUpdatePro(HttpServletRequest request, HttpServletResponse response) {
+	  
+	  String path = request.getServletContext().getRealPath("/")+"/comboardupload/";
+	  
+	  int size = 10*10*1024;
+	  MultipartRequest multi = null;
+	  try {
+		multi = new MultipartRequest(request, path, size, "utf-8");
+	  } catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	  }
+	  Community com = new Community();
+	  com.setNum(Integer.parseInt(multi.getParameter("num")));
+	  com.setSubject(multi.getParameter("subject"));
+	  com.setTag(multi.getParameter("tag"));
+	  com.setContent(multi.getParameter("content"));
+	  
+	  CommunityBoardDao cbd = new CommunityBoardDao();
+	  
+	  String msg = "";
+	  String url = "";
+	  
+	  //Community newcom = cbd.comBoardOne(com.getNum());
+	  if(cbd.comBoardUpdate(com)>0) {
+		   msg = "수정되었습니다";
+		   url = request.getContextPath()+"/community/comBoardInfo?num="+com.getNum();
+		 
+	  } else {
+		  msg = "수정이 실패하였습니다";
+	  }
+	 
+	  
+	  request.setAttribute("msg", msg);
+	  request.setAttribute("url", url);
+	 
+	  
+	  return "/view/alert.jsp";
+	  
   }
   
   

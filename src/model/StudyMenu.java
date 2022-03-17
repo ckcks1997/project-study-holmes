@@ -1,9 +1,11 @@
 package model;
 
+
 import java.io.Serializable;
 
 public class StudyMenu implements Serializable {
 	
+
 	private String subject;
 	private int free;
 	private int pernum;

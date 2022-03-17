@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>메인화면</title>
+
 <style>
 /* banner */
 .banner {

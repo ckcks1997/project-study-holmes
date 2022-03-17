@@ -110,12 +110,15 @@ h1, h3, h5 {
                     <hr align="left" width="300px" style="border: 0.5px solid #c47100" />
                      <br>
                      <div class="container container-css  p-5">
-                         <form action="">
+                         <form action="<%=request.getContextPath()%>/studymember/myprofileEdit1">
                              <h5>닉네임 </h5>
-                             <input class="form-control input-border-round" type="text">
+                             <input class="form-control input-border-round" type="text" name="nickname" value="${memberInfo.nickname}">
                              <br>
-                             <h5>자기소개</h5>
-                             <textarea id="summernote" name="editordata"></textarea>  
+                             <div class="d-flex row pl-3">
+                                <h5>자기소개</h5> 
+                                <span>&nbsp;(2000자 이내로 작성하세요)</span>
+                             </div>
+                             <textarea id="summernote" name="profile_intro">${memberInfo.profile_intro}</textarea>  
                              <br>
                              <div class="col text-center">
                                  <button class="btn btn-primary "> 수정 </button>
@@ -195,11 +198,20 @@ h1, h3, h5 {
  
 
         <script>
-             $('#summernote').summernote({
+       $('#summernote').summernote({
         placeholder: '내용을 입력하세요',
         tabsize: 1,
         height: 200,
-        lang: "ko-KR"
+        lang: "ko-KR",
+        callbacks:{
+            onChange: function(){
+            	if($(".note-editable").text().length>1999){
+                $(".note-status-output").html('<div class="alert alert-danger">2000자를 초과할 수 없습니다</div>');
+              }else{
+                $(".note-status-output").html("");
+              }
+            }
+        }
       });
         </script>
 

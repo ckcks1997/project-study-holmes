@@ -186,7 +186,7 @@ input[type=text], input[type=password] {
 	display: inline-block;
 	font-size: 16px;
 	margin: 5px;
-	width: 85%;
+	width: 75%;
 	border: 2px solid #f6f6f6;
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
@@ -279,10 +279,8 @@ function win_upload(){
 				<p>스터디 홈즈에서 가치를 높이세요</p>
 				<hr align="left" width="300px" style="border: 0.5px solid #c47100" />
 			</div>
-			<div class="container px-5 py-0">
-				<div class="alert py-0 " id="validation-view" role="alert" display="none"></div>
-				 <div class="alert py-0 my-0" id="validation-view2" role="alert"  display="none"></div>
-			</div>
+			 
+
 			<!-- Login Form -->
 			<form action="<%=request.getContextPath()%>/studymember/joinPro" name="f"  >
 			    <input type="hidden" name="picture">
@@ -291,19 +289,26 @@ function win_upload(){
                 <br>
                 
                 <p class="nameholder">email</p>
-				<input type="text" id="email" class="m-2 " name="email" placeholder="example@studyhomles.com" required  > 
-				 
-				<br>	
-				<button class="btn btn-brown" id="emailChk" type="button" onclick="idChk()">이메일 확인</button>
+				<div class="alert mx-5 py-0 mb-0 " id="validation-view" role="alert" display="none"></div>
+                <div class="d-md-flex justify-content-center align-items-center mx-5">
+					<input type="text" id="email" class=" "  name="email" placeholder="example@studyhomles.com" required  > 
+					<button class="btn btn-brown" id="emailChk" type="button" onclick="idChk()">확인</button>
+                </div>
 				<p class="nameholder">비밀번호</p>
+				  <div class="alert mx-5 py-0 my-0" id="validation-view2" role="alert"  display="none"></div>
 				<input type="password" id="password" class="m-2" name="password" placeholder="비밀번호를 입력해주세요" onkeyup="pwChk()" required > 
 				<p class="nameholder">비밀번호 확인</p>
 				<input type="password" id="password_valid"
 					class="m-2 " name="password_valid" placeholder="비밀번호를 확인해주세요" onkeyup="pwChk()" required > 
 					<p class="nameholder">이름</p>
 				<input type="text" placeholder="이름" name="name" class="m-2" required > 
+				
 				<p class="nameholder">닉네임</p>
-				<input type="text" placeholder="닉네임" name="nickname" class="m-2" required > 
+				<div class="alert mx-5 py-0 my-0" id="validation-view3" role="alert"  display="none"></div>
+				<div class="d-md-flex justify-content-center align-items-center mx-5">
+				    <input type="text" placeholder="닉네임" id="nickname" name="nickname" class=" " required > 
+				    <button class="btn btn-brown" id="emailChk" type="button" onclick="nicknameChk()">확인</button>
+                </div>
 				<p class="nameholder">전화번호</p>
 				<input type="text" 	placeholder="전화번호" name="tel" class="m-2">
 					<p class="nameholder">프로필 사진</p>
@@ -337,6 +342,7 @@ function win_upload(){
 	    
 			 const result = document.querySelector("#validation-view");
 			 const result2 = document.querySelector("#validation-view2");
+			 const result3 = document.querySelector("#validation-view3");
 			 const idchk = document.querySelector("#idchk");
              const pwchk = document.querySelector("#pwchk");
              
@@ -351,9 +357,11 @@ function win_upload(){
 			        idchk.value=0;
 			    }  
 			    else{
-			        ajax("<%=request.getContextPath()%>/studymember/idexist", param, callback, 'get');
+			        ajax("<%=request.getContextPath()%>/studymember/idexist", param, callback_mail, 'get');
 			    }
 			}
+		 
+		 
 		 
          function pwChk() {
         	  
@@ -378,7 +386,23 @@ function win_upload(){
                 }
                  
             }
-		function callback(){ 
+         
+         function nicknameChk() {
+             const nickname = document.querySelector("#nickname").value; 
+             const param = "nickname="+nickname; 
+                if(nickname.length<2){ 
+                     result3.style.display="block";
+                     result3.classList.remove("alert-primary");
+                     result3.classList.add("alert-danger");
+                    result3.innerHTML = '올바른 닉네임을 입력하세요'; 
+                    idchk.value=0;
+                }  
+                else{
+                    ajax("<%=request.getContextPath()%>/studymember/nicknameExist", param, callback_nickname, 'get');
+                }
+            }
+         
+		function callback_mail(){ 
 		    if (this.readyState == 4 && this.status == 200) {
 		         
 		        let chk = this.responseText.trim();
@@ -400,7 +424,27 @@ function win_upload(){
 		    }  
 		}
 		
-		
+        function callback_nickname(){ 
+            if (this.readyState == 4 && this.status == 200) {
+                 
+                let chk = this.responseText.trim();
+                console.log(chk);
+                if(chk=='0'){ 
+                     result3.style.display="block"; 
+                     result3.classList.remove("alert-danger");
+                     result3.classList.add("alert-primary");
+                     result3.innerHTML = '사용 가능한 닉네임입니다'; 
+                     idchk.value=1;
+                }
+                else{ 
+                      result3.style.display="block";
+                      result3.classList.remove("alert-primary");
+                      result3.classList.add("alert-danger");
+                     result3.innerHTML = '이미 사용된 닉네임입니다'; 
+                     idchk.value=0;
+                } 
+            }  
+        }
  
  </script>
 </body>

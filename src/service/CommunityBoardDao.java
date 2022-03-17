@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import model.Community;
+import model.Community; 
 import util.MybatisConnection;
 
 public class CommunityBoardDao {
@@ -94,5 +94,21 @@ public class CommunityBoardDao {
 		  }
 		  
 		  return 0;
+	  }
+	  
+	  
+	  public int comBoardUpdate(Community com) {
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+		  
+		  try {
+		  return sqlSession.update(NS+"comBoardUpdate",com);
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  } finally {
+			  MybatisConnection.close(sqlSession);
+		  }
+		  
+		  return 0;
+		  
 	  }
 }

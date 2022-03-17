@@ -3,7 +3,7 @@ package model;
 import java.sql.Date;
 
 public class Community {
-
+ 
 	private int num;
 	private String subject;
 	private String content;

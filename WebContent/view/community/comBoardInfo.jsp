@@ -6,10 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+
 </head>
 <style>
 body {
@@ -45,6 +43,11 @@ a:hover {
 	text-align: left;
 	padding-left: 10px;
 	border: 1px solid rgb(223, 223, 223);
+}
+
+.txt_bar {
+	margin : 0 9px 0 5px;
+	color :gray;
 }
 </style>
 <body>
@@ -109,13 +112,18 @@ a:hover {
 
 				<div class="row">
 					<div class="col-sm-10">
-						<p style="color: grey">닉네임 · ${com.regdate}</p>
+						
+						<p>닉네임 · ${com.regdate}  
+						<span class = "txt_bar">|</span>  
+						  <a href = "<%=request.getContextPath()%>/community/comBoardUpdateForm?num=${com.num}" style = "color:gray;">수정</a>
+						 <span class = "txt_bar">|</span>
+						  <a href = "#" class = "link_detail" style = "color:gray;">삭제</a>
+						 </p>
+						
 					</div>
-					<div class="col-sm-2">
-					<button type="button" class="btn btn-light" onclick = "location.href='<%=request.getContextPath() %>/community/comBoardUpdateForm'">수정</button>
-					</div>
+					
 				</div>
-
+			
 				<br />
 				<p>${com.content}</p>
 				<br />
@@ -147,7 +155,7 @@ a:hover {
 					</form>
 					<button type="button" class="btn btn-dark mt-3">목록으로</button>
 					<button type="button" class="btn btn-dark mt-3">신고</button>
-					<button type="button" class="btn btn-dark mt-3">삭제</button>
+					
 				</div>
 			</div>
 		</div>

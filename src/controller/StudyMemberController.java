@@ -125,16 +125,34 @@ public class StudyMemberController extends MskimRequestMapping {
     } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
     }
-    String idExist = request.getParameter("id");  
-    System.out.println("id="+idExist);
+    String id = request.getParameter("id");  
+    System.out.println("id="+id);
     StudyMemberDao md = new StudyMemberDao();
-    int mem = md.studyMemberIdExist(idExist); 
+    int mem = md.studyMemberIdExist(id); 
     System.out.println("result="+mem);
     request.setAttribute("chk", mem); 
     return "/single/readId.jsp";
   }
   
-  
+  /*
+   * 닉네임 중복확인
+   * */
+  @RequestMapping("nicknameExist")
+  public String nicknameExist(HttpServletRequest request, HttpServletResponse response) {
+
+    try {
+      request.setCharacterEncoding("utf-8");
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+    String nickname = request.getParameter("nickname");  
+    System.out.println("nicknameExist="+nickname);
+    StudyMemberDao md = new StudyMemberDao();
+    int mem = md.studyMemberNicknameExist(nickname); 
+    System.out.println("result="+mem);
+    request.setAttribute("chk", mem); 
+    return "/single/readId.jsp";
+  }
   /*
    * 회원가입 내 사진등록 창
    * */
@@ -190,17 +208,45 @@ public class StudyMemberController extends MskimRequestMapping {
       request.setAttribute("memberInfo", mem);
     }
     
-    return "/view/study/mypage.jsp";
+    return "/view/member/mypage.jsp";
   }
   
   /*
-   * 프로필
+   * 내 프로필 정보
    * */
   @RequestMapping("myprofile")
   public String myprofile(HttpServletRequest request, HttpServletResponse response) {
- 
-    return "/view/study/myprofile.jsp";
+HttpSession session = request.getSession();
+    
+    if(session != null) {
+      String memberID = (String) session.getAttribute("memberID");
+      StudyMemberDao md = new StudyMemberDao();
+      StudyMember mem = md.studyMemberOne(memberID);
+       
+      request.setAttribute("memberInfo", mem);
+       
+    }
+    
+    return "/view/member/myprofile.jsp";
   }
+  
+  /*
+   * 내 프로필 정보-첫번째 수정칸
+   * */
+  @RequestMapping("myprofileEdit1")
+  public String myprofileEdit1(HttpServletRequest request, HttpServletResponse response) {
+HttpSession session = request.getSession();
+    
+    if(session != null) {
+      String nickname = (String) request.getParameter("nickname");
+      String profile_intro = (String) request.getParameter("profile_intro");
+      System.out.println("res:"+profile_intro);
+       
+    }
+    
+    return "/view/member/myprofile.jsp";
+  }
+  
 }
 
 
