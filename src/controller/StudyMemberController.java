@@ -265,7 +265,7 @@ public class StudyMemberController extends MskimRequestMapping {
   }
   
   /*
-   * 내 프로필 정보-첫번째 수정칸
+   * 내 프로필 정보-자기소개 수정칸
    * */
   @RequestMapping("myprofileEdit1")
   public String myprofileEdit1(HttpServletRequest request, HttpServletResponse response) {
@@ -300,9 +300,9 @@ public class StudyMemberController extends MskimRequestMapping {
     String msg="로그인이 필요합니다";
     String url="studymember/loginForm";
     String tag = (String) request.getParameter("tag");
+    
     if(session.getAttribute("memberID") != null && !tag.isEmpty()) {
       String s_id = (String)request.getSession().getAttribute("memberID");
-
       MemberTagDao td = new MemberTagDao();
       int result = td.addMemberTag(s_id, tag); 
       msg="추가 되었습니다.";
