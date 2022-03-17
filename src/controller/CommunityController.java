@@ -203,6 +203,40 @@ public class CommunityController extends MskimRequestMapping{
   }
   
   
+  
+  @RequestMapping("comBoardDelete") 
+  public String comBoardDelete(HttpServletRequest request, HttpServletResponse response) {
+	  
+	  int num = Integer.parseInt(request.getParameter("num"));
+	  CommunityBoardDao cbd = new CommunityBoardDao();
+	  Community com = cbd.comBoardOne(num);
+	  
+	  
+	  
+	  
+	  
+	  String msg = "";
+	  String url = "";
+	 
+	  if(cbd.comBoardDelete(num)>0) {
+		  
+		  msg = "게시글이 삭제되었습니다.";
+		  url = request.getContextPath()+"/community/comBoardList";
+	  } else {
+		  msg= "삭제가 불가능합니다";
+		  url = request.getContextPath()+"/community/comBoardInfo";
+	  }
+	
+	
+	  return "/view/main.jsp";
+  	
+  }
+  
+  
+  
+  
+  
+  
   @RequestMapping("main")
   public String main(HttpServletRequest request, HttpServletResponse response) {
  

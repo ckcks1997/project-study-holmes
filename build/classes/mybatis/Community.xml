@@ -32,4 +32,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	update community set subject = #{subject}, content = #{content},
 			tag = #{tag} where num = #{num}
 </update>
+
+<delete id="comBoardDelete" parameterType= "int">
+	delete from community where num = #{num}
+</delete>
+
 </mapper>

@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
 </head>
 <style>
 body {
@@ -46,8 +45,8 @@ a:hover {
 }
 
 .txt_bar {
-	margin : 0 9px 0 5px;
-	color :gray;
+	margin: 0 9px 0 5px;
+	color: gray;
 }
 </style>
 <body>
@@ -102,7 +101,7 @@ a:hover {
 
 
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
-
+				<input type = "hidden" id = "num" name = "num" value = "${com.num}">
 				<c:if test="${com.boardid =='1'}">
 					<h5 style="font-weight: bold">Q: ${com.subject}</h5>
 				</c:if>
@@ -112,24 +111,25 @@ a:hover {
 
 				<div class="row">
 					<div class="col-sm-10">
-						
-						<p>닉네임 · ${com.regdate}  
-						<span class = "txt_bar">|</span>  
-						  <a href = "<%=request.getContextPath()%>/community/comBoardUpdateForm?num=${com.num}" style = "color:gray;">수정</a>
-						 <span class = "txt_bar">|</span>
-						  <a href = "#" class = "link_detail" style = "color:gray;">삭제</a>
-						 </p>
-						
+
+						<p>
+							닉네임 · ${com.regdate} <span class="txt_bar">|</span> <a
+								href="<%=request.getContextPath()%>/community/comBoardUpdateForm?num=${com.num}"
+								style="color: gray;">수정</a> 
+						</p>
+
 					</div>
-					
+
 				</div>
+
+
 			
 				<br />
 				<p>${com.content}</p>
-				<br />
-				<br />
-				<br />
-
+				<br /> <br /> <br />
+				
+				
+				
 				<div>
 					<h5 style="font-weight: bold">댓글 2</h5>
 					<hr style="border: 0.5px thick 333b3d" />
@@ -155,11 +155,68 @@ a:hover {
 					</form>
 					<button type="button" class="btn btn-dark mt-3">목록으로</button>
 					<button type="button" class="btn btn-dark mt-3">신고</button>
-					
+					<button type="button" data-toggle= "modal" data-target = "#deleteModal" class = "btn btn-danger mt-3">삭제</button>
+
+					<!-- 게시글 삭제 모달창 -->
+						<div class="modal fade" id="deleteModal" aria-hidden="true"
+							tabindex="-1" aria-labelledby="deleteBoardLabel">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="deleteBoardLabel">게시글 삭제</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									</div>
+
+									<div class="modal-body">이 글을 삭제합니다. 계속하시겠습니까?</div>
+									<div class="modal-footer">
+		
+										<button id = "deleteBtn" class="btn btn-primary"   data-dismiss="modal" onclick = "deleteConfirm();">확인</button>
+									
+										<button class="btn btn-outline-primary" data-dismiss="modal">취소</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
 				</div>
 			</div>
 		</div>
 	</div>
 
+
+<script>
+	
+	
+	function deleteConfirm(){
+		
+		
+		const num = document.querySelector("#num").value;
+		//alert(num); 확인하기 
+		
+		$.ajax({
+			type : 'get',
+			url : "<%=request.getContextPath()%>/community/comBoardDelete?num="+num,
+			success : function(res) {  
+				
+				location.href = "<%=request.getContextPath()%>/view/community/comBoardDeleteSuccess.jsp"
+				//let del = document.querySelector("#a"+num)
+				//del.innerHTML=""
+				
+				
+			},
+			error : function(res) {  
+				console.log(error)
+			}
+			})
+	}
+	
+
+</script>
+
+
 </body>
+
 </html>
