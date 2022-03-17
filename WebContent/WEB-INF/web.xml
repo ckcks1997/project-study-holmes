@@ -65,10 +65,6 @@
 	<servlet-mapping>
 		<servlet-name>studyMenuController</servlet-name>
 		<url-pattern>/studymenu/*</url-pattern>
-
-
-
-
 	</servlet-mapping>
 
 
