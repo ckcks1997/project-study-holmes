@@ -211,7 +211,7 @@ a:hover {
 				<div class="flex ">
 					
 					
-<!-- --------------------------------------------------------------검색------------------------------------------------------------ -->							
+					
 					<div>
 						<div class="input-group rounded" method="post">
 						<form action = "studySearch" method="post">
@@ -226,7 +226,7 @@ a:hover {
 						</div>
 					</div>
 					
-<!-- --------------------------------------------------------------지역태그------------------------------------------------------------ -->						
+				
 					<div>
 						<div class="input-group rounded" method="post">
 						
@@ -260,7 +260,7 @@ a:hover {
 
 				</div>
 				
-<!-- --------------------------------------------------------------게시판------------------------------------------------------------ -->						
+				
 				<button class="btn btn-info d-block ml-auto">
 					<a href="<%=request.getContextPath()%>/studymenu/writeForm" style="color: white;">글쓰기 </a>
 				</button>
@@ -299,25 +299,6 @@ a:hover {
 					</c:if>
 				
 				</div>
-<!-- --------------------------------------------------------------페이지 번호------------------------------------------------------------ -->
-				<br> <br>
-				<nav class="container">
-					<ul class="pagination justify-content-center">
-					
-					
-					<li 
-						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/menuForm?pageNum=${startPage - bottomLine}">Previous</a></li>
-						
-					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
-						<li class='page-item <c:if test = "${i == pageInt}" >  active </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/menuForm?pageNum=${i}">${i}</a></li>
-					
-					</c:forEach>
-						<li class='page-item <c:if test = "${endPage >= maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/menuForm?pageNum=${startPage + bottomLine}">Next</a></li>
-					</ul>
-				</nav>
 
 			</div>
 		</div>

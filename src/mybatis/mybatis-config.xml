@@ -6,9 +6,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<typeAlias type="model.StudyMember" alias="StudyMember" /> 
 
+        <typeAlias type="model.MemberTag" alias="membertag" /> 
+
 		<typeAlias type="model.StudyMenu" alias="StudyMenu" /> 
 
 		<typeAlias type="model.Community" alias = "Community" />
+		
+		<typeAlias type="model.Search" alias = "Search" />
 
 	</typeAliases>
 	<environments default="development">
@@ -27,10 +31,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mappers> 
         <mapper resource="mybatis/StudyMember.xml" /> 
 
+        <mapper resource="mybatis/MemberTag.xml" />
+
         <mapper resource="mybatis/StudyMenu.xml" /> 
 
         <mapper resource ="mybatis/Community.xml" />
-
-	</mappers>
+        
+     </mappers>
 
 </configuration>

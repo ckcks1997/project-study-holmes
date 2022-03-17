@@ -1,18 +1,20 @@
 package controller;
 
-import java.io.IOException;
+
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.tools.Tool;
 
-import com.oreilly.servlet.MultipartRequest;
+import org.apache.ibatis.session.SqlSession;
 
-
+import model.Search;
 import model.StudyMenu;
-import oracle.net.aso.a;
+
 
 import service.StudyMenuDao;
 
@@ -140,6 +142,30 @@ public class StudyMenuController extends MskimRequestMapping{
 		return "/view/alert.jsp";
 	}
 	
+	@RequestMapping("studySearch")
+	public String studySearch(HttpServletRequest request, 
+			HttpServletResponse response) {
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String part = request.getParameter("part");
+		String searchData = request.getParameter("searchData");
+		Search sh = new Search();
+		sh.setPart(part);
+		sh.setSearchData("%" + searchData + "%");
+		
+		StudyMenuDao dao = new StudyMenuDao();
+		List<StudyMenu> list = dao.studySearch(sh);
+		request.setAttribute("list", list);
+		
+		
+		
+		return "/view/study/menuSearchList.jsp";
+	}
 
 	
 	

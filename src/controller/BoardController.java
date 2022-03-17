@@ -13,12 +13,10 @@ import com.oreilly.servlet.MultipartRequest;
 
 
 public class BoardController extends MskimRequestMapping{
-  @RequestMapping("list2")
-  public String list2(HttpServletRequest request, HttpServletResponse response) {
- 
-    return "/view/board/list2.jsp";
-  }
-  
+
+  /*
+   * 메인 화면입니다.
+   * */
   @RequestMapping("main")
   public String main(HttpServletRequest request, HttpServletResponse response) {
  

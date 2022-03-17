@@ -20,90 +20,6 @@ a {
 	color: white;
 	text-decoration: none;
 }
-/* navbar */
-.form-control {
-	height: 40px !important;
-	background: #fff !important;
-	color: #3a4348 !important;
-	font-size: 16px;
-	border-radius: 0px;
-	-webkit-box-shadow: none !important;
-	box-shadow: none !important;
-}
-
-.search-domain {
-	background: #22d47b;
-	border: 2px solid #22d47b;
-	color: #fff;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	-ms-border-radius: 0;
-	border-radius: 0;
-}
-
-.navbar-brand {
-	position: relative;
-	font-family: "kita";
-}
-
-.star {
-	position: absolute;
-	top: 10%;
-	right: 5%;
-	height: 10px;
-}
-
-/* banner */
-.banner {
-	position: relative;
-	height: 400px;
-	background-color: #f55555;
-}
-
-.b-container1 {
-	position: relative;
-	margin: auto;
-	height: 100%;
-}
-
-.b-img {
-	position: absolute;
-	top: 10%;
-	right: 5%;
-	text-align: right;
-}
-
-.b-img>img {
-	display: none;
-	text-align: right;
-	max-width: 500px;
-}
-
-@media only screen and (min-width: 992px) {
-	.b-img>img {
-		display: block;
-		text-align: right;
-		max-width: 500px;
-	}
-}
-
-.b-text {
-	color: #ffdfdf;
-	position: absolute;
-	top: 30%;
-	left: 10px;
-	max-width: 400px;
-}
-
-.footer {
-	height: 200px;
-	background: #777;
-	text-align: center;
-}
-
-.footer-content {
-	padding-top: 50px;
-}
 
 body {
 	font-family: "Poppins", sans-serif;
@@ -206,8 +122,6 @@ input[type=text]:placeholder {
 	color: #cccccc;
 }
 
-/* ANIMATIONS */
-
 /* Simple CSS3 Fade-in Animation */
 .underlineHover:after {
 	display: block;
@@ -282,10 +196,11 @@ function win_upload(){
 			 
 
 			<!-- Login Form -->
-			<form action="<%=request.getContextPath()%>/studymember/joinPro" name="f"  >
+			<form action="<%=request.getContextPath()%>/studymember/joinPro" name="f" onsubmit="return inputChk(this)" >
 			    <input type="hidden" name="picture">
                 <input type="hidden" id="idchk" name="idchk"> 
                 <input type="hidden" id="pwchk" name="pwchk">
+                <input type="hidden" id="nickchk" name="nickchk">
                 <br>
                 
                 <p class="nameholder">email</p>
@@ -395,7 +310,7 @@ function win_upload(){
                      result3.classList.remove("alert-primary");
                      result3.classList.add("alert-danger");
                     result3.innerHTML = '올바른 닉네임을 입력하세요'; 
-                    idchk.value=0;
+                    nickchk.value=0;
                 }  
                 else{
                     ajax("<%=request.getContextPath()%>/studymember/nicknameExist", param, callback_nickname, 'get');
@@ -434,18 +349,31 @@ function win_upload(){
                      result3.classList.remove("alert-danger");
                      result3.classList.add("alert-primary");
                      result3.innerHTML = '사용 가능한 닉네임입니다'; 
-                     idchk.value=1;
+                     nickchk.value=1;
                 }
                 else{ 
                       result3.style.display="block";
                       result3.classList.remove("alert-primary");
                       result3.classList.add("alert-danger");
                      result3.innerHTML = '이미 사용된 닉네임입니다'; 
-                     idchk.value=0;
+                     nickchk.value=0;
                 } 
             }  
         }
  
+        function inputChk(f){
+            
+            let result1 = document.querySelector("#idchk").value;
+            let result2 = document.querySelector("#pwchk").value;
+            let result3 = document.querySelector("#nickchk").value;
+            if(result1==0 ||  result2==0 || result3==0 ){
+                alert("확인절차가 완료되지 않았습니다.")
+                return false;
+            }
+
+            return true;
+        }
+        
  </script>
 </body>
 </html>

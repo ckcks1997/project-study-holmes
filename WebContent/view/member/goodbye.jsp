@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>로그인</title>
+<title>회원탈퇴</title>
 <style>
 
 /* button */
@@ -60,7 +60,7 @@ body {
 
 /* FORM TYPOGRAPHY*/
 input[type=button], input[type=submit], input[type=reset] {
-	background-color: #C47100;
+	background-color: #ff5500;
 	border: none;
 	color: white;
 	padding: 15px 80px;
@@ -75,7 +75,7 @@ input[type=button], input[type=submit], input[type=reset] {
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover
 	{
-	background-color: #C47100;
+	background-color: #ff9955;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active
@@ -163,29 +163,19 @@ input[type=text]:placeholder {
 
 			<!-- Icon -->
 			<div class="fadeIn first px-4 py-4 text-left">
-				<h1>로그인</h1>
+				<h1>회원탈퇴</h1>
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
 			</div>
 
 			<!-- Login Form -->
-			<form action="<%=request.getContextPath()%>/studymember/loginPro">
-				<input type="text" id="id" class="fadeIn second" name="id" placeholder="email id"> 
-				<input type="password" id="password" class="fadeIn third" name="password" placeholder="password"> 
-				<input	type="submit" class="fadeIn fourth my-1" value="로그인"> <br>
-				<a class="btn" href="join">회원가입</a>
-				<a class="btn" href="findPassword">비밀번호 찾기</a>
+			<form action="<%=request.getContextPath()%>/studymember/goodbyePro">
+			     아이디 <br>
+				<input type="text" id="id" class=" " name="id" placeholder="email id" value="${memberID}" disabled> 
+				<br>비밀번호 <br>
+				<input type="password" id="password" class=" " name="password" placeholder="password"> 
+				<input	type="submit" class="my-1" value="탈퇴하기"> <br>
 				<br> <br>
 			</form>
-
-			<!-- Remind Passowrd -->
-            <div id="formFooter">
-                <h5>간편 회원가입</h5>
-                <p>SNS 계정으로 간편하게 로그인하세요</p>
-                <div class="container d-inline-flex justify-content-center sns-bg">
-                    <a class="underlineHover login-font" href="#" >구글 로그인</a> &nbsp;|&nbsp;
-                    <a class="underlineHover login-font" href="#" >네이버 로그인</a>
-                </div>
-            </div>
 
 		</div>
 	</div>
