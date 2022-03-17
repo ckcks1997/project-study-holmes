@@ -100,36 +100,25 @@ public class StudyMenuDao {
 
 	}
 	
-	public ArrayList<StudyMenu> selectList(String field, String value) {
-	
-		ArrayList<StudyMenu> list = new ArrayList<StudyMenu>();
-		Connection conn = null;
-		conn = this.getConnection();
-		PreparedStatement pstmt = null;
-		String sql1 = "select * from study_menu";
-		String sql2 = "select * from board where " + field +" like ?";
-		
-		try {
-			if(value==null || value=="") {
-				pstmt = conn.prepareStatement(sql1);
-			} else {
-				pstmt = conn.prepareStatement(sql2);
-				pstmt.setString(1,  "%"+value+"%");			
-			}
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				String subject = rs.getString("subject");
-				int free = rs.getString("free");
-				int pernum = rs.getString("pernum");
-				String region = rs.getString("region");
-				String menuid = rs.getString("menuid");
-				
-				
-			}
-		}
-	}
 	
 	/* 검색 */
+	public List<StudyMenu> studySearch(Search sh) {
+
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		List<StudyMenu> list = null;
+		try {
+			
+		list = sqlSession.selectList(NS + "studySearch", sh);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return list;
+
+	}
 	
 }

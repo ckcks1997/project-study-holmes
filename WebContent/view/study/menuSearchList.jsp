@@ -1,19 +1,18 @@
+<%@page import="model.StudyMenu"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+List<StudyMenu> list = (List<StudyMenu>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-body, button, input, select, textarea {
-	font-family: Roboto, Noto Sans KR, -apple-system, "system-ui",
-		BlinkMacSystemFont, Apple SD Gothic Neo, Segoe UI, Roboto,
-		Helvetica Neue, Arial, sans-serif, Oxygen, Ubuntu, Cantarell,
-		Fira Sans, Droid Sans, Helvetica;
-}
-
+ 
 body {
 	color: #454545;
 	font-size: 1rem;
@@ -24,6 +23,7 @@ body {
 a {
 	color: #454545;
 }
+
 
 /* button */
 .btn-round {
@@ -45,86 +45,7 @@ a {
 	text-decoration: none;
 }
 
-/* navbar */
-.form-control {
-	height: 40px !important;
-	background: #fff !important;
-	color: #3a4348 !important;
-	font-size: 16px;
-	border-radius: 0px;
-	-webkit-box-shadow: none !important;
-	box-shadow: none !important;
-}
 
-.search-domain {
-	background: #22d47b;
-	border: 2px solid #22d47b;
-	color: #fff;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	-ms-border-radius: 0;
-	border-radius: 0;
-}
-
-.navbar-brand {
-	position: relative;
-	font-family: "kita";
-}
-
-.star {
-	position: absolute;
-	top: 10%;
-	right: 5%;
-	height: 10px;
-}
-
-/* banner */
-.banner {
-	position: relative;
-	height: 400px;
-	background-color: #f55555;
-}
-
-.b-container1 {
-	position: relative;
-	margin: auto;
-	height: 100%;
-}
-
-.b-img {
-	position: absolute;
-	top: 10%;
-	right: 5%;
-	text-align: right;
-}
-
-.b-img>img {
-	display: none;
-	text-align: right;
-	max-width: 500px;
-}
-
-@media only screen and (min-width: 992px) {
-	.b-img>img {
-		display: block;
-		text-align: right;
-		max-width: 500px;
-	}
-}
-
-.b-text {
-	color: #ffdfdf;
-	position: absolute;
-	top: 30%;
-	left: 10px;
-	max-width: 400px;
-}
-
-.footer {
-	height: 200px;
-	background: #777;
-	text-align: center;
-}
 /* 명언 */
 .famous-saying-box {
 	height: 150px;
@@ -286,7 +207,11 @@ a:hover {
 				<div class="flex ">
 					<div>
 						<div class="input-group rounded" method="post">
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">
+						<form action = "studySearch" method="post">
+						<select name="part">
+						<option value="subject">제목</option>
+						
+						</select>
 							<input type="text" class="form-control rounded"
 								placeholder="Search" aria-label="Search"
 								aria-describedby="search-addon" name="searchData" required="required"/> 
@@ -317,16 +242,21 @@ a:hover {
 					<a href="<%=request.getContextPath()%>/studymenu/writeForm" style="color: white;">글쓰기 </a>
 				</button>
 				<div class="container d-flex justify-content-between flex-wrap">
-					<div class="study-box ">
-						<a href="studyDetailedScreen.html">
-
-				<c:forEach var="s" items="${list}">
 				
+				<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
+				
+				<p>작성된 글이 없습니다.</p>
+				
+				</c:if>
+				
+				<c:if test="${list !=null }">				
+				<c:forEach var="s" items="${list}">
+					<div class="study-box ">
+						<a href="studyDetailedScreen.html">											
 							<div class="img">
-								 
 								<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="">
-								
 							</div>
+							
 							<div class="px-2 pt-3">
 								<h5 class="b-h5">${s.subject}</h5>
 								<p class="b-price">${s.free==1 ? "무료":"유료"  }</p>
@@ -340,12 +270,11 @@ a:hover {
 									<p class="b-p b-rep d-inline-block ">평가:100%</p>
 								</div>
 							</div>
-						
-						</c:forEach>	
-						</a>
-					</div>
-					 
-							
+						  </a>
+					   </div>
+					</c:forEach>	
+					</c:if>
+				
 				</div>
 
 				<br> <br>

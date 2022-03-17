@@ -20,7 +20,7 @@
 	</insert>
 	
 	<select id="studySearch" parameterType="Search" resultType="StudyMenu">
-	select * from study_menu where subject like concat('%', #{searchData}, '%')
+	select * from study_menu where upper (${part}) like upper (#{searchData})
 	</select>
 	
 	

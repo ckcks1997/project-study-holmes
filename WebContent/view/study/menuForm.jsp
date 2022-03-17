@@ -208,6 +208,10 @@ a:hover {
 					<div>
 						<div class="input-group rounded" method="post">
 						<form action = "studySearch" method="post">
+						<select name="part">
+						<option value="subject">제목</option>
+						
+						</select>
 							<input type="text" class="form-control rounded"
 								placeholder="Search" aria-label="Search"
 								aria-describedby="search-addon" name="searchData" required="required"/> 
@@ -238,22 +242,21 @@ a:hover {
 					<a href="<%=request.getContextPath()%>/studymenu/writeForm" style="color: white;">글쓰기 </a>
 				</button>
 				<div class="container d-flex justify-content-between flex-wrap">
-					<div class="study-box ">
-						<a href="studyDetailedScreen.html">
 				
-				<c:if test = "${empty list }"> 
+				<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
 				
 				<p>작성된 글이 없습니다.</p>
 				
 				</c:if>
 				
+				<c:if test="${list !=null }">				
 				<c:forEach var="s" items="${list}">
-				
+					<div class="study-box ">
+						<a href="studyDetailedScreen.html">											
 							<div class="img">
-								 
 								<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="">
-								
 							</div>
+							
 							<div class="px-2 pt-3">
 								<h5 class="b-h5">${s.subject}</h5>
 								<p class="b-price">${s.free==1 ? "무료":"유료"  }</p>
@@ -267,12 +270,11 @@ a:hover {
 									<p class="b-p b-rep d-inline-block ">평가:100%</p>
 								</div>
 							</div>
-						
-						</c:forEach>	
-						</a>
-					</div>
-					 
-							
+						  </a>
+					   </div>
+					</c:forEach>	
+					</c:if>
+				
 				</div>
 
 				<br> <br>

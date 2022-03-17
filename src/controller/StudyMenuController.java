@@ -145,8 +145,24 @@ public class StudyMenuController extends MskimRequestMapping{
 	@RequestMapping("studySearch")
 	public String studySearch(HttpServletRequest request, 
 			HttpServletResponse response) {
-
-		return null;
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String part = request.getParameter("part");
+		String searchData = request.getParameter("searchData");
+		Search sh = new Search();
+		sh.setPart(part);
+		sh.setSearchData("%" + searchData + "%");
+		
+		StudyMenuDao dao = new StudyMenuDao();
+		List<StudyMenu> list = dao.studySearch(sh);
+		request.setAttribute("list", list);
+		
+		return "/view/study/menuSearchList.jsp";
 	}
 	
 	

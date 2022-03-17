@@ -1,8 +1,7 @@
 package model;
 
-import java.io.Serializable;
 
-public class Search implements Serializable{
+public class Search {
 	
 	private String part;
 	private String searchData;
