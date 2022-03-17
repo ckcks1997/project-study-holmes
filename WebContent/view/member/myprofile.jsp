@@ -112,7 +112,7 @@ h1, h3, h5 {
                      <div class="container container-css  p-5">
                          <form action="<%=request.getContextPath()%>/studymember/myprofileEdit1">
                              <h5>닉네임 </h5>
-                             <input class="form-control input-border-round" type="text" name="nickname" value="${memberInfo.nickname}">
+                             <input class="form-control input-border-round" type="text" name="nickname" value="${memberInfo.nickname}" disabled>
                              <br>
                              <div class="d-flex row pl-3">
                                 <h5>자기소개</h5> 
@@ -130,16 +130,20 @@ h1, h3, h5 {
                      <div class="container container-css  p-5">
                           
                              <h5>관심태그 </h5>
-                             <form action="">
+                               <form action="<%=request.getContextPath()%>/studymember/myprofileEdit2">
                                  <div class="row px-5">
-                                     <input class="col-10 form-control input-border-round" type="text">
-                                     <button class="col btn btn-primary">추가</button>
+	                                 <input class="col-10 form-control input-border-round" type="text" name="tag">
+	                                  <div class="col text-center">
+                                         <button class="btn btn-primary "> 수정 </button>
+                                      </div>
                                     </div>
                                 </form>
                                 <!-- 태그 출력 -->
                                 <div class="container p-2">
-                                    <span class="interest-tag">#영어</span>
-                                    <span class="interest-tag">#수원</span>
+                                
+                                <c:forEach var="i" items = "${tagInfo}" >
+                                    <span class="interest-tag">#${i.tag}</span> 
+                                </c:forEach>
                                 </div> 
                          
                      </div> 
@@ -188,14 +192,18 @@ h1, h3, h5 {
  
                 </div>
             </div>
+        <br>
+        <br> <br>
+        <br> <br>
+        <br> <br>
+        <br> <br>
+        <div class="container text-right">
+            <button class="btn btn-sm btn-secondary" onclick="location.href='<%=request.getContextPath()%>/studymember/goodbye' ">회원탈퇴</button>
+
         </div>
         <br>
-        <br> <br>
-        <br> <br>
-        <br> <br>
-        <br> <br>
-        <br>
- 
+        
+        </div>
 
         <script>
        $('#summernote').summernote({

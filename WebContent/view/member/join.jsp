@@ -122,8 +122,6 @@ input[type=text]:placeholder {
 	color: #cccccc;
 }
 
-/* ANIMATIONS */
-
 /* Simple CSS3 Fade-in Animation */
 .underlineHover:after {
 	display: block;
@@ -198,10 +196,11 @@ function win_upload(){
 			 
 
 			<!-- Login Form -->
-			<form action="<%=request.getContextPath()%>/studymember/joinPro" name="f"  >
+			<form action="<%=request.getContextPath()%>/studymember/joinPro" name="f" onsubmit="return inputChk(this)" >
 			    <input type="hidden" name="picture">
                 <input type="hidden" id="idchk" name="idchk"> 
                 <input type="hidden" id="pwchk" name="pwchk">
+                <input type="hidden" id="nickchk" name="nickchk">
                 <br>
                 
                 <p class="nameholder">email</p>
@@ -311,7 +310,7 @@ function win_upload(){
                      result3.classList.remove("alert-primary");
                      result3.classList.add("alert-danger");
                     result3.innerHTML = '올바른 닉네임을 입력하세요'; 
-                    idchk.value=0;
+                    nickchk.value=0;
                 }  
                 else{
                     ajax("<%=request.getContextPath()%>/studymember/nicknameExist", param, callback_nickname, 'get');
@@ -350,18 +349,31 @@ function win_upload(){
                      result3.classList.remove("alert-danger");
                      result3.classList.add("alert-primary");
                      result3.innerHTML = '사용 가능한 닉네임입니다'; 
-                     idchk.value=1;
+                     nickchk.value=1;
                 }
                 else{ 
                       result3.style.display="block";
                       result3.classList.remove("alert-primary");
                       result3.classList.add("alert-danger");
                      result3.innerHTML = '이미 사용된 닉네임입니다'; 
-                     idchk.value=0;
+                     nickchk.value=0;
                 } 
             }  
         }
  
+        function inputChk(f){
+            
+            let result1 = document.querySelector("#idchk").value;
+            let result2 = document.querySelector("#pwchk").value;
+            let result3 = document.querySelector("#nickchk").value;
+            if(result1==0 ||  result2==0 || result3==0 ){
+                alert("확인절차가 완료되지 않았습니다.")
+                return false;
+            }
+
+            return true;
+        }
+        
  </script>
 </body>
 </html>

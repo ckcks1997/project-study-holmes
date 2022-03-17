@@ -14,6 +14,9 @@ import com.oreilly.servlet.MultipartRequest;
 
 public class BoardController extends MskimRequestMapping{
 
+  /*
+   * 메인 화면입니다.
+   * */
   @RequestMapping("main")
   public String main(HttpServletRequest request, HttpServletResponse response) {
  
