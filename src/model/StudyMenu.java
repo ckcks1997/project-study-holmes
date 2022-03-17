@@ -1,9 +1,9 @@
 package model;
 
 
-import java.io.Serializable;
 
-public class StudyMenu implements Serializable {
+
+public class StudyMenu {
 	
 
 	private String subject;

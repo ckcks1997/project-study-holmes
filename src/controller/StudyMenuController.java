@@ -162,8 +162,11 @@ public class StudyMenuController extends MskimRequestMapping{
 		List<StudyMenu> list = dao.studySearch(sh);
 		request.setAttribute("list", list);
 		
+		
+		
 		return "/view/study/menuSearchList.jsp";
 	}
+
 	
 	
 	

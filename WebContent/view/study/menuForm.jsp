@@ -205,12 +205,14 @@ a:hover {
 				<br>
 				<h4>${menuName}</h4>
 				<div class="flex ">
+					
+					
+					
 					<div>
 						<div class="input-group rounded" method="post">
 						<form action = "studySearch" method="post">
 						<select name="part">
-						<option value="subject">제목</option>
-						
+						<option value="subject">제목</option>						
 						</select>
 							<input type="text" class="form-control rounded"
 								placeholder="Search" aria-label="Search"
