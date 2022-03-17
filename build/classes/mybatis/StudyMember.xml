@@ -31,4 +31,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         delete from study_member where email= #{id}
     </delete>
 
+    <update id="changePassword" parameterType="map">
+        update study_member set password = #{newPass} where email=#{email}
+    </update> 
+
 </mapper>

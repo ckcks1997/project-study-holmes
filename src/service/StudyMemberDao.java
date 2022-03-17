@@ -111,4 +111,20 @@ public class StudyMemberDao {
     return 0;
   }
   
+  public int changePassword(String email, String newPass) {
+    
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try {
+      map.clear();
+      map.put("email", email);
+      map.put("newPass", newPass);
+      return sqlSession.update(NS + "changePassword", map);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MybatisConnection.close(sqlSession);
+    }
+
+    return 0;
+  }
 }

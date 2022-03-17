@@ -316,6 +316,51 @@ public class StudyMemberController extends MskimRequestMapping {
   
   
   /*
+   * 비밀번호 변경
+   * */
+  @RequestMapping("passwordChange")
+  public String passwordChange(HttpServletRequest request, HttpServletResponse response) {
+    HttpSession session = request.getSession(); 
+    String msg="로그인이 필요합니다";
+    String url="studymember/loginForm";
+    
+    if(session.getAttribute("memberID") != null) {
+      return "/view/member/passwordChange.jsp"; 
+    }
+    
+    request.setAttribute("msg", msg);
+    request.setAttribute("url", url);
+    return "/view/alert.jsp";
+
+  }
+  
+  /*
+   * 비밀번호 변경 진행
+   * */
+  @RequestMapping("passwordChangePro")
+  public String passwordChangePro(HttpServletRequest request, HttpServletResponse response) {
+    HttpSession session = request.getSession(); 
+    
+    String newPass = request.getParameter("password");
+    
+    String msg="오류가 발생했습니다.";
+    String url="studymember/loginForm";
+    
+    if(session.getAttribute("memberID") != null && !newPass.isEmpty()) {
+      String s_id = (String)request.getSession().getAttribute("memberID");
+      StudyMemberDao md = new StudyMemberDao();
+      int result = md.changePassword(s_id, newPass); 
+      msg="비밀번호가 변경 되었습니다.";
+      url="studymember/myprofile";
+    }  
+    
+    request.setAttribute("msg", msg);
+    request.setAttribute("url", url);
+    return "/view/alert.jsp";
+
+  }
+  
+  /*
    * 회원탈퇴
    * */
   @RequestMapping("goodbye")

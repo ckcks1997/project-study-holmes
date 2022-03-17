@@ -172,7 +172,7 @@ h1, h3, h5 {
 							<h5>비밀번호</h5>
 							&nbsp;<span class="h5-subinfo"> (6개월마다 변경을 권장합니다)</span>
 						</div>
-						<button class="btn btn-color">변경하러 가기</button>
+						<button class="btn btn-color" onclick="location.href='<%=request.getContextPath()%>/studymember/passwordChange'">변경하러 가기</button>
 					</div>
 				</div>
 				<br> <br>
