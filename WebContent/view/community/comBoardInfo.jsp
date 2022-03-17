@@ -64,7 +64,7 @@ a:hover {
 
 	<div class="container">
 		<div class="row pt-5">
-			<!-- ----------------------------------------왼쪽 사이드 메뉴 ------------------------------------------------------->
+<!----------------왼쪽 사이드 메뉴 ------------------------------------------------------------------------>
 			<aside class="col-sm-3">
 				<div class="col aside">
 					<h4>함께 공부해요</h4>
@@ -90,9 +90,9 @@ a:hover {
 					</div>
 				</div>
 			</aside>
-<!-- --------------------------------------    메인      ------------------------------------------------------------------ -->
 			
 			
+<!---------------------    메인      ------------------------------------------------------------------ -->
 			<div class="main col-sm-9">
 
 				<h2 style="font-weight: bold">
@@ -138,7 +138,7 @@ a:hover {
 				<br /> <br /> <br />
 				
 				
-				
+<!-- ------------------댓글 ------------------------------------------------------------------------ -->				
 				<div>
 					<h5 style="font-weight: bold">댓글 2</h5>
 					<hr style="border: 0.5px thick 333b3d" />
@@ -166,7 +166,7 @@ a:hover {
 					<button type="button" class="btn btn-dark mt-3">신고</button>
 					<button type="button" data-toggle= "modal" data-target = "#deleteModal" class = "btn btn-danger mt-3">삭제</button>
 
-					<!-- 게시글 삭제 모달창 -->
+<!-------------- 게시글 삭제 모달창 --------------------------------------------------------------------------------------------------------------------------------->
 						<div class="modal fade" id="deleteModal" aria-hidden="true"
 							tabindex="-1" aria-labelledby="deleteBoardLabel">
 							<div class="modal-dialog">

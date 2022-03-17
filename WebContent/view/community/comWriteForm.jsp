@@ -62,7 +62,7 @@ a:hover {
 
 	<div class="container">
 		<div class="row pt-5">
-			<!-- 왼쪽 사이드 메뉴 -->
+<!------- 왼쪽 사이드 메뉴------------------------------------------------------------------------------------------ -->
 			<aside class="col-sm-3">
 				<div class="col aside">
 					<h4>함께 공부해요</h4>
@@ -88,6 +88,7 @@ a:hover {
 					</div>
 				</div>
 			</aside>
+<!-- -----------메인-------------------------------------------------------------------------------------------- -->
 			<div class="main col-sm-9">
 				<h1>글쓰기</h1>
 		
@@ -118,7 +119,7 @@ a:hover {
 					</div>
 
 
-
+					
 					<div class="d-grid gap-2 " style="float: right;">
 						<button class="btn btn-dark" type="button">취소</button>
 						<button class="btn btn-dark" type="submit">저장</button>

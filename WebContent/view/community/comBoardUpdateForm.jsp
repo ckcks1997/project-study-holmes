@@ -64,7 +64,7 @@ a:hover {
 
 	<div class="container">
 		<div class="row pt-5">
-			<!-- 왼쪽 사이드 메뉴 -->
+<!----------- 왼쪽 사이드 메뉴 ------------------------------------------------------------------------------------->
 			<aside class="col-sm-3">
 				<div class="col aside">
 					<div class="aside-content">
@@ -85,6 +85,7 @@ a:hover {
 					</div>
 				</div>
 			</aside>
+<!-- -------------------메인 ------------------------------------------------------------------------------------------ -->
 			<div class="main col-sm-9">
 				<h1>글쓰기</h1>
 		
@@ -111,8 +112,8 @@ a:hover {
 					<div class="form-group">
 						<label>내용 :</label>
 						<textarea class="summernote" name="content"
-							placeholder="Leave a comment here" id="content"/>${com.content}</textarea>
-
+							placeholder="Leave a comment here" id="content">${com.content}</textarea>
+						
 					</div>
 
 

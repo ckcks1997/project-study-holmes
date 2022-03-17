@@ -65,7 +65,7 @@ a:hover {
 
 	<div class="container">
 		<div class="row pt-5">
-			<!-- 왼쪽 사이드메뉴 -->
+<!------------------------- 왼쪽 사이드메뉴 --------------------------------------------------------------------->
 				<aside class="col-sm-3">
 				<div class="col aside">
 					<h4>함께 공부해요</h4>
@@ -133,7 +133,7 @@ a:hover {
 			<br />
 
 
-			<!-- 커뮤니티 게시판  -->
+<!-------------메인 커뮤니티 게시판 --------------------------------------------------------------------------------------------------------- -->
 			<div class="container">
 				<table class="table">
 					<c:forEach var = "com" items ="${list}">
@@ -164,7 +164,7 @@ a:hover {
 					
 				</table>
 			</div>
-
+<!------------- 아래 페이징네이션 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 			<ul class="pagination justify-content-center">
 				<li class='page-item <c:if test ="${startPage <= bottomLine }"> disabled </c:if> '><a class="page-link" href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${startPage-bottomLine}">Previous</a></li>
 				<c:forEach var ="i" begin ="${startPage}" end = "${endPage}"> 

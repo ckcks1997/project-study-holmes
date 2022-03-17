@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,21 +48,17 @@ a:hover {
 	color: gray;
 }
 
-.delete { 
+.delete {
 	postion: relative;
 	width: 500px;
 	height: 500px;
 	display: inline-block;
-	
-
-
 }
+
 .deleteImg {
 	position: absolute;
 	align-content: center;
 	text-align: center;
-	
-
 }
 </style>
 <body>
@@ -79,29 +75,27 @@ a:hover {
 
 	<div class="container">
 		<div class="row pt-5">
-				<!-- 왼쪽 사이드메뉴 -->
-				<aside class="col-sm-3">
+			<!-- 왼쪽 사이드메뉴 -->
+			<aside class="col-sm-3">
 				<div class="col aside">
 					<h4>함께 공부해요</h4>
 					<div class="aside-content">
 						<li class=""><a
 							href="<%=request.getContextPath()%>/community/comBoardList?boardid=1">질문
-								답변</a></li> 
-								<li class = ""><a
+								답변</a></li>
+						<li class=""><a
 							href="<%=request.getContextPath()%>/community/comBoardList?boardid=2">자유</a></li>
-						<li class =""> <a
+						<li class=""><a
 							href="<%=request.getContextPath()%>/community/comBoardList?boardid=3">정보공유</a></li>
 						<br>
 						<h4>공지사항</h4>
-						 <li class= ""><a
+						<li class=""><a
 							href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">
-							공지사항
-						</a></li>
-						<li class = ""> <a
+								공지사항 </a></li>
+						<li class=""><a
 							href="<%=request.getContextPath()%>/community/comBoardList?boardid=5">
-							블로그
-						</a></li>
-						
+								블로그 </a></li>
+
 					</div>
 				</div>
 			</aside>
@@ -110,19 +104,21 @@ a:hover {
 				<div class="row">
 					<div class="col-sm-10 delete">
 
-						<div class = "deleteImg">
-						<img src="<%=request.getContextPath()%>/img/delete.jpg" alt="img" style="width:80%; height:80%;"/>
-						<h5>삭제되었습니다<br>
-						계속해서 스터디 홈즈를 이용해주세요!</h5>
+						<div class="deleteImg">
+							<img src="<%=request.getContextPath()%>/img/delete.jpg" alt="img"
+								style="width: 80%; height: 80%;" />
+							<h5>
+								삭제되었습니다<br> 계속해서 스터디 홈즈를 이용해주세요!
+							</h5>
 						</div>
-						
-						
+
+
 					</div>
 
 				</div>
 			</div>
+		</div>
 	</div>
-</div>
 
 </body>
 </html>

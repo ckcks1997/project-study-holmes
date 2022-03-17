@@ -248,6 +248,9 @@ public class CommunityController extends MskimRequestMapping{
 	  String msg = "";
 	  String url = "";
 	 
+	  
+	  
+	  //----수정필요----
 	  if(cbd.comBoardDelete(num)>0) {
 		  
 		  msg = "게시글이 삭제되었습니다.";
@@ -266,7 +269,7 @@ public class CommunityController extends MskimRequestMapping{
   
   
   
-  
+  //메인
   @RequestMapping("main")
   public String main(HttpServletRequest request, HttpServletResponse response) {
  
