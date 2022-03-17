@@ -7,13 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-body, button, input, select, textarea {
-	font-family: Roboto, Noto Sans KR, -apple-system, "system-ui",
-		BlinkMacSystemFont, Apple SD Gothic Neo, Segoe UI, Roboto,
-		Helvetica Neue, Arial, sans-serif, Oxygen, Ubuntu, Cantarell,
-		Fira Sans, Droid Sans, Helvetica;
-}
-
+ 
 body {
 	color: #454545;
 	font-size: 1rem;
@@ -46,86 +40,7 @@ a {
 	text-decoration: none;
 }
 
-/* navbar */
-.form-control {
-	height: 40px !important;
-	background: #fff !important;
-	color: #3a4348 !important;
-	font-size: 16px;
-	border-radius: 0px;
-	-webkit-box-shadow: none !important;
-	box-shadow: none !important;
-}
 
-.search-domain {
-	background: #22d47b;
-	border: 2px solid #22d47b;
-	color: #fff;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	-ms-border-radius: 0;
-	border-radius: 0;
-}
-
-.navbar-brand {
-	position: relative;
-	font-family: "kita";
-}
-
-.star {
-	position: absolute;
-	top: 10%;
-	right: 5%;
-	height: 10px;
-}
-
-/* banner */
-.banner {
-	position: relative;
-	height: 400px;
-	background-color: #f55555;
-}
-
-.b-container1 {
-	position: relative;
-	margin: auto;
-	height: 100%;
-}
-
-.b-img {
-	position: absolute;
-	top: 10%;
-	right: 5%;
-	text-align: right;
-}
-
-.b-img>img {
-	display: none;
-	text-align: right;
-	max-width: 500px;
-}
-
-@media only screen and (min-width: 992px) {
-	.b-img>img {
-		display: block;
-		text-align: right;
-		max-width: 500px;
-	}
-}
-
-.b-text {
-	color: #ffdfdf;
-	position: absolute;
-	top: 30%;
-	left: 10px;
-	max-width: 400px;
-}
-
-.footer {
-	height: 200px;
-	background: #777;
-	text-align: center;
-}
 /* 명언 */
 .famous-saying-box {
 	height: 150px;
