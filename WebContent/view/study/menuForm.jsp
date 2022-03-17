@@ -233,15 +233,11 @@ a:hover {
 					<a href="<%=request.getContextPath()%>/studymenu/writeForm" style="color: white;">글쓰기 </a>
 				</button>
 				<div class="container d-flex justify-content-between flex-wrap">
+				<c:forEach var="s" items="${list}">
 					<div class="study-box ">
 						<a href="studyDetailedScreen.html">
-
-				<c:forEach var="s" items="${list}">
-				
 							<div class="img">
-								 
 								<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="">
-								
 							</div>
 							<div class="px-2 pt-3">
 								<h5 class="b-h5">${s.subject}</h5>
@@ -256,12 +252,10 @@ a:hover {
 									<p class="b-p b-rep d-inline-block ">평가:100%</p>
 								</div>
 							</div>
-						
-						</c:forEach>	
-						</a>
-					</div>
-					 
-							
+						  </a>
+					   </div>
+					</c:forEach>	
+				
 				</div>
 
 				<br> <br>
