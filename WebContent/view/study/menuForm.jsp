@@ -1,6 +1,11 @@
+<%@page import="model.StudyMenu"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+List<StudyMenu> list = (List<StudyMenu>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -235,7 +240,13 @@ a:hover {
 				<div class="container d-flex justify-content-between flex-wrap">
 					<div class="study-box ">
 						<a href="studyDetailedScreen.html">
-
+				
+				<c:if test = "${empty list }"> 
+				
+				<p>작성된 글이 없습니다.</p>
+				
+				</c:if>
+				
 				<c:forEach var="s" items="${list}">
 				
 							<div class="img">
