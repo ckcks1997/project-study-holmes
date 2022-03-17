@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -108,6 +109,13 @@ public class CommunityController extends MskimRequestMapping{
   @RequestMapping("comWritePro")
   public String comWritePro(HttpServletRequest request, HttpServletResponse response) {
 	  String path = request.getServletContext().getRealPath("/")+"/comboardupload/";
+	  
+	    //폴더가 없으면 에러가 발생합니다. 디렉토리 확인 후 폴더를 생성하는 코드입니다.
+	    File file=new File(path);
+	    if(!file.exists()) { 
+	      file.mkdir();
+	    }
+	    
 	  int size = 10*1024*1024;
 	  MultipartRequest multi = null;
 	  try {
