@@ -33,6 +33,7 @@ li>a {
 }
 
 a:hover {
+	color: black;
 	text-decoration: none;
 }
 

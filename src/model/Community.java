@@ -47,6 +47,8 @@ public class Community {
 		this.num = num;
 	}
 
+	
+
 	public String getSubject() {
 		return subject;
 	}

@@ -27,6 +27,7 @@ li>a {
 }
 
 a:hover {
+	color: black;
 	text-decoration: none;
 }
 
@@ -79,23 +80,31 @@ a:hover {
 	<div class="container">
 		<div class="row pt-5">
 				<!-- 왼쪽 사이드메뉴 -->
-			  	<aside class="col-sm-3">
+				<aside class="col-sm-3">
 				<div class="col aside">
-					<div class =  "aside-content">
-						함께 공부해요
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=1"><li>질문 & 답변</li></a>
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=2"><li>자유</li></a>
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=3"><li>정보공유</li></a>
-					
-					
-						공지사항
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=4"> <li>공지사항</li></a>
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=5"> <li>블로그</li></a>
+					<h4>함께 공부해요</h4>
+					<div class="aside-content">
+						<li class=""><a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=1">질문
+								답변</a></li> 
+								<li class = ""><a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=2">자유</a></li>
+						<li class =""> <a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=3">정보공유</a></li>
+						<br>
+						<h4>공지사항</h4>
+						 <li class= ""><a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">
+							공지사항
+						</a></li>
+						<li class = ""> <a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=5">
+							블로그
+						</a></li>
 						
 					</div>
 				</div>
 			</aside>
-			
 			<div class="main col-sm-9">
 
 				<div class="row">

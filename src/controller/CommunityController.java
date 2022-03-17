@@ -12,13 +12,16 @@ import com.oreilly.servlet.MultipartRequest;
 
 
 import model.Community;
+import model.StudyMember;
 import service.CommunityBoardDao;
+import service.StudyMemberDao;
  
 
 
 public class CommunityController extends MskimRequestMapping{
-  @RequestMapping("comBoardList")
-  public String comBoardList(HttpServletRequest request, HttpServletResponse response) {
+  
+	@RequestMapping("comBoardList")
+   public String comBoardList(HttpServletRequest request, HttpServletResponse response) {
 	  HttpSession session = request.getSession();
 	  String boardid = "";
 	  int pageInt = 1;
@@ -81,13 +84,27 @@ public class CommunityController extends MskimRequestMapping{
   }
   
   
-  
+  //글쓰기 페이지
   @RequestMapping("comWriteForm")
   public String comWriteForm(HttpServletRequest request,  HttpServletResponse response) {
 	  
-	  return "/view/community/comWriteForm.jsp";
+	  HttpSession session = request.getSession();
+	  String msg = "로그인이 필요합니다";
+	  String url = request.getContextPath()+"/studymember/loginForm";
+	  
+	  if(session.getAttribute("memberNickname")!= null) {
+		return "/view/community/comWriteForm.jsp";
+	  }
+	  
+	  request.setAttribute("msg", msg);
+	  request.setAttribute("url", url);
+	  
+	  return "/view/alert.jsp";
   }
  
+  
+  
+  //글쓰기
   @RequestMapping("comWritePro")
   public String comWritePro(HttpServletRequest request, HttpServletResponse response) {
 	  String path = request.getServletContext().getRealPath("/")+"/comboardupload/";
@@ -102,12 +119,14 @@ public class CommunityController extends MskimRequestMapping{
 	  
 	  Community com = new Community();
 	  
+	
 	  com.setSubject(multi.getParameter("subject"));
 	  com.setTag(multi.getParameter("tag"));
 	  com.setContent(multi.getParameter("content"));
 	  com.setIp(request.getLocalAddr());
 	  
 	  HttpSession session = request.getSession();
+	 
 	  String boardid = (String)session.getAttribute("boardid");
 	  	if(boardid ==null) { boardid ="1"; }
 	  com.setBoardid(boardid);
@@ -135,6 +154,8 @@ public class CommunityController extends MskimRequestMapping{
   }
   
   
+  
+  //게시글 상세보기
   @RequestMapping("comBoardInfo")
   public String comBoardInfo(HttpServletRequest request, HttpServletResponse response) {
 	  
@@ -143,11 +164,19 @@ public class CommunityController extends MskimRequestMapping{
 	  Community com = cbd.comBoardOne(num);
 	  request.setAttribute("com", com);
 	  
+	  HttpSession session = request.getSession();
+	  if(session.getAttribute("memberNickname") != null) {
+	      String memberID = (String) session.getAttribute("memberID");
+	      StudyMemberDao md = new StudyMemberDao();
+	      StudyMember mem = md.studyMemberOne(memberID);
+	      request.setAttribute("memberInfo", mem);
+	    }
+	  
 	  return "/view/community/comBoardInfo.jsp";
   }
   
   
-  
+  //게시글 수정페이지
   @RequestMapping("comBoardUpdateForm")
  public String comBoardUpdateForm(HttpServletRequest request,  HttpServletResponse response) {
 	  
@@ -156,10 +185,13 @@ public class CommunityController extends MskimRequestMapping{
 	  Community com = cbd.comBoardOne(num);
 	  request.setAttribute("com", com);
 	  
+	  
+	  
 	  return "/view/community/comBoardUpdateForm.jsp";
   }
   
   
+  //게시글 수정
   @RequestMapping("comBoardUpdatePro")
   public String comBoardUpdatePro(HttpServletRequest request, HttpServletResponse response) {
 	  
@@ -184,6 +216,8 @@ public class CommunityController extends MskimRequestMapping{
 	  String msg = "";
 	  String url = "";
 	  
+	
+	  
 	  //Community newcom = cbd.comBoardOne(com.getNum());
 	  if(cbd.comBoardUpdate(com)>0) {
 		   msg = "수정되었습니다";
@@ -203,17 +237,13 @@ public class CommunityController extends MskimRequestMapping{
   }
   
   
-  
+  //게시글 삭제
   @RequestMapping("comBoardDelete") 
   public String comBoardDelete(HttpServletRequest request, HttpServletResponse response) {
 	  
 	  int num = Integer.parseInt(request.getParameter("num"));
 	  CommunityBoardDao cbd = new CommunityBoardDao();
-	  Community com = cbd.comBoardOne(num);
-	  
-	  
-	  
-	  
+	
 	  
 	  String msg = "";
 	  String url = "";

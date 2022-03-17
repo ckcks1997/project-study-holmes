@@ -29,6 +29,7 @@ li>a {
 }
 
 a:hover {
+	color: black;
 	text-decoration: none;
 }
 
@@ -63,30 +64,35 @@ a:hover {
 
 	<div class="container">
 		<div class="row pt-5">
-			<!-- 왼쪽 사이드 메뉴 -->
+			<!-- ----------------------------------------왼쪽 사이드 메뉴 ------------------------------------------------------->
 			<aside class="col-sm-3">
 				<div class="col aside">
+					<h4>함께 공부해요</h4>
 					<div class="aside-content">
-						함께 공부해요 <a
-							href="<%=request.getContextPath()%>/community/comBoardList?boardid=1"><li>질문
-								& 답변</li></a> <a
-							href="<%=request.getContextPath()%>/community/comBoardList?boardid=2"><li>자유</li></a>
-						<a
-							href="<%=request.getContextPath()%>/community/comBoardList?boardid=3"><li>정보공유</li></a>
-
-
-						공지사항 <a
+						<li class=""><a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=1">질문
+								답변</a></li> 
+								<li class = ""><a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=2">자유</a></li>
+						<li class =""> <a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=3">정보공유</a></li>
+						<br>
+						<h4>공지사항</h4>
+						 <li class= ""><a
 							href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">
-							<li>공지사항</li>
-						</a> <a
+							공지사항
+						</a></li>
+						<li class = ""> <a
 							href="<%=request.getContextPath()%>/community/comBoardList?boardid=5">
-							<li>블로그</li>
-						</a>
-
+							블로그
+						</a></li>
+						
 					</div>
 				</div>
 			</aside>
-
+<!-- --------------------------------------    메인      ------------------------------------------------------------------ -->
+			
+			
 			<div class="main col-sm-9">
 
 				<h2 style="font-weight: bold">
@@ -111,10 +117,13 @@ a:hover {
 
 				<div class="row">
 					<div class="col-sm-10">
-
+				
 						<p>
-							닉네임 · ${com.regdate} <span class="txt_bar">|</span> <a
-								href="<%=request.getContextPath()%>/community/comBoardUpdateForm?num=${com.num}"
+						닉네임· ${com.regdate} <span class="txt_bar">|</span>
+						
+							
+							
+							<a href="<%=request.getContextPath()%>/community/comBoardUpdateForm?num=${com.num}"
 								style="color: gray;">수정</a> 
 						</p>
 
