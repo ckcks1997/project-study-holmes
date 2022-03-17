@@ -19,6 +19,10 @@
 	(#{subject},#{free},#{pernum},#{region},#{menuid})
 	</insert>
 	
+	<select id="studySearch" parameterType="Search" resultType="StudyMenu">
+	select * from study_menu where subject like concat('%', #{searchData}, '%')
+	</select>
+	
 	
 	
 	

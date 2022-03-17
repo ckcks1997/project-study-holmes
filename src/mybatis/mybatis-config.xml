@@ -9,6 +9,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="model.StudyMenu" alias="StudyMenu" /> 
 
 		<typeAlias type="model.Community" alias = "Community" />
+		
+		<typeAlias type="model.Search" alias = "Search" />
 
 	</typeAliases>
 	<environments default="development">
@@ -30,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <mapper resource="mybatis/StudyMenu.xml" /> 
 
         <mapper resource ="mybatis/Community.xml" />
-
-	</mappers>
+        
+     </mappers>
 
 </configuration>

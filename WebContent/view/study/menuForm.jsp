@@ -6,17 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 body, button, input, select, textarea {
 	font-family: Roboto, Noto Sans KR, -apple-system, "system-ui",
@@ -36,12 +25,7 @@ a {
 	color: #454545;
 }
 
-@font-face {
-	font-family: "kita";
-	src: url("fonts/KITA.ttf") format("truetype");
-	font-weight: normal;
-	font-style: normal;
-}
+
 /* button */
 .btn-round {
 	border-radius: 24px;
@@ -302,13 +286,13 @@ a:hover {
 				<h4>${menuName}</h4>
 				<div class="flex ">
 					<div>
-						<div class="input-group rounded">
-							<input type="search" class="form-control rounded"
+						<div class="input-group rounded" method="post">
+						<form action = "studySearch" method="post">
+							<input type="text" class="form-control rounded"
 								placeholder="Search" aria-label="Search"
-								aria-describedby="search-addon" /> <span
-								class="input-group-text border-0" id="search-addon"> <i
-								class="fas fa-search"></i>
-							</span>
+								aria-describedby="search-addon" name="searchData" required="required"/> 
+						    <input type="submit" class="input-group-text border-0" value="검색"> 
+							</form>
 						</div>
 
 					</div>

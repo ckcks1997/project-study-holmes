@@ -9,6 +9,6 @@
 </head>
 <body>
 index입니다
-<%response.sendRedirect(request.getContextPath()+"/view/main"); %>
+<%response.sendRedirect(request.getContextPath()+"/board/main"); %>
 </body>
 </html>

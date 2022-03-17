@@ -1,5 +1,10 @@
 package service;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Connection;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +12,9 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 
+
+
+import model.Search;
 import model.StudyMenu;
 import util.MybatisConnection;
 
@@ -91,8 +99,37 @@ public class StudyMenuDao {
 		return 0;
 
 	}
-
-
 	
-
+	public ArrayList<StudyMenu> selectList(String field, String value) {
+	
+		ArrayList<StudyMenu> list = new ArrayList<StudyMenu>();
+		Connection conn = null;
+		conn = this.getConnection();
+		PreparedStatement pstmt = null;
+		String sql1 = "select * from study_menu";
+		String sql2 = "select * from board where " + field +" like ?";
+		
+		try {
+			if(value==null || value=="") {
+				pstmt = conn.prepareStatement(sql1);
+			} else {
+				pstmt = conn.prepareStatement(sql2);
+				pstmt.setString(1,  "%"+value+"%");			
+			}
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String subject = rs.getString("subject");
+				int free = rs.getString("free");
+				int pernum = rs.getString("pernum");
+				String region = rs.getString("region");
+				String menuid = rs.getString("menuid");
+				
+				
+			}
+		}
+	}
+	
+	/* 검색 */
+	
 }
