@@ -101,7 +101,6 @@ public class StudyMemberDao {
     
     SqlSession sqlSession = MybatisConnection.getConnection();
     try {
-       
       return sqlSession.update(NS + "studyMemberDelete", email);
     } catch (Exception e) {
       e.printStackTrace();

@@ -90,14 +90,20 @@ a:hover {
 }
 
 .tagbox {
-	display: inline-block;
-	width: 50px;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
-	background-color: #c47100;
-	border-radius: 15%;
+    color: white;
+    font-weight: 700;
+    display: inline-block;
+    width: 60px;
+    height: 40px;
+    line-height: 30px;
+    text-align: center;
+    padding: 5px;
+    margin-right:5px;
+    background-color: #f55555;
+    border: none;
+    border-radius: 15%;
 }
+
 
 .tagbox-etc {
 	display: inline-block;
@@ -209,26 +215,26 @@ a:hover {
 				<br>
 				<h4>${menuName}</h4>
 				<div class="flex ">
-					
-					
-					
+ 
+                        <div class="input-group rounded" method="post">
+                        <form action = "studySearch" method="post">
+                        <div class="d-flex flex-row align-items-center">
+                            <select class="custom-select" name="part">
+                                <option value="subject">제목</option>                     
+                            </select>
+                                <div class="d-flex flex-row">
+                                <input type="text" class="form-control rounded"
+                                        placeholder="Search" aria-label="Search"
+                                        aria-describedby="search-addon" name="searchData" required="required"/> 
+                                <input type="submit" class="input-group-text border-0" value="검색"> 
+                                </div>
+                        </div>
+                        </form>
+                        </div>
+ 
+
 					<div>
-						<div class="input-group rounded" method="post">
-						<form action = "studySearch" method="post">
-						<select name="part">
-						<option value="subject">제목</option>						
-						</select>
-							<input type="text" class="form-control rounded"
-								placeholder="Search" aria-label="Search"
-								aria-describedby="search-addon" name="searchData" required="required"/> 
-						    <input type="submit" class="input-group-text border-0" value="검색"> 
-							</form>
-						</div>
-					</div>
-					
-				
-					<div>
-						<div class="input-group rounded" method="post">
+						<div class="d-flex align-items-end rounded mt-2 rounded" method="post">
 						
 						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
 						<input type="hidden" aria-label="Search" name="part" value="region">

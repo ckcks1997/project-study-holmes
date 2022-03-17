@@ -122,7 +122,12 @@ a:hover {
                          <div class="d-flex justify-content-center">
                              <div class="container col-md-3 text-center">
                                  <div class=" ">
-                                     <img class="pic_box_pic"src="<%=request.getContextPath() %>/img/profile_empty.jpg" alt="" srcset=""  >
+                                 <c:if test="${memberInfo.picture == null }">
+                                     <img class="pic_box_pic"src="<%=request.getContextPath() %>/img/profile_empty.jpg">
+                                 </c:if>
+                                 <c:if test="${memberInfo.picture != null }">
+                                    <img class="pic_box_pic"src="<%=request.getContextPath()%>/upload/${memberInfo.picture}">
+                                 </c:if>
                                  </div>
                                  <br>
                                  <div class="d-flex justify-content-center">
