@@ -159,6 +159,7 @@ a:hover {
 </style>
 </head>
 <body>
+<!-- --------------------------------------------------------------명언------------------------------------------------------------ -->
 	<div class="container-fluid famous-saying-box">
 		<div class="container p-3 ">
 			<div class=" mt-3">
@@ -169,8 +170,11 @@ a:hover {
 			</div>
 		</div>
 	</div>
+
 	<div class="container">
 		<div class="row pt-5">
+		
+<!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->	
 			<aside class="col-sm-3">
 				<div class="col aside">
 					<div class="aside-content">
@@ -197,7 +201,7 @@ a:hover {
 					</div>
 			</aside>
 			
-			
+<!-- --------------------------------------------------------------메인------------------------------------------------------------ -->		
 			
 			<div class="col-sm-9">
 				<h1>오프라인 스터디</h1>
@@ -205,12 +209,14 @@ a:hover {
 				<br>
 				<h4>${menuName}</h4>
 				<div class="flex ">
+					
+					
+					
 					<div>
 						<div class="input-group rounded" method="post">
 						<form action = "studySearch" method="post">
 						<select name="part">
-						<option value="subject">제목</option>
-						
+						<option value="subject">제목</option>						
 						</select>
 							<input type="text" class="form-control rounded"
 								placeholder="Search" aria-label="Search"
@@ -218,22 +224,39 @@ a:hover {
 						    <input type="submit" class="input-group-text border-0" value="검색"> 
 							</form>
 						</div>
-
 					</div>
-					<div class="flex mt-3">
-						<div class="tagbox">
-							<a href="#">#서울</a>
-						</div>
-						<div class="tagbox">
-							<a href="#">#부산</a>
-						</div>
-						<div class="tagbox">
-							<a href="#">#대구</a>
-						</div>
+					
+				
+					<div>
+						<div class="input-group rounded" method="post">
+						
+						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
+						<input type="hidden" aria-label="Search" name="part" value="region">
+						<input type="hidden" aria-label="Search" name="searchData" value="서울">
+					    <input type="submit" class="tagbox" value="#서울"> 
+						</form>
+						
+						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
+						<input type="hidden" aria-label="Search" name="part" value="region">
+						<input type="hidden" aria-label="Search" name="searchData" value="경기">
+					    <input type="submit" class="tagbox" value="#경기"> 
+						</form>
+						
+						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
+						<input type="hidden" aria-label="Search" name="part" value="region">
+						<input type="hidden" aria-label="Search" name="searchData" value="부산">
+					    <input type="submit" class="tagbox" value="#부산"> 
+						</form>
+												
 						<div class="tagbox tagbox-etc">
 							<a href="#">...</a>
 						</div>
-					</div>
+				
+						
+						</div>
+					</div>									
+													
+					
 
 				</div>
 				
@@ -276,25 +299,6 @@ a:hover {
 					</c:if>
 				
 				</div>
-
-				<br> <br>
-				<nav class="container">
-					<ul class="pagination justify-content-center">
-					
-					
-					<li 
-						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/menuForm?pageNum=${startPage - bottomLine}">Previous</a></li>
-						
-					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
-						<li class='page-item <c:if test = "${i == pageInt}" >  active </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/menuForm?pageNum=${i}">${i}</a></li>
-					
-					</c:forEach>
-						<li class='page-item <c:if test = "${endPage >= maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/menuForm?pageNum=${startPage + bottomLine}">Next</a></li>
-					</ul>
-				</nav>
 
 			</div>
 		</div>

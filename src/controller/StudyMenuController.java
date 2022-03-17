@@ -171,6 +171,5 @@ public class StudyMenuController extends MskimRequestMapping{
 	
 	
 	
-	
 
 }

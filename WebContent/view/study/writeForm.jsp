@@ -25,12 +25,7 @@ a {
 	color: #454545;
 }
 
-@font-face {
-	font-family: "kita";
-	src: url("fonts/KITA.ttf") format("truetype");
-	font-weight: normal;
-	font-style: normal;
-}
+
 /* button */
 .btn-round {
 	border-radius: 24px;

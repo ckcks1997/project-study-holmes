@@ -159,6 +159,7 @@ a:hover {
 </style>
 </head>
 <body>
+<!-- --------------------------------------------------------------명언------------------------------------------------------------ -->
 	<div class="container-fluid famous-saying-box">
 		<div class="container p-3 ">
 			<div class=" mt-3">
@@ -169,8 +170,11 @@ a:hover {
 			</div>
 		</div>
 	</div>
+
 	<div class="container">
 		<div class="row pt-5">
+		
+<!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->	
 			<aside class="col-sm-3">
 				<div class="col aside">
 					<div class="aside-content">
@@ -197,7 +201,7 @@ a:hover {
 					</div>
 			</aside>
 			
-			
+<!-- --------------------------------------------------------------메인------------------------------------------------------------ -->		
 			
 			<div class="col-sm-9">
 				<h1>오프라인 스터디</h1>
@@ -207,7 +211,7 @@ a:hover {
 				<div class="flex ">
 					
 					
-					
+<!-- --------------------------------------------------------------검색------------------------------------------------------------ -->							
 					<div>
 						<div class="input-group rounded" method="post">
 						<form action = "studySearch" method="post">
@@ -220,26 +224,43 @@ a:hover {
 						    <input type="submit" class="input-group-text border-0" value="검색"> 
 							</form>
 						</div>
-
 					</div>
-					<div class="flex mt-3">
-						<div class="tagbox">
-							<a href="#">#서울</a>
-						</div>
-						<div class="tagbox">
-							<a href="#">#부산</a>
-						</div>
-						<div class="tagbox">
-							<a href="#">#대구</a>
-						</div>
+					
+<!-- --------------------------------------------------------------지역태그------------------------------------------------------------ -->						
+					<div>
+						<div class="input-group rounded" method="post">
+						
+						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
+						<input type="hidden" aria-label="Search" name="part" value="region">
+						<input type="hidden" aria-label="Search" name="searchData" value="서울">
+					    <input type="submit" class="tagbox" value="#서울"> 
+						</form>
+						
+						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
+						<input type="hidden" aria-label="Search" name="part" value="region">
+						<input type="hidden" aria-label="Search" name="searchData" value="경기">
+					    <input type="submit" class="tagbox" value="#경기"> 
+						</form>
+						
+						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
+						<input type="hidden" aria-label="Search" name="part" value="region">
+						<input type="hidden" aria-label="Search" name="searchData" value="부산">
+					    <input type="submit" class="tagbox" value="#부산"> 
+						</form>
+												
 						<div class="tagbox tagbox-etc">
 							<a href="#">...</a>
 						</div>
-					</div>
+				
+						
+						</div>
+					</div>									
+													
+					
 
 				</div>
 				
-				
+<!-- --------------------------------------------------------------게시판------------------------------------------------------------ -->						
 				<button class="btn btn-info d-block ml-auto">
 					<a href="<%=request.getContextPath()%>/studymenu/writeForm" style="color: white;">글쓰기 </a>
 				</button>
@@ -278,7 +299,7 @@ a:hover {
 					</c:if>
 				
 				</div>
-
+<!-- --------------------------------------------------------------페이지 번호------------------------------------------------------------ -->
 				<br> <br>
 				<nav class="container">
 					<ul class="pagination justify-content-center">
