@@ -25,7 +25,6 @@ a {
 	color: #454545;
 }
 
-
 /* button */
 .btn-round {
 	border-radius: 24px;
@@ -287,7 +286,7 @@ a:hover {
 				<div class="flex ">
 					<div>
 						<div class="input-group rounded" method="post">
-						<form action = "studySearch" method="post">
+						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">
 							<input type="text" class="form-control rounded"
 								placeholder="Search" aria-label="Search"
 								aria-describedby="search-addon" name="searchData" required="required"/> 

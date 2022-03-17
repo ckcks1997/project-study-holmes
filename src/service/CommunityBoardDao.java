@@ -15,7 +15,7 @@ public class CommunityBoardDao {
 	  private Map<String, Object> map = new HashMap<>();
 	
 	  
-	  
+	   
 	  
 	  public int comBoardCount(String boardid) {
 		

@@ -1,7 +1,11 @@
 package model;
 
-public class StudyMenu {
-	 
+
+import java.io.Serializable;
+
+public class StudyMenu implements Serializable {
+	
+
 	private String subject;
 	private int free;
 	private int pernum;
@@ -9,7 +13,7 @@ public class StudyMenu {
 	private String menuid;
 	
 	
-	
+	  
 	public StudyMenu() {
 
 	}
