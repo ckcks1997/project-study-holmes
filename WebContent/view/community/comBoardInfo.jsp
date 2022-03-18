@@ -111,6 +111,7 @@ border: 1px solid rgb(223, 223, 223);
 
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
 				<input type = "hidden" id = "num" name = "num" value = "${com.num}">
+				<input type = "hidden" name= "nickname" value = '${com.nickname}'>
 				<c:if test="${com.boardid =='1'}">
 					<h5 style="font-weight: bold">Q: ${com.subject}</h5>
 				</c:if>
@@ -122,7 +123,7 @@ border: 1px solid rgb(223, 223, 223);
 					<div class="col-sm-10">
 				
 						<p>
-						닉네임· ${com.regdate} <span class="txt_bar">|</span>
+						${com.nickname} · ${com.regdate} <span class="txt_bar">|</span>
 						
 							
 							
@@ -167,6 +168,8 @@ border: 1px solid rgb(223, 223, 223);
 					</form>
 					<button type="button" class="btn btn-dark mt-3" onclick ="location.href ='comBoardList'">목록으로</button>
 					<button type="button" class="btn btn-dark mt-3">신고</button>
+					
+					
 					<button type="button" data-toggle= "modal" data-target = "#deleteModal" class = "btn btn-danger mt-3">삭제</button>
 
 <!-------------- 게시글 삭제 모달창 --------------------------------------------------------------------------------------------------------------------------------->
