@@ -1,6 +1,7 @@
 let date = new Date();
 
-const renderCalender = () =>{
+const renderCalender = ()=>
+ {
 const viewYear = date.getFullYear();
 const viewMonth = date.getMonth();
 
@@ -39,6 +40,7 @@ dates.forEach((date, i )=>{
 	const condition = i >= firstDateIndex && i< LastDateIndex+1
 					? 'this'
 					: 'other';
+	
 	dates[i] = `<div class="date"><span class=${condition}>${date}</span></div>`;
 	
 });
@@ -71,14 +73,8 @@ const nextMonth = () =>{
 };
 
 const goToday = () =>{
+     alert("출석체크 완료!!")
 	date = new Date();
 	renderCalender();
+	check();
 }
-
-
-
-
-
-
-
-

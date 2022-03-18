@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <html>
 <head>
 <title>메인화면</title>
@@ -70,6 +71,10 @@
 	top: 17px;
 	right: 20px;
 }
+.boardtable{ 
+    padding: 10px; 
+    border-radius:10px;
+}
 
 #bar {
 	border: 3px solid #c47100;
@@ -137,55 +142,54 @@
 			<div class="container pt-5">
 				<div class="d-flex justify-content-between">
 					<div class="col-sm" width="20%">
-						<h3>공지사항</h3>
+						<h3 style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardList?boardid=4'">공지사항</h3>
 						<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
-						<table class="table table-sm table-borderless">
-				    		<tr>
-							   <th width="80%">제목</td>
-	                           <th width="20%">날짜</td>
+						<table class="table table-sm table-borderless shadow-sm rounded boardtable">
+				    		<tr class="border-bottom">
+							   <th width="70%">제목</td>
+	                           <th width="30%">날짜</td>
 							</tr>
-							<tr>
-								<td>운영과 관련한 공지</td>
-								<td>3일 전</td>
-							</tr>
-							<tr>
-								<td>서버 오류</td>
-								<td>3일 전</td>
-							</tr>
-							<tr>
-								<td>개인정보 공지</td>
-								<td>3일 전</td>
-							</tr>
+							<c:forEach var="i" items="${list1}">
+								<tr style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardInfo?num=${i.num}'">
+									<td>${i.subject }</td>
+									<td> <fmt:formatDate value="${i.regdate }" pattern="MM/dd"/> </td>
+								</tr>
+							</c:forEach>
+
 						</table>
 						<div></div>
 					</div>
 					<div class="col-sm" width="20%">
-						<h3>질문 & 답글</h3>
+						<h3 style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardList?boardid=1'">질문 & 답글</h3>
 						<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
-						<table class="table table-sm table-borderless ">
-						    <tr>
+						<table class="table table-sm table-borderless  shadow-sm rounded boardtable">
+						    <tr class="border-bottom">
                                <th width="80%">제목</td>
                                <th width="20%">날짜</td>
                             </tr>
-							<tr>
-								<td >ㅁㅁㅁ</td>
-								<td >3일 전</td>
-							</tr>
+                            <c:forEach var="i" items="${list2}">
+                                <tr style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardInfo?num=${i.num}'">
+                                    <td>${i.subject }</td>
+                                    <td> <fmt:formatDate value="${i.regdate }" pattern="MM/dd"/> </td>
+                                </tr>
+                            </c:forEach>
 						</table>
 						<div></div>
 					</div>
 					<div class="col-sm" width="20%">
-						<h3>자유주제</h3>
+						<h3 style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardList?boardid=2'" >자유주제</h3>
 						<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
-						<table class="table table-sm table-borderless">
-						    <tr>
+						<table class="table table-sm table-borderless  shadow-sm boardtable">
+						    <tr class="border-bottom">
                                <th width="80%">제목</td>
                                <th width="20%">날짜</td>
                             </tr>
-							<tr>
-								<td >ㅁㅁㅁ</td>
-								<td>3일 전</td>
-							</tr>
+                            <c:forEach var="i" items="${list3}">
+                                <tr style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardInfo?num=${i.num}'">
+                                    <td>${i.subject }</td>
+                                    <td> <fmt:formatDate value="${i.regdate }" pattern="MM/dd"/> </td>
+                                </tr>
+                            </c:forEach>
 						</table>
 						<div></div>
 					</div>

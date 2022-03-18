@@ -111,6 +111,7 @@ border: 1px solid rgb(223, 223, 223);
 
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
 				<input type = "hidden" id = "num" name = "num" value = "${com.num}">
+				<input type = "hidden" name= "nickname" value = '${com.nickname}'>
 				<c:if test="${com.boardid =='1'}">
 					<h5 style="font-weight: bold">Q: ${com.subject}</h5>
 				</c:if>
@@ -122,12 +123,13 @@ border: 1px solid rgb(223, 223, 223);
 					<div class="col-sm-10">
 				
 						<p>
-						닉네임· ${com.regdate} <span class="txt_bar">|</span>
+						${com.nickname} · ${com.regdate} 
 						
 							
-							
+							<c:if test = "${loginNick eq com.nickname}">
+							<span class="txt_bar">|</span>
 							<a href="<%=request.getContextPath()%>/community/comBoardUpdateForm?num=${com.num}"
-								style="color: gray;">수정</a> 
+								style="color: gray;"> 수정</a> </c:if>
 						</p>
 
 					</div>
@@ -165,32 +167,43 @@ border: 1px solid rgb(223, 223, 223);
 						</div>
 
 					</form>
-					<button type="button" class="btn btn-dark mt-3">목록으로</button>
+					<button type="button" class="btn btn-dark mt-3" onclick ="location.href ='comBoardList'">목록으로</button>
 					<button type="button" class="btn btn-dark mt-3">신고</button>
+					
+					<c:if test = "${loginNick eq com.nickname}">
 					<button type="button" data-toggle= "modal" data-target = "#deleteModal" class = "btn btn-danger mt-3">삭제</button>
-
+					</c:if>
+					
 <!-------------- 게시글 삭제 모달창 --------------------------------------------------------------------------------------------------------------------------------->
+					
 						<div class="modal fade" id="deleteModal" aria-hidden="true"
 							tabindex="-1" aria-labelledby="deleteBoardLabel">
 							<div class="modal-dialog">
 								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="deleteBoardLabel">게시글 삭제</h5>
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									</div>
+								
+								<form action = "<%=request.getContextPath() %>/community/comBoardDelete" method = "post">
+									<div class = "form-group">
+										<input type = "hidden" id = "num" name = "num" value = "${com.num}">
+										<div class="modal-header">
+											<h5 class="modal-title" id="deleteBoardLabel">게시글 삭제</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										</div>
 
-									<div class="modal-body">이 글을 삭제합니다. 계속하시겠습니까?</div>
-									<div class="modal-footer">
-		
-										<button id = "deleteBtn" class="btn btn-primary"   data-dismiss="modal" onclick = "deleteConfirm();">확인</button>
+										<div class="modal-body">이 글을 삭제합니다. 계속하시겠습니까?</div>
 									
-										<button class="btn btn-outline-primary" data-dismiss="modal">취소</button>
-									</div>
+									
+										<div class="modal-footer">
+										    <input type="submit"  class="btn btn-primary"   value="확인">
+											<button class="btn btn-outline-primary" data-dismiss="modal">취소</button>
+										</div>
+									</div>	
+								</form>
+								
 								</div>
 							</div>
 						</div>
-
+						
 
 
 				</div>
@@ -198,8 +211,10 @@ border: 1px solid rgb(223, 223, 223);
 		</div>
 	</div>
 
+<br><br>
 
-<script>
+<!--  <script>
+	
 	
 	
 	function deleteConfirm(){
@@ -226,7 +241,8 @@ border: 1px solid rgb(223, 223, 223);
 	}
 	
 
-</script>
+
+</script> -->
 
 
 </body>

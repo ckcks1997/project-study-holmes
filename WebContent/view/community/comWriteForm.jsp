@@ -100,7 +100,7 @@ a:hover {
 					enctype="multipart/form-data" method="post">
 					<br /> <br />
 					<!-- 닉네임 -->
-					<!--<input type = "hidden" name= "nickname" value = '${com.nickname}'> -->
+					<input type = "hidden" name= "nickname" value = '${com.nickname}'>
 					<div class="form-group">
 						<label>제목</label> <input type="text" class="form-control"
 							name="subject" placeholder="제목을 입력해주세요" />

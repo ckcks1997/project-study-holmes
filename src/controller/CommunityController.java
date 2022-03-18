@@ -3,12 +3,17 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
 import java.util.List;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
+
 import com.oreilly.servlet.MultipartRequest;
 
 
@@ -125,15 +130,18 @@ public class CommunityController extends MskimRequestMapping{
 		e.printStackTrace();
 	}
 	  
+	  
 	  Community com = new Community();
 	  
-	
+	  //세션에 저장된 닉네임 가져와서 커뮤니티 닉네임으로 저장하기
+	  HttpSession session = request.getSession();
+	  com.setNickname(String.valueOf(session.getAttribute("memberNickname")));
+	 
 	  com.setSubject(multi.getParameter("subject"));
 	  com.setTag(multi.getParameter("tag"));
 	  com.setContent(multi.getParameter("content"));
 	  com.setIp(request.getLocalAddr());
 	  
-	  HttpSession session = request.getSession();
 	 
 	  String boardid = (String)session.getAttribute("boardid");
 	  	if(boardid ==null) { boardid ="1"; }
@@ -172,13 +180,13 @@ public class CommunityController extends MskimRequestMapping{
 	  Community com = cbd.comBoardOne(num);
 	  request.setAttribute("com", com);
 	  
+	  
+	  //session의 닉네임 가져오기
 	  HttpSession session = request.getSession();
-	  if(session.getAttribute("memberNickname") != null) {
-	      String memberID = (String) session.getAttribute("memberID");
-	      StudyMemberDao md = new StudyMemberDao();
-	      StudyMember mem = md.studyMemberOne(memberID);
-	      request.setAttribute("memberInfo", mem);
-	    }
+	  String loginNick = (String)session.getAttribute("memberNickname");
+	  request.setAttribute("loginNick", loginNick);
+	  
+	  
 	  
 	  return "/view/community/comBoardInfo.jsp";
   }
@@ -251,14 +259,15 @@ public class CommunityController extends MskimRequestMapping{
 	  
 	  int num = Integer.parseInt(request.getParameter("num"));
 	  CommunityBoardDao cbd = new CommunityBoardDao();
+	  Community com = cbd.comBoardOne(num);
+	  request.setAttribute("com", com);
+	  
 	
 	  
 	  String msg = "";
 	  String url = "";
 	 
-	  
-	  
-	  //----수정필요----
+	 
 	  if(cbd.comBoardDelete(num)>0) {
 		  
 		  msg = "게시글이 삭제되었습니다.";
@@ -268,10 +277,14 @@ public class CommunityController extends MskimRequestMapping{
 		  url = request.getContextPath()+"/community/comBoardInfo";
 	  }
 	
+	  request.setAttribute("msg", msg);
+	  request.setAttribute("url", url);
 	
-	  return "/view/main.jsp";
+	  return "/view/alert.jsp";
   	
   }
+  
+  
   
   
   

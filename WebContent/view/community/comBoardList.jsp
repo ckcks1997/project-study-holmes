@@ -149,7 +149,7 @@ border: 1px solid rgb(223, 223, 223);
 										<h4><strong>${com.subject}</strong></h4>
 										<h5><small>${com.content} </small></h5> 
 										<br />
-										<h6><small>닉네임 · ${com.regdate} · ${com.tag} </small></h6>
+										<h6><small>${com.nickname} · ${com.regdate} · ${com.tag} </small></h6>
 									</a>	
 								</div>
 								<div class="col-sm-3">
@@ -181,6 +181,6 @@ border: 1px solid rgb(223, 223, 223);
 	</div>
 	
 
-	
+	<br><br>
 </body>
 </html>

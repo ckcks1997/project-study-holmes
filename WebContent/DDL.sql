@@ -43,12 +43,12 @@ create table community
 	readcnt	    number(10),
 	ref  	    number,
 	reflevel	number(3),
-	refstep	    number(5)
+	refstep	    number(5),
+	nickname    varchar(10)
 );
 
 create sequence comboard_seq;
 
-commit;
 
 ---
 
@@ -64,4 +64,13 @@ create table study_menu
 );
 
 ---
+
+
+--------studychk 테이블
+create table studycheck
+( id  varchar (50),
+day  date
+);
+
+
 
