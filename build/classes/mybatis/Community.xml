@@ -37,4 +37,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	delete from community where num = #{num}
 </delete>
 
+<!-- 메인화면 최신글 보드 리스트 -->
+<select id = "comMainBoardList" resultType = "community" parameterType = "string">
+    select ROWNUM  , A.* from 
+    (select * from COMMUNITY where BOARDID = #{boardId} order by num desc) 
+    A 
+    where ROWNUM &lt; 5
+</select> 
+
 </mapper>
