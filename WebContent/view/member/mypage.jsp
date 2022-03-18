@@ -122,7 +122,12 @@ a:hover {
                          <div class="d-flex justify-content-center">
                              <div class="container col-md-3 text-center">
                                  <div class=" ">
-                                     <img class="pic_box_pic"src="../img/profile_empty.jpg" alt="" srcset=""  >
+                                 <c:if test="${memberInfo.picture == null }">
+                                     <img class="pic_box_pic"src="<%=request.getContextPath() %>/img/profile_empty.jpg">
+                                 </c:if>
+                                 <c:if test="${memberInfo.picture != null }">
+                                    <img class="pic_box_pic"src="<%=request.getContextPath()%>/upload/${memberInfo.picture}">
+                                 </c:if>
                                  </div>
                                  <br>
                                  <div class="d-flex justify-content-center">
@@ -157,7 +162,17 @@ a:hover {
                                  <h5>나의 매너표정</h5>
                                  <div class="d-md-flex justify-content-between  align-items-center ">
                                      <div class="d-flex col-md-3 face_img  ">
-                                         <img class=" my-auto " src="../img/good.png" alt="">
+                                        <c:choose>
+                                         <c:when test="${memberInfo.point >= 50}">
+                                            <img class=" my-auto " src="<%=request.getContextPath() %>/img/good.png" alt="good">
+                                         </c:when>
+                                        <c:when test="${memberInfo.point > 30}">
+                                            <img class=" my-auto " src="<%=request.getContextPath() %>/img/soso.png" alt="soso">
+                                         </c:when>
+                                         <c:otherwise>
+                                            <img class=" my-auto " src="<%=request.getContextPath() %>/img/bad.png" alt="bad">
+                                         </c:otherwise>
+                                        </c:choose>
                                         </div>
                                         <div class="col-md-9">
                                             <p class="my-1">스터디 리더를 23번 했어요 </p>  

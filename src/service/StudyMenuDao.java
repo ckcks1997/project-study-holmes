@@ -22,7 +22,7 @@ public class StudyMenuDao {
 	private static final String NS = "studymenu.";
 	private Map<String, Object> map = new HashMap<>();
 
-	/* 메뉴 페이지 수 */
+	
 	public int menuCount(String menuid) {
 
 		SqlSession sqlSession = MybatisConnection.getConnection();

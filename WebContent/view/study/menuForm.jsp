@@ -70,6 +70,7 @@ li>a {
 }
 
 a:hover {
+    color: black;
 	text-decoration: none;
 }
 
@@ -90,12 +91,17 @@ a:hover {
 }
 
 .tagbox {
+    color: white;
+    font-weight: 700;
 	display: inline-block;
-	width: 50px;
-	height: 30px;
+	width: 60px;
+	height: 40px;
 	line-height: 30px;
 	text-align: center;
-	background-color: #c47100;
+	padding: 5px;
+	margin-right:5px;
+	background-color: #f55555;
+	border: none;
 	border-radius: 15%;
 }
 
@@ -156,9 +162,12 @@ a:hover {
 	color: #175cbe;
 }
 }
+
+ 
 </style>
 </head>
 <body>
+<!-- --------------------------------------------------------------명언------------------------------------------------------------ -->
 	<div class="container-fluid famous-saying-box">
 		<div class="container p-3 ">
 			<div class=" mt-3">
@@ -169,8 +178,11 @@ a:hover {
 			</div>
 		</div>
 	</div>
+
 	<div class="container">
 		<div class="row pt-5">
+		
+<!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->	
 			<aside class="col-sm-3">
 				<div class="col aside">
 					<div class="aside-content">
@@ -197,51 +209,75 @@ a:hover {
 					</div>
 			</aside>
 			
-			
+<!-- --------------------------------------------------------------메인------------------------------------------------------------ -->		
 			
 			<div class="col-sm-9">
 				<h1>오프라인 스터디</h1>
 				<hr align="left" width="350px" style="border: 0.5px solid #c47100" />
 				<br>
 				<h4>${menuName}</h4>
-				<div class="flex ">
-					<div>
-						<div class="input-group rounded" method="post">
-						<form action = "studySearch" method="post">
-						<select name="part">
-						<option value="subject">제목</option>
-						
-						</select>
-							<input type="text" class="form-control rounded"
-								placeholder="Search" aria-label="Search"
-								aria-describedby="search-addon" name="searchData" required="required"/> 
-						    <input type="submit" class="input-group-text border-0" value="검색"> 
+				 
+					
+<!-- --------------------------------------------------------------검색------------------------------------------------------------ -->							
+						<div>
+							<div class="input-group rounded" method="post">
+							<form action = "studySearch" method="post">
+							<div class="d-flex flex-row align-items-center">
+								 
+									<select class="custom-select" name="part">
+									    <option value="subject">제목</option>						
+									</select>
+								 
+								    <div class="d-flex flex-row">
+									<input type="text" class="form-control rounded"
+										placeholder="Search" aria-label="Search"
+										aria-describedby="search-addon" name="searchData" required="required"/> 
+								    <input type="submit" class="input-group-text border-0" value="검색"> 
+								    </div>
+							</div>
 							</form>
+							</div>
 						</div>
-
-					</div>
-					<div class="flex mt-3">
-						<div class="tagbox">
-							<a href="#">#서울</a>
-						</div>
-						<div class="tagbox">
-							<a href="#">#부산</a>
-						</div>
-						<div class="tagbox">
-							<a href="#">#대구</a>
-						</div>
+				 
+<!-- --------------------------------------------------------------지역태그------------------------------------------------------------ -->						
+					<div>
+						<div class="d-flex align-items-end rounded mt-2" method="post">
+						
+						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
+						<input type="hidden" aria-label="Search" name="part" value="region">
+						<input type="hidden" aria-label="Search" name="searchData" value="서울">
+					    <input type="submit" class="tagbox" value="#서울"> 
+						</form>
+						
+						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
+						<input type="hidden" aria-label="Search" name="part" value="region">
+						<input type="hidden" aria-label="Search" name="searchData" value="경기">
+					    <input type="submit" class="tagbox" value="#경기"> 
+						</form>
+						
+						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
+						<input type="hidden" aria-label="Search" name="part" value="region">
+						<input type="hidden" aria-label="Search" name="searchData" value="부산">
+					    <input type="submit" class="tagbox" value="#부산"> 
+						</form>
+												
 						<div class="tagbox tagbox-etc">
 							<a href="#">...</a>
 						</div>
-					</div>
+				
+						
+						</div>
+					</div>									
+													
+					
 
-				</div>
 				
 				
+<!-- --------------------------------------------------------------게시판------------------------------------------------------------ -->						
 				<button class="btn btn-info d-block ml-auto">
 					<a href="<%=request.getContextPath()%>/studymenu/writeForm" style="color: white;">글쓰기 </a>
 				</button>
-				<div class="container d-flex justify-content-between flex-wrap">
+				<div class="container d-flex align-content-between flex-wrap">
 				
 				<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
 				
@@ -276,7 +312,7 @@ a:hover {
 					</c:if>
 				
 				</div>
-
+<!-- --------------------------------------------------------------페이지 번호------------------------------------------------------------ -->
 				<br> <br>
 				<nav class="container">
 					<ul class="pagination justify-content-center">

@@ -33,6 +33,7 @@ li>a {
 }
 
 a:hover {
+	color: black;
 	text-decoration: none;
 }
 
@@ -61,27 +62,33 @@ a:hover {
 
 	<div class="container">
 		<div class="row pt-5">
-			<!-- 왼쪽 사이드 메뉴 -->
+<!------- 왼쪽 사이드 메뉴------------------------------------------------------------------------------------------ -->
 			<aside class="col-sm-3">
 				<div class="col aside">
+					<h4>함께 공부해요</h4>
 					<div class="aside-content">
-						함께 공부해요 
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=1"><li>질문
-								& 답변</li></a> 
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=2"><li>자유</li></a> 
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=3"><li>정보공유</li></a>
-
-
-						공지사항 
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">
-							<li>공지사항</li></a> 
-							<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=5">
-							<li>블로그</li>
-						</a>
-
+						<li class=""><a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=1">질문
+								답변</a></li> 
+								<li class = ""><a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=2">자유</a></li>
+						<li class =""> <a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=3">정보공유</a></li>
+						<br>
+						<h4>공지사항</h4>
+						 <li class= ""><a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">
+							공지사항
+						</a></li>
+						<li class = ""> <a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=5">
+							블로그
+						</a></li>
+						
 					</div>
 				</div>
 			</aside>
+<!-- -----------메인-------------------------------------------------------------------------------------------- -->
 			<div class="main col-sm-9">
 				<h1>글쓰기</h1>
 		
@@ -92,8 +99,8 @@ a:hover {
 					action="<%=request.getContextPath()%>/community/comWritePro"
 					enctype="multipart/form-data" method="post">
 					<br /> <br />
-					<!-- 닉네임 가져오기 -->
-					<!--<input type = "hidden" name= "nickname" value = '${c.nickname}'>-->
+					<!-- 닉네임 -->
+					<input type = "hidden" name= "nickname" value = '${com.nickname}'>
 					<div class="form-group">
 						<label>제목</label> <input type="text" class="form-control"
 							name="subject" placeholder="제목을 입력해주세요" />
@@ -112,7 +119,7 @@ a:hover {
 					</div>
 
 
-
+					
 					<div class="d-grid gap-2 " style="float: right;">
 						<button class="btn btn-dark" type="button">취소</button>
 						<button class="btn btn-dark" type="submit">저장</button>

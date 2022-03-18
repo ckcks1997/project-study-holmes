@@ -79,4 +79,52 @@ public class StudyMemberDao {
 
     return 1;
   }
+  
+  public int studyMemberIntroUpdate(String email, String intro) {
+    
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try {
+      map.clear();
+      map.put("email", email);
+      map.put("intro", intro);
+      return sqlSession.update(NS + "studyMemberIntroUpdate", map);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MybatisConnection.close(sqlSession);
+    }
+
+    return 0;
+  }
+  
+  public int studyMemberDelete(String email) {
+    
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try {
+      return sqlSession.update(NS + "studyMemberDelete", email);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MybatisConnection.close(sqlSession);
+    }
+
+    return 0;
+  }
+  
+  public int changePassword(String email, String newPass) {
+    
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try {
+      map.clear();
+      map.put("email", email);
+      map.put("newPass", newPass);
+      return sqlSession.update(NS + "changePassword", map);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MybatisConnection.close(sqlSession);
+    }
+
+    return 0;
+  }
 }

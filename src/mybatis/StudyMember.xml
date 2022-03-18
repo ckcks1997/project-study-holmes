@@ -23,6 +23,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select count(*) from study_member where nickname = #{nickname}
     </select> 
     
-    
+    <update id="studyMemberIntroUpdate" parameterType="map">
+        update study_member set profile_intro = #{intro} where email=#{email}
+    </update> 
+
+    <delete id="studyMemberDelete" parameterType="string">
+        delete from study_member where email= #{id}
+    </delete>
+
+    <update id="changePassword" parameterType="map">
+        update study_member set password = #{newPass} where email=#{email}
+    </update> 
 
 </mapper>

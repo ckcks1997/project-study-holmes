@@ -16,6 +16,7 @@ public class Community {
 	private int ref;
 	private int reflevel;
 	private int refstep;
+	private String nickname;
 	
 	public Community() {
 		
@@ -23,7 +24,7 @@ public class Community {
 
 	public Community(int num, String subject, String content,
 			 String tag, int likes, String boardid, Date regdate, String ip, int readcnt, int ref,
-			int reflevel, int refstep) {
+			int reflevel, int refstep, String nickname ) {
 		super();
 		this.num = num;
 		this.subject = subject;
@@ -37,6 +38,7 @@ public class Community {
 		this.ref = ref;
 		this.reflevel = reflevel;
 		this.refstep = refstep;
+		this.nickname = nickname;
 	}
 
 	public int getNum() {
@@ -46,6 +48,8 @@ public class Community {
 	public void setNum(int num) {
 		this.num = num;
 	}
+
+	
 
 	public String getSubject() {
 		return subject;
@@ -135,12 +139,21 @@ public class Community {
 	public void setRefstep(int refstep) {
 		this.refstep = refstep;
 	}
+	
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	@Override
 	public String toString() {
 		return "Community [num=" + num + ", subject=" + subject + ", content=" + content + ", tag=" + tag
 				+ ", likes=" + likes + ", boardid=" + boardid + ", regdate=" + regdate + ", ip=" + ip + ", readcnt="
-				+ readcnt + ", ref=" + ref + ", reflevel=" + reflevel + ", refstep=" + refstep + "]";
+				+ readcnt + ", ref=" + ref + ", reflevel=" + reflevel + ", refstep=" + refstep + ",nickname=" + nickname + "]";
 	}
 
 	

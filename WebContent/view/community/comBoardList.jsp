@@ -27,10 +27,11 @@ ul, li {
 }
 
 li>a {
-	color: rgb(10, 10, 10);
+	color: #000;
 }
 
 a:hover {
+	color: black;
 	text-decoration: none;
 }
 
@@ -40,10 +41,13 @@ a:hover {
 	/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
 	height: 40px;
 	line-height: 40px;
-	background: rgb(233, 233, 233);
 	text-align: left;
 	padding-left: 10px;
-	border: 1px solid rgb(223, 223, 223);
+}
+
+.selected{
+background: rgb(233, 233, 233);
+border: 1px solid rgb(223, 223, 223);
 }
 
 </style>
@@ -64,19 +68,28 @@ a:hover {
 
 	<div class="container">
 		<div class="row pt-5">
-				<!-- 왼쪽 사이드메뉴 -->
-			  	<aside class="col-sm-3">
+<!------------------------- 왼쪽 사이드메뉴 --------------------------------------------------------------------->
+				<aside class="col-sm-3">
 				<div class="col aside">
-					<div class =  "aside-content">
-						함께 공부해요
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=1"><li>질문 & 답변</li></a>
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=2"><li>자유</li></a>
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=3"><li>정보공유</li></a>
-					
-					
-						공지사항
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=4"> <li>공지사항</li></a>
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=5"> <li>블로그</li></a>
+					<h4>함께 공부해요</h4>
+					<div class="aside-content">
+						<li class=" <c:if test="${boardid eq 1 }">selected</c:if> "><a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=1">질문
+								답변</a></li> 
+								<li class = "<c:if test="${boardid eq 2 }">selected</c:if>"><a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=2">자유</a></li>
+						<li class ="<c:if test="${boardid eq 3 }">selected</c:if>"> <a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=3">정보공유</a></li>
+						<br>
+						<h4>공지사항</h4>
+						 <li class= "<c:if test="${boardid eq 4 }">selected</c:if>"><a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">
+							공지사항
+						</a></li>
+						<li class = "<c:if test="${boardid eq 5 }">selected</c:if>"> <a
+							href="<%=request.getContextPath()%>/community/comBoardList?boardid=5">
+							블로그
+						</a></li>
 						
 					</div>
 				</div>
@@ -123,20 +136,21 @@ a:hover {
 			<br />
 
 
-			<!-- 커뮤니티 게시판  -->
+<!-------------메인 커뮤니티 게시판 --------------------------------------------------------------------------------------------------------- -->
 			<div class="container">
 				<table class="table">
 					<c:forEach var = "com" items ="${list}">
 					<tr>
 						<td>
 							<div class="row">
+							
 								<div class="col-sm-9">
 									<a href="<%=request.getContextPath() %>/community/comBoardInfo?num=${com.num}" style="color: black">
 										<h4><strong>${com.subject}</strong></h4>
 										<h5><small>${com.content} </small></h5> 
 										<br />
-										<h6><small>닉네임 · ${com.regdate} · ${com.tag} </small></h6>
-									</a>
+										<h6><small>${com.nickname} · ${com.regdate} · ${com.tag} </small></h6>
+									</a>	
 								</div>
 								<div class="col-sm-3">
 									<div class="text-box text-center m-auto">
@@ -145,6 +159,7 @@ a:hover {
 										</div>
 									</div>
 								</div>
+								
 							</div>
 						</td>
 					</tr>
@@ -152,7 +167,7 @@ a:hover {
 					
 				</table>
 			</div>
-
+<!------------- 아래 페이징네이션 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 			<ul class="pagination justify-content-center">
 				<li class='page-item <c:if test ="${startPage <= bottomLine }"> disabled </c:if> '><a class="page-link" href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${startPage-bottomLine}">Previous</a></li>
 				<c:forEach var ="i" begin ="${startPage}" end = "${endPage}"> 
@@ -166,6 +181,6 @@ a:hover {
 	</div>
 	
 
-	
+	<br><br>
 </body>
 </html>

@@ -43,14 +43,27 @@ create table community
 	readcnt	    number(10),
 	ref  	    number,
 	reflevel	number(3),
-	refstep	    number(5)
+	refstep	    number(5),
+	nickname    varchar(10)
 );
 
 create sequence comboard_seq;
 
-commit;
 
------------
+---
+
+--- study_menu table 테스트용(수정예정)
+
+create table study_menu
+(
+	subject varchar(100) primary key,
+	free number(1),
+	pernum number(30),
+	region varchar(30),
+	menuid varchar(1)
+);
+
+---
 
 
 --------studychk 테이블

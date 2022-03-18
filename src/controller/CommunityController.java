@@ -1,24 +1,33 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
 import java.util.List;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
+
 import com.oreilly.servlet.MultipartRequest;
 
 
 import model.Community;
+import model.StudyMember;
 import service.CommunityBoardDao;
+import service.StudyMemberDao;
  
 
 
 public class CommunityController extends MskimRequestMapping{
-  @RequestMapping("comBoardList")
-  public String comBoardList(HttpServletRequest request, HttpServletResponse response) {
+  
+	@RequestMapping("comBoardList")
+   public String comBoardList(HttpServletRequest request, HttpServletResponse response) {
 	  HttpSession session = request.getSession();
 	  String boardid = "";
 	  int pageInt = 1;
@@ -81,16 +90,37 @@ public class CommunityController extends MskimRequestMapping{
   }
   
   
-  
+  //글쓰기 페이지
   @RequestMapping("comWriteForm")
   public String comWriteForm(HttpServletRequest request,  HttpServletResponse response) {
 	  
-	  return "/view/community/comWriteForm.jsp";
+	  HttpSession session = request.getSession();
+	  String msg = "로그인이 필요합니다";
+	  String url = request.getContextPath()+"/studymember/loginForm";
+	  
+	  if(session.getAttribute("memberNickname")!= null) {
+		return "/view/community/comWriteForm.jsp";
+	  }
+	  
+	  request.setAttribute("msg", msg);
+	  request.setAttribute("url", url);
+	  
+	  return "/view/alert.jsp";
   }
  
+  
+  
+  //글쓰기
   @RequestMapping("comWritePro")
   public String comWritePro(HttpServletRequest request, HttpServletResponse response) {
 	  String path = request.getServletContext().getRealPath("/")+"/comboardupload/";
+	  
+	    //폴더가 없으면 에러가 발생합니다. 디렉토리 확인 후 폴더를 생성하는 코드입니다.
+	    File file=new File(path);
+	    if(!file.exists()) { 
+	      file.mkdir();
+	    }
+	    
 	  int size = 10*1024*1024;
 	  MultipartRequest multi = null;
 	  try {
@@ -100,14 +130,19 @@ public class CommunityController extends MskimRequestMapping{
 		e.printStackTrace();
 	}
 	  
+	  
 	  Community com = new Community();
 	  
+	  //세션에 저장된 닉네임 가져와서 커뮤니티 닉네임으로 저장하기
+	  HttpSession session = request.getSession();
+	  com.setNickname(String.valueOf(session.getAttribute("memberNickname")));
+	 
 	  com.setSubject(multi.getParameter("subject"));
 	  com.setTag(multi.getParameter("tag"));
 	  com.setContent(multi.getParameter("content"));
 	  com.setIp(request.getLocalAddr());
 	  
-	  HttpSession session = request.getSession();
+	 
 	  String boardid = (String)session.getAttribute("boardid");
 	  	if(boardid ==null) { boardid ="1"; }
 	  com.setBoardid(boardid);
@@ -135,6 +170,8 @@ public class CommunityController extends MskimRequestMapping{
   }
   
   
+  
+  //게시글 상세보기
   @RequestMapping("comBoardInfo")
   public String comBoardInfo(HttpServletRequest request, HttpServletResponse response) {
 	  
@@ -143,11 +180,19 @@ public class CommunityController extends MskimRequestMapping{
 	  Community com = cbd.comBoardOne(num);
 	  request.setAttribute("com", com);
 	  
+	  
+	  //session의 닉네임 가져오기
+	  HttpSession session = request.getSession();
+	  String loginNick = (String)session.getAttribute("memberNickname");
+	  request.setAttribute("loginNick", loginNick);
+	  
+	  
+	  
 	  return "/view/community/comBoardInfo.jsp";
   }
   
   
-  
+  //게시글 수정페이지
   @RequestMapping("comBoardUpdateForm")
  public String comBoardUpdateForm(HttpServletRequest request,  HttpServletResponse response) {
 	  
@@ -156,10 +201,13 @@ public class CommunityController extends MskimRequestMapping{
 	  Community com = cbd.comBoardOne(num);
 	  request.setAttribute("com", com);
 	  
+	  
+	  
 	  return "/view/community/comBoardUpdateForm.jsp";
   }
   
   
+  //게시글 수정
   @RequestMapping("comBoardUpdatePro")
   public String comBoardUpdatePro(HttpServletRequest request, HttpServletResponse response) {
 	  
@@ -184,6 +232,8 @@ public class CommunityController extends MskimRequestMapping{
 	  String msg = "";
 	  String url = "";
 	  
+	
+	  
 	  //Community newcom = cbd.comBoardOne(com.getNum());
 	  if(cbd.comBoardUpdate(com)>0) {
 		   msg = "수정되었습니다";
@@ -203,6 +253,44 @@ public class CommunityController extends MskimRequestMapping{
   }
   
   
+  //게시글 삭제
+  @RequestMapping("comBoardDelete") 
+  public String comBoardDelete(HttpServletRequest request, HttpServletResponse response) {
+	  
+	  int num = Integer.parseInt(request.getParameter("num"));
+	  CommunityBoardDao cbd = new CommunityBoardDao();
+	  Community com = cbd.comBoardOne(num);
+	  request.setAttribute("com", com);
+	  
+	
+	  
+	  String msg = "";
+	  String url = "";
+	 
+	 
+	  if(cbd.comBoardDelete(num)>0) {
+		  
+		  msg = "게시글이 삭제되었습니다.";
+		  url = request.getContextPath()+"/community/comBoardList";
+	  } else {
+		  msg= "삭제가 불가능합니다";
+		  url = request.getContextPath()+"/community/comBoardInfo";
+	  }
+	
+	  request.setAttribute("msg", msg);
+	  request.setAttribute("url", url);
+	
+	  return "/view/alert.jsp";
+  	
+  }
+  
+  
+  
+  
+  
+  
+  
+  //메인
   @RequestMapping("main")
   public String main(HttpServletRequest request, HttpServletResponse response) {
  

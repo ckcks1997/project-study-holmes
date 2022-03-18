@@ -48,11 +48,22 @@ a:hover {
     border: 1px solid rgb(223, 223, 223);
 }
 
-
 h1, h3, h5 {
 	font-weight: bold;
 }
 
+.btn-color{
+    color:white;
+    background-color:#c47100;
+    border: none;
+}
+.btn-color:hover, 
+.btn-color:active, 
+.btn-color:visited{
+    color:white;
+    background-color:#a35100;
+    border: none;
+}
 .container-css {
 	background: #f8f8f8;
 	border-radius: 20px;
@@ -76,128 +87,105 @@ h1, h3, h5 {
 </head>
 <body>
 
-<div class="container-fluid famous-saying-box">
-            <div class="container p-3 ">
-                <div class=" mt-3">
-                    <h3 class="color-white ">오늘의 명언</h3>
-                    <div class="color-white">
-                        생각 없이 배우기만 하면 얻는 것이 없고, 생각만 하고 배우지 않으면 오류나 독단에 빠질 위험이 있다. -공자
-                    </div>
+	<div class="container-fluid famous-saying-box">
+		<div class="container p-3 ">
+			<div class=" mt-3">
+				<h3 class="color-white ">오늘의 명언</h3>
+				<div class="color-white">생각 없이 배우기만 하면 얻는 것이 없고, 생각만 하고 배우지 않으면 오류나 독단에 빠질 위험이 있다. -공자</div>
 
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row pt-5">
-                <aside class="col-lg-3">
-                    <div class="col aside">
-                        <div class="aside-content">
-                            <li class=""><a href="mypage"> 마이페이지 </a></li>
-                        </div>
-                        <div class="aside-content">
-                            <li class=""><a href="">  프로필 </a></li>
-                           
-                        </div>
-                        <div class="aside-content">
-                            <li class=""><a href=""> 작성한 게시글 </a></li>
-                        </div>
- 
-                </aside>
-                <br>
-                <br>
-                <div class="col-lg-9">
-                    <h1>프로필 정보</h1>
-                    <hr align="left" width="300px" style="border: 0.5px solid #c47100" />
-                     <br>
-                     <div class="container container-css  p-5">
-                         <form action="<%=request.getContextPath()%>/studymember/myprofileEdit1">
-                             <h5>닉네임 </h5>
-                             <input class="form-control input-border-round" type="text" name="nickname" value="${memberInfo.nickname}">
-                             <br>
-                             <div class="d-flex row pl-3">
-                                <h5>자기소개</h5> 
-                                <span>&nbsp;(2000자 이내로 작성하세요)</span>
-                             </div>
-                             <textarea id="summernote" name="profile_intro">${memberInfo.profile_intro}</textarea>  
-                             <br>
-                             <div class="col text-center">
-                                 <button class="btn btn-primary "> 수정 </button>
-                             </div>
-                         </form>
-                     </div>
-                     <br>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row pt-5">
+			<aside class="col-lg-3">
+				<div class="col aside">
+					<div class="aside-content">
+						<li class=""><a href="mypage"> 마이페이지 </a></li>
+					</div>
+					<div class="aside-content">
+						<li class=""><a href=""> 프로필 </a></li>
 
-                     <div class="container container-css  p-5">
-                          
-                             <h5>관심태그 </h5>
-                             <form action="">
-                                 <div class="row px-5">
-                                     <input class="col-10 form-control input-border-round" type="text">
-                                     <button class="col btn btn-primary">추가</button>
-                                    </div>
-                                </form>
-                                <!-- 태그 출력 -->
-                                <div class="container p-2">
-                                    <span class="interest-tag">#영어</span>
-                                    <span class="interest-tag">#수원</span>
-                                </div> 
-                         
-                     </div> 
-                     <br>
+					</div>
+					<div class="aside-content">
+						<li class=""><a href=""> 작성한 게시글 </a></li>
+					</div>
+			</aside>
+			<br> <br>
+			<div class="col-lg-9">
+				<h1>프로필 정보</h1>
+				<hr align="left" width="300px" style="border: 0.5px solid #c47100" />
+				<br>
+				<div class="container container-css  p-5">
+					<h5>닉네임</h5>
+					<input class="form-control input-border-round" type="text" name="nickname" value="${memberInfo.nickname}" disabled> <br>
+					<h5>이메일</h5>
+					<input class="form-control input-border-round" type="text" name="nickname" value="${memberInfo.email}" disabled> <br>
+					<div class="container row ">
+						<h5>휴대폰 번호</h5>
+						&nbsp;<span class="h5-subinfo"> </span>
+					</div>
+					<form action=" ">
+						<div class="d-flex  justify-content-between ">
+							<input class="col-10 form-control input-border-round text-left" type="text" value="${memberInfo.tel}">
+							<div class="d-inline-block col text-center  ">
+								<button class="btn btn-color ">변경</button>
+							</div>
+						</div>
+					</form>
+					<br>
+					<form action="<%=request.getContextPath()%>/studymember/myprofileEdit1">
+						<div class="d-flex row pl-3">
+							<h5>자기소개</h5>
+							<span>&nbsp;(2000자 이내로 작성하세요)</span>
+						</div>
+						<textarea id="summernote" name="profile_intro">${memberInfo.profile_intro}</textarea>
+						<br>
+						<div class="col text-center">
+							<button class="btn   btn-color">수정</button>
+						</div>
+					</form>
+				</div>
+				<br>
 
-                     <div class="container container-css  p-5">
-                         <div class="container row ">
+				<div class="container container-css  p-5">
+					<h5>관심태그</h5>
+					<form action="<%=request.getContextPath()%>/studymember/myprofileEdit2">
+						<div class="row px-5">
+							<input class="col-10 form-control input-border-round" type="text" name="tag" maxlength="10" required>
+							<div class="col text-center">
+								<button class="btn btn-color">추가</button>
+							</div>
+						</div>
+					</form>
+					<!-- 태그 출력 -->
+					<div class="container p-2">
+						<c:forEach var="i" items="${tagInfo}">
+							<span class="interest-tag">#${i.tag}</span>
+						</c:forEach>
+					</div>
+				</div>
+				<br>
+				<div class="container container-css p-5">
+					<div class="container d-flex justify-content-between  ">
+						<div class="row">
+							<h5>비밀번호</h5>
+							&nbsp;<span class="h5-subinfo"> (6개월마다 변경을 권장합니다)</span>
+						</div>
+						<button class="btn btn-color" onclick="location.href='<%=request.getContextPath()%>/studymember/passwordChange'">변경하러 가기</button>
+					</div>
+				</div>
+				<br> <br>
+			</div>
+		</div>
+		<br> <br> <br> <br> <br> <br> <br> <br> <br>
+		<div class="container text-right">
+			<button class="btn btn-sm btn-secondary" onclick="location.href='<%=request.getContextPath()%>/studymember/goodbye' ">회원탈퇴</button>
+		</div>
+		<br>
+	</div>
 
-                             <h5>이메일</h5> &nbsp;<span class="h5-subinfo"> (변경이후 재인증이 필요합니다)</span> 
-                            </div>
-                        <form action="">
-                            <div class="row  px-5">
-                                <input class=" form-control input-border-round" type="text">
-                            </div>
-                            <div class="d-inline-block col text-center mt-3">
-                                <button class="btn btn-primary">수정</button>
-                            </div>
-                        </form> 
-                     </div>
-                    <br>
-
-                    <div class="container container-css p-5">
-                        <div class="container d-flex justify-content-between  ">
-                            <div class="row">
-                                <h5>비밀번호</h5> &nbsp;<span class="h5-subinfo"> (6개월마다 변경을 권장합니다)</span> 
-                            </div>
-                            <button class="btn btn-primary">변경하러 가기</button>
-                        </div> 
-                    </div>
-                   <br>
-                   <div class="container container-css  p-5">
-                    <div class="container row ">
-
-                        <h5>휴대폰 번호</h5> &nbsp;<span class="h5-subinfo"> (-없이 숫자만 입력해 주세요)</span> 
-                       </div>
-                   <form action="">
-                       <div class="row  px-5">
-                           <input class=" form-control input-border-round" type="text">
-                       </div>
-                       <div class="d-inline-block col text-center mt-3">
-                           <button class="btn btn-primary">인증요청</button>
-                       </div>
-                   </form> 
-                </div>
-               <br>
- 
-                </div>
-            </div>
-        </div>
-        <br>
-        <br> <br>
-        <br> <br>
-        <br> <br>
-        <br> <br>
-        <br>
- 
-
-        <script>
+	<script>
        $('#summernote').summernote({
         placeholder: '내용을 입력하세요',
         tabsize: 1,
@@ -213,6 +201,6 @@ h1, h3, h5 {
             }
         }
       });
-        </script>
+    </script>
 
 </body>

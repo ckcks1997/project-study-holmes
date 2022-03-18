@@ -111,4 +111,30 @@ public class CommunityBoardDao {
 		  return 0;
 		  
 	  }
+	  
+	  public int comBoardDelete (int num) {
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+		 try {
+		  return sqlSession.update(NS+"comBoardDelete", num);
+		 } catch(Exception e) {
+			 e.printStackTrace();
+		 } finally {
+			 MybatisConnection.close(sqlSession);
+		 }
+		  return 0;
+	  }
+	  
+	  /* 메인화면(board) 최신글 출력 관련 Dao */
+	   public List<Community> comMainBoardList(String boardid) {
+         
+         SqlSession sqlSession = MybatisConnection.getConnection();
+           try {                 
+           return sqlSession.selectList(NS+"comMainBoardList",boardid);
+           } catch (Exception e) {
+               e.printStackTrace();
+           } finally {
+               MybatisConnection.close(sqlSession);
+           } 
+           return null;
+     }
 }
