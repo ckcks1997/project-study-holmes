@@ -13,6 +13,7 @@ public class StudyMenu {
 	private String content;
 	private String menuid;
 	private Date regdate;
+	private String ip;
 	private int readcnt;
 	private int ref;
 	private int reflevel;
@@ -27,7 +28,7 @@ public class StudyMenu {
 
 
 	public StudyMenu(int num, String subject, int langue, int free, int pernum, String region, String content,
-			String menuid, Date regdate, int readcnt, int ref, int reflevel, int refstep) {
+			String menuid, Date regdate, String ip, int readcnt, int ref, int reflevel, int refstep) {
 		super();
 		this.num = num;
 		this.subject = subject;
@@ -38,6 +39,7 @@ public class StudyMenu {
 		this.content = content;
 		this.menuid = menuid;
 		this.regdate = regdate;
+		this.ip = ip;
 		this.readcnt = readcnt;
 		this.ref = ref;
 		this.reflevel = reflevel;
@@ -154,6 +156,18 @@ public class StudyMenu {
 
 
 
+	public String getIp() {
+		return ip;
+	}
+
+
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+
+
 	public int getReadcnt() {
 		return readcnt;
 	}
@@ -206,11 +220,12 @@ public class StudyMenu {
 	public String toString() {
 		return "{\"num\":\"" + num + "\", \"subject\":\"" + subject + "\", \"langue\":\"" + langue + "\", \"free\":\""
 				+ free + "\", \"pernum\":\"" + pernum + "\", \"region\":\"" + region + "\", \"content\":\"" + content
-				+ "\", \"menuid\":\"" + menuid + "\", \"regdate\":\"" + regdate + "\", \"readcnt\":\"" + readcnt
-				+ "\", \"ref\":\"" + ref + "\", \"reflevel\":\"" + reflevel + "\", \"refstep\":\"" + refstep + "\"}";
+				+ "\", \"menuid\":\"" + menuid + "\", \"regdate\":\"" + regdate + "\", \"ip\":\"" + ip
+				+ "\", \"readcnt\":\"" + readcnt + "\", \"ref\":\"" + ref + "\", \"reflevel\":\"" + reflevel
+				+ "\", \"refstep\":\"" + refstep + "\"}";
 	}
 
-
+	
 
 	
 	

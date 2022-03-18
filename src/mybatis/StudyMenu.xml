@@ -10,20 +10,22 @@
 
 	<select id="menuList" resultType="studymenu" parameterType="map">
 		select * from ( select rownum rnum, a.* from (
-		select * from study_menu where menuid = #{menuid}) a)
+		select * from study_menu where menuid = #{menuid} order by ref desc, refstep asc) a)
 		where rnum BETWEEN #{start} and #{end}
 	</select>
 		
 	<insert id="insertMenu" parameterType="studymenu">
 	insert into study_menu values 
-	(#{subject},#{free},#{pernum},#{region},#{menuid})
+	(#{num},#{subject},#{langue},#{free},#{pernum},#{region},#{content},#{menuid},sysdate,#{ip},0,#{ref},#{reflevel},#{refstep})
 	</insert>
 	
 	<select id="studySearch" parameterType="Search" resultType="StudyMenu">
 	select * from study_menu where upper (${part}) like upper (#{searchData})
 	</select>
 	
-	
+	<select id = "NextNum" resultType = "int">
+	select menu_seq.nextval from dual
+</select>
 	
 	
 </mapper>
