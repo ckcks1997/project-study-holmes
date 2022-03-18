@@ -69,7 +69,7 @@ public class StudyMemberController extends MskimRequestMapping {
         request.getSession().setAttribute("memberID", mem.getEmail());
         request.getSession().setAttribute("memberNickname", mem.getNickname());
         request.getSession().setAttribute("memberPicture", mem.getPicture());
-        msg = mem.getName() + "님이 로그인";
+        msg = "";
         url = request.getContextPath() + "/board/main";
       } else {
         System.out.println(mem);
@@ -90,7 +90,7 @@ public class StudyMemberController extends MskimRequestMapping {
     HttpSession session = request.getSession();
     String login = (String) session.getAttribute("memberNickname");
     session.invalidate();
-    request.setAttribute("msg", login + "로그아웃");
+    request.setAttribute("msg", "");
     request.setAttribute("url", request.getContextPath() + "/studymember/loginForm");
     return "/view/alert.jsp";
   }

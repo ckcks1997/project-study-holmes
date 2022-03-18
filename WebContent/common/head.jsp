@@ -125,9 +125,11 @@
 										<button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${memberNickname} 님</button>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											<img class="profile" src="<%=request.getContextPath()%>/upload/${memberPicture}" width="200" height="200" id="pic" onerror="this.src='<%=request.getContextPath()%>/img/profile_empty.jpg'" />
-											<li class="nav-item"><a class="dropdown-item" href="<%=request.getContextPath()%>/studymember/logout">로그아웃</a></li> <a class="dropdown-item"
+											<li class="nav-item"><a class="dropdown-item" href="<%=request.getContextPath()%>/studymember/logout">로그아웃</a></li> 
+											<a class="dropdown-item"
 												href="<%=request.getContextPath()%>/studymember/mypage">마이페이지</a>
-
+                                            <a class="dropdown-item"
+                                                href="<%=request.getContextPath()%>/studymember/mypage">출석체크</a>
 										</div>
 									</div>
 								</c:otherwise>
