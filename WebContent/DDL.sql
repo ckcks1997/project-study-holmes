@@ -69,6 +69,7 @@ create table study_menu
 
 ---
 
+
 create table study_menu
 (
 	numnumber primary key,
@@ -108,8 +109,11 @@ create table study_menu
 
 
 
-
-
+--------studychk 테이블
+create table studycheck
+( id  varchar (50),
+day  date
+);
 
 
 

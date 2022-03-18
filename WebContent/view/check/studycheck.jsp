@@ -1,19 +1,116 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
-<html lang="ko">
-	<head>
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-		/>
-		<link rel="stylesheet" href="style.css" />
-		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-		<style>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<style>
+
+
+*{
+ margin: 0;
+ padding: 0;
+ font-family: sans-serif;
+ box-sizing: border-box;
+}
+
+
+
+
+.calendar{
+width: 800px;
+margin: 80px;
+}
+
+.header{
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+
+.year-month { 
+font-size: 35px;
+}
+
+
+.nav{
+display: flex;
+border: 1px solid #333333;
+border-radius: 5px;
+}
+
+.nav-btn{
+width: 28px;
+height: 30px;
+border: none;
+font-size: 16px;
+line-height: 34px;
+background-color: transparent;
+cursor: ponter;
+}
+
+.go-today{
+width: 75px;
+border-left: 1px solid #333333;
+border-right: 1px solid #333333;
+background-color: #c47100;
+}
+
+.days{
+	
+	display: flex;
+	margin: 25px 0 10px;
+}
+
+.day{
+	width: calc(100% / 7);
+	text-align: center;
+}
+
+.dates{
+	display: flex;
+	flex-flow: row wrap;
+	height: 500px;
+	border-top: 1px solid #333333;
+	border-right: 1px solid #333333;
+	
+}
+.date{
+	width: calc(100% / 7);
+	padding:15px;
+	text-align: right;
+	border-bottom: 1px solid #333333;
+	border-left: 1px solid #333333;	
+}
+
+.day:nth-child(7n + 1),
+.date:nth-child(7n + 1){
+	color: #D13E3E;
+}
+
+
+.day:nth-child(7n),
+.date:nth-child(7n){
+	color: #396EE2;
+}
+
+
+.other{
+	opacity: 0.3;
+}
+
+.today{
+	position: relative;
+	color: #333333;
+	
+}
+
 			body,
 			button,
 			input,
@@ -67,7 +164,7 @@
 			}
 			.search-domain {
 				background: #22d47b;
-				border: 2px solid #22d47b;
+				border: 2px solid #22d47b; 
 				color: #fff;
 				-webkit-border-radius: 0;
 				-moz-border-radius: 0;
@@ -169,88 +266,11 @@
 
 			/* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */
 		</style>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 		<title>Document</title>
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-light shadow-sm">
-			<div class="container px-4">
-				<a class="navbar-brand" href="../index.html"
-					><span class="navbar-brand">스터디 홈즈</span>
-					<img class="star" src="../img/star.svg" />
-				</a>
-				<button
-					class="navbar-toggler"
-					type="button"
-					data-toggle="collapse"
-					data-target="#navbarTogglerDemo02"
-					aria-controls="navbarTogglerDemo02"
-					aria-expanded="false"
-					aria-label="Toggle navigation"
-				>
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-								스터디
-							</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#">온라인</a>
-								<a class="dropdown-item" href="#">오프라인</a>
-								<a class="dropdown-item" href="#">온오프라인</a>
-							</div>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-								커뮤니티
-							</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#">질문&답글</a>
-								<a class="dropdown-item" href="#">자유게시판</a>
-								<a class="dropdown-item" href="#">정보공유</a>
-								<a class="dropdown-item" href="#">공지사항</a>
-								<a class="dropdown-item" href="#">출석체크</a>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">스터디룸</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">만든이</a>
-						</li>
-					</ul>
-
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control" type="search" placeholder="Search" />
-						<button class="search-domain btn btn-primary" type="submit">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</button>
-					</form>
-					<div>
-						<ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-3">
-							<li class="nav-item active">
-								<a class="nav-link" href="#"><img src="../img/alarm.png" width="50px" /> </a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#"> <img src="../img/chat.jpg" width="50px" /> </a>
-							</li>
-							<div class="d-flex align-items-center">
-								<button class="btn btn-sm btn-dark">
-									<a class="a-no-deco" href="login.html">로그인</a>
-								</button>
-								&nbsp;
-								<button class="btn btn-sm btn-danger">회원가입</button>
-							</div>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</nav>
+		
 
 		<div class="container-fluid famous-saying-box">
 			<div class="container p-3">
@@ -276,7 +296,7 @@
 							<div class="year-month "></div>
 							<div class="nav">
 								<button class="nav-btn go-prev" onclick="prevMonth()">&lt;</button>
-								<button class="nav-btn go-today" onclick="goToday()">Today</button>
+								<button class="nav-btn go-today" onclick="goToday()">Check</button>
 								<button class="nav-btn go-next" onclick="nextMonth()">&gt;</button>
 							</div>
 						</div>
@@ -296,13 +316,22 @@
 				</div>
 			</div>
 		</div>
-		<br>
-		<br>
-		<footer class="footer">
-			<div class="container footer-content">
-				<h3>footer</h3>
-			</div>
-		</footer>
-		<script src="index.js"></script>
-	</body>
+		
+		
+
+
+
+
+ <script src="<%=request.getContextPath()%>/js/check.js"></script> 
+ <script>
+ 
+ function check() {
+ let con = document.querySelector(".today");
+ 
+ alert(con.innerHTML+"일 출석완료되었습니다.");
+ con.innerHTML='<img src="http://localhost:7498/study-homles-mvc2/img/check.jpeg" />'
+ }
+ 
+ </script>
+</body>
 </html>
