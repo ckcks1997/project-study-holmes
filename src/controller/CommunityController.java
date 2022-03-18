@@ -251,14 +251,15 @@ public class CommunityController extends MskimRequestMapping{
 	  
 	  int num = Integer.parseInt(request.getParameter("num"));
 	  CommunityBoardDao cbd = new CommunityBoardDao();
+	  Community com = cbd.comBoardOne(num);
+	  request.setAttribute("com", com);
+	  
 	
 	  
 	  String msg = "";
 	  String url = "";
 	 
-	  
-	  
-	  //----수정필요----
+	 
 	  if(cbd.comBoardDelete(num)>0) {
 		  
 		  msg = "게시글이 삭제되었습니다.";
@@ -268,10 +269,14 @@ public class CommunityController extends MskimRequestMapping{
 		  url = request.getContextPath()+"/community/comBoardInfo";
 	  }
 	
+	  request.setAttribute("msg", msg);
+	  request.setAttribute("url", url);
 	
-	  return "/view/main.jsp";
+	  return "/view/alert.jsp";
   	
   }
+  
+  
   
   
   

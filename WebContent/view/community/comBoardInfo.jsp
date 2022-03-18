@@ -165,32 +165,40 @@ border: 1px solid rgb(223, 223, 223);
 						</div>
 
 					</form>
-					<button type="button" class="btn btn-dark mt-3">목록으로</button>
+					<button type="button" class="btn btn-dark mt-3" onclick ="location.href ='comBoardList'">목록으로</button>
 					<button type="button" class="btn btn-dark mt-3">신고</button>
 					<button type="button" data-toggle= "modal" data-target = "#deleteModal" class = "btn btn-danger mt-3">삭제</button>
 
 <!-------------- 게시글 삭제 모달창 --------------------------------------------------------------------------------------------------------------------------------->
+					
 						<div class="modal fade" id="deleteModal" aria-hidden="true"
 							tabindex="-1" aria-labelledby="deleteBoardLabel">
 							<div class="modal-dialog">
 								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="deleteBoardLabel">게시글 삭제</h5>
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									</div>
+								
+								<form action = "<%=request.getContextPath() %>/community/comBoardDelete" method = "post">
+									<div class = "form-group">
+										<input type = "hidden" id = "num" name = "num" value = "${com.num}">
+										<div class="modal-header">
+											<h5 class="modal-title" id="deleteBoardLabel">게시글 삭제</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										</div>
 
-									<div class="modal-body">이 글을 삭제합니다. 계속하시겠습니까?</div>
-									<div class="modal-footer">
-		
-										<button id = "deleteBtn" class="btn btn-primary"   data-dismiss="modal" onclick = "deleteConfirm();">확인</button>
+										<div class="modal-body">이 글을 삭제합니다. 계속하시겠습니까?</div>
 									
-										<button class="btn btn-outline-primary" data-dismiss="modal">취소</button>
-									</div>
+									
+										<div class="modal-footer">
+										    <input type="submit"  class="btn btn-primary"   value="확인">
+											<button class="btn btn-outline-primary" data-dismiss="modal">취소</button>
+										</div>
+									</div>	
+								</form>
+								
 								</div>
 							</div>
 						</div>
-
+						
 
 
 				</div>
@@ -199,7 +207,8 @@ border: 1px solid rgb(223, 223, 223);
 	</div>
 
 
-<script>
+<!--  <script>
+	
 	
 	
 	function deleteConfirm(){
@@ -226,7 +235,8 @@ border: 1px solid rgb(223, 223, 223);
 	}
 	
 
-</script>
+
+</script> -->
 
 
 </body>
