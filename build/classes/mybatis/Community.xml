@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <insert id = "comInsertBoard" parameterType = "community">
 	insert into community  values (#{num}, #{subject}, #{content},#{tag},#{likes},#{boardid}
-			,sysdate,#{ip},0,#{ref},#{reflevel},#{refstep})
+			,sysdate,#{ip},0,#{ref},#{reflevel},#{refstep},#{nickname})
 </insert>
 
 <select id = "comNextNum" resultType = "int">
