@@ -133,7 +133,7 @@ public class CommunityController extends MskimRequestMapping{
 	  
 	  Community com = new Community();
 	  
-	  //세션에 저장된 닉네임 가져오기 
+	  //세션에 저장된 닉네임 가져와서 커뮤니티 닉네임으로 저장하기
 	  HttpSession session = request.getSession();
 	  com.setNickname(String.valueOf(session.getAttribute("memberNickname")));
 	 
@@ -179,6 +179,13 @@ public class CommunityController extends MskimRequestMapping{
 	  CommunityBoardDao cbd = new CommunityBoardDao();
 	  Community com = cbd.comBoardOne(num);
 	  request.setAttribute("com", com);
+	  
+	  
+	  //session의 닉네임 가져오기
+	  HttpSession session = request.getSession();
+	  String loginNick = (String)session.getAttribute("memberNickname");
+	  request.setAttribute("loginNick", loginNick);
+	  
 	  
 	  
 	  return "/view/community/comBoardInfo.jsp";

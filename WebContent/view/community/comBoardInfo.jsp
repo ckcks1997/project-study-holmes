@@ -123,12 +123,13 @@ border: 1px solid rgb(223, 223, 223);
 					<div class="col-sm-10">
 				
 						<p>
-						${com.nickname} · ${com.regdate} <span class="txt_bar">|</span>
+						${com.nickname} · ${com.regdate} 
 						
 							
-							
+							<c:if test = "${loginNick eq com.nickname}">
+							<span class="txt_bar">|</span>
 							<a href="<%=request.getContextPath()%>/community/comBoardUpdateForm?num=${com.num}"
-								style="color: gray;">수정</a> 
+								style="color: gray;"> 수정</a> </c:if>
 						</p>
 
 					</div>
@@ -169,9 +170,10 @@ border: 1px solid rgb(223, 223, 223);
 					<button type="button" class="btn btn-dark mt-3" onclick ="location.href ='comBoardList'">목록으로</button>
 					<button type="button" class="btn btn-dark mt-3">신고</button>
 					
-					
+					<c:if test = "${loginNick eq com.nickname}">
 					<button type="button" data-toggle= "modal" data-target = "#deleteModal" class = "btn btn-danger mt-3">삭제</button>
-
+					</c:if>
+					
 <!-------------- 게시글 삭제 모달창 --------------------------------------------------------------------------------------------------------------------------------->
 					
 						<div class="modal fade" id="deleteModal" aria-hidden="true"
