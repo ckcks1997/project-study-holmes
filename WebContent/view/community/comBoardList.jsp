@@ -112,10 +112,7 @@ border: 1px solid rgb(223, 223, 223);
 
 			<form class="form-group">
 				<div class="row">
-					<div class="col-xs-12 col-sm-11 col-md-10">
-						<input type="text" name="tag" class="form-control"
-							placeholder="태그로 검색해보세요!" />
-					</div>
+					
 					<div class="col-xs-12 col-sm-1 col-md-2 btn-search">
 						<button class="btn btn-dark" type="submit">검색</button>
 					</div>
@@ -145,11 +142,11 @@ border: 1px solid rgb(223, 223, 223);
 							<div class="row">
 							
 								<div class="col-sm-9">
-									<a href="<%=request.getContextPath() %>/community/comBoardInfo?num=${com.num}" style="color: black">
-										<h4><strong>${com.subject}</strong></h4>
+									<a href="<%=request.getContextPath() %>/community/comBoardInfo?board_num=${com.board_num}" style="color: black">
+										<h4><strong>${com.title}</strong></h4>
 										<h5><small>${com.content} </small></h5> 
 										<br />
-										<h6><small>${com.nickname} · ${com.regdate} · ${com.tag} </small></h6>
+										<h6><small>${com.nickname} · ${com.regdate} </small></h6>
 									</a>	
 								</div>
 								<div class="col-sm-3">

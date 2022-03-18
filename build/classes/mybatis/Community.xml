@@ -10,37 +10,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select> 
 <select id = "comBoardList" resultType = "community"  parameterType = "map">
 	select  * from (select rownum rnum, a.* from (
-	select * from community where boardid = #{boardid} order by ref desc, refstep asc) a)
+	select * from community where boardid = #{boardid} order by board_num desc) a)
 	where rnum between #{start} and #{end}
 </select> 
 
 <select id = "comBoardOne" resultType = "community" parameterType ="int">
-	select * from community where num = #{num}
+	select * from community where board_num = #{board_num}
 </select>
 
 
 <insert id = "comInsertBoard" parameterType = "community">
-	insert into community  values (#{num}, #{subject}, #{content},#{tag},#{likes},#{boardid}
-			,sysdate,#{ip},0,#{ref},#{reflevel},#{refstep},#{nickname})
+	insert into community  values (#{board_num}, #{title}, #{content},#{likes},#{boardid}
+			,sysdate,#{ip},0,#{nickname})
 </insert>
 
 <select id = "comNextNum" resultType = "int">
-	select comboard_seq.nextval from dual
+	select board_seq.nextval from dual
 </select>
 
 <update id = "comBoardUpdate" parameterType = "community">
-	update community set subject = #{subject}, content = #{content},
-			tag = #{tag} where num = #{num}
+	update community set title = #{title}, content = #{content} where board_num = #{board_num}
 </update>
 
 <delete id="comBoardDelete" parameterType= "int">
-	delete from community where num = #{num}
+	delete from community where board_num = #{board_num}
 </delete>
 
 <!-- 메인화면 최신글 보드 리스트 -->
 <select id = "comMainBoardList" resultType = "community" parameterType = "string">
     select ROWNUM  , A.* from 
-    (select * from COMMUNITY where BOARDID = #{boardId} order by num desc) 
+    (select * from COMMUNITY where BOARDID = #{boardId} order by board_num desc) 
     A 
     where ROWNUM &lt; 5
 </select> 
