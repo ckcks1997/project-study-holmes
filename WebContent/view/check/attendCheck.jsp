@@ -22,9 +22,6 @@
  box-sizing: border-box;
 }
 
-
-
-
 .calendar{
 width: 800px;
 margin: 80px;
