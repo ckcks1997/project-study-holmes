@@ -30,6 +30,7 @@ create table member_tag
 ---
 
 --- community 테이블 
+drop table community;
 
 create table community
  (
@@ -67,10 +68,16 @@ create table study_menu
 );
 
 ---댓글 테이블
---보드 넘버(numnumber)
---작성자
---내용
---날짜
+create table reply (
+	reply_num number primary key,
+	board_num number,
+	nickname varchar2(30) not null,
+	regdate date,
+	content varchar2(4000)
+);
+
+create sequence reply_seq;
+
  
 -----join table
 --전체인원(최대)
