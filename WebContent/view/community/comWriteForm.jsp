@@ -103,13 +103,9 @@ a:hover {
 					<input type = "hidden" name= "nickname" value = '${com.nickname}'>
 					<div class="form-group">
 						<label>제목</label> <input type="text" class="form-control"
-							name="subject" placeholder="제목을 입력해주세요" />
+							name="title" placeholder="제목을 입력해주세요" />
 					</div>
 
-					<div class="form-group">
-						<label>태그</label> <input type="text" class="form-control"
-							name="tag" placeholder="#태그를 설정해주세요" />
-					</div>
 
 					<div class="form-group">
 						<label>내용 :</label>

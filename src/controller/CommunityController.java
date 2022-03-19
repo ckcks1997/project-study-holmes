@@ -137,8 +137,7 @@ public class CommunityController extends MskimRequestMapping{
 	  HttpSession session = request.getSession();
 	  com.setNickname(String.valueOf(session.getAttribute("memberNickname")));
 	 
-	  com.setSubject(multi.getParameter("subject"));
-	  com.setTag(multi.getParameter("tag"));
+	  com.setTitle(multi.getParameter("title"));
 	  com.setContent(multi.getParameter("content"));
 	  com.setIp(request.getLocalAddr());
 	  
@@ -148,8 +147,8 @@ public class CommunityController extends MskimRequestMapping{
 	  com.setBoardid(boardid);
 	  
 	  CommunityBoardDao cbd = new CommunityBoardDao();
-	  com.setNum(cbd.comNextNum());
-	  com.setRef(com.getNum());
+	  com.setBoard_num(cbd.comNextNum());
+	
 	  
 	  int num = cbd.comInsertBoard(com);
 	  
@@ -175,9 +174,9 @@ public class CommunityController extends MskimRequestMapping{
   @RequestMapping("comBoardInfo")
   public String comBoardInfo(HttpServletRequest request, HttpServletResponse response) {
 	  
-	  int num = Integer.parseInt(request.getParameter("num"));
+	  int board_num = Integer.parseInt(request.getParameter("board_num"));
 	  CommunityBoardDao cbd = new CommunityBoardDao();
-	  Community com = cbd.comBoardOne(num);
+	  Community com = cbd.comBoardOne(board_num);
 	  request.setAttribute("com", com);
 	  
 	  
@@ -196,9 +195,9 @@ public class CommunityController extends MskimRequestMapping{
   @RequestMapping("comBoardUpdateForm")
  public String comBoardUpdateForm(HttpServletRequest request,  HttpServletResponse response) {
 	  
-	  int num = Integer.parseInt(request.getParameter("num"));
+	  int board_num = Integer.parseInt(request.getParameter("board_num"));
 	  CommunityBoardDao cbd = new CommunityBoardDao();
-	  Community com = cbd.comBoardOne(num);
+	  Community com = cbd.comBoardOne(board_num);
 	  request.setAttribute("com", com);
 	  
 	  
@@ -222,9 +221,8 @@ public class CommunityController extends MskimRequestMapping{
 		e.printStackTrace();
 	  }
 	  Community com = new Community();
-	  com.setNum(Integer.parseInt(multi.getParameter("num")));
-	  com.setSubject(multi.getParameter("subject"));
-	  com.setTag(multi.getParameter("tag"));
+	  com.setBoard_num(Integer.parseInt(multi.getParameter("board_num")));
+	  com.setTitle(multi.getParameter("title"));
 	  com.setContent(multi.getParameter("content"));
 	  
 	  CommunityBoardDao cbd = new CommunityBoardDao();
@@ -237,7 +235,7 @@ public class CommunityController extends MskimRequestMapping{
 	  //Community newcom = cbd.comBoardOne(com.getNum());
 	  if(cbd.comBoardUpdate(com)>0) {
 		   msg = "수정되었습니다";
-		   url = request.getContextPath()+"/community/comBoardInfo?num="+com.getNum();
+		   url = request.getContextPath()+"/community/comBoardInfo?board_num="+com.getBoard_num();
 		 
 	  } else {
 		  msg = "수정이 실패하였습니다";
@@ -257,9 +255,9 @@ public class CommunityController extends MskimRequestMapping{
   @RequestMapping("comBoardDelete") 
   public String comBoardDelete(HttpServletRequest request, HttpServletResponse response) {
 	  
-	  int num = Integer.parseInt(request.getParameter("num"));
+	  int board_num = Integer.parseInt(request.getParameter("board_num"));
 	  CommunityBoardDao cbd = new CommunityBoardDao();
-	  Community com = cbd.comBoardOne(num);
+	  Community com = cbd.comBoardOne(board_num);
 	  request.setAttribute("com", com);
 	  
 	
@@ -268,7 +266,7 @@ public class CommunityController extends MskimRequestMapping{
 	  String url = "";
 	 
 	 
-	  if(cbd.comBoardDelete(num)>0) {
+	  if(cbd.comBoardDelete(board_num)>0) {
 		  
 		  msg = "게시글이 삭제되었습니다.";
 		  url = request.getContextPath()+"/community/comBoardList";

@@ -66,11 +66,11 @@ public class CommunityBoardDao {
 	  
 	  
 	  
-	  public Community comBoardOne(int num) {
+	  public Community comBoardOne(int board_num) {
 		 
 		  SqlSession sqlSession = MybatisConnection.getConnection();
 			try {
-				return sqlSession.selectOne(NS+"comBoardOne",num);
+				return sqlSession.selectOne(NS+"comBoardOne",board_num);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -112,10 +112,10 @@ public class CommunityBoardDao {
 		  
 	  }
 	  
-	  public int comBoardDelete (int num) {
+	  public int comBoardDelete (int board_num) {
 		  SqlSession sqlSession = MybatisConnection.getConnection();
 		 try {
-		  return sqlSession.update(NS+"comBoardDelete", num);
+		  return sqlSession.update(NS+"comBoardDelete", board_num);
 		 } catch(Exception e) {
 			 e.printStackTrace();
 		 } finally {

@@ -95,20 +95,16 @@ a:hover {
 				<form name="cf"
 					action="<%=request.getContextPath()%>/community/comBoardUpdatePro"
 					enctype="multipart/form-data" method="post">
-					<input type = "hidden" name = "num" value = "${com.num}">
+					<input type = "hidden" name = "board_num" value = "${com.board_num}">
 					<br /> <br />
 					
 					
 					<div class="form-group">
 						<label>제목</label> <input type="text" class="form-control"
-							name="subject" placeholder="제목을 입력해주세요" value = "${com.subject}"/>
+							name="title" placeholder="제목을 입력해주세요" value = "${com.title}"/>
 					</div>
 
-					<div class="form-group">
-						<label>태그</label> <input type="text" class="form-control"
-							name="tag" placeholder="#태그를 설정해주세요" value = "${com.tag}" />
-					</div>
-
+					
 					<div class="form-group">
 						<label>내용 :</label>
 						<textarea class="summernote" name="content"
