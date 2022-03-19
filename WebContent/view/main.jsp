@@ -150,8 +150,8 @@
 	                           <th width="30%">날짜</td>
 							</tr>
 							<c:forEach var="i" items="${list1}">
-								<tr style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardInfo?num=${i.num}'">
-									<td>${i.subject }</td>
+								<tr style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardInfo?num=${i.board_num}'">
+									<td>${i.title }</td>
 									<td> <fmt:formatDate value="${i.regdate }" pattern="MM/dd"/> </td>
 								</tr>
 							</c:forEach>
@@ -168,8 +168,8 @@
                                <th width="20%">날짜</td>
                             </tr>
                             <c:forEach var="i" items="${list2}">
-                                <tr style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardInfo?num=${i.num}'">
-                                    <td>${i.subject }</td>
+                                <tr style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardInfo?num=${i.board_num}'">
+                                    <td>${i.title }</td>
                                     <td> <fmt:formatDate value="${i.regdate }" pattern="MM/dd"/> </td>
                                 </tr>
                             </c:forEach>
@@ -185,8 +185,8 @@
                                <th width="20%">날짜</td>
                             </tr>
                             <c:forEach var="i" items="${list3}">
-                                <tr style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardInfo?num=${i.num}'">
-                                    <td>${i.subject }</td>
+                                <tr style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardInfo?num=${i.board_num}'">
+                                    <td>${i.title }</td>
                                     <td> <fmt:formatDate value="${i.regdate }" pattern="MM/dd"/> </td>
                                 </tr>
                             </c:forEach>
