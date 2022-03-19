@@ -32,17 +32,6 @@ a:hover {
 	text-decoration: none;
 }
 
-.aside-content {
-	display: block;
-	width: 200px;
-	/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
-	height: 40px;
-	line-height: 40px;
-	background: rgb(233, 233, 233);
-	text-align: left;
-	padding-left: 10px;
-	border: 1px solid rgb(223, 223, 223);
-}
 
 /* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */ 
             .pic_box{ 
@@ -97,25 +86,15 @@ a:hover {
         </div>
         <div class="container">
             <div class="row pt-5">
-                <aside class="col-lg-3">
-                    <div class="col aside">
-                        <div class="aside-content">
-                            <li class=""><a href=""> 마이페이지 </a></li>
-                        </div>
-                        <div class="aside-content">
-                            <li class=""><a href="myprofile">  프로필 </a></li>
-                           
-                        </div>
-                        <div class="aside-content">
-                            <li class=""><a href=""> 작성한 게시글 </a></li>
-                        </div>
- 
-                </aside>
+                
+                <%--aside부분 --%>
+                <%@include file="/common/myinfo_menu.jsp" %>
+                
                 <br>
                 <br>
                 <div class="col-lg-9">
                     <h1>마이 페이지</h1>
-                    <hr align="left" width="350px" style="border: 0.5px solid #c47100" />
+                    <hr align="left" width="250px" style="border: 0.5px solid #c47100" />
                     <br> 
                      
                      <div class="container shadow-sm container-css p-5">
