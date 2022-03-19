@@ -58,7 +58,7 @@ drop table study_menu;
 create table study_menu
 (
 	board_num number primary key,
-	nickname varchar2(30),
+	nickname varchar2(30) not null unique,
 	title varchar2(100),
 	subject varchar2(50),
 	price varchar2(50),
