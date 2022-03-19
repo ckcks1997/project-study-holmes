@@ -12,7 +12,7 @@ create table study_member
     name        varchar(30) not null ,
     tel         varchar(15),
     picture     varchar(200),
-    joindate    date,
+    regdate    date,
     point       integer,
     profile_intro varchar(2000)
 );
@@ -53,21 +53,7 @@ create sequence comboard_seq;
 
 ---
 
---- study_menu table 테스트용(수정예정)
-
-create table study_menu
-(
---종류, 작성자
-    num --primary key 시퀀스
-	subject varchar(100) ,
-	free number(1),
-	pernum number(30),
-	region varchar(30),
-	menuid varchar(1)
-	
-);
-
----
+ 
 
 
 create table study_menu
@@ -115,5 +101,8 @@ create table studycheck
 day  date
 );
 
-
+create table attend
+( id  varchar (50),
+day  date
+);
 

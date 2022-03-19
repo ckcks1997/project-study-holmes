@@ -9,14 +9,14 @@ public class StudyMember {
   private String name; 
   private String tel; 
   private String picture;
-  private Date joindate;
+  private Date regdate;
   private int point;
   private String profile_intro;//자기소개
   
   public StudyMember() {  }
    
   public StudyMember(String email, String password, String nickname, String name, String tel,
-      String picture, Date joindate, int point, String profile_intro) {
+      String picture, Date regdate, int point, String profile_intro) {
     super();
     this.email = email;
     this.password = password;
@@ -24,7 +24,7 @@ public class StudyMember {
     this.name = name;
     this.tel = tel;
     this.picture = picture;
-    this.joindate = joindate;
+    this.regdate = regdate;
     this.point = point;
     this.profile_intro = profile_intro;
   }
@@ -66,12 +66,12 @@ public class StudyMember {
     this.picture = picture;
   }
 
-  public Date getJoindate() {
-    return joindate;
+  public Date getregdate() {
+    return regdate;
   }
 
-  public void setJoindate(Date joindate) {
-    this.joindate = joindate;
+  public void setregdate(Date regdate) {
+    this.regdate = regdate;
   }
 
   public int getPoint() {
@@ -93,7 +93,7 @@ public class StudyMember {
   @Override
   public String toString() {
     return "StudyMember [email=" + email + ", password=" + password + ", nickname=" + nickname
-        + ", name=" + name + ", tel=" + tel + ", picture=" + picture + ", joindate=" + joindate
+        + ", name=" + name + ", tel=" + tel + ", picture=" + picture + ", regdate=" + regdate
         + ", point=" + point + ", profile_intro=" + profile_intro + "]";
   }
   

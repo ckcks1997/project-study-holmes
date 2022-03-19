@@ -59,7 +59,6 @@
 	<servlet>
 		<servlet-name>studyMenuController</servlet-name>
 		<servlet-class>controller.StudyMenuController</servlet-class>
-		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
@@ -67,5 +66,14 @@
 		<url-pattern>/studymenu/*</url-pattern>
 	</servlet-mapping>
 
+    <servlet>
+        <servlet-name>attendCheckController</servlet-name>
+        <servlet-class>controller.AttendCheckController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>attendCheckController</servlet-name>
+        <url-pattern>/attend/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>

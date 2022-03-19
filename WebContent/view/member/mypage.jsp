@@ -149,7 +149,7 @@ a:hover {
                                   </div>
                                   <div class="container m-1">
                                      
-                                    가입일: <fmt:formatDate value="${memberInfo.joindate}" pattern="yyyy년 M월 d일"/>
+                                    가입일: <fmt:formatDate value="${memberInfo.regdate}" pattern="yyyy년 M월 d일"/>
                                   </div>
                               </div>
                          </div>
