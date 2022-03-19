@@ -4,58 +4,69 @@ import java.sql.Date;
 
 public class StudyMenu {
 	
-	int num;	
+	private int board_num;	
+	private String nickname;
+	private String title;
 	private String subject;
-	private int langue;
-	private int free;
+	private String price;
 	private int pernum;
 	private String region;
 	private String content;
 	private String menuid;
 	private Date regdate;
-	private int readcnt;
-	private int ref;
-	private int reflevel;
-	private int refstep;
+	private String map;
 	
 	
-	  
 	public StudyMenu() {
-
+		
 	}
 
 
-
-	public StudyMenu(int num, String subject, int langue, int free, int pernum, String region, String content,
-			String menuid, Date regdate, int readcnt, int ref, int reflevel, int refstep) {
+	public StudyMenu(int board_num, String nickname, String title, String subject, String price, int pernum,
+			String region, String content, String menuid, Date regdate, String map) {
 		super();
-		this.num = num;
+		this.board_num = board_num;
+		this.nickname = nickname;
+		this.title = title;
 		this.subject = subject;
-		this.langue = langue;
-		this.free = free;
+		this.price = price;
 		this.pernum = pernum;
 		this.region = region;
 		this.content = content;
 		this.menuid = menuid;
 		this.regdate = regdate;
-		this.readcnt = readcnt;
-		this.ref = ref;
-		this.reflevel = reflevel;
-		this.refstep = refstep;
+		this.map = map;
 	}
 
 
-
-	public int getNum() {
-		return num;
+	public int getBoard_num() {
+		return board_num;
 	}
 
 
-
-	public void setNum(int num) {
-		this.num = num;
+	public void setBoard_num(int board_num) {
+		this.board_num = board_num;
 	}
 
+
+	public String getNickname() {
+		return nickname;
+	}
+
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 
 	public String getSubject() {
@@ -63,35 +74,19 @@ public class StudyMenu {
 	}
 
 
-
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
 
 
-
-	public int getLangue() {
-		return langue;
+	public String getPrice() {
+		return price;
 	}
 
 
-
-	public void setLangue(int langue) {
-		this.langue = langue;
+	public void setPrice(String price) {
+		this.price = price;
 	}
-
-
-
-	public int getFree() {
-		return free;
-	}
-
-
-
-	public void setFree(int free) {
-		this.free = free;
-	}
-
 
 
 	public int getPernum() {
@@ -99,11 +94,9 @@ public class StudyMenu {
 	}
 
 
-
 	public void setPernum(int pernum) {
 		this.pernum = pernum;
 	}
-
 
 
 	public String getRegion() {
@@ -111,11 +104,9 @@ public class StudyMenu {
 	}
 
 
-
 	public void setRegion(String region) {
 		this.region = region;
 	}
-
 
 
 	public String getContent() {
@@ -123,11 +114,9 @@ public class StudyMenu {
 	}
 
 
-
 	public void setContent(String content) {
 		this.content = content;
 	}
-
 
 
 	public String getMenuid() {
@@ -135,11 +124,9 @@ public class StudyMenu {
 	}
 
 
-
 	public void setMenuid(String menuid) {
 		this.menuid = menuid;
 	}
-
 
 
 	public Date getRegdate() {
@@ -147,71 +134,20 @@ public class StudyMenu {
 	}
 
 
-
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 
 
-
-	public int getReadcnt() {
-		return readcnt;
+	public String getMap() {
+		return map;
 	}
 
 
-
-	public void setReadcnt(int readcnt) {
-		this.readcnt = readcnt;
+	public void setMap(String map) {
+		this.map = map;
 	}
-
-
-
-	public int getRef() {
-		return ref;
-	}
-
-
-
-	public void setRef(int ref) {
-		this.ref = ref;
-	}
-
-
-
-	public int getReflevel() {
-		return reflevel;
-	}
-
-
-
-	public void setReflevel(int reflevel) {
-		this.reflevel = reflevel;
-	}
-
-
-
-	public int getRefstep() {
-		return refstep;
-	}
-
-
-
-	public void setRefstep(int refstep) {
-		this.refstep = refstep;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "{\"num\":\"" + num + "\", \"subject\":\"" + subject + "\", \"langue\":\"" + langue + "\", \"free\":\""
-				+ free + "\", \"pernum\":\"" + pernum + "\", \"region\":\"" + region + "\", \"content\":\"" + content
-				+ "\", \"menuid\":\"" + menuid + "\", \"regdate\":\"" + regdate + "\", \"readcnt\":\"" + readcnt
-				+ "\", \"ref\":\"" + ref + "\", \"reflevel\":\"" + reflevel + "\", \"refstep\":\"" + refstep + "\"}";
-	}
-
-
-
+	
 	
 	
 }

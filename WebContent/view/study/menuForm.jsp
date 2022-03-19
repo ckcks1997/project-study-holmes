@@ -225,7 +225,7 @@ a:hover {
 							<div class="d-flex flex-row align-items-center">
 								 
 									<select class="custom-select" name="part">
-									    <option value="subject">제목</option>						
+									    <option value="title">제목</option>						
 									</select>
 								 
 								    <div class="d-flex flex-row">
@@ -294,8 +294,8 @@ a:hover {
 							</div>
 							
 							<div class="px-2 pt-3">
-								<h5 class="b-h5">${s.subject}</h5>
-								<p class="b-price">${s.free==1 ? "무료":"유료"  }</p>
+								<h5 class="b-h5">${s.title}</h5>
+								<p class="b-price">${s.free=="0" ? "무료":s.free  }</p>
 								<p class="b-people">
 									<i class="fa-solid fa-user-group"></i> ${s.pernum}
 								</p>

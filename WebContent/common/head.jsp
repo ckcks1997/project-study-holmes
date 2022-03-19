@@ -129,7 +129,7 @@
 											<a class="dropdown-item"
 												href="<%=request.getContextPath()%>/studymember/mypage">마이페이지</a>
                                             <a class="dropdown-item"
-                                                href="<%=request.getContextPath()%>/studymember/mypage">출석체크</a>
+                                                href="<%=request.getContextPath()%>/attend/check">출석체크</a>
 										</div>
 									</div>
 								</c:otherwise>

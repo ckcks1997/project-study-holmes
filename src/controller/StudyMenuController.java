@@ -2,15 +2,15 @@ package controller;
 
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.tools.Tool;
 
-import org.apache.ibatis.session.SqlSession;
+
+
 
 import model.Search;
 import model.StudyMenu;
@@ -110,12 +110,16 @@ public class StudyMenuController extends MskimRequestMapping{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	
 	StudyMenu studymenu = new StudyMenu();
+	
+	studymenu.setTitle(request.getParameter("title"));
 	studymenu.setSubject(request.getParameter("subject"));
-	studymenu.setFree(Integer.parseInt(request.getParameter("free")));
-	studymenu.setPernum(Integer.parseInt(request.getParameter("pernum")));
+	studymenu.setPrice(request.getParameter("price"));
+	int pernum = Integer.parseInt(request.getParameter("pernum"));
+	studymenu.setPernum(pernum);
 	studymenu.setRegion(request.getParameter("region"));
+	studymenu.setContent(request.getParameter("content"));
 	
 	
 	String menuid = (String) request.getSession().getAttribute("menuid");
@@ -123,7 +127,8 @@ public class StudyMenuController extends MskimRequestMapping{
 	studymenu.setMenuid(menuid);
 	
 	StudyMenuDao sm = new StudyMenuDao();
-		
+	studymenu.setBoard_num(sm.nextNum());	
+	
 	int num = sm.insertMenu(studymenu);
 	
 	String msg="게시물 등록 실패";

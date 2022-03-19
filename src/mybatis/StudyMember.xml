@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select> 
 
 	<insert id="insertStudyMember" parameterType="studymember">
-		insert into study_member (email, password, nickname, name, tel, picture, point, joindate)
+		insert into study_member (email, password, nickname, name, tel, picture, point, regdate)
 		values(#{email},#{password},#{nickname},#{name},#{tel},#{picture}, 50, sysdate)
 	</insert>
 

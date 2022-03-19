@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+
+</script>
 </head>
 <body>
 <style>
@@ -111,122 +114,7 @@ background-color: #c47100;
 	
 }
 
-			body,
-			button,
-			input,
-			select,
-			textarea {
-				font-family: Roboto, Noto Sans KR, -apple-system, "system-ui", BlinkMacSystemFont,
-					Apple SD Gothic Neo, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Oxygen, Ubuntu,
-					Cantarell, Fira Sans, Droid Sans, Helvetica;
-			}
-			body {
-				color: #454545;
-				font-size: 1rem;
-				font-weight: 500;
-				line-height: 1.5;
-			}
-			a {
-				color: #454545;
-			}
-			@font-face {
-				font-family: "kita";
-				src: url("../fonts/KITA.ttf") format("truetype");
-				font-weight: normal;
-				font-style: normal;
-			}
-			/* button */
-			.btn-round {
-				border-radius: 24px;
-			}
-			.a-no-deco {
-				color: white;
-				text-decoration: none;
-			}
-			.a-no-deco:visited {
-				color: white;
-				text-decoration: none;
-			}
-			.a-no-deco:hover {
-				color: white;
-				text-decoration: none;
-			}
-
-			/* navbar */
-			.form-control {
-				height: 40px !important;
-				background: #fff !important;
-				color: #3a4348 !important;
-				font-size: 16px;
-				border-radius: 0px;
-				-webkit-box-shadow: none !important;
-				box-shadow: none !important;
-			}
-			.search-domain {
-				background: #22d47b;
-				border: 2px solid #22d47b; 
-				color: #fff;
-				-webkit-border-radius: 0;
-				-moz-border-radius: 0;
-				-ms-border-radius: 0;
-				border-radius: 0;
-			}
-			.navbar-brand {
-				position: relative;
-				font-family: "kita";
-			}
-			.star {
-				position: absolute;
-				top: 10%;
-				right: 5%;
-				height: 10px;
-			}
-
-			/* banner */
-			.banner {
-				position: relative;
-				height: 400px;
-				background-color: #f55555;
-			}
-
-			.b-container1 {
-				position: relative;
-				margin: auto;
-				height: 100%;
-			}
-
-			.b-img {
-				position: absolute;
-				top: 10%;
-				right: 5%;
-				text-align: right;
-			}
-			.b-img > img {
-				display: none;
-				text-align: right;
-				max-width: 500px;
-			}
-			@media only screen and (min-width: 992px) {
-				.b-img > img {
-					display: block;
-					text-align: right;
-					max-width: 500px;
-				}
-			}
-			.b-text {
-				color: #ffdfdf;
-				position: absolute;
-				top: 30%;
-				left: 10px;
-				max-width: 400px;
-			}
-
-			.footer {
-				display: block;
-				height: 200px;
-				background: #777;
-				text-align: center;
-			}
+	
 			/* 명언 */
 			.famous-saying-box {
 				height: 150px;
@@ -239,30 +127,7 @@ background-color: #c47100;
 				padding-top: 50px;
 			}
 
-			/* aside */
-			ul,
-			li {
-				list-style: none;
-			}
-
-			li > a {
-				color: rgb(10, 10, 10);
-			}
-			a:hover {
-				text-decoration: none;
-			}
-
-			.aside-content {
-				display: block;
-				width: 200px;
-				/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
-				height: 40px;
-				line-height: 40px;
-				background: rgb(233, 233, 233);
-				text-align: left;
-				padding-left: 10px;
-				border: 1px solid rgb(223, 223, 223);
-			}
+			
 
 			/* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */
 		</style>
@@ -316,22 +181,112 @@ background-color: #c47100;
 				</div>
 			</div>
 		</div>
-		
-		
+   <script>
+   
+   let json = ${result}; 
+   console.log(json);
+   let dayList = [];
+   for ( let i=0; i<json.length; i++) {
+      dayList.push(json[i].day);
+   }
+   console.log(dayList)
+   console.log(dayList.includes('2022-03-19') )
+
+ let date = new Date();
+
+ const renderCalender = ()=>
+  {
+ const viewYear = date.getFullYear();
+ const viewMonth = date.getMonth();
+
+ document.querySelector('.year-month').textContent = `\${viewYear}년 \${viewMonth + 1}월`;
+
+ const prevLast = new Date(viewYear, viewMonth, 0);
+ const thisLast = new Date(viewYear, viewMonth + 1, 0 );
+
+ const PLDate = prevLast.getDate();
+ const PLDay = prevLast.getDay();
+
+ const TLDate = thisLast.getDate();
+ const TLDay = thisLast.getDay();
+
+ const prevDates = [];
+ const thisDates = [...Array(TLDate + 1).keys()].slice(1);
+ const nextDates = [];
+
+ if(PLDay !==6) {
+     for(let i = 0; i<PLDay + 1; i++){
+     prevDates.unshift(PLDate - i);
+ }
+ }
+
+ for(let i =1; i < 7 - TLDay; i++){
+     nextDates.push(i);
+ }
+
+ const dates = prevDates.concat(thisDates, nextDates);
+ const firstDateIndex = dates.indexOf(1);
+ const LastDateIndex = dates.lastIndexOf(TLDate);
+  
+  
+ dates.forEach((date, i )=>{
+	    let condition = i >= firstDateIndex && i< LastDateIndex+1
+	                    ? 'this'
+	                    : 'other';
+	    condition += dayList.includes(viewYear+'-'+(viewMonth + 1)+'-'+date) ? ' checked ' : ' ';
+	    console.log(dayList.includes(`\${viewYear}-\${viewMonth + 1}-\${date}` ))
+	    
+	    dates[i] = `<div class="date"><span class= \${condition} > \${date} </span></div>`;
+	    
+	});
 
 
+ document.querySelector('.dates').innerHTML = dates.join('');
+
+ const today =  new Date();
+ if(viewMonth === today.getMonth() && viewYear === today.getFullYear()){
+     for(let date of document.querySelectorAll('.this')){
+         if(+date.innerText === today.getDate()){
+             date.classList.add('today');
+             break;
+         }
+     }
+ }
+
+ };
+
+ renderCalender();
 
 
- <script src="<%=request.getContextPath()%>/js/check.js"></script> 
+ const prevMonth = () =>{
+     date.setMonth(date.getMonth() - 1);
+     renderCalender();
+ };
+
+ const nextMonth = () =>{
+     date.setMonth(date.getMonth() + 1);
+     renderCalender();
+ };
+
+ const goToday = () =>{
+      alert("출석체크 완료!!")
+     date = new Date();
+     renderCalender();
+     check();
+ }
+ </script> 
  <script>
+ 
 
-
-
+ 
  function check() {
  let con = document.querySelector(".today");
  
  alert(con.innerHTML+"일 출석완료되었습니다.");
- con.innerHTML='<img src="http://localhost:7498/study-homles-mvc2/img/check.jpeg" />'
+ 
+	location.href = "<%=request.getContextPath()%>/attend/check_pro";
+ 
+ con.innerHTML='<img src="<%=request.getContextPath()%>/img/check.jpeg" />'
  }
  
  </script>
