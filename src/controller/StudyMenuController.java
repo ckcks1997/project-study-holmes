@@ -113,28 +113,21 @@ public class StudyMenuController extends MskimRequestMapping{
 	
 	StudyMenu studymenu = new StudyMenu();
 	
+	studymenu.setTitle(request.getParameter("title"));
 	studymenu.setSubject(request.getParameter("subject"));
+	studymenu.setPrice(request.getParameter("price"));
+	int pernum = Integer.parseInt(request.getParameter("pernum"));
+	studymenu.setPernum(pernum);
 	studymenu.setRegion(request.getParameter("region"));
 	studymenu.setContent(request.getParameter("content"));
 	
-	int langue = Integer.parseInt(request.getParameter("langue"));
-	int free = Integer.parseInt(request.getParameter("free"));
-	int pernum = Integer.parseInt(request.getParameter("pernum"));
-	
-	studymenu.setLangue(langue);
-	studymenu.setFree(free);
-	studymenu.setPernum(pernum);
-	
-	
-	studymenu.setIp(request.getLocalAddr());
 	
 	String menuid = (String) request.getSession().getAttribute("menuid");
 	if (menuid==null) menuid = "1";
 	studymenu.setMenuid(menuid);
 	
 	StudyMenuDao sm = new StudyMenuDao();
-	studymenu.setNum(sm.nextNum());
-	studymenu.setRef(studymenu.getNum());	
+	studymenu.setBoard_num(sm.nextNum());	
 	
 	int num = sm.insertMenu(studymenu);
 	

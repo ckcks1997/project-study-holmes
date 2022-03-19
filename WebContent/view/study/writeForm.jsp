@@ -112,37 +112,32 @@ a:hover {
 					<br /> <br />
 					<!-- 닉네임 가져오기 -->
 					<!--<input type = "hidden" name= "nickname" value = '${c.nickname}'>-->
-					
+																						
 					<div class="form-group">
-					
-						<select name="free">
-						<option value="1">무료</option>
-						<option value="2">유료</option>
-						</select>
-						
-						<select name="langue">
-						<option value="1">Java</option>
-						<option value="2">C</option>
-						<option value="3">Python</option>
-						</select>
-					</div>
-					
-					
-					
-					<div class="form-group">
-						<label>제목</label> <input type="text" class="form-control"
-							name="subject" placeholder="제목을 입력해주세요" />
-					</div>
+						<label>제목</label>
+						 <input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요" />
+					</div>	
 					
 					 <div class="row">
-    			<div class="col-xs-12 col-sm-6 col-md-6">
+    			<div class="col-xs-12 col-sm-3 col-md-3">
+					<div class="form-group">
+                       <label>과목</label>
+                       <input type="text" name="subject" class="form-control" placeholder="ex) 영어,과학,수학.....">
+                       </div>
+                    </div>	 			 
+    			<div class="col-xs-12 col-sm-3 col-md-3">
 					<div class="form-group">
                        <label>지역</label>
-                       <input type="text" name="region" class="form-control" placeholder="ex) 경기 수원">
-                       
+                       <input type="text" name="region" class="form-control" placeholder="ex) 경기 수원">                      
 					</div>
 				</div>
-                <div class="col-xs-12 col-sm-6 col-md-6">
+				<div class="col-xs-12 col-sm-3 col-md-3">
+					<div class="form-group">
+                       <label>가격</label>
+                       <input type="text" name="price" class="form-control" placeholder="무료일 경우 0을 입력하세요">                      
+					</div>
+				</div>
+                <div class="col-xs-12 col-sm-3 col-md-3">
     				<div class="form-group">
     				<label>인원수</label>
                         <input type="number" name="pernum" class="form-control" placeholder="예상인원수">
