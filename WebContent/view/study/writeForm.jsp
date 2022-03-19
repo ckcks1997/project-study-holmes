@@ -109,7 +109,7 @@ a:hover {
 
 				<form name="cf"
 					action="<%=request.getContextPath()%>/studymenu/writePro"
-					enctype="multipart/form-data" method="post">
+					  method="post">
 					<br /> <br />
 					<!-- 닉네임 가져오기 -->
 					<!--<input type = "hidden" name= "nickname" value = '${c.nickname}'>-->
@@ -123,7 +123,7 @@ a:hover {
     			<div class="col-xs-12 col-sm-3 col-md-3">
 					<div class="form-group">
                        <label>과목</label>
-                       <input type="text" name="subject" class="form-control" placeholder="ex) 영어,과학,수학.....">
+                        <input type="text" name="subject" class="form-control" placeholder="ex) 영어,과학,수학.....">
                        </div>
                     </div>	 			 
     			<div class="col-xs-12 col-sm-3 col-md-3">

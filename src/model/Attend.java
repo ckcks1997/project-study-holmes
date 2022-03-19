@@ -31,7 +31,7 @@ public class Attend {
   
   @Override
   public String toString() {
-    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-M-dd");
     String strNowDate = df.format(day);
 
     return "{\"id\":\"" + id + "\", \"day\":\"" + strNowDate + "\"}";

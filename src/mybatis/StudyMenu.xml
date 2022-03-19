@@ -23,6 +23,11 @@
 	select * from study_menu where upper (${part}) like upper (#{searchData})
 	</select>
 	
+	
+	<!-- 저희 num값은 community의 시퀀스와 같은 시퀀스를 공유하여 쓰기로 하였습니다.
+	       나중에 menu_seq대신 board_seq로 바꿔주세요!
+	       -류
+	 -->
 	<select id = "NextNum" resultType = "int">
 	select menu_seq.nextval from dual
 </select>
