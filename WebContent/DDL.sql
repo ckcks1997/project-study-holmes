@@ -33,22 +33,18 @@ create table member_tag
 
 create table community
  (
-	num 	    number 		    primary key,
-	subject	    varchar(100)	not null,
-	content	    varchar(4000),
-	tag	        varchar(100),
+	board_num 	    number 		    primary key,
+	title	    varchar2(100)	not null,
+	content	    varchar2(4000),
 	likes	    number,
-	boardid	    varchar(1),
+	boardid	    varchar2(1),
 	regdate	    date,
 	ip	        varchar(20),
 	readcnt	    number(10),
-	ref  	    number,
-	reflevel	number(3),
-	refstep	    number(5),
 	nickname    varchar(10)
 );
 
-create sequence comboard_seq;
+create sequence board_seq;
 
 
 ---

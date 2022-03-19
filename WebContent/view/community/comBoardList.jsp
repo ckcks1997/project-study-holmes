@@ -50,6 +50,12 @@ background: rgb(233, 233, 233);
 border: 1px solid rgb(223, 223, 223);
 }
 
+
+.reaction > .circle {
+width: 200px;
+height: 200px;
+background: gray; 
+}
 </style>
 <title>스터디 홈즈</title>
 </head>
@@ -110,14 +116,6 @@ border: 1px solid rgb(223, 223, 223);
 				</div>
 			</form>
 
-			<form class="form-group">
-				<div class="row">
-					
-					<div class="col-xs-12 col-sm-1 col-md-2 btn-search">
-						<button class="btn btn-dark" type="submit">검색</button>
-					</div>
-				</div>
-			</form>
 			<br />
 
 			<div style="float: left">
@@ -149,11 +147,13 @@ border: 1px solid rgb(223, 223, 223);
 										<h6><small>${com.nickname} · ${com.regdate} </small></h6>
 									</a>	
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-3 reaction">
+									<div class = "circle">
 									<div class="text-box text-center m-auto">
 										<div class="mt-4">
 											<div class="mt-3 text-replycnt">댓글 2</div>
 										</div>
+									</div>
 									</div>
 								</div>
 								
