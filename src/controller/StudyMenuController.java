@@ -115,10 +115,13 @@ public class StudyMenuController extends MskimRequestMapping{
 	
 	studymenu.setTitle(request.getParameter("title"));
 	studymenu.setSubject(request.getParameter("subject"));
-	studymenu.setPrice(request.getParameter("price"));
-	int pernum = Integer.parseInt(request.getParameter("pernum"));
-	studymenu.setPernum(pernum);
 	studymenu.setRegion(request.getParameter("region"));
+	studymenu.setPrice(request.getParameter("price"));
+	studymenu.setNickname((String)request.getSession().getAttribute("memberNickname"));
+	
+	int pernum = Integer.parseInt(request.getParameter("pernum"));
+	
+	studymenu.setPernum(pernum);
 	studymenu.setContent(request.getParameter("content"));
 	
 	

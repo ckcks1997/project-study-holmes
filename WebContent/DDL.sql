@@ -86,10 +86,6 @@ create table study_menu
 
 
 --------studychk 테이블
-create table studycheck
-( id  varchar (50),
-day  date
-);
 
 create table attend
 ( id  varchar (50),
