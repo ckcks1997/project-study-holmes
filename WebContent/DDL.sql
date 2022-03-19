@@ -51,29 +51,23 @@ create table community
 create sequence comboard_seq;
 
 
----
+--- study_menu 테이블
 
- 
-
+drop table study_menu;
 
 create table study_menu
 (
-	numnumber primary key,
-	--owner
-	subject varchar(100),
-	langue number(10),
-	free number(10),
-	--pernum number(30),
-	region varchar(30),
-	content varchar(4000),
-	menuid varchar(30),
+	board_num number primary key,
+	nickname varchar2(30),
+	title varchar2(100),
+	subject varchar2(50),
+	price varchar2(50),
+	pernum number(10),
+	region varchar2(30),
+	content varchar2(4000),
+	menuid varchar2(1),
 	regdate date,
-	ip varchar(20),
-	readcnt number(10),
-	ref number,
-	reflevel number(3),
-	refstep number(5)
-	
+	map varchar2(1000)
 );
 
 ---댓글 테이블
