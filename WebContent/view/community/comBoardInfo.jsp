@@ -110,13 +110,13 @@ border: 1px solid rgb(223, 223, 223);
 
 
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
-				<input type = "hidden" id = "num" name = "num" value = "${com.num}">
+				<input type = "hidden" id = "board_num" name = "board_num" value = "${com.board_num}">
 				<input type = "hidden" name= "nickname" value = '${com.nickname}'>
 				<c:if test="${com.boardid =='1'}">
-					<h5 style="font-weight: bold">Q: ${com.subject}</h5>
+					<h5 style="font-weight: bold">Q: ${com.title}</h5>
 				</c:if>
 				<c:if test="${com.boardid != '1'}">
-					<h5 style="font-weight: bold">${com.subject}</h5>
+					<h5 style="font-weight: bold">${com.title}</h5>
 				</c:if>
 
 				<div class="row">
@@ -128,7 +128,7 @@ border: 1px solid rgb(223, 223, 223);
 							
 							<c:if test = "${loginNick eq com.nickname}">
 							<span class="txt_bar">|</span>
-							<a href="<%=request.getContextPath()%>/community/comBoardUpdateForm?num=${com.num}"
+							<a href="<%=request.getContextPath()%>/community/comBoardUpdateForm?board_num=${com.board_num}"
 								style="color: gray;"> 수정</a> </c:if>
 						</p>
 
@@ -183,7 +183,7 @@ border: 1px solid rgb(223, 223, 223);
 								
 								<form action = "<%=request.getContextPath() %>/community/comBoardDelete" method = "post">
 									<div class = "form-group">
-										<input type = "hidden" id = "num" name = "num" value = "${com.num}">
+										<input type = "hidden" id = "board_num" name = "board_num" value = "${com.board_num}">
 										<div class="modal-header">
 											<h5 class="modal-title" id="deleteBoardLabel">게시글 삭제</h5>
 												<button type="button" class="close" data-dismiss="modal"
@@ -212,37 +212,6 @@ border: 1px solid rgb(223, 223, 223);
 	</div>
 
 <br><br>
-
-<!--  <script>
-	
-	
-	
-	function deleteConfirm(){
-		
-		
-		const num = document.querySelector("#num").value;
-		//alert(num); 확인하기 
-		
-		$.ajax({
-			type : 'get',
-			url : "<%=request.getContextPath()%>/community/comBoardDelete?num="+num,
-			success : function(res) {  
-				
-				location.href = "<%=request.getContextPath()%>/view/community/comBoardDeleteSuccess.jsp"
-				//let del = document.querySelector("#a"+num)
-				//del.innerHTML=""
-				
-				
-			},
-			error : function(res) {  
-				console.log(error)
-			}
-			})
-	}
-	
-
-
-</script> -->
 
 
 </body>
