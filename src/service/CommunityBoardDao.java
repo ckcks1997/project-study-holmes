@@ -124,6 +124,23 @@ public class CommunityBoardDao {
 		  return 0;
 	  }
 	  
+	  /*조회수 증가*/
+	  public void comReadCountUp(int board_num) {
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+			 try {
+			  sqlSession.update(NS+"comReadCountUp",board_num);
+			 } catch(Exception e) {
+				 e.printStackTrace();
+			 } finally {
+				 MybatisConnection.close(sqlSession);
+			 }
+		  
+	  }
+	  
+	  
+	  
+	  
+	  
 	  /* 메인화면(board) 최신글 출력 관련 Dao */
 	   public List<Community> comMainBoardList(String boardid) {
          

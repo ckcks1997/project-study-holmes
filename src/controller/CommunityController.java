@@ -18,6 +18,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 
 import model.Community;
+import model.Reply;
 import model.StudyMember;
 import service.CommunityBoardDao;
 import service.StudyMemberDao;
@@ -178,6 +179,8 @@ public class CommunityController extends MskimRequestMapping{
 	  CommunityBoardDao cbd = new CommunityBoardDao();
 	  Community com = cbd.comBoardOne(board_num);
 	  request.setAttribute("com", com);
+	  //조회수 올리기
+	  cbd.comReadCountUp(board_num);
 	  
 	  
 	  //session의 닉네임 가져오기
@@ -283,7 +286,7 @@ public class CommunityController extends MskimRequestMapping{
   }
   
   
-  
+ 
   
   
   
