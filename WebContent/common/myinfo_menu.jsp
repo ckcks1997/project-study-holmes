@@ -4,33 +4,29 @@
 <style>
 .aside-content {
 	display: block;
-	width: 180px;
+	width: 150px;
 	/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
 	height: 40px;
 	line-height: 40px;
 	text-align: left;
-	padding-left: 30px;
-	border: 1px solid #faa1a1;
-	border-radius: 20px;
+	padding-left: 10px;  
 	margin-bottom: 10px;
 	cursor:pointer;
-	color:#f55555;
+	color:black;
 	font-weight:bold;
 }
 
 .aside-content:hover {
 	display: block;
-	width: 180px;
+	width: 150px;
 	/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
 	height: 40px;
-	line-height: 40px;
-	background: #f55555;
+	line-height: 40px; 
 	text-align: left;
-	padding-left: 30px;
-	border: 1px solid rgb(223, 223, 223);
-	border-radius: 20px;
+	padding-left: 10px;  
 	margin-bottom: 10px;
-	color:white;
+	color:#f55555;
+	border-bottom:2px solid #f55555;
     font-weight:bold;
 }
 </style>

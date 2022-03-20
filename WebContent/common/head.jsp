@@ -118,7 +118,21 @@
 								</c:when>
 								<%--/*로그인 된 경우 */--%>
 								<c:otherwise>
-									<li class="nav-item "><a class="nav-link" href="#"><i class="fa-solid fa-bell"></i> <c:if test="${notice !=0}"> <span class="badge badge-success"> ${notice } </span></c:if></a></li>
+								<c:if test="${noticeCount !=0}">
+									<li class="nav-item ">
+										<a tabindex="0"  data-placement="bottom"  data-toggle="popover" data-trigger="hover" title="최근 알림" data-content="${notice[0].info}" role="button" class="nav-link" >
+											<i class="fa-solid fa-bell"></i>  
+											<span class="badge badge-success"> ${noticeCount } </span>
+										</a>
+									</li>
+								</c:if>
+								<c:if test="${noticeCount ==0}">
+								    <li class="nav-item ">
+									    <a >
+									       <i class="fa-solid fa-bell"></i>
+									    </a>
+								    </li>
+								</c:if>
 	                                <li class="nav-item mr-2"><a class="nav-link" href="#"> <i class="fa-solid fa-comments"></i></a></li>
 									<div class="dropdown">
 										<button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${memberNickname} 님</button>
@@ -139,5 +153,14 @@
 			</div>
 		</div>
 	</nav>
+	
+	<script>
+	$(function () {
+		  $('[data-toggle="popover"]').popover()
+		})
+	$('.popover-dismiss').popover({
+		  trigger: 'focus'
+		})
+	</script>
 </body>
 </html>

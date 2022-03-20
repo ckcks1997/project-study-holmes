@@ -22,32 +22,7 @@ body {
 	height: 150px;
 	background-color: #333b3d;
 }
-
-/* aside */
-ul, li {
-	list-style: none;
-}
-
-li>a {
-	color: rgb(10, 10, 10);
-}
-
-a:hover {
-	color: black;
-	text-decoration: none;
-}
-
-.aside-content {
-	display: block;
-	width: 200px;
-	/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
-	height: 40px;
-	line-height: 40px;
-	background: rgb(233, 233, 233);
-	text-align: left;
-	padding-left: 10px;
-	border: 1px solid rgb(223, 223, 223);
-}
+ 
 </style>
 
 <body>
@@ -65,26 +40,8 @@ a:hover {
 	<div class="container">
 		<div class="row pt-5">
 <!----------- 왼쪽 사이드 메뉴 ------------------------------------------------------------------------------------->
-			<aside class="col-sm-3">
-				<div class="col aside">
-					<div class="aside-content">
-						함께 공부해요 
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=1"><li>질문
-								& 답변</li></a> 
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=2"><li>자유</li></a> 
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=3"><li>정보공유</li></a>
-
-
-						공지사항 
-						<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">
-							<li>공지사항</li></a> 
-							<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=5">
-							<li>블로그</li>
-						</a>
-
-					</div>
-				</div>
-			</aside>
+			<%--aside부분 --%>
+                <%@include file="/common/community_menu.jsp" %>
 <!-- -------------------메인 ------------------------------------------------------------------------------------------ -->
 			<div class="main col-sm-9">
 				<h1>글쓰기</h1>

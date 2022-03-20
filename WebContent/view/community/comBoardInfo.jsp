@@ -19,35 +19,6 @@ body {
 	background-color: #333b3d;
 }
 
-/* aside */
-ul, li {
-	list-style: none;
-}
-
-li>a {
-	color: rgb(10, 10, 10);
-}
-
-a:hover {
-	color: black;
-	text-decoration: none;
-}
-
-.aside-content {
-	display: block;
-	width: 200px;
-	/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
-	height: 40px;
-	line-height: 40px;
-	text-align: left;
-	padding-left: 10px;
-}
-
-.selected {
-	background: rgb(233, 233, 233);
-	border: 1px solid rgb(223, 223, 223);
-}
-
 .txt_bar {
 	margin: 0 9px 0 5px;
 	color: gray;
@@ -68,29 +39,8 @@ a:hover {
 	<div class="container">
 		<div class="row pt-5">
 			<!----------------왼쪽 사이드 메뉴 ------------------------------------------------------------------------>
-			<aside class="col-sm-3">
-				<div class="col aside">
-					<h4>함께 공부해요</h4>
-					<div class="aside-content">
-						<li class=" <c:if test="${boardid eq 1 }">selected</c:if> "><a
-							href="<%=request.getContextPath()%>/community/comBoardList?boardid=1">질문
-								답변</a></li>
-						<li class="<c:if test="${boardid eq 2 }">selected</c:if>"><a
-							href="<%=request.getContextPath()%>/community/comBoardList?boardid=2">자유</a></li>
-						<li class="<c:if test="${boardid eq 3 }">selected</c:if>"><a
-							href="<%=request.getContextPath()%>/community/comBoardList?boardid=3">정보공유</a></li>
-						<br>
-						<h4>공지사항</h4>
-						<li class="<c:if test="${boardid eq 4 }">selected</c:if>"><a
-							href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">
-								공지사항 </a></li>
-						<li class="<c:if test="${boardid eq 5 }">selected</c:if>"><a
-							href="<%=request.getContextPath()%>/community/comBoardList?boardid=5">
-								블로그 </a></li>
-
-					</div>
-				</div>
-			</aside>
+			<%--aside부분 --%>
+                <%@include file="/common/community_menu.jsp" %>
 
 
 			<!---------------------    메인      ------------------------------------------------------------------ -->

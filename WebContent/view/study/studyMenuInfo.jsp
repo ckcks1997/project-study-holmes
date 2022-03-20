@@ -7,31 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-/* aside */
-ul, li {
-	list-style: none;
-}
-
-li>a {
-	color: rgb(10, 10, 10);
-}
-
-a:hover {
-	text-decoration: none;
-}
-
-.aside-content {
-	display: block;
-	width: 200px;
-	/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
-	height: 40px;
-	line-height: 40px;
-	background: rgb(233, 233, 233);
-	text-align: left;
-	padding-left: 10px;
-	border: 1px solid rgb(223, 223, 223);
-}
-
+ 
 .s-round {
 	display: inline-block;
 	border-radius: 20px;
@@ -94,45 +70,8 @@ a:hover {
 	<div class="container">
 		<div class="row pt-5">
 <!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->
-			<aside class="col-sm-3">
-				<div class="col aside">
-					<div class="aside-content">
-						<li class=""><a
-							href="<%=request.getContextPath()%>/studymenu/studyMenuList?menuid=1">
-								전체 스터디 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a
-							href="<%=request.getContextPath()%>/studymenu/studyMenuList?menuid=2">
-								개발/프로그래밍 </a></li>
-
-					</div>
-					<div class="aside-content">
-						<li class=""><a
-							href="<%=request.getContextPath()%>/studymenu/studyMenuList?menuid=3">
-								보안/네트워크 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a
-							href="<%=request.getContextPath()%>/studymenu/studyMenuList?menuid=4">
-								크리에이티브 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a
-							href="<%=request.getContextPath()%>/studymenu/studyMenuList?menuid=5">
-								직무/마케팅 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a
-							href="<%=request.getContextPath()%>/studymenu/studyMenuList?menuid=6">
-								학문/외국어 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a
-							href="<%=request.getContextPath()%>/studymenu/studyMenuList?menuid=7">
-								교양 </a></li>
-					</div>
-			</aside>
+			<%--aside부분 --%>
+                <%@include file="/common/study_menu.jsp" %>
 <!-- --------------------------------------------------------------게시글------------------------------------------------------------ -->
 
 			<div class="col-sm-9">
