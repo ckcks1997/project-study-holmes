@@ -30,6 +30,11 @@
 	<select id = "menuBoardOne" resultType = "studymenu" parameterType ="int">
 	select * from study_menu where board_num = #{board_num}
 	</select>
+	
+<!-- 	<select id = "allList" resultType = "studymenu">
+	select * from  ( select rownum rnum, a.* from (
+		select * from study_menu) a) where rnum BETWEEN #{start} and #{end}		
+	</select> -->
 
 	
 	

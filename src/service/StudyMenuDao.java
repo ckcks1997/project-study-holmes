@@ -37,7 +37,7 @@ public class StudyMenuDao {
 		return 0;
 	}
 
-	/* 페이지 리스트 */
+	
 	public List<StudyMenu> menuList(int pageInt, int limit, int menucount, String menuid) {
 
 		SqlSession sqlSession = MybatisConnection.getConnection();
@@ -134,7 +134,15 @@ public class StudyMenuDao {
 		  
 	  }
 	  
-	
-
-	
+		/*
+		 * public List<StudyMenu> allList() {
+		 * 
+		 * SqlSession sqlSession = MybatisConnection.getConnection();
+		 * 
+		 * try { return sqlSession.selectList(NS + "allList"); } catch (Exception e) {
+		 * e.printStackTrace(); } finally { MybatisConnection.close(sqlSession); }
+		 * 
+		 * return null; }
+		 */
+	 
 }

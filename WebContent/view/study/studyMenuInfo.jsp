@@ -79,7 +79,7 @@
 				<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
 				<br>
 
-				<h2>자바 스터디</h2>
+				<h2>${s.title}</h2>
 				<div class="container p-0 my-2 bg-white text-white">
 					<div class="s-round px-2">
 						<span>무료</span>

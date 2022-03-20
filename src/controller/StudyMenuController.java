@@ -38,6 +38,11 @@ public class StudyMenuController extends MskimRequestMapping{
 		menuid = "1";
 	}
 	
+	/*
+	 * if (menuid=="1") { StudyMenuDao sd = new StudyMenuDao(); List<StudyMenu> list
+	 * = sd.allList(); }
+	 */
+	
 	if (request.getParameter("pageNum") !=null) {
 		session.setAttribute("pageNum", request.getParameter("pageNum"));
 	}
