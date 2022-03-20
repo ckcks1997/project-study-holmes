@@ -15,7 +15,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="model.Search" alias = "Search" />
 
         <typeAlias type="model.Attend" alias = "attend" />
-
+        
+        <typeAlias type="model.Notice" alias = "notice" />
+        
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -40,6 +42,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <mapper resource ="mybatis/Community.xml" />
         
         <mapper resource ="mybatis/Attend.xml" />
+        
+        <mapper resource ="mybatis/Notice.xml" />
      </mappers>
 
 </configuration>
