@@ -111,8 +111,7 @@ a:hover {
 					action="<%=request.getContextPath()%>/studymenu/writePro"
 					  method="post">
 					<br /> <br />
-					<!-- 닉네임 가져오기 -->
-					<!--<input type = "hidden" name= "nickname" value = '${c.nickname}'>-->
+				
 																						
 					<div class="form-group">
 						<label>제목</label>
