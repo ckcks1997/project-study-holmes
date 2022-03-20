@@ -11,6 +11,9 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 
+<%--지도 api --%>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5372162b2eb56a4c9831bbd9732f6a3"></script>
+
 </head>
 <style>
 body {
@@ -107,8 +110,17 @@ body {
 
 					</div>
 
-
-
+                    <%--지도 api --%>
+                    <div>
+	                    <p>위치<em>지도를 클릭해주세요!</em></p> 
+	                    <div id="map" style="width:100%;height:350px;"></div>
+	                    <div id="clickLatlng"></div>
+	                    <%--latitude와 longitude값을 db에 저장하고 불러오면 됩니다. --%>
+	                    <input type="hidden" id="latitude" name="latitude">
+                        <input type="hidden" id="longitude" name="longitude ">
+                        
+                    </div>
+                        
 					<div class="d-grid gap-2 " style="float: right;">
 						<button class="btn btn-dark" type="button">취소</button>
 						<button class="btn btn-dark" type="submit">저장</button>
@@ -126,6 +138,46 @@ body {
 		});
 	</script>
 	
+	<%--지도 관련 스크립트 --%>
+	<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = { 
+	        center: new kakao.maps.LatLng(37.553244943104694, 126.97265812139825), // 지도의 중심좌표
+	        level: 8 // 지도의 확대 레벨
+	    };
+	
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+	// 지도를 클릭한 위치에 표출할 마커입니다
+	var marker = new kakao.maps.Marker({ 
+	    // 지도 중심좌표에 마커를 생성합니다 
+	    position: map.getCenter() 
+	}); 
+	// 지도에 마커를 표시합니다
+	marker.setMap(map);
+	
+	// 지도에 클릭 이벤트를 등록합니다
+	// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+	    
+	    // 클릭한 위도, 경도 정보를 가져옵니다 
+	var latlng = mouseEvent.latLng; 
+	    
+	    // 마커 위치를 클릭한 위치로 옮깁니다
+	marker.setPosition(latlng);
+	    
+	var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+	    message += '경도는 ' + latlng.getLng() + ' 입니다';
+	    
+	var resultDiv = document.getElementById('clickLatlng'); 
+	    resultDiv.innerHTML = message;
+	    
+	var latitude = document.getElementById('latitude'); 
+	var longitude = document.getElementById('longitude'); 
+	    latitude.value = latlng.getLat();
+	    longitude.value =  latlng.getLng();
+	});
+</script>
 
 </body>
 </html>
