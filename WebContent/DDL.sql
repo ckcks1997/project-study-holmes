@@ -23,7 +23,7 @@ insert into study_member values ('a@a.com', '1111', 'test1', 'name1','010-0000-0
 ---태그정보(study_member의 email을 join해서 가져옴)
 create table member_tag
 (
-    num --pk 시퀀스
+    num, --pk 시퀀스
     EMAIL VARCHAR2(50) not null,
     TAG   VARCHAR2(30) not null
 );
@@ -54,7 +54,7 @@ drop table study_menu;
 create table study_menu
 (
 	board_num number primary key,
-	nickname varchar2(30) not null unique,
+	nickname varchar2(30) not null,
 	title varchar2(100),
 	subject varchar2(50),
 	price varchar2(50),

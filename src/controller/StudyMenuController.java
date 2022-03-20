@@ -9,19 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
-
+import model.Community;
 import model.Search;
 import model.StudyMenu;
-
-
+import service.CommunityBoardDao;
 import service.StudyMenuDao;
 
 //WebServlet("/studymenu/*")
 public class StudyMenuController extends MskimRequestMapping{
 	
-	@RequestMapping("menuForm")
+	@RequestMapping("studyMenuList")
 	public String studymenu(HttpServletRequest request, 
 			HttpServletResponse response) {
 	HttpSession session = request.getSession();
@@ -88,16 +85,26 @@ public class StudyMenuController extends MskimRequestMapping{
 	request.setAttribute("maxPage", maxPage);
 	
 	
-	return "/view/study/menuForm.jsp";
+	return "/view/study/studyMenuList.jsp";
 	}
 	
 	
-	@RequestMapping("writeForm")
-	public String writeForm(HttpServletRequest request, 
+	@RequestMapping("studyWriteForm")
+	public String studyWriteForm(HttpServletRequest request, 
 			HttpServletResponse response) {
 		
-	
-		return "/view/study/writeForm.jsp";		
+		HttpSession session = request.getSession();
+		String msg = "로그인이 필요합니다";
+		String url = request.getContextPath()+"/studymember/loginForm";
+		
+		 if(session.getAttribute("memberNickname")!= null) {
+			return "/view/study/studyWriteForm.jsp";	
+		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("url", url);
+		  
+		return "/view/alert.jsp";	
 		}
 	
 	@RequestMapping("writePro")
@@ -118,9 +125,7 @@ public class StudyMenuController extends MskimRequestMapping{
 	studymenu.setRegion(request.getParameter("region"));
 	studymenu.setPrice(request.getParameter("price"));
 	studymenu.setNickname((String)request.getSession().getAttribute("memberNickname"));
-	
-	int pernum = Integer.parseInt(request.getParameter("pernum"));
-	
+	int pernum = Integer.parseInt(request.getParameter("pernum"));	
 	studymenu.setPernum(pernum);
 	studymenu.setContent(request.getParameter("content"));
 	
@@ -130,16 +135,16 @@ public class StudyMenuController extends MskimRequestMapping{
 	studymenu.setMenuid(menuid);
 	
 	StudyMenuDao sm = new StudyMenuDao();
-	studymenu.setBoard_num(sm.nextNum());	
+	studymenu.setBoard_num(sm.menuNextNum());	
 	
 	int num = sm.insertMenu(studymenu);
 	
 	String msg="게시물 등록 실패";
-	String url=request.getContextPath()+"/studymenu/writeForm";
+	String url=request.getContextPath()+"/studymenu/studyWriteForm";
 	
 	if (num==1) {
 		msg="게시물 등록 성공";
-		url=request.getContextPath()+"/studymenu/menuForm?pageNum=1";
+		url=request.getContextPath()+"/studymenu/studyMenuList?pageNum=1";
 		
 	}
 	request.setAttribute("msg", msg);
@@ -175,9 +180,21 @@ public class StudyMenuController extends MskimRequestMapping{
 		return "/view/study/menuSearchList.jsp";
 	}
 
-	
-	
-	
-	
+	 @RequestMapping("studyMenuInfo")
+	  public String studyMenuInfo(HttpServletRequest request, HttpServletResponse response) {
+		  
+		  int board_num = Integer.parseInt(request.getParameter("board_num"));
+		  StudyMenuDao smd = new StudyMenuDao();
+		  StudyMenu s = smd.menuBoardOne(board_num);
+		  request.setAttribute("s", s);
+		  	  	  
+		  //session의 닉네임 가져오기
+		  HttpSession session = request.getSession();
+		  String loginNick = (String)session.getAttribute("memberNickname");
+		  request.setAttribute("loginNick", loginNick);
+		    
+		  
+		  return "/view/study/studyMenuInfo.jsp";
+	  }			
 
 }

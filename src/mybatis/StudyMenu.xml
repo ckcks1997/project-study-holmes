@@ -16,16 +16,21 @@
 		
 	<insert id="insertMenu" parameterType="studymenu">
 	insert into study_menu values 
-	(#{board_num},#{nickname},#{title},#{subject},#{price},#{pernum},#{region},#{content},#{menuid},sysdate,#{map})
+	(#{board_num},#{nickname},#{title},#{subject},#{price},#{pernum},#{region},#{content},#{menuid},sysdate,#{map,jdbcType=VARCHAR})
 	</insert>
 	
 	<select id="studySearch" parameterType="Search" resultType="StudyMenu">
 	select * from study_menu where upper (${part}) like upper (#{searchData})
 	</select>
 	
-	<select id = "NextNum" resultType = "int">
-	select menu_seq.nextval from dual
-</select>
+	<select id = "menuNextNum" resultType = "int">
+	select board_seq.nextval from dual
+	</select>
+	
+	<select id = "menuBoardOne" resultType = "studymenu" parameterType ="int">
+	select * from study_menu where board_num = #{board_num}
+	</select>
+
 	
 	
 </mapper>
