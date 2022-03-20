@@ -20,6 +20,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         
         <typeAlias type="model.Reply" alias = "Reply" />
 
+        <typeAlias type="model.GroupMember" alias = "groupmember" />
+        
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -49,6 +51,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
         <mapper resource = "mybatis/Reply.xml"/>
 
+        <mapper resource = "mybatis/GroupMember.xml"/>
      </mappers>
 
 </configuration>

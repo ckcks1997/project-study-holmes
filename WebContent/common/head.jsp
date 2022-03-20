@@ -120,7 +120,16 @@
 								<c:otherwise>
 								<c:if test="${noticeCount !=0}">
 									<li class="nav-item ">
-										<a tabindex="0"  data-placement="bottom"  data-toggle="popover" data-trigger="hover" title="최근 알림" data-content="${notice[0].info}" role="button" class="nav-link" >
+										<a tabindex="0"  
+										data-placement="bottom"  
+										data-toggle="popover" 
+										data-trigger="hover" 
+										title="최근 알림" 
+										data-content="${notice[0].info}" 
+										role="button" 
+										class="nav-link"
+										href="<%=request.getContextPath() %>/studymember/notice"
+										 >
 											<i class="fa-solid fa-bell"></i>  
 											<span class="badge badge-success"> ${noticeCount } </span>
 										</a>
@@ -128,7 +137,7 @@
 								</c:if>
 								<c:if test="${noticeCount ==0}">
 								    <li class="nav-item ">
-									    <a >
+									    <a class="nav-link" href="<%=request.getContextPath()%>/studymember/notice">
 									       <i class="fa-solid fa-bell"></i>
 									    </a>
 								    </li>

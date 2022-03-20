@@ -54,9 +54,6 @@ body {
 					<c:if test="${com.boardid =='5'}"> 블로그</c:if>
 				</h2>
 
-
-
-
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
 				<input type="hidden" id="board_num" name="board_num"
 					value="${com.board_num}"> <input type="hidden"
