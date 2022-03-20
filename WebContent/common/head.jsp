@@ -14,7 +14,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-/*폰트 용량이 너무 큼*/
+
 	@font-face {
 		font-family: "kita";
 		src: url("<%=request.getContextPath()%>/common/fonts/KITA.ttf")
@@ -104,8 +104,6 @@
 
 				<div>
 					<ul class="navbar-nav  mt-2 mt-lg-0 ml-3">
-						<li class="nav-item "><a class="nav-link" href="#"><i class="fa-solid fa-bell"></i> </a></li>
-						<li class="nav-item mr-2"><a class="nav-link" href="#"> <i class="fa-solid fa-comments"></i></a></li>
 						<div class="d-flex align-items-center">
 							<%-- 로그인 세션이 없는경우 --%>
 							<c:choose>
@@ -120,6 +118,22 @@
 								</c:when>
 								<%--/*로그인 된 경우 */--%>
 								<c:otherwise>
+								<c:if test="${noticeCount !=0}">
+									<li class="nav-item ">
+										<a tabindex="0"  data-placement="bottom"  data-toggle="popover" data-trigger="hover" title="최근 알림" data-content="${notice[0].info}" role="button" class="nav-link" >
+											<i class="fa-solid fa-bell"></i>  
+											<span class="badge badge-success"> ${noticeCount } </span>
+										</a>
+									</li>
+								</c:if>
+								<c:if test="${noticeCount ==0}">
+								    <li class="nav-item ">
+									    <a >
+									       <i class="fa-solid fa-bell"></i>
+									    </a>
+								    </li>
+								</c:if>
+	                                <li class="nav-item mr-2"><a class="nav-link" href="#"> <i class="fa-solid fa-comments"></i></a></li>
 									<div class="dropdown">
 										<button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${memberNickname} 님</button>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -139,5 +153,14 @@
 			</div>
 		</div>
 	</nav>
+	
+	<script>
+	$(function () {
+		  $('[data-toggle="popover"]').popover()
+		})
+	$('.popover-dismiss').popover({
+		  trigger: 'focus'
+		})
+	</script>
 </body>
 </html>

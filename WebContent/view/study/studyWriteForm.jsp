@@ -30,32 +30,7 @@ body {
 .footer-content {
 	padding-top: 50px;
 }
-
-/* aside */
-ul, li {
-	list-style: none;
-}
-
-li>a {
-	color: rgb(10, 10, 10);
-}
-
-a:hover {
-    color:black;
-	text-decoration: none;
-}
-
-.aside-content {
-	display: block;
-	width: 200px;
-	/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
-	height: 40px;
-	line-height: 40px;
-	background: rgb(233, 233, 233);
-	text-align: left;
-	padding-left: 10px;
-	border: 1px solid rgb(223, 223, 223);
-}
+ 
 </style>
 <body>
 <!-- --------------------------------------------------------------명언------------------------------------------------------------ -->	
@@ -74,31 +49,8 @@ a:hover {
 		<div class="row pt-5">
 <!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->	
 
-			<aside class="col-sm-3">
-				<div class="col aside">
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=1"> 전체 스터디 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=2"> 개발/프로그래밍 </a></li>
-
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=3"> 보안/네트워크 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=4"> 크리에이티브 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=5"> 직무/마케팅 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=6"> 학문/외국어 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=7"> 교양 </a></li>
-					</div>
-			</aside>
+			<%--aside부분 --%>
+                <%@include file="/common/study_menu.jsp" %>
 
 <!-- --------------------------------------------------------------게시글------------------------------------------------------------ -->				
 			<div class="main col-sm-9">

@@ -8,8 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 import com.oreilly.servlet.MultipartRequest;
+import model.Notice;
 import model.Community;
+import service.NoticeDao;
 import service.CommunityBoardDao;
  
 
@@ -22,6 +25,19 @@ public class BoardController extends MskimRequestMapping{
   @RequestMapping("main")
   public String main(HttpServletRequest request, HttpServletResponse response) {
  
+    HttpSession s = request.getSession();
+    String nick_id = (String) s.getAttribute("memberNickname");
+//    알림 가져오기
+    if(nick_id != null) {
+      System.out.println(nick_id);
+      NoticeDao nd = new NoticeDao();
+      int newNoticeCount = nd.noticeNew(nick_id);
+      List<Notice> notices = nd.noticeGet(nick_id);
+      request.getSession().setAttribute("noticeCount", newNoticeCount); 
+      request.getSession().setAttribute("notice", notices); 
+    }
+    
+//    커뮤니티 리스트 가져오기
     CommunityBoardDao cbd = new CommunityBoardDao();
     List<Community> list1 = cbd.comMainBoardList("4");
     List<Community> list2 = cbd.comMainBoardList("1");

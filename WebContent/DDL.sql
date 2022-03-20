@@ -21,13 +21,31 @@ insert into study_member values ('a@a.com', '1111', 'test1', 'name1','010-0000-0
 
 ---
 ---태그정보(study_member의 email을 join해서 가져옴)
-create table member_tag
+
+create sequence tag_num_seq;
+
+create table MEMBER_TAG
 (
-    num, --pk 시퀀스
-    EMAIL VARCHAR2(50) not null,
-    TAG   VARCHAR2(30) not null
-);
+    TAG_NUM NUMBER       not null  primary key,
+    EMAIL   VARCHAR2(50) not null,
+    TAG     VARCHAR2(30) not null
+
+)
+
 ---
+---alert (알림)테이블
+create sequence alert_seq;
+
+create table notice(
+    alert_num number primary key,
+    nickname_to varchar2(30) not null,
+    nickname_from varchar2(30) not null,
+    info varchar2(1000) not null,
+    isread number,
+    regdate date
+);
+
+insert into notice values (alert_seq.nextval, 'qqq', '11111', 'test123한글', 0, sysdate);
 
 --- community 테이블 
 drop table community;
