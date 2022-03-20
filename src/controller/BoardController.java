@@ -33,7 +33,7 @@ public class BoardController extends MskimRequestMapping{
       NoticeDao nd = new NoticeDao();
       int newNoticeCount = nd.noticeNew(nick_id);
       List<Notice> n = nd.noticeGet(nick_id);
-      request.setAttribute("notice", newNoticeCount);
+      request.getSession().setAttribute("notice", newNoticeCount); 
     }
     
 //    커뮤니티 리스트 가져오기

@@ -118,7 +118,7 @@
 								</c:when>
 								<%--/*로그인 된 경우 */--%>
 								<c:otherwise>
-									<li class="nav-item "><a class="nav-link" href="#"><i class="fa-solid fa-bell"></i> <span class="badge badge-success"> ${notice } </span></a></li>
+									<li class="nav-item "><a class="nav-link" href="#"><i class="fa-solid fa-bell"></i> <c:if test="${notice !=0}"> <span class="badge badge-success"> ${notice } </span></c:if></a></li>
 	                                <li class="nav-item mr-2"><a class="nav-link" href="#"> <i class="fa-solid fa-comments"></i></a></li>
 									<div class="dropdown">
 										<button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${memberNickname} 님</button>

@@ -43,7 +43,9 @@ create table notice(
     info varchar2(1000) not null,
     isread number,
     regdate date
-)
+);
+
+insert into notice values (alert_seq.nextval, 'qqq', '11111', 'test123한글', 0, sysdate);
 
 --- community 테이블 
 drop table community;

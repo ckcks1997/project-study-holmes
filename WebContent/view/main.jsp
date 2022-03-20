@@ -117,7 +117,7 @@
 		</div>
 		<div class="container">
 			<h2>지금 뜨는 컨텐츠</h2>
-			<hr align="left" width="350px" style="border: 0.5px solid #c47100" />
+			<hr align="left" width="300px" style="border: 0.5px solid #c47100" />
 			<div class="d-flex justify-content-between " >
 				<div class="container">
 					<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="" width="100%" height="200px" />
@@ -143,7 +143,7 @@
 				<div class="d-flex justify-content-between">
 					<div class="col-sm" width="20%">
 						<h3 style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardList?boardid=4'">공지사항</h3>
-						<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
+						<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
 						<table class="table table-sm table-borderless shadow-sm rounded boardtable">
 				    		<tr class="border-bottom">
 							   <th width="70%">제목</td>
@@ -161,7 +161,7 @@
 					</div>
 					<div class="col-sm" width="20%">
 						<h3 style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardList?boardid=1'">질문 & 답글</h3>
-						<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
+						<hr align="left" width="180px" style="border: 0.5px solid #c47100" />
 						<table class="table table-sm table-borderless  shadow-sm rounded boardtable">
 						    <tr class="border-bottom">
                                <th width="80%">제목</td>
@@ -178,7 +178,7 @@
 					</div>
 					<div class="col-sm" width="20%">
 						<h3 style='cursor:pointer;' onclick="location.href='<%=request.getContextPath()%>/community/comBoardList?boardid=2'" >자유주제</h3>
-						<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
+						<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
 						<table class="table table-sm table-borderless  shadow-sm boardtable">
 						    <tr class="border-bottom">
                                <th width="80%">제목</td>

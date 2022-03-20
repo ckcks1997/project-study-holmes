@@ -154,7 +154,7 @@ input[type=text]:placeholder {
     text-align: left;
 	padding:0;
 	margin:0;
-	padding-left:50px;
+	padding-left:70px;
 	margin-top:5px;
 }
 .btn-brown{
@@ -164,6 +164,10 @@ input[type=text]:placeholder {
 .btn-brown:hover{
     background:#c47100;
     color:white;
+}
+.span-info{
+    color:#aaa;
+    font-size:0.8rem;
 }
 .sns-bg{
     padding: 10px;
@@ -218,7 +222,7 @@ function win_upload(){
 					<p class="nameholder">이름</p>
 				<input type="text" placeholder="이름" name="name" class="m-2" required > 
 				
-				<p class="nameholder">닉네임</p>
+				<p class="nameholder">닉네임 <span class="span-info">(추후 변경이 불가합니다)</span></p>
 				<div class="alert mx-5 py-0 my-0" id="validation-view3" role="alert"  display="none"></div>
 				<div class="d-md-flex justify-content-center align-items-center mx-5">
 				    <input type="text" placeholder="닉네임" id="nickname" name="nickname" class=" " required > 
