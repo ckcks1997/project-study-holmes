@@ -49,7 +49,12 @@
 	                                        </div>
 	                                    </div>
 	                                    <div class="">
+	                                    <c:if test="${i.info2 == null}">
 	                                        내용: ${i.info}
+	                                    </c:if>
+	                                    <c:if test="${i.info2 != null}">
+	                                        내용: 스터디 초대요청 ${i.info2}
+	                                    </c:if>
 	                                    </div>
                                     </div>
                                     

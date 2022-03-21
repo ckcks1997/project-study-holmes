@@ -36,17 +36,17 @@ create table MEMBER_TAG
 ---NOTICE (알림)테이블
 create sequence NOTICE_SEQ;
 
-CREATE TABLE NOTICE(
-    NOTICE_NUM    NUMBER         NOT NULL
-        PRIMARY KEY,
-    NICKNAME_TO   VARCHAR2(30)   NOT NULL,
-    NICKNAME_FROM VARCHAR2(30)   NOT NULL,
-    INFO          VARCHAR2(1000) NOT NULL,
+create table NOTICE
+(
+    NOTICE_NUM    NUMBER       not null
+        primary key,
+    NICKNAME_TO   VARCHAR2(30) not null,
+    NICKNAME_FROM VARCHAR2(30) not null,
+    INFO          VARCHAR2(1000),
     INFO2         VARCHAR2(200),
     ISREAD        NUMBER,
     REGDATE       DATE
 )
-
 
 insert into notice values (NOTICE_SEQ.nextval, 'aaa', 'qqq', 'test123한글',null, 0, sysdate)
 
