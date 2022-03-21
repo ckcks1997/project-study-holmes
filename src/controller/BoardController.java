@@ -27,16 +27,7 @@ public class BoardController extends MskimRequestMapping{
  
     HttpSession s = request.getSession();
     String nick_id = (String) s.getAttribute("memberNickname");
-//    알림 가져오기
-    if(nick_id != null) {
-      System.out.println(nick_id);
-      NoticeDao nd = new NoticeDao();
-      int newNoticeCount = nd.noticeNew(nick_id);
-      List<Notice> notices = nd.noticeGet(nick_id);
-      request.getSession().setAttribute("noticeCount", newNoticeCount); 
-      request.getSession().setAttribute("notice", notices); 
-    }
-    
+  
 //    커뮤니티 리스트 가져오기
     CommunityBoardDao cbd = new CommunityBoardDao();
     List<Community> list1 = cbd.comMainBoardList("4");
@@ -49,6 +40,22 @@ public class BoardController extends MskimRequestMapping{
   }
   
   
+  //ajax 실험(head 알림상태 가져오기)
+  @RequestMapping("notice")
+  public String notice(HttpServletRequest request, HttpServletResponse response) {
+ 
+    HttpSession s = request.getSession();
+    String nick_id = (String) s.getAttribute("memberNickname"); 
+    
+    if(nick_id != null) {
+      NoticeDao nd = new NoticeDao();
+      int newNoticeCount = nd.noticeNew(nick_id); //알림이 없으면 0, 있으면 1~
+      request.setAttribute("noticeCount", newNoticeCount); 
+    }
+    
+ 
+    return "/single/alert_ajax.jsp";
+  }
   
 }
  
