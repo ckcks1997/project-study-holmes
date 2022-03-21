@@ -14,16 +14,16 @@ public class StudyMenu {
 	private String content;
 	private String menuid;
 	private Date regdate;
-	private String map;
+	private String latitude; //위도 
+	private String longitude; //경도\
 	
 	
 	public StudyMenu() {
 		
 	}
 
-
 	public StudyMenu(int board_num, String nickname, String title, String subject, String price, int pernum,
-			String region, String content, String menuid, Date regdate, String map) {
+			String region, String content, String menuid, Date regdate, String latitude, String longitude) {
 		super();
 		this.board_num = board_num;
 		this.nickname = nickname;
@@ -35,118 +35,116 @@ public class StudyMenu {
 		this.content = content;
 		this.menuid = menuid;
 		this.regdate = regdate;
-		this.map = map;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
-
 
 	public int getBoard_num() {
 		return board_num;
 	}
 
-
 	public void setBoard_num(int board_num) {
 		this.board_num = board_num;
 	}
-
 
 	public String getNickname() {
 		return nickname;
 	}
 
-
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-
 
 	public String getTitle() {
 		return title;
 	}
 
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 
 	public String getSubject() {
 		return subject;
 	}
 
-
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-
 
 	public String getPrice() {
 		return price;
 	}
 
-
 	public void setPrice(String price) {
 		this.price = price;
 	}
-
 
 	public int getPernum() {
 		return pernum;
 	}
 
-
 	public void setPernum(int pernum) {
 		this.pernum = pernum;
 	}
-
 
 	public String getRegion() {
 		return region;
 	}
 
-
 	public void setRegion(String region) {
 		this.region = region;
 	}
-
 
 	public String getContent() {
 		return content;
 	}
 
-
 	public void setContent(String content) {
 		this.content = content;
 	}
-
 
 	public String getMenuid() {
 		return menuid;
 	}
 
-
 	public void setMenuid(String menuid) {
 		this.menuid = menuid;
 	}
-
 
 	public Date getRegdate() {
 		return regdate;
 	}
 
-
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 
-
-	public String getMap() {
-		return map;
+	public String getLatitude() {
+		return latitude;
 	}
 
-
-	public void setMap(String map) {
-		this.map = map;
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
 	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	@Override
+	public String toString() {
+		return "{\"board_num\":\"" + board_num + "\", \"nickname\":\"" + nickname + "\", \"title\":\"" + title
+				+ "\", \"subject\":\"" + subject + "\", \"price\":\"" + price + "\", \"pernum\":\"" + pernum
+				+ "\", \"region\":\"" + region + "\", \"content\":\"" + content + "\", \"menuid\":\"" + menuid
+				+ "\", \"regdate\":\"" + regdate + "\", \"latitude\":\"" + latitude + "\", \"longitude\":\"" + longitude
+				+ "\"}";
+	}
+
+	
 	
 	
 	

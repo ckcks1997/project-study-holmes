@@ -60,31 +60,7 @@ a {
 	padding-top: 50px;
 }
 
-/* aside */
-ul, li {
-	list-style: none;
-}
 
-li>a {
-	color: rgb(10, 10, 10);
-}
-
-a:hover {
-    color: black;
-	text-decoration: none;
-}
-
-.aside-content {
-	display: block;
-	width: 200px;
-	/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
-	height: 40px;
-	line-height: 40px;
-	background: rgb(233, 233, 233);
-	text-align: left;
-	padding-left: 10px;
-	border: 1px solid rgb(223, 223, 223);
-}
 /* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */
 .search {
 	display: inline-block;
@@ -183,31 +159,8 @@ a:hover {
 		<div class="row pt-5">
 		
 <!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->	
-			<aside class="col-sm-3">
-				<div class="col aside">
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=1"> 전체 스터디 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=2"> 개발/프로그래밍 </a></li>
-
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=3"> 보안/네트워크 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=4"> 크리에이티브 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=5"> 직무/마케팅 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=6"> 학문/외국어 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=7"> 교양 </a></li>
-					</div>
-			</aside>
+			<%--aside부분 --%>
+                <%@include file="/common/study_menu.jsp" %>
 			
 <!-- --------------------------------------------------------------메인------------------------------------------------------------ -->		
 			
@@ -275,7 +228,7 @@ a:hover {
 				
 <!-- --------------------------------------------------------------게시판------------------------------------------------------------ -->						
 				<button class="btn btn-info d-block ml-auto">
-					<a href="<%=request.getContextPath()%>/studymenu/writeForm" style="color: white;">글쓰기 </a>
+					<a href="<%=request.getContextPath()%>/studymenu/studyWriteForm" style="color: white;">글쓰기 </a>
 				</button>
 				<div class="container d-flex align-content-between flex-wrap">
 				
@@ -283,19 +236,19 @@ a:hover {
 				
 				<p>작성된 글이 없습니다.</p>
 				
-				</c:if>
+				</c:if>			
 				
 				<c:if test="${list !=null }">				
 				<c:forEach var="s" items="${list}">
 					<div class="study-box ">
-						<a href="studyDetailedScreen.html">											
+						<a href="<%=request.getContextPath()%>/studymenu/studyMenuInfo?board_num=${s.board_num}">											
 							<div class="img">
 								<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="">
 							</div>
 							
 							<div class="px-2 pt-3">
 								<h5 class="b-h5">${s.title}</h5>
-								<p class="b-price">${s.free=="0" ? "무료":s.free  }</p>
+								<p class="b-price">${s.price=="0" ? "무료":s.price  }</p>
 								<p class="b-people">
 									<i class="fa-solid fa-user-group"></i> ${s.pernum}
 								</p>
@@ -320,15 +273,15 @@ a:hover {
 					
 					<li 
 						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/menuForm?pageNum=${startPage - bottomLine}">Previous</a></li>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">Previous</a></li>
 						
 					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
 						<li class='page-item <c:if test = "${i == pageInt}" >  active </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/menuForm?pageNum=${i}">${i}</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${i}">${i}</a></li>
 					
 					</c:forEach>
 						<li class='page-item <c:if test = "${endPage >= maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/menuForm?pageNum=${startPage + bottomLine}">Next</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">Next</a></li>
 					</ul>
 				</nav>
 

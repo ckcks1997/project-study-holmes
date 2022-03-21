@@ -59,32 +59,7 @@ a {
 .footer-content {
 	padding-top: 50px;
 }
-
-/* aside */
-ul, li {
-	list-style: none;
-}
-
-li>a {
-	color: rgb(10, 10, 10);
-}
-
-a:hover {
-    color: black;
-	text-decoration: none;
-}
-
-.aside-content {
-	display: block;
-	width: 200px;
-	/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
-	height: 40px;
-	line-height: 40px;
-	background: rgb(233, 233, 233);
-	text-align: left;
-	padding-left: 10px;
-	border: 1px solid rgb(223, 223, 223);
-}
+ 
 /* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */
 .search {
 	display: inline-block;
@@ -93,18 +68,17 @@ a:hover {
 .tagbox {
     color: white;
     font-weight: 700;
-    display: inline-block;
-    width: 60px;
-    height: 40px;
-    line-height: 30px;
-    text-align: center;
-    padding: 5px;
-    margin-right:5px;
-    background-color: #f55555;
-    border: none;
-    border-radius: 15%;
+	display: inline-block;
+	width: 60px;
+	height: 40px;
+	line-height: 30px;
+	text-align: center;
+	padding: 5px;
+	margin-right:5px;
+	background-color: #f55555;
+	border: none;
+	border-radius: 15%;
 }
-
 
 .tagbox-etc {
 	display: inline-block;
@@ -163,6 +137,8 @@ a:hover {
 	color: #175cbe;
 }
 }
+
+ 
 </style>
 </head>
 <body>
@@ -182,31 +158,8 @@ a:hover {
 		<div class="row pt-5">
 		
 <!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->	
-			<aside class="col-sm-3">
-				<div class="col aside">
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=1"> 전체 스터디 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=2"> 개발/프로그래밍 </a></li>
-
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=3"> 보안/네트워크 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=4"> 크리에이티브 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=5"> 직무/마케팅 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=6"> 학문/외국어 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=7"> 교양 </a></li>
-					</div>
-			</aside>
+		 <%--aside부분 --%>
+                <%@include file="/common/study_menu.jsp" %>
 			
 <!-- --------------------------------------------------------------메인------------------------------------------------------------ -->		
 			
@@ -215,27 +168,32 @@ a:hover {
 				<hr align="left" width="350px" style="border: 0.5px solid #c47100" />
 				<br>
 				<h4>${menuName}</h4>
-				<div class="flex ">
- 
-                        <div class="input-group rounded" method="post">
-                        <form action = "studySearch" method="post">
-                        <div class="d-flex flex-row align-items-center">
-                            <select class="custom-select" name="part">
-                                <option value="subject">제목</option>                     
-                            </select>
-                                <div class="d-flex flex-row">
-                                <input type="text" class="form-control rounded"
-                                        placeholder="Search" aria-label="Search"
-                                        aria-describedby="search-addon" name="searchData" required="required"/> 
-                                <input type="submit" class="input-group-text border-0" value="검색"> 
-                                </div>
-                        </div>
-                        </form>
-                        </div>
- 
-
+				 
+					
+<!-- --------------------------------------------------------------검색------------------------------------------------------------ -->							
+						<div>
+							<div class="input-group rounded" method="post">
+							<form action = "studySearch" method="post">
+							<div class="d-flex flex-row align-items-center">
+								 
+									<select class="custom-select" name="part">
+									    <option value="title">제목</option>						
+									</select>
+								 
+								    <div class="d-flex flex-row">
+									<input type="text" class="form-control rounded"
+										placeholder="Search" aria-label="Search"
+										aria-describedby="search-addon" name="searchData" required="required"/> 
+								    <input type="submit" class="input-group-text border-0" value="검색"> 
+								    </div>
+							</div>
+							</form>
+							</div>
+						</div>
+				 
+<!-- --------------------------------------------------------------지역태그------------------------------------------------------------ -->						
 					<div>
-						<div class="d-flex align-items-end rounded mt-2 rounded" method="post">
+						<div class="d-flex align-items-end rounded mt-2" method="post">
 						
 						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
 						<input type="hidden" aria-label="Search" name="part" value="region">
@@ -265,13 +223,13 @@ a:hover {
 													
 					
 
-				</div>
 				
 				
+<!-- --------------------------------------------------------------게시판------------------------------------------------------------ -->						
 				<button class="btn btn-info d-block ml-auto">
-					<a href="<%=request.getContextPath()%>/studymenu/writeForm" style="color: white;">글쓰기 </a>
+					<a href="<%=request.getContextPath()%>/studymenu/studyWriteForm" style="color: white;">글쓰기 </a>
 				</button>
-				<div class="container d-flex justify-content-between flex-wrap">
+				<div class="container d-flex align-content-between flex-wrap">
 				
 				<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
 				
@@ -279,17 +237,17 @@ a:hover {
 				
 				</c:if>
 				
-				<c:if test="${list !=null }">				
+							
 				<c:forEach var="s" items="${list}">
 					<div class="study-box ">
-						<a href="studyDetailedScreen.html">											
+						<a href="<%=request.getContextPath()%>/studymenu/studyMenuInfo?board_num=${s.board_num}">											
 							<div class="img">
 								<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="">
 							</div>
 							
 							<div class="px-2 pt-3">
-								<h5 class="b-h5">${s.subject}</h5>
-								<p class="b-price">${s.free==1 ? "무료":"유료"  }</p>
+								<h5 class="b-h5">${s.title}</h5>
+								<p class="b-price">${s.price=="0" ? "무료":s.price  }</p>
 								<p class="b-people">
 									<i class="fa-solid fa-user-group"></i> ${s.pernum}
 								</p>
@@ -303,9 +261,28 @@ a:hover {
 						  </a>
 					   </div>
 					</c:forEach>	
-					</c:if>
+					
 				
 				</div>
+<!-- --------------------------------------------------------------페이지 번호------------------------------------------------------------ -->
+				<br> <br>
+				<nav class="container">
+					<ul class="pagination justify-content-center">
+					
+					
+					<li 
+						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">Previous</a></li>
+						
+					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
+						<li class='page-item <c:if test = "${i == pageInt}" >  active </c:if>'>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${i}">${i}</a></li>
+					
+					</c:forEach>
+						<li class='page-item <c:if test = "${endPage >= maxPage}"> disabled </c:if>'>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">Next</a></li>
+					</ul>
+				</nav>
 
 			</div>
 		</div>

@@ -12,6 +12,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
     
     <insert id="addMemberTag" parameterType="map">
-        insert into member_tag values(#{id},#{tag})
+        insert into member_tag values(tag_num_seq.nextval, #{id},#{tag})
     </insert>
 </mapper>

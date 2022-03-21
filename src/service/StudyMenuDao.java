@@ -11,9 +11,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-
-
-
+import model.Community;
 import model.Search;
 import model.StudyMenu;
 import util.MybatisConnection;
@@ -39,7 +37,7 @@ public class StudyMenuDao {
 		return 0;
 	}
 
-	/* 페이지 리스트 */
+	
 	public List<StudyMenu> menuList(int pageInt, int limit, int menucount, String menuid) {
 
 		SqlSession sqlSession = MybatisConnection.getConnection();
@@ -61,13 +59,13 @@ public class StudyMenuDao {
 		return null;
 	}
 
-	public int nextNum() {
+	public int menuNextNum() {
 
 		SqlSession sqlSession = MybatisConnection.getConnection();
 
 		try {
 
-			return sqlSession.selectOne(NS + "nextNum");
+			return sqlSession.selectOne(NS + "menuNextNum");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,7 +78,6 @@ public class StudyMenuDao {
 
 	}
 
-	/* 게시물추가 */
 	public int insertMenu(StudyMenu studymenu) {
 
 		SqlSession sqlSession = MybatisConnection.getConnection();
@@ -101,7 +98,7 @@ public class StudyMenuDao {
 	}
 	
 	
-	/* 검색 */
+	
 	public List<StudyMenu> studySearch(Search sh) {
 
 		SqlSession sqlSession = MybatisConnection.getConnection();
@@ -121,6 +118,30 @@ public class StudyMenuDao {
 
 	}
 	
-
-	
+	 public StudyMenu menuBoardOne(int board_num) {
+		 
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+			try {
+				return sqlSession.selectOne(NS+"menuBoardOne",board_num);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			}
+			
+			return null;
+		  
+	  }
+	  
+		/*
+		 * public List<StudyMenu> allList() {
+		 * 
+		 * SqlSession sqlSession = MybatisConnection.getConnection();
+		 * 
+		 * try { return sqlSession.selectList(NS + "allList"); } catch (Exception e) {
+		 * e.printStackTrace(); } finally { MybatisConnection.close(sqlSession); }
+		 * 
+		 * return null; }
+		 */
+	 
 }

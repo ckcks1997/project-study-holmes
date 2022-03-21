@@ -11,6 +11,9 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 
+<%--지도 api --%>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5372162b2eb56a4c9831bbd9732f6a3"></script>
+
 </head>
 <style>
 body {
@@ -30,32 +33,7 @@ body {
 .footer-content {
 	padding-top: 50px;
 }
-
-/* aside */
-ul, li {
-	list-style: none;
-}
-
-li>a {
-	color: rgb(10, 10, 10);
-}
-
-a:hover {
-    color:black;
-	text-decoration: none;
-}
-
-.aside-content {
-	display: block;
-	width: 200px;
-	/*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
-	height: 40px;
-	line-height: 40px;
-	background: rgb(233, 233, 233);
-	text-align: left;
-	padding-left: 10px;
-	border: 1px solid rgb(223, 223, 223);
-}
+ 
 </style>
 <body>
 <!-- --------------------------------------------------------------명언------------------------------------------------------------ -->	
@@ -74,31 +52,8 @@ a:hover {
 		<div class="row pt-5">
 <!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->	
 
-			<aside class="col-sm-3">
-				<div class="col aside">
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=1"> 전체 스터디 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=2"> 개발/프로그래밍 </a></li>
-
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=3"> 보안/네트워크 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=4"> 크리에이티브 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=5"> 직무/마케팅 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=6"> 학문/외국어 </a></li>
-					</div>
-					<div class="aside-content">
-						<li class=""><a href="<%=request.getContextPath() %>/studymenu/menuForm?menuid=7"> 교양 </a></li>
-					</div>
-			</aside>
+			<%--aside부분 --%>
+                <%@include file="/common/study_menu.jsp" %>
 
 <!-- --------------------------------------------------------------게시글------------------------------------------------------------ -->				
 			<div class="main col-sm-9">
@@ -107,12 +62,11 @@ a:hover {
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
 
 
-				<form name="cf"
+				<form name="mf"
 					action="<%=request.getContextPath()%>/studymenu/writePro"
 					  method="post">
 					<br /> <br />
-					<!-- 닉네임 가져오기 -->
-					<!--<input type = "hidden" name= "nickname" value = '${c.nickname}'>-->
+				
 																						
 					<div class="form-group">
 						<label>제목</label>
@@ -155,10 +109,21 @@ a:hover {
 
 					</div>
 
-
-
+                    <%--지도 api --%>
+                    <div>
+	                    <p>모임할 장소를 지도에<em> 클릭</em> 해주세요</p> 
+	                    <div id="map" style="width:100%;height:350px;"></div>
+	                    <div id="clickLatlng"></div>
+	                
+	                    <input type="hidden" id="latitude" name="latitude">
+                        <input type="hidden" id="longitude" name="longitude">
+                        
+                    </div>
+                        
 					<div class="d-grid gap-2 " style="float: right;">
-						<button class="btn btn-dark" type="button">취소</button>
+						<button class="btn btn-dark">
+						<a href="<%=request.getContextPath()%>/studymenu/studyWriteForm">취소 </a>
+						</button>
 						<button class="btn btn-dark" type="submit">저장</button>
 					</div>
 				</form>
@@ -174,6 +139,49 @@ a:hover {
 		});
 	</script>
 	
+	<%--지도 관련 스크립트 --%>
+	
+	<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = { 
+	        center: new kakao.maps.LatLng(37.553244943104694, 126.97265812139825), // 지도의 중심좌표
+	        level: 8 // 지도의 확대 레벨
+	    };
+	
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+	// 지도를 클릭한 위치에 표출할 마커입니다
+	var marker = new kakao.maps.Marker({ 
+	    // 지도 중심좌표에 마커를 생성합니다 
+	    position: map.getCenter() 
+	}); 
+	// 지도에 마커를 표시합니다
+	marker.setMap(map);
+	
+	// 지도에 클릭 이벤트를 등록합니다
+	// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+	    
+	    // 클릭한 위도, 경도 정보를 가져옵니다 
+	var latlng = mouseEvent.latLng; 
+	    
+	    // 마커 위치를 클릭한 위치로 옮깁니다
+	marker.setPosition(latlng);
+	    
+	var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+	    message += '경도는 ' + latlng.getLng() + ' 입니다'; 
+	   // 제거시 데이터 안들어감
+	    
+	var resultDiv = document.getElementById('clickLatlng'); 
+	    resultDiv.innerHTML = message;
+	    
+ 	var latitude = document.getElementById('latitude'); 
+	var longitude = document.getElementById('longitude'); 
+	    latitude.value = latlng.getLat();
+	    longitude.value =  latlng.getLng();
+	    
+	});
+</script>
 
 </body>
 </html>
