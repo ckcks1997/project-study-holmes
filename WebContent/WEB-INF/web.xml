@@ -85,5 +85,16 @@
         <servlet-name>ReplyController</servlet-name>
         <url-pattern>/reply/*</url-pattern>
     </servlet-mapping>
+    
+       <servlet>
+        <servlet-name>GroupStudyController</servlet-name>
+        <servlet-class>controller.GroupStudyController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GroupStudyController</servlet-name>
+        <url-pattern>/group/*</url-pattern>
+    </servlet-mapping>
+    
 
 </web-app>

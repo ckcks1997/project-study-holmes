@@ -25,13 +25,10 @@
 
  <div class="container">
             <div class="row pt-5">
-                <div class="col-lg-3">
  
- 
-                </div>
                 <br>
                 <br>
-                <div class="col-lg-9">
+                <div class="col-9 mx-auto">
                     <h1>알림 목록</h1>
                     <hr align="left" width="250px" style="border: 0.5px solid #c47100" />
                     <br> 

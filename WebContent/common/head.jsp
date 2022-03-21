@@ -142,7 +142,7 @@
 									    </a>
 								    </li>
 								</c:if>
-	                                <li class="nav-item mr-2"><a class="nav-link" href="#"> <i class="fa-solid fa-comments"></i></a></li>
+	                                <li class="nav-item mr-2"><a class="nav-link" href="<%=request.getContextPath()%>/group/studylist"> <i class="fa-solid fa-comments"></i></a></li>
 									<div class="dropdown">
 										<button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${memberNickname} 님</button>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

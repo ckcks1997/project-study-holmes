@@ -128,9 +128,12 @@
 
 
 
-
-				<input type="submit" class=" btn fadeIn fourth my-1" value="참가신청"
+                <form action="<%=request.getContextPath()%>/studymenu/studyIn">
+	                <input type="hidden" name="board_num" value="${board_num}">
+	                <input type="hidden" name="nickname" value="${loginNick}">
+					<input type="submit" class=" btn fadeIn fourth my-1" value="참가신청"
 					style="background-color: #c47100; color: white; border-color: white;">
+                </form>
 
 				<br> <br>
 

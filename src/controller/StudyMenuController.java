@@ -205,6 +205,17 @@ public class StudyMenuController extends MskimRequestMapping{
 		    
 		  
 		  return "/view/study/studyMenuInfo.jsp";
-	  }			
+	  }		
+	 
+	 
+	 //스터디 참가신청 버튼을 누를 때
+	 @RequestMapping("studyIn")
+     public String studyIn(HttpServletRequest request, HttpServletResponse response) {
+         
+          int board_num = Integer.parseInt(request.getParameter("board_num"));
+          String nickname = request.getParameter("nickname");
+          
+         return "/view/study/studyMenuInfo.jsp";
+     }     
 
 }

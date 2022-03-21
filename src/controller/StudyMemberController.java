@@ -453,6 +453,14 @@ public class StudyMemberController extends MskimRequestMapping {
  
     return "/view/alert.jsp"; 
   }
+  
+  @RequestMapping("mywrite_study")
+  public String mywrite_study(HttpServletRequest request, HttpServletResponse response) {
+ 
+ 
+    return "/view/member/mywrite_study.jsp"; 
+  }
+  
 }
 
 
