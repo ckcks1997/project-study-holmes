@@ -41,7 +41,7 @@ public class CommunityBoardDao {
 				map.clear();
 				map.put("part", part);
 				map.put("searchData", "%"+searchData+"%");
-				 map.put("boardid", boardid);
+				map.put("boardid", boardid);
 				
 			return sqlSession.selectOne(NS+"comSearchCount",map);
 			} catch (Exception e) {
@@ -77,7 +77,7 @@ public class CommunityBoardDao {
 	  }
 	  
 	  //검색리스트
-	  public List<Community> comSearchList(int pageInt, int limit, int boardcount, String boardid) {
+	  public List<Community> comSearchList(int pageInt, int limit, int boardcount, String boardid, String part, String searchData) {
 		  
 		  SqlSession sqlSession = MybatisConnection.getConnection();
 			try {
@@ -85,6 +85,8 @@ public class CommunityBoardDao {
 				map.put("boardid", boardid);
 				map.put("start", (pageInt-1)*limit+1);
 				map.put("end", pageInt*limit);
+				map.put("part", part);
+				map.put("searchData", "%"+searchData+"%");
 					
 			return sqlSession.selectList(NS+"comSearchList",map);
 			} catch (Exception e) {
