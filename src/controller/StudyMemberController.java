@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import model.MemberTag;
+import model.Notice;
 import model.StudyMember;
 import service.MemberTagDao;
+import service.NoticeDao;
 import service.StudyMemberDao;
 
 
@@ -20,6 +22,29 @@ import service.StudyMemberDao;
 public class StudyMemberController extends MskimRequestMapping {
 
 
+  /*
+   * 알림 페이지
+   * */
+  @RequestMapping("notice")
+  public String memberNotice(HttpServletRequest request, HttpServletResponse response) {
+
+    String id = (String) request.getSession().getAttribute("memberNickname");
+    String msg = "로그인이 필요합니다";
+    String url = request.getContextPath()+"/studymember/loginForm";
+    if(id != null) {
+      NoticeDao nd = new NoticeDao();
+      List<Notice> noticeList = nd.noticeGet(id); //알림 리스트 가져옴
+      System.out.println(nd.noticeRead(id)); //전부 읽음처리
+      request.setAttribute("noticeList", noticeList);
+      request.getSession().setAttribute("noticeCount", 0);
+      return "/view/member/memberNotice.jsp";      
+    }
+    request.setAttribute("msg", msg);
+    request.setAttribute("url", url);
+    return "/view/alert.jsp";
+  }
+  
+  
   /*
    * 로그인 페이지
    * */
@@ -95,7 +120,9 @@ public class StudyMemberController extends MskimRequestMapping {
     return "/view/alert.jsp";
   }
   
+  
     /*회원가입*/
+  
   
   /*
    * 회원가입 페이지

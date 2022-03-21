@@ -48,5 +48,7 @@ public class BoardController extends MskimRequestMapping{
     return "/view/main.jsp";
   }
   
+  
+  
 }
  

@@ -236,7 +236,7 @@ a {
 				
 				<p>작성된 글이 없습니다.</p>
 				
-				</c:if>
+				</c:if>			
 				
 				<c:if test="${list !=null }">				
 				<c:forEach var="s" items="${list}">

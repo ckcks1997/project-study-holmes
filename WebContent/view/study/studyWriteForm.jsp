@@ -62,12 +62,11 @@ body {
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
 
 
-				<form name="cf"
+				<form name="mf"
 					action="<%=request.getContextPath()%>/studymenu/writePro"
 					  method="post">
 					<br /> <br />
-					<!-- 닉네임 가져오기 -->
-					<!--<input type = "hidden" name= "nickname" value = '${c.nickname}'>-->
+				
 																						
 					<div class="form-group">
 						<label>제목</label>
@@ -112,17 +111,19 @@ body {
 
                     <%--지도 api --%>
                     <div>
-	                    <p>위치<em>지도를 클릭해주세요!</em></p> 
+	                    <p>모임할 장소를 지도에<em> 클릭</em> 해주세요</p> 
 	                    <div id="map" style="width:100%;height:350px;"></div>
 	                    <div id="clickLatlng"></div>
-	                    <%--latitude와 longitude값을 db에 저장하고 불러오면 됩니다. --%>
+	                
 	                    <input type="hidden" id="latitude" name="latitude">
-                        <input type="hidden" id="longitude" name="longitude ">
+                        <input type="hidden" id="longitude" name="longitude">
                         
                     </div>
                         
 					<div class="d-grid gap-2 " style="float: right;">
-						<button class="btn btn-dark" type="button">취소</button>
+						<button class="btn btn-dark">
+						<a href="<%=request.getContextPath()%>/studymenu/studyWriteForm">취소 </a>
+						</button>
 						<button class="btn btn-dark" type="submit">저장</button>
 					</div>
 				</form>
@@ -139,6 +140,7 @@ body {
 	</script>
 	
 	<%--지도 관련 스크립트 --%>
+	
 	<script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = { 
@@ -167,15 +169,17 @@ body {
 	marker.setPosition(latlng);
 	    
 	var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-	    message += '경도는 ' + latlng.getLng() + ' 입니다';
+	    message += '경도는 ' + latlng.getLng() + ' 입니다'; 
+	   // 제거시 데이터 안들어감
 	    
 	var resultDiv = document.getElementById('clickLatlng'); 
 	    resultDiv.innerHTML = message;
 	    
-	var latitude = document.getElementById('latitude'); 
+ 	var latitude = document.getElementById('latitude'); 
 	var longitude = document.getElementById('longitude'); 
 	    latitude.value = latlng.getLat();
 	    longitude.value =  latlng.getLng();
+	    
 	});
 </script>
 

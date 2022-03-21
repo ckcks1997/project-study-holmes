@@ -13,6 +13,7 @@ import model.Community;
 import model.Search;
 import model.StudyMenu;
 import service.CommunityBoardDao;
+import service.GroupMemberDao;
 import service.StudyMenuDao;
 
 //WebServlet("/studymenu/*")
@@ -21,6 +22,7 @@ public class StudyMenuController extends MskimRequestMapping{
 	@RequestMapping("studyMenuList")
 	public String studymenu(HttpServletRequest request, 
 			HttpServletResponse response) {
+
 	HttpSession session = request.getSession();
 	
 	String menuid = "";
@@ -111,7 +113,7 @@ public class StudyMenuController extends MskimRequestMapping{
 	public String writePro(HttpServletRequest request, 
 			HttpServletResponse response) {
 		
-		 try {
+		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
@@ -128,8 +130,9 @@ public class StudyMenuController extends MskimRequestMapping{
 	int pernum = Integer.parseInt(request.getParameter("pernum"));	
 	studymenu.setPernum(pernum);
 	studymenu.setContent(request.getParameter("content"));
-	
-	
+	studymenu.setLatitude(request.getParameter("latitude"));
+	studymenu.setLongitude(request.getParameter("longitude"));
+		 	
 	String menuid = (String) request.getSession().getAttribute("menuid");
 	if (menuid==null) menuid = "1";
 	studymenu.setMenuid(menuid);
@@ -138,6 +141,13 @@ public class StudyMenuController extends MskimRequestMapping{
 	studymenu.setBoard_num(sm.menuNextNum());	
 	
 	int num = sm.insertMenu(studymenu);
+	System.out.println("============================");
+	System.out.println(num);
+	
+	//group insert
+	GroupMemberDao gm = new GroupMemberDao();
+	System.out.println(studymenu);
+	gm.groupInsert(studymenu, 1);
 	
 	String msg="게시물 등록 실패";
 	String url=request.getContextPath()+"/studymenu/studyWriteForm";

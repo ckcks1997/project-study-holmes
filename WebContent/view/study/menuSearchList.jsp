@@ -237,7 +237,7 @@ a {
 				
 				</c:if>
 				
-				<c:if test="${list !=null }">				
+							
 				<c:forEach var="s" items="${list}">
 					<div class="study-box ">
 						<a href="<%=request.getContextPath()%>/studymenu/studyMenuInfo?board_num=${s.board_num}">											
@@ -261,7 +261,7 @@ a {
 						  </a>
 					   </div>
 					</c:forEach>	
-					</c:if>
+					
 				
 				</div>
 <!-- --------------------------------------------------------------페이지 번호------------------------------------------------------------ -->
