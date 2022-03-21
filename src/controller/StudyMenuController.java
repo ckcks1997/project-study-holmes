@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Community;
+
 import model.Search;
 import model.StudyMenu;
-import service.CommunityBoardDao;
+
 import service.GroupMemberDao;
 import service.StudyMenuDao;
 

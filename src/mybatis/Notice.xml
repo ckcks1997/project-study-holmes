@@ -5,22 +5,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="notice">
 
-  <select id="noticeNew" parameterType="String" resultType="int">
-    select count(*) from notice where nickname_to = #{id} and isread = 0
- </select>
- 
- <select id="noticeGet" parameterType="String" resultType="notice">
- <!-- 가장 최근알림 5개만 가져오는 쿼리..ㅠ -->
-    select b.notice_num , b.nickname_to , b.nickname_from , 
-    b.info , b.info2 , b.isread , b.regdate  from (
-    select ROWNUM, a.* from
-       (select * from notice
-       where nickname_to = #{id}
-       order by regdate DESC) a where ROWNUM <![CDATA[<]]> 6) b
- </select>
-  
- <update id="noticeRead" parameterType="String">
-    update notice set isread = 1 where nickname_to = #{id}
- </update>
+	<select id="noticeNew" parameterType="String" resultType="int">
+		select count(*) from notice where nickname_to = #{id} and isread = 0
+	</select>
+
+	<select id="noticeGet" parameterType="String"
+		resultType="notice">
+		<!-- 가장 최근알림 5개만 가져오는 쿼리..ㅠ -->
+		select b.notice_num , b.nickname_to , b.nickname_from ,
+		b.info , b.info2 , b.isread , b.regdate from (
+		select ROWNUM, a.* from
+		(select * from notice
+		where nickname_to = #{id}
+		order by regdate DESC) a where ROWNUM <![CDATA[<]]>
+		6) b
+	</select>
+
+	<update id="noticeRead" parameterType="String">
+		update notice set isread = 1 where nickname_to = #{id}
+	</update>
+
+	<insert id="noticeWrite" parameterType="map">
+        insert into notice 
+        values(notice_seq.nextval, #{to}, #{from}, null, #{boardid}, 0, sysdate )
+	</insert>
 
 </mapper>

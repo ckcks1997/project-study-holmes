@@ -123,37 +123,42 @@ body {
 				</div>
 
 
-				
+
 				<br />
 				<p>${com.content}</p>
 				<br /> <br /> <br />
 
 
-				<!-- ------------------댓글 ------------------------------------------------------------------------ -->
+<!-- ------------------댓글 ------------------------------------------------------------------------ -->
 				<div>
 					<h5 style="font-weight: bold">댓글 2</h5>
 					<hr style="border: 0.5px thick 333b3d" />
-					<p>수험생 · 4일 전</p>
-					<p>혹시 어떻게 준비하고 계신가요?</p>
-
-					<hr style="border: 0.5px thick 333b3d" />
-					<p>동작구 · 일주일 전</p>
-					<p>저도 면접 준비중인데 ... 같이 하실래요..?</p>
-					<hr style="border: 0.5px solid 333b3d" />
-
-					<form class="form-group" name="ccf" action="<%=request.getContextPath()%>/reply/writeReply">
-						<div class="row">
-							<div class="col-xs-12 col-sm-11 col-md-10">
-							<input type = "hidden" name= "board_num" value = "${com.board_num}">
-								<textarea class="form-control" name="content"
-									placeholder="댓글을 달아주세요" id = "content"></textarea>
-							</div>
-							<div class="col-xs-12 col-sm-1 col-md-2">
-								<input type="submit" class="btn btn-danger" value= "등록">
-							</div>
+					<div id = "replyList">
+					<c:if test ="${replyList != null }">
+						<c:forEach var="reply" items="${replyList}">
+							<p>${reply.nickname} · ${reply.regdate}</p>
+							<p>${reply.content}</p>
+							<hr style="border: 0.5px solid 333b3d" />
+						</c:forEach>
+					</c:if>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-11 col-md-10">
+							<form name = "rf" enctype="multipart/form-data" action = "<%=request.getContextPath()%>/reply/writeReply" method="post">
+								
+								<input type="hidden" id = "board_num" name="board_num" value="${com.board_num}">
+								<input type="hidden" name="reply_nickname" value="${sessionScope.memberNickname}">
+								
+								<textarea rows="5" cols="80" name="reply_content"
+									placeholder="댓글을 달아주세요" id="reply_content"></textarea>
+								<div class="col-xs-12 col-sm-1 col-md-2">
+									<input type="submit" class="btn btn-danger" value = "등록"/>
+								</div>
+							</form>
 						</div>
+					</div>
+					
 
-					</form>
 					<button type="button" class="btn btn-dark mt-3"
 						onclick="location.href ='comBoardList'">목록으로</button>
 					<button type="button" class="btn btn-dark mt-3">신고</button>
@@ -162,7 +167,15 @@ body {
 						<button type="button" data-toggle="modal"
 							data-target="#deleteModal" class="btn btn-danger mt-3">삭제</button>
 					</c:if>
+				
+			</div>
+		</div>
+	</div>
+</div>
 
+	<br>
+	<br>
+	
 					<!-------------- 게시글 삭제 모달창 --------------------------------------------------------------------------------------------------------------------------------->
 
 					<div class="modal fade" id="deleteModal" aria-hidden="true"
@@ -200,13 +213,7 @@ body {
 
 
 
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<br>
-	<br>
+			
 
 
 </body>
