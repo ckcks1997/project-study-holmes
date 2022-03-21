@@ -56,7 +56,8 @@ a {
 .footer-content {
 	padding-top: 50px;
 }
- 
+
+
 /* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */
 .search {
 	display: inline-block;
@@ -155,7 +156,7 @@ a {
 		<div class="row pt-5">
 		
 <!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->	
-		 <%--aside부분 --%>
+			<%--aside부분 --%>
                 <%@include file="/common/study_menu.jsp" %>
 			
 <!-- --------------------------------------------------------------메인------------------------------------------------------------ -->		
@@ -229,12 +230,10 @@ a {
 				<div class="container d-flex align-content-between flex-wrap">
 				
 				<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
-				
-				<p>작성된 글이 없습니다.</p>
-				
-				</c:if>
-				
-							
+				<p>작성된 글이 없습니다.</p>				
+				</c:if>	
+												
+				<c:if test="${list !=null }">				
 				<c:forEach var="s" items="${list}">
 					<div class="study-box ">
 						<a href="<%=request.getContextPath()%>/studymenu/studyMenuInfo?board_num=${s.board_num}">											
@@ -258,7 +257,7 @@ a {
 						  </a>
 					   </div>
 					</c:forEach>	
-					
+					</c:if>
 				
 				</div>
 <!-- --------------------------------------------------------------페이지 번호------------------------------------------------------------ -->
@@ -269,15 +268,15 @@ a {
 					
 					<li 
 						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">Previous</a></li>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyAllList?pageNum=${startPage - bottomLine}">Previous</a></li>
 						
 					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
 						<li class='page-item <c:if test = "${i == pageInt}" >  active </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${i}">${i}</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyAllList?pageNum=${i}">${i}</a></li>
 					
 					</c:forEach>
 						<li class='page-item <c:if test = "${endPage >= maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">Next</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyAllList?pageNum=${startPage + bottomLine}">Next</a></li>
 					</ul>
 				</nav>
 

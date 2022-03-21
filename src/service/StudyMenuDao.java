@@ -36,6 +36,22 @@ public class StudyMenuDao {
 		}
 		return 0;
 	}
+	
+	public int menuAllCount() {
+
+		SqlSession sqlSession = MybatisConnection.getConnection();
+
+		try {
+			return sqlSession.selectOne(NS + "menuAllCount");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			MybatisConnection.close(sqlSession);
+		}
+		return 0;
+	}
 
 	
 	public List<StudyMenu> menuList(int pageInt, int limit, int menucount, String menuid) {
@@ -132,16 +148,27 @@ public class StudyMenuDao {
 			return null;
 		  
 	  }
-	  
-		/*
-		 * public List<StudyMenu> allList() {
-		 * 
-		 * SqlSession sqlSession = MybatisConnection.getConnection();
-		 * 
-		 * try { return sqlSession.selectList(NS + "allList"); } catch (Exception e) {
-		 * e.printStackTrace(); } finally { MybatisConnection.close(sqlSession); }
-		 * 
-		 * return null; }
-		 */
 	 
+	 public List<StudyMenu> allList(int pageInt, int limit, int menuAllCount, String menuid) {
+
+			SqlSession sqlSession = MybatisConnection.getConnection();
+
+			try {
+				map.clear();
+				map.put("menuid", menuid);
+				map.put("start", (pageInt - 1) * limit + 1);
+				map.put("end", pageInt * limit);
+
+				return sqlSession.selectList(NS + "allList", map);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+
+				MybatisConnection.close(sqlSession);
+			}
+			return null;
+		}
 }
+
+		 	

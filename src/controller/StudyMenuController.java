@@ -36,9 +36,10 @@ public class StudyMenuController extends MskimRequestMapping{
 	
 	menuid = (String) session.getAttribute("menuid");
 	
-	if (menuid==null) {
-		menuid = "1";
-	}
+	if (menuid==null) { 
+		menuid = "1"; 
+		}
+	 
 	
 	if (request.getParameter("pageNum") !=null) {
 		session.setAttribute("pageNum", request.getParameter("pageNum"));
@@ -46,17 +47,15 @@ public class StudyMenuController extends MskimRequestMapping{
 	
 	String pageNum = (String) session.getAttribute("pageNum");
 	
-	if (pageNum==null) {
-		pageNum = "1";
-	}
 	
+
 	pageInt = Integer.parseInt(pageNum);
 	
 	StudyMenuDao sd = new StudyMenuDao();
 	int menucount = sd.menuCount(menuid);
 	
 	List<StudyMenu> list = sd.menuList(pageInt, limit, menucount, menuid);
-	 
+	
 	int menunum = menucount - (pageInt -1) * limit;
 	
 	int bottomLine = 3;
@@ -65,7 +64,7 @@ public class StudyMenuController extends MskimRequestMapping{
 	int maxPage = (menucount / limit) + (menucount % limit == 0 ? 0 : 1);
 	if (endPage > maxPage) endPage = maxPage;
 	
-	String menuName = "전체 스터디";
+	String menuName = "";
 	switch (menuid) {
 	case "2": menuName="개발/프로그래밍"; break;
 	case "3": menuName="보안/네트워크"; break;
@@ -89,6 +88,72 @@ public class StudyMenuController extends MskimRequestMapping{
 	
 	return "/view/study/studyMenuList.jsp";
 	}
+	
+	
+	@RequestMapping("studyAllList")
+	public String studyAllList(HttpServletRequest request, 
+			HttpServletResponse response) {
+
+	HttpSession session = request.getSession();
+	
+	String menuid = "";
+	int pageInt = 1;
+	int limit = 9;
+	
+	if (request.getParameter("menuid") !=null) {
+		session.setAttribute("menuid", request.getParameter("menuid"));
+		session.setAttribute("pageNum", "1");
+	}
+	
+	menuid = (String) session.getAttribute("menuid");
+	
+	if (menuid==null) { 
+		menuid = "1"; 
+		}
+	 
+	
+	if (request.getParameter("pageNum") !=null) {
+		session.setAttribute("pageNum", request.getParameter("pageNum"));
+	}
+	
+	String pageNum = (String) session.getAttribute("pageNum");
+	
+	if (pageNum==null) {
+		pageNum = "1";
+	}
+
+	pageInt = Integer.parseInt(pageNum);
+	
+	StudyMenuDao sd = new StudyMenuDao();
+	int menuAllCount = sd.menuAllCount();
+	
+	List<StudyMenu> list = sd.allList(pageInt, limit, menuAllCount, menuid);
+	
+	int menunum = menuAllCount - (pageInt -1) * limit;
+	
+	int bottomLine = 3;
+	int startPage = (pageInt -1 )/ bottomLine * bottomLine + 1;
+	int endPage = startPage + bottomLine -1;
+	int maxPage = (menuAllCount / limit) + (menuAllCount % limit == 0 ? 0 : 1);
+	if (endPage > maxPage) endPage = maxPage;
+	
+	String menuName = "전체 스터디";
+	
+	request.setAttribute("menuName", menuName);
+	request.setAttribute("menuid", menuid);
+	request.setAttribute("pageInt", pageInt);
+	request.setAttribute("menuAllCount", menuAllCount);
+	request.setAttribute("list", list);
+	request.setAttribute("menunum", menunum);
+	request.setAttribute("startPage", startPage);
+	request.setAttribute("bottomLine", bottomLine);
+	request.setAttribute("endPage", endPage);
+	request.setAttribute("maxPage", maxPage);
+	
+	
+	return "/view/study/studyAllList.jsp";
+	}
+	
 	
 	
 	@RequestMapping("studyWriteForm")
@@ -127,7 +192,7 @@ public class StudyMenuController extends MskimRequestMapping{
 	studymenu.setRegion(request.getParameter("region"));
 	studymenu.setPrice(request.getParameter("price"));
 	studymenu.setNickname((String)request.getSession().getAttribute("memberNickname"));
-	int pernum = Integer.parseInt(request.getParameter("pernum"));	
+	int pernum = Integer.parseInt(request.getParameter("pernum"));
 	studymenu.setPernum(pernum);
 	studymenu.setContent(request.getParameter("content"));
 	studymenu.setLatitude(request.getParameter("latitude"));
@@ -140,14 +205,12 @@ public class StudyMenuController extends MskimRequestMapping{
 	StudyMenuDao sm = new StudyMenuDao();
 	studymenu.setBoard_num(sm.menuNextNum());	
 	
-	int num = sm.insertMenu(studymenu);
-	System.out.println("============================");
-	System.out.println(num);
-	
 	//group insert
 	GroupMemberDao gm = new GroupMemberDao();
 	System.out.println(studymenu);
 	gm.groupInsert(studymenu, 1);
+	
+	int num = sm.insertMenu(studymenu);	
 	
 	String msg="게시물 등록 실패";
 	String url=request.getContextPath()+"/studymenu/studyWriteForm";

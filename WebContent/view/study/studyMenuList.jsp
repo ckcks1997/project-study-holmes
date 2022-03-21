@@ -3,9 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-List<StudyMenu> list = (List<StudyMenu>)request.getAttribute("list");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -233,11 +230,9 @@ a {
 				<div class="container d-flex align-content-between flex-wrap">
 				
 				<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
-				
-				<p>작성된 글이 없습니다.</p>
-				
-				</c:if>			
-				
+				<p>작성된 글이 없습니다.</p>				
+				</c:if>	
+												
 				<c:if test="${list !=null }">				
 				<c:forEach var="s" items="${list}">
 					<div class="study-box ">
