@@ -19,9 +19,12 @@ import com.oreilly.servlet.MultipartRequest;
 
 import model.Community;
 import model.Reply;
+import model.Search;
 import model.StudyMember;
+import model.StudyMenu;
 import service.CommunityBoardDao;
 import service.StudyMemberDao;
+import service.StudyMenuDao;
  
 
 
@@ -286,6 +289,103 @@ public class CommunityController extends MskimRequestMapping{
   }
   
   
+  //검색
+  @RequestMapping("comSearch")
+	public String comSearch(HttpServletRequest request, 
+			HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		String part = "";// 검색항목
+		String  searchData = ""; //검색입력데이터
+		
+		
+		//페이징//
+		HttpSession session = request.getSession();
+		  String boardid = "";
+		  
+		  
+		  
+		  int pageInt = 1;
+		  int limit = 4;
+		  
+		  if(request.getParameter("boardid")!= null) {
+			  session.setAttribute("boardid", request.getParameter("boardid"));
+			  session.setAttribute("pageNum", "1");		  
+		  }
+		  
+		  boardid = (String)session.getAttribute("boardid");
+		  if(boardid == null) {
+			  boardid ="1";
+		  }
+		  
+		  if (request.getParameter("pageNum")!=null) {
+			  session.setAttribute("pageNum", request.getParameter("pageNum"));
+		  }
+		  
+		  String pageNum =(String)session.getAttribute("pageNum");
+		  if(pageNum == null) {
+			  pageNum = "1";
+		  }
+		  
+		  pageInt = Integer.parseInt(pageNum);
+		  
+		  CommunityBoardDao cbd = new CommunityBoardDao();
+		  int boardcount = cbd.comSearchCount(boardid,part,searchData);
+		  List<Community> list = cbd.comSearchList(pageInt, limit, boardcount, boardid);
+		  int boardnum = boardcount - limit * (pageInt-1);
+		  int bottomLine = 3;
+		  int startPage = (pageInt-1)/bottomLine * bottomLine + 1;
+		  int endPage = startPage + bottomLine -1;
+		  int maxPage = (boardcount/limit)+(boardcount % limit==0? 0:1);
+		  if(endPage > maxPage) endPage = maxPage;
+		  
+		  String boardName = "질문 & 답변";
+		  switch(boardid) {
+		  case "5" : boardName = "블로그"; break;
+		  case "4" : boardName = "공지사항"; break;
+		  case "3" : boardName = "정보공유"; break;
+		  case "2" : boardName = "자유"; break;
+		
+		  }
+		   request.setAttribute("boardName",boardName);
+		   request.setAttribute("pageInt",pageInt);
+		   request.setAttribute("boardid",boardid);
+		   request.setAttribute("boardcount",boardcount);
+		   request.setAttribute("list",list);
+		   request.setAttribute("boardnum",boardnum);
+		   request.setAttribute("startPage",startPage);
+		   request.setAttribute("bottomLine", bottomLine);
+		   request.setAttribute("endPage",endPage);
+		   request.setAttribute("maxPage",maxPage);
+		   
+		 
+		   //검색
+			 part = request.getParameter("part");
+			 searchData = request.getParameter("searchData");
+			boardid = request.getParameter("boardid");
+			//Search sh = new Search();
+			//sh.setPart(part);
+			//sh.setSearchData("%" + searchData + "%");
+			
+			cbd = new CommunityBoardDao();
+			List<Community> searchList = cbd.comSearch(part,searchData,boardid);
+			request.setAttribute("searchList", searchList);
+			
+		   
+		
+		
+		
+		return "/view/community/comSearchList.jsp";
+	  
+
+  }
  
   
   
