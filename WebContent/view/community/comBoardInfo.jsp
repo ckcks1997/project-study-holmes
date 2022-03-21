@@ -151,10 +151,10 @@ body {
 								
 								<textarea rows="5" cols="80" name="reply_content"
 									placeholder="댓글을 달아주세요" id="reply_content"></textarea>
+								<div class="col-xs-12 col-sm-1 col-md-2">
+									<input type="submit" class="btn btn-danger" value = "등록"/>
+								</div>
 							</form>
-						</div>
-						<div class="col-xs-12 col-sm-1 col-md-2">
-							<input type="submit" class="btn btn-danger" value = "등록"/>
 						</div>
 					</div>
 					
