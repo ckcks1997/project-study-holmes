@@ -33,19 +33,22 @@ create table MEMBER_TAG
 )
 
 ---
----alert (알림)테이블
-create sequence alert_seq;
+---NOTICE (알림)테이블
+create sequence NOTICE_SEQ;
 
-create table notice(
-    alert_num number primary key,
-    nickname_to varchar2(30) not null,
-    nickname_from varchar2(30) not null,
-    info varchar2(1000) not null,
-    isread number,
-    regdate date
-);
+CREATE TABLE NOTICE(
+    NOTICE_NUM    NUMBER         NOT NULL
+        PRIMARY KEY,
+    NICKNAME_TO   VARCHAR2(30)   NOT NULL,
+    NICKNAME_FROM VARCHAR2(30)   NOT NULL,
+    INFO          VARCHAR2(1000) NOT NULL,
+    INFO2         VARCHAR2(200),
+    ISREAD        NUMBER,
+    REGDATE       DATE
+)
 
-insert into notice values (alert_seq.nextval, 'qqq', '11111', 'test123한글', 0, sysdate);
+
+insert into notice values (NOTICE_SEQ.nextval, 'aaa', 'qqq', 'test123한글',null, 0, sysdate)
 
 --- community 테이블 
 drop table community;
@@ -98,10 +101,19 @@ create table reply (
 create sequence reply_seq;
 
  
------join table
---전체인원(최대)
---study (numnumber)
---email (회원)
+-----group table
+
+drop table GROUP_MEMBER;
+
+create table GROUP_MEMBER
+(
+    GROUP_NUMBER NUMBER       not null
+        primary key,
+    BOARDNUM     NUMBER,
+    REPRESENT     NUMBER,
+    NICKNAME     VARCHAR2(30) not null,
+    REGDATE      DATE
+)
 
 --채팅 테이블
 --numnumber(스터디넘버)

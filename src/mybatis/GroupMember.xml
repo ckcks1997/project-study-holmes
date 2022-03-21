@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groupmember">
+
+<select id = "groupCount"  parameterType = "String">
+    select count(*) from group_member where board_num = #{boardnum}     
+</select> 
+
+<insert id = "groupInsert"  parameterType = "map">
+	insert into group_member values(group_member_seq.nextval, #{board_num}, #{represent}, #{nickname}, sysdate)
+</insert> 
+  
+
+</mapper>

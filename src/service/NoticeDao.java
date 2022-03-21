@@ -38,6 +38,18 @@ public class NoticeDao {
            } 
            return null;
      }
+	   
+	   public int noticeRead(String id) {
+	     SqlSession sqlSession = MybatisConnection.getConnection();
+         try {
+         return sqlSession.update(NS+"noticeRead", id);
+         } catch (Exception e) {
+             e.printStackTrace();
+         } finally {
+             MybatisConnection.close(sqlSession);
+         } 
+         return 0;
+	   }
 	  
  
 	  
