@@ -262,10 +262,31 @@ a {
 				</div>
 <!-- --------------------------------------------------------------페이지 번호------------------------------------------------------------ -->
 				<br> <br>
+				
+	  			<!-- 전체스터디페이징 -->
+				<c:if test="${menuid eq 1 }">
+				<nav class="container">
+					<ul class="pagination justify-content-center">				
+					<li 
+						class='page-item <c:if test="${a_startPage <= a_bottomLine}"> disabled </c:if>'>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">Previous</a></li>
+						
+					<c:forEach var="i" begin="${ a_startPage }" end="${a_endPage}">
+						<li class='page-item <c:if test = "${i == pageInt}" >  active </c:if>'>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${i}">${i}</a></li>
+					
+					</c:forEach>
+						<li class='page-item <c:if test = "${a_endPage >= a_maxPage}"> disabled </c:if>'>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">Next</a></li>
+					</ul>
+				</nav>
+				</c:if>
+				
+				<!-- 나머지페이징 -->
+				<c:if test="${menuid != 1}">
 				<nav class="container">
 					<ul class="pagination justify-content-center">
-					
-					
+										
 					<li 
 						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
 						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">Previous</a></li>
@@ -279,7 +300,8 @@ a {
 						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">Next</a></li>
 					</ul>
 				</nav>
-
+				</c:if>
+				
 			</div>
 		</div>
 	</div>

@@ -88,7 +88,7 @@
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 스터디 </a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">온라인</a> <a class="dropdown-item" href="<%=request.getContextPath()%>/studymenu/studyAllList">오프라인</a> <a class="dropdown-item" href="#">온오프라인</a>
+							<a class="dropdown-item" href="#">온라인</a> <a class="dropdown-item" href="<%=request.getContextPath()%>/studymenu/studyMenuList">오프라인</a> <a class="dropdown-item" href="#">온오프라인</a>
 						</div></li>
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 커뮤니티 </a>
 						<div class="dropdown-menu">

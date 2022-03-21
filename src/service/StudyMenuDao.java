@@ -134,6 +134,8 @@ public class StudyMenuDao {
 
 	}
 	
+	
+	
 	 public StudyMenu menuBoardOne(int board_num) {
 		 
 		  SqlSession sqlSession = MybatisConnection.getConnection();
@@ -169,6 +171,24 @@ public class StudyMenuDao {
 			}
 			return null;
 		}
+	 
+	 public int searchCount(String menuid) {
+
+			SqlSession sqlSession = MybatisConnection.getConnection();
+
+			try {
+				return sqlSession.selectOne(NS + "searchCount", menuid);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+
+				MybatisConnection.close(sqlSession);
+			}
+			return 0;
+		}
+	 
+	 
 }
 
 		 	
