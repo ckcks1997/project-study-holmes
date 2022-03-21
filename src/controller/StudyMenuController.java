@@ -269,5 +269,31 @@ public class StudyMenuController extends MskimRequestMapping{
 		  
 		  return "/view/study/studyMenuInfo.jsp";
 	  }			
+	 
+	 // 스터디 참가신청 버튼을 누를 때
+	  @RequestMapping("studyIn")
+	  public String studyIn(HttpServletRequest request, HttpServletResponse response) {
+	    try {
+	      request.setCharacterEncoding("utf-8");
+	    } catch (UnsupportedEncodingException e) {
+	      e.printStackTrace();
+	    }
+	    int board_num = Integer.parseInt(request.getParameter("board_num"));
+	    String nickname_from = (String) request.getParameter("f_nickname");
+	    String nickname_to = (String) request.getParameter("t_nickname");
+
+	    System.out.println(nickname_to);
+	    NoticeDao nd = new NoticeDao();
+	    nd.noticeWrite(board_num, nickname_from, nickname_to);
+
+	    String msg = "참가 요청이 전송되었습니다";
+	    String url = request.getContextPath()+"/studymenu/studyMenuList";
+
+	    request.setAttribute("msg", msg);
+	    request.setAttribute("url", url);
+	    
+	    
+	    return "/view/alert.jsp";
+	  }
 
 }
