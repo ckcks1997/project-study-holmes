@@ -86,6 +86,16 @@
         <url-pattern>/reply/*</url-pattern>
     </servlet-mapping>
     
+       <servlet>
+        <servlet-name>GroupStudyController</servlet-name>
+        <servlet-class>controller.GroupStudyController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GroupStudyController</servlet-name>
+        <url-pattern>/group/*</url-pattern>
+    </servlet-mapping>
+    
      
     <servlet>
         <servlet-name>LikesController</servlet-name>
@@ -96,5 +106,6 @@
         <servlet-name>LikesController</servlet-name>
         <url-pattern>/likes/*</url-pattern>
     </servlet-mapping>
+ 
 
 </web-app>

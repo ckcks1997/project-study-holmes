@@ -118,31 +118,14 @@
 								</c:when>
 								<%--/*로그인 된 경우 */--%>
 								<c:otherwise>
-								<c:if test="${noticeCount !=0}">
-									<li class="nav-item ">
-										<a tabindex="0"  
-										data-placement="bottom"  
-										data-toggle="popover" 
-										data-trigger="hover" 
-										title="최근 알림" 
-										data-content="${notice[0].info}" 
-										role="button" 
-										class="nav-link"
-										href="<%=request.getContextPath() %>/studymember/notice"
-										 >
-											<i class="fa-solid fa-bell"></i>  
-											<span class="badge badge-success"> ${noticeCount } </span>
-										</a>
-									</li>
-								</c:if>
-								<c:if test="${noticeCount ==0}">
+								
 								    <li class="nav-item ">
 									    <a class="nav-link" href="<%=request.getContextPath()%>/studymember/notice">
-									       <i class="fa-solid fa-bell"></i>
+									       <i class="fa-solid fa-bell"></i><span class="badge badge-success" id="badgeNum"> ${noticeCount } </span>
 									    </a>
 								    </li>
-								</c:if>
-	                                <li class="nav-item mr-2"><a class="nav-link" href="#"> <i class="fa-solid fa-comments"></i></a></li>
+								
+	                                <li class="nav-item mr-2"><a class="nav-link" href="<%=request.getContextPath()%>/group/studylist"> <i class="fa-solid fa-comments"></i></a></li>
 									<div class="dropdown">
 										<button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${memberNickname} 님</button>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -170,6 +153,27 @@
 	$('.popover-dismiss').popover({
 		  trigger: 'focus'
 		})
+		
+	function check(){
+	  $.ajax({
+		  type:"POST",
+		  url:"<%=request.getContextPath()%>/board/notice" ,
+		  contentType: "text",
+		  data:"memberNickname="+'${memberNickname}' ,
+		  success:function(result){
+			  let res = result.trim();
+		        document.querySelector('#badgeNum').innerHTML = res;
+		       
+		  },
+		  error: function(request, status, error){
+		      console.log(status)
+		  }
+	 });
+	
+	}
+
+check();
+ 
 	</script>
 </body>
 </html>
