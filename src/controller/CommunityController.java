@@ -338,7 +338,7 @@ public class CommunityController extends MskimRequestMapping{
 		  
 		  CommunityBoardDao cbd = new CommunityBoardDao();
 		  int boardcount = cbd.comSearchCount(boardid,part,searchData);
-		  List<Community> list = cbd.comSearchList(pageInt, limit, boardcount, boardid);
+		  List<Community> list = cbd.comSearchList(pageInt, limit, boardcount, boardid, part,searchData);
 		  int boardnum = boardcount - limit * (pageInt-1);
 		  int bottomLine = 3;
 		  int startPage = (pageInt-1)/bottomLine * bottomLine + 1;
