@@ -172,7 +172,7 @@ body {
 						<li
 							class='page-item <c:if test = "${i==pageInt}" > active </c:if> '>
 							<a class="page-link"
-							href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${i}">${i}</a>
+							href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${i}&searchData=${searchData}&part=${part}">${i}</a>
 						</li>
 					</c:forEach>
 					<li

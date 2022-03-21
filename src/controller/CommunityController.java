@@ -312,13 +312,10 @@ public class CommunityController extends MskimRequestMapping{
 			//Search sh = new Search();
 			//sh.setPart(part);
 			//sh.setSearchData("%" + searchData + "%");
-			System.out.println(part);
-			System.out.println(boardid);
-			System.out.println(searchData);
 			CommunityBoardDao cbd = new CommunityBoardDao();
 			cbd.comSearch(part,searchData,boardid);
 			
-			return "/view/community/comSearchList.jsp";
+			return "/community/comSearchList";
 
   }
  
@@ -330,12 +327,13 @@ public class CommunityController extends MskimRequestMapping{
 	  String boardid = "";
 	  int pageInt = 1;
 	  int limit = 4;
-	  String part = request.getParameter("part");
-	  String searchData = request.getParameter("searchData");
+	  String part = request.getParameter("part"); //요청받은 검색분야 
+	  String searchData = request.getParameter("searchData"); // 요청받은 검색어
 	  
-	  if(request.getParameter("boardid")!= null) {
-		  session.setAttribute("boardid", request.getParameter("boardid"));
-		  session.setAttribute("pageNum", "1");		  
+	  
+	  if(request.getParameter("boardid")!= null) { //게시판번호 있으면
+		  session.setAttribute("boardid", request.getParameter("boardid")); //세션에 게시판 번호 셋팅
+		  session.setAttribute("pageNum", "1");	// 세션에 페이지번호 셋팅 
 	  }
 	  
 	  boardid = (String)session.getAttribute("boardid");
@@ -353,6 +351,8 @@ public class CommunityController extends MskimRequestMapping{
 	  }
 	  
 	  pageInt = Integer.parseInt(pageNum);
+	  request.setAttribute("part",part);
+	   request.setAttribute("searchData",searchData);
 	  
 	  CommunityBoardDao cbd = new CommunityBoardDao();
 	  int boardcount = cbd.comSearchCount(boardid,part,searchData);
@@ -382,9 +382,7 @@ public class CommunityController extends MskimRequestMapping{
 	   request.setAttribute("bottomLine", bottomLine);
 	   request.setAttribute("endPage",endPage);
 	   request.setAttribute("maxPage",maxPage);
-	   
-	   
-	  
+
 	  
    return "/view/community/comSearchList.jsp";
  }
