@@ -85,5 +85,16 @@
         <servlet-name>ReplyController</servlet-name>
         <url-pattern>/reply/*</url-pattern>
     </servlet-mapping>
+    
+     
+    <servlet>
+        <servlet-name>LikesController</servlet-name>
+        <servlet-class>controller.LikesController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LikesController</servlet-name>
+        <url-pattern>/likes/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>

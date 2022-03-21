@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <typeAlias type="model.Attend" alias = "attend" />
         
          <typeAlias type="model.Reply" alias = "Reply" />
+          <typeAlias type="model.Likes" alias = "Likes" />
 
 	</typeAliases>
 	<environments default="development">
@@ -44,6 +45,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <mapper resource ="mybatis/Attend.xml" />
         
         <mapper resource = "mybatis/Reply.xml"/>
+        
+         <mapper resource = "mybatis/Likes.xml"/>
      </mappers>
 
 </configuration>
