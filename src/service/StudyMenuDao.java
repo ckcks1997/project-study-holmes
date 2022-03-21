@@ -78,7 +78,6 @@ public class StudyMenuDao {
 
 	}
 
-	/* 게시물추가 */
 	public int insertMenu(StudyMenu studymenu) {
 
 		SqlSession sqlSession = MybatisConnection.getConnection();
@@ -99,7 +98,7 @@ public class StudyMenuDao {
 	}
 	
 	
-	/* 검색 */
+	
 	public List<StudyMenu> studySearch(Search sh) {
 
 		SqlSession sqlSession = MybatisConnection.getConnection();

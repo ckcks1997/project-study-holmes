@@ -133,8 +133,9 @@ public class StudyMenuController extends MskimRequestMapping{
 	int pernum = Integer.parseInt(request.getParameter("pernum"));	
 	studymenu.setPernum(pernum);
 	studymenu.setContent(request.getParameter("content"));
-	
-	
+	studymenu.setLatitude(request.getParameter("latitude"));
+	studymenu.setLongitude(request.getParameter("longitude"));
+		 	
 	String menuid = (String) request.getSession().getAttribute("menuid");
 	if (menuid==null) menuid = "1";
 	studymenu.setMenuid(menuid);
@@ -143,6 +144,8 @@ public class StudyMenuController extends MskimRequestMapping{
 	studymenu.setBoard_num(sm.menuNextNum());	
 	
 	int num = sm.insertMenu(studymenu);
+	System.out.println("============================");
+	System.out.println(num);
 	
 	String msg="게시물 등록 실패";
 	String url=request.getContextPath()+"/studymenu/studyWriteForm";

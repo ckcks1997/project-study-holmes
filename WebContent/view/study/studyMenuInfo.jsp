@@ -3,11 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+<%--지도 api --%>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5372162b2eb56a4c9831bbd9732f6a3"></script>
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
- 
 .s-round {
 	display: inline-block;
 	border-radius: 20px;
@@ -27,7 +30,8 @@
 <body>
 	<div class="container-fluid p-0 my-0 bg-dark text-white">
 		<div class="container">
-			<input type="hidden" id="board_num" name="board_num" value="${s.board_num}"> 
+			<input type="hidden" id="board_num" name="board_num"
+				value="${s.board_num}">
 
 <!-- --------------------------------------------------------------정보배너------------------------------------------------------------ -->
 			<div style="float: left; margin: 20px">
@@ -38,15 +42,14 @@
 			<div>
 				<br>
 				<h6>
-					<small><span class="best">BEST</span>
-					<c:if test="${s.menuid =='1'}"> 전체스터디</c:if>
-					<c:if test="${s.menuid =='2'}"> 개발/프로그맹</c:if>
-					<c:if test="${s.menuid =='3'}"> 보안/네트워크</c:if>
-					<c:if test="${s.menuid =='4'}"> 크리에이티브</c:if>
-					<c:if test="${s.menuid =='5'}"> 직무/마케팅</c:if>
-					<c:if test="${s.menuid =='6'}"> 학문/외국어</c:if>
-					<c:if test="${s.menuid =='7'}"> 교양</c:if>
-				    </small>
+					<small><span class="best">BEST</span> <c:if
+							test="${s.menuid =='1'}"> 전체스터디</c:if> <c:if
+							test="${s.menuid =='2'}"> 개발/프로그맹</c:if> <c:if
+							test="${s.menuid =='3'}"> 보안/네트워크</c:if> <c:if
+							test="${s.menuid =='4'}"> 크리에이티브</c:if> <c:if
+							test="${s.menuid =='5'}"> 직무/마케팅</c:if> <c:if
+							test="${s.menuid =='6'}"> 학문/외국어</c:if> <c:if
+							test="${s.menuid =='7'}"> 교양</c:if> </small>
 				</h6>
 				<br>
 				<h3>${s.title}</h3>
@@ -71,7 +74,7 @@
 		<div class="row pt-5">
 <!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->
 			<%--aside부분 --%>
-                <%@include file="/common/study_menu.jsp" %>
+			<%@include file="/common/study_menu.jsp"%>
 <!-- --------------------------------------------------------------게시글------------------------------------------------------------ -->
 
 			<div class="col-sm-9">
@@ -92,22 +95,46 @@
 						<span>오프</span>
 					</div>
 				</div>
-				<br> 
-				${s.content }
-				<br>
-				<br> (이미지)?/${s.pernum} <br>
+				<br> ${s.content } <br> <br> (이미지)?/${s.pernum} <br>
 				<br>
 
-				<h2>지도 보기</h2>
-				<br> <img src="<%=request.getContextPath()%>/img/kic.png"
-					class="img-thumbnail" width="500" height="200"> <br> <br>
+
+<!-- --------------------------------------------------------------지도------------------------------------------------------------ -->
+
+
+				<div>
+					<div id="map" style="width: 100%; height: 300px;"></div>
+					<div id="clickLatlng"></div>
+				</div>
+
+
+				<script>
+					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	  			    mapOption = { 
+	        		center: new kakao.maps.LatLng(${s.latitude}, ${s.longitude}), // 지도의 중심좌표
+	        		level: 5 // 지도의 확대 레벨
+	   			    };
+	
+					var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+					
+					// 지도를 클릭한 위치에 표출할 마커입니다
+					var marker = new kakao.maps.Marker({ 
+					    // 지도 중심좌표에 마커를 생성합니다 
+					    position: map.getCenter() 
+					}); 
+					// 지도에 마커를 표시합니다
+					marker.setMap(map);
+					</script>
+
+
+
 
 				<input type="submit" class=" btn fadeIn fourth my-1" value="참가신청"
 					style="background-color: #c47100; color: white; border-color: white;">
 
 				<br> <br>
 
-<!-- --------------------------------------------------------------댓글------------------------------------------------------------ -->				
+<!-- --------------------------------------------------------------댓글------------------------------------------------------------ -->
 				<div>
 					<h5 style="font-weight: bold">댓글 2</h5>
 					<hr style="border: 0.5px thick 333b3d" />

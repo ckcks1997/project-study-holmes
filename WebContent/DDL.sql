@@ -82,7 +82,8 @@ create table study_menu
 	content varchar2(4000),
 	menuid varchar2(1),
 	regdate date,
-	map varchar2(1000)
+	latitude number,
+	longitude number
 );
 
 ---댓글 테이블

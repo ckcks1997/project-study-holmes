@@ -10,13 +10,13 @@
 
 	<select id="menuList" resultType="studymenu" parameterType="map">
 		select * from ( select rownum rnum, a.* from (
-		select * from study_menu where menuid = #{menuid}) a)
+		select * from study_menu where menuid = #{menuid} order by board_num desc) a)
 		where rnum BETWEEN #{start} and #{end}
 	</select>
 		
 	<insert id="insertMenu" parameterType="studymenu">
 	insert into study_menu values 
-	(#{board_num},#{nickname},#{title},#{subject},#{price},#{pernum},#{region},#{content},#{menuid},sysdate,#{map,jdbcType=VARCHAR})
+	(#{board_num},#{nickname},#{title},#{subject},#{price},#{pernum},#{region},#{content},#{menuid},sysdate,#{latitude},#{longitude})
 	</insert>
 	
 	<select id="studySearch" parameterType="Search" resultType="StudyMenu">
