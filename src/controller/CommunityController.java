@@ -70,8 +70,8 @@ public class CommunityController extends MskimRequestMapping{
 	  
 	  String boardName = "질문 & 답변";
 	  switch(boardid) {
-	  case "5" : boardName = "블로그"; break;
-	  case "4" : boardName = "공지사항"; break;
+	  case "5" : boardName = "문의사항"; break;
+	  case "4" : boardName = "공지"; break;
 	  case "3" : boardName = "정보공유"; break;
 	  case "2" : boardName = "자유"; break;
 	
@@ -366,8 +366,8 @@ public class CommunityController extends MskimRequestMapping{
 	  
 	  String boardName = "질문 & 답변";
 	  switch(boardid) {
-	  case "5" : boardName = "블로그"; break;
-	  case "4" : boardName = "공지사항"; break;
+	  case "5" : boardName = "문의사항"; break;
+	  case "4" : boardName = "공지"; break;
 	  case "3" : boardName = "정보공유"; break;
 	  case "2" : boardName = "자유"; break;
 	

@@ -65,7 +65,7 @@ body {
 <!-- ---------------------------메인검색-------------------------------------------------------- -->
 			<div class="main col-sm-9">
 				<h2 style="font-weight: bold">${boardName}</h2>
-				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
+				<hr align="left" width="150px" style= "border: 0.5px solid #c47100" />
 				<form action = "<%=request.getContextPath()%>/community/comSearch" method = post>
 					<input type = "hidden" name = "boardid" value = "${boardid}"/>
 					<div class="row">
