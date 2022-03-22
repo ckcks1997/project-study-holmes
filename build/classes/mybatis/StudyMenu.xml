@@ -31,6 +31,14 @@
 	select * from study_menu where board_num = #{board_num}
 	</select>
 	
+	
+<!-- 세션 = 내아이디  -->
+	<select id="list2"  resultType="studymenu" parameterType = "map">
+	select * form study_menu where nickname = #{nickname}
+	</select>
+	
+	
+	
 <!-- 	<select id = "allList" resultType = "studymenu">
 	select * from  ( select rownum rnum, a.* from (
 		select * from study_menu) a) where rnum BETWEEN #{start} and #{end}		

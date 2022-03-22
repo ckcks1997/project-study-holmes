@@ -1,17 +1,11 @@
 package service;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Connection;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import model.Community;
 import model.Search;
 import model.StudyMenu;
 import util.MybatisConnection;
@@ -133,6 +127,28 @@ public class StudyMenuDao {
 		  
 	  }
 	  
+	 
+	 public List<StudyMenu> list2(String list2) {
+
+			SqlSession sqlSession = MybatisConnection.getConnection();
+			
+			List<StudyMenu> list = null;
+			try {
+				
+			list = sqlSession.selectList(NS + "list2", list2);
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			}
+			
+			return list;
+
+		}
+	 
+	 
+	 
 		/*
 		 * public List<StudyMenu> allList() {
 		 * 
