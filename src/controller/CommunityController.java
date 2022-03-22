@@ -11,7 +11,17 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 
 import model.Community;
+<<<<<<< HEAD
 import service.CommunityBoardDao;
+=======
+import model.Reply;
+import model.Search;
+import model.StudyMember;
+import model.StudyMenu;
+import service.CommunityBoardDao;
+import service.StudyMemberDao;
+import service.StudyMenuDao;
+>>>>>>> 2eedd190cfafe8fa31993d6e324719b967e55d2e
  
 
 
@@ -276,6 +286,35 @@ public class CommunityController extends MskimRequestMapping{
   }
   
   
+  //검색
+  @RequestMapping("comSearch")
+	public String comSearch(HttpServletRequest request, 
+			HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		String part = "";// 검색항목
+		String  searchData = ""; //검색입력데이터
+		
+		
+		   //검색
+			 part = request.getParameter("part");
+			 searchData = request.getParameter("searchData");
+		     String boardid = request.getParameter("boardid");
+			//Search sh = new Search();
+			//sh.setPart(part);
+			//sh.setSearchData("%" + searchData + "%");
+			CommunityBoardDao cbd = new CommunityBoardDao();
+			cbd.comSearch(part,searchData,boardid);
+			
+			return "/community/comSearchList";
+
+  }
  
 
   
@@ -304,6 +343,74 @@ public class CommunityController extends MskimRequestMapping{
 	 return "/view/main.jsp";
   }
   
+  
+  
+  //검색한 페이지
+  @RequestMapping("comSearchList")
+  public String comSearchList(HttpServletRequest request, HttpServletResponse response) {
+	  HttpSession session = request.getSession();
+	  String boardid = "";
+	  int pageInt = 1;
+	  int limit = 4;
+	  String part = request.getParameter("part"); //요청받은 검색분야 
+	  String searchData = request.getParameter("searchData"); // 요청받은 검색어
+	  
+	  
+	  if(request.getParameter("boardid")!= null) { //게시판번호 있으면
+		  session.setAttribute("boardid", request.getParameter("boardid")); //세션에 게시판 번호 셋팅
+		  session.setAttribute("pageNum", "1");	// 세션에 페이지번호 셋팅 
+	  }
+	  
+	  boardid = (String)session.getAttribute("boardid");
+	  if(boardid == null) {
+		  boardid ="1";
+	  }
+	  
+	  if (request.getParameter("pageNum")!=null) {
+		  session.setAttribute("pageNum", request.getParameter("pageNum"));
+	  }
+	  
+	  String pageNum =(String)session.getAttribute("pageNum");
+	  if(pageNum == null) {
+		  pageNum = "1";
+	  }
+	  
+	  pageInt = Integer.parseInt(pageNum);
+	  request.setAttribute("part",part);
+	   request.setAttribute("searchData",searchData);
+	  
+	  CommunityBoardDao cbd = new CommunityBoardDao();
+	  int boardcount = cbd.comSearchCount(boardid,part,searchData);
+	  List<Community> searchList = cbd.comSearchList(pageInt, limit, boardcount, boardid,part,searchData);
+	  int boardnum = boardcount - limit * (pageInt-1);
+	  int bottomLine = 3;
+	  int startPage = (pageInt-1)/bottomLine * bottomLine + 1;
+	  int endPage = startPage + bottomLine -1;
+	  int maxPage = (boardcount/limit)+(boardcount % limit==0? 0:1);
+	  if(endPage > maxPage) endPage = maxPage;
+	  
+	  String boardName = "질문 & 답변";
+	  switch(boardid) {
+	  case "5" : boardName = "블로그"; break;
+	  case "4" : boardName = "공지사항"; break;
+	  case "3" : boardName = "정보공유"; break;
+	  case "2" : boardName = "자유"; break;
+	
+	  }
+	   request.setAttribute("boardName",boardName);
+	   request.setAttribute("pageInt",pageInt);
+	   request.setAttribute("boardid",boardid);
+	   request.setAttribute("boardcount",boardcount);
+	   request.setAttribute("searchList",searchList);
+	   request.setAttribute("boardnum",boardnum);
+	   request.setAttribute("startPage",startPage);
+	   request.setAttribute("bottomLine", bottomLine);
+	   request.setAttribute("endPage",endPage);
+	   request.setAttribute("maxPage",maxPage);
+
+	  
+   return "/view/community/comSearchList.jsp";
+ }
   
   
   

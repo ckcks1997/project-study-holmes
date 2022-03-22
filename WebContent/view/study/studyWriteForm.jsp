@@ -33,7 +33,34 @@ body {
 .footer-content {
 	padding-top: 50px;
 }
+ .c-border{
+    border: 2px solid #f55555;
+    border-radius: 10px;
+ }
  
+  .btn-cancel{
+    background-color:#777;
+    border:1px solid #777;
+    color:white;
+ }
+ 
+  .btn-cancel:hover{
+    color:white;
+ }
+ 
+   .btn-cancel > a:hover{
+    color:white;
+ }
+ 
+ .btn-save{
+    background-color:#f55555;
+    border:1px solid #f55555;
+    color:white;
+ }
+ 
+  .btn-save:hover{
+    color:white;
+ }
 </style>
 <body>
 <!-- --------------------------------------------------------------명언------------------------------------------------------------ -->	
@@ -62,9 +89,9 @@ body {
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
 
 
-				<form name="mf"
+				<form name="f"
 					action="<%=request.getContextPath()%>/studymenu/writePro"
-					  method="post">
+					 enctype="form-data" method="post" onsubmit="return inputChk(this)">
 					<br /> <br />
 				
 																						
@@ -89,13 +116,13 @@ body {
 				<div class="col-xs-12 col-sm-3 col-md-3">
 					<div class="form-group">
                        <label>가격</label>
-                       <input type="text" name="price" class="form-control" placeholder="무료일 경우 0을 입력하세요">                      
+                       <input type="number" name="price" class="form-control" placeholder="무료일 경우 0을 입력하세요">                      
 					</div>
 				</div>
                 <div class="col-xs-12 col-sm-3 col-md-3">
     				<div class="form-group">
     				<label>인원수</label>
-                        <input type="number" name="pernum" class="form-control" placeholder="예상인원수">
+                        <input type="number" min="0" max="50" name="pernum" class="form-control" placeholder="모집인원수">
 					</div>
 				</div>
 				
@@ -108,30 +135,30 @@ body {
 							placeholder="Leave a comment here" id="content"></textarea>
 
 					</div>
-
+                    <br>
                     <%--지도 api --%>
                     <div>
 	                    <p>모임할 장소를 지도에<em> 클릭</em> 해주세요</p> 
-	                    <div id="map" style="width:100%;height:350px;"></div>
-	                    <div id="clickLatlng"></div>
-	                
+	                    <div class="c-border" id="map" style="width:100%;height:350px;"></div>
+ 
 	                    <input type="hidden" id="latitude" name="latitude">
                         <input type="hidden" id="longitude" name="longitude">
                         
                     </div>
-                        
-					<div class="d-grid gap-2 " style="float: right;">
-						<button class="btn btn-dark">
-						<a href="<%=request.getContextPath()%>/studymenu/studyWriteForm">취소 </a>
+                        <br>
+					<div class="container text-center"  >
+						<button class="btn btn-cancel">
+						<a href="<%=request.getContextPath()%>/studymenu/studyMenuList">취소 </a>
 						</button>
-						<button class="btn btn-dark" type="submit">저장</button>
+						<button class="btn btn-save" type="submit">저장</button>
 					</div>
+					<br>
 				</form>
 			</div>
 		</div>
 	</div>
 
-
+<!-- --------------------------------------------------------------스크립트------------------------------------------------------------ -->
 	<script>
 		$('.summernote').summernote({
 			height : 150,
@@ -181,6 +208,59 @@ body {
 	    longitude.value =  latlng.getLng();
 	    
 	});
+</script>
+
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/ajax.js"></script>
+<script>
+
+function inputChk(f) {
+
+	let result = document.querySelector("#result")
+	
+	if (f.title.value=='') {
+		alert("제목을 입력하세요")
+		f.title.focus()
+		return false;
+	}
+	
+	if (f.subject.value=='') {
+		alert("과목을 입력하세요")
+		f.subject.focus()
+		return false;
+	}
+	if (f.region.value=='') {
+		alert("지역을 입력하세요")
+		f.region.focus()
+		return false;
+	}
+	if (f.price.value=='') {
+		alert("가격을 입력하세요")
+		f.price.focus()
+		return false;
+	}
+	if (f.pernum.value=='') {
+		alert("인원수를 입력하세요")
+		f.pernum.focus()
+		return false;
+	}
+	if (f.content.value=='') {
+		alert("내용을 입력하세요")
+		f.content.focus()
+		return false;
+	}
+	if (f.latitude.value=='') {
+		alert("지도를 클릭해주세요")
+		f.latitude.focus()
+		return false;
+	}
+	if (f.longitude.value=='') {
+		alert("지도를 클릭해주세요")
+		f.longitude.focus()
+		return false;
+	}
+	
+	return true;
+}
 </script>
 
 </body>

@@ -7,10 +7,20 @@
 	<select id="menuCount" resultType="int" parameterType="string">
 		select count(*) from study_menu where menuid = #{menuid}
 	</select>
+	
+	<select id="menuAllCount" resultType="int">
+		select count(*) from study_menu
+	</select>
 
 	<select id="menuList" resultType="studymenu" parameterType="map">
 		select * from ( select rownum rnum, a.* from (
 		select * from study_menu where menuid = #{menuid} order by board_num desc) a)
+		where rnum BETWEEN #{start} and #{end}
+	</select>
+	
+	<select id="allList" resultType="studymenu" parameterType="map">
+		select * from ( select rownum rnum, a.* from (
+		select * from study_menu order by regdate desc) a)
 		where rnum BETWEEN #{start} and #{end}
 	</select>
 		
@@ -18,10 +28,6 @@
 	insert into study_menu values 
 	(#{board_num},#{nickname},#{title},#{subject},#{price},#{pernum},#{region},#{content},#{menuid},sysdate,#{latitude},#{longitude})
 	</insert>
-	
-	<select id="studySearch" parameterType="Search" resultType="StudyMenu">
-	select * from study_menu where upper (${part}) like upper (#{searchData})
-	</select>
 	
 	<select id = "menuNextNum" resultType = "int">
 	select board_seq.nextval from dual
@@ -31,6 +37,7 @@
 	select * from study_menu where board_num = #{board_num}
 	</select>
 	
+<<<<<<< HEAD
 	
 <!-- 세션 = 내아이디  -->
 	<select id="list2"  resultType="studymenu" parameterType = "map">
@@ -44,6 +51,36 @@
 		select * from study_menu) a) where rnum BETWEEN #{start} and #{end}		
 	</select> -->
 
+=======
+	<select id="studySearch" parameterType="map" resultType="StudyMenu">
+	select * from study_menu where (${part}) like upper (#{searchData})
+	and menuid = #{menuid}
+	</select>
+>>>>>>> 2eedd190cfafe8fa31993d6e324719b967e55d2e
 	
+	<select id="studySearchCount" resultType="int" parameterType="map">
+	select count(*) from study_menu where  menuid = #{menuid}
+	and (${part}) like upper (#{searchData})
+	</select>
+	
+	<select id = "studySearchList" resultType = "studymenu"  parameterType = "map">
+	select * from (select rownum rnum, a.* from 
+	(select * from study_menu where menuid = #{menuid} and (${part}) like upper (#{searchData}) order by regdate desc) a)
+	where rnum between #{start} and #{end}
+	</select> 
+	
+	<select id="allstudySearch" parameterType="Search" resultType="StudyMenu">
+	select * from study_menu where upper (${part}) like upper (#{searchData}) order by regdate desc
+	</select>
+	
+	<select id="allstudySearchCount" resultType="int" parameterType="map">
+	select count(*) from study_menu where (${part}) like upper (#{searchData})
+	</select>
+	
+	<select id = "studySearchAllList" resultType = "studymenu"  parameterType = "map">
+	select * from (select rownum rnum, a.* from 
+	(select * from study_menu (${part}) like upper (#{searchData}) order by regdate desc) a)
+	where rnum between #{start} and #{end}
+	</select> 
 	
 </mapper>

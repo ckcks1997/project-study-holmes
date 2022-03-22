@@ -44,9 +44,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <!-- 검색 기능-->
-<select id = "comSearch" parameterType = "String">
-	select * from community where content like %#{content}%
+<select id = "comSearch" parameterType = "map" resultType="community">
+	select * from community where (${part}) like upper (#{searchData})
+	and boardid = #{boardid}	
 </select>
+
+<!-- 검색수 -->
+<select id = "comSearchCount" resultType = "int" parameterType = "map">
+	select count(*) from community where boardid = #{boardid} and (${part}) like upper (#{searchData})
+</select> 
+
+<!-- 검색리스트목록 -->
+<select id = "comSearchList" resultType = "community"  parameterType = "map">
+	select * from (select rownum rnum, a.* from 
+	(select * from community where boardid = #{boardid} and (${part}) like upper (#{searchData}) order by board_num desc) a)
+	where rnum between #{start} and #{end}
+</select> 
+
+
+
 
 
 <!-- 메인화면 최신글 보드 리스트 -->

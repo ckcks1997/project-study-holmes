@@ -25,6 +25,11 @@
 	font-weight: bold;
 	font-size: 0.5rem;
 }
+
+.c-border{
+    border:2px solid #F55555;
+    border-radius: 10px;
+}
 </style>
 </head>
 <body>
@@ -101,10 +106,9 @@
 
 <!-- --------------------------------------------------------------지도------------------------------------------------------------ -->
 
-
-				<div>
-					<div id="map" style="width: 100%; height: 300px;"></div>
-					<div id="clickLatlng"></div>
+                <h3>지도 위치</h3>
+				<div class="container ">
+					<div class="c-border mx-auto" id="map" style="width: 70%; height: 300px;"></div>	 
 				</div>
 
 
@@ -127,10 +131,14 @@
 					</script>
 
 
-
-
-				<input type="submit" class=" btn fadeIn fourth my-1" value="참가신청"
+                <br>
+                <form action="<%=request.getContextPath()%>/studymenu/studyIn" method="post">
+	                <input type="hidden" name="board_num" value="${s.board_num}">
+	                <input type="hidden" name="t_nickname" value="${s.nickname}">
+	                <input type="hidden" name="f_nickname" value="${loginNick}">
+					<input type="submit" class=" btn fadeIn fourth my-1" value="참가신청"
 					style="background-color: #c47100; color: white; border-color: white;">
+                </form>
 
 				<br> <br>
 

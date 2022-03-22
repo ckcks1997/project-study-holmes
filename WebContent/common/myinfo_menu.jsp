@@ -87,6 +87,15 @@
 </div>
 
 			</div>
+
+
+			<h5> 작성한 게시글</h5>
+			<div class="aside-content" onclick="location.href=' <%=request.getContextPath()%>/studymember/mywrite_study' ">
+				<li class=""> 스터디 게시글</li>
+
 			</div>
+			<div class="aside-content" onclick="location.href=' <%=request.getContextPath()%>/studymember/mywrite_community' ">
+                <li class=""> 커뮤니티 게시글</li>
+            </div>
 	</aside>
 </body>

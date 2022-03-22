@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+ 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 <style>
 body {
 	height: 100vh;
@@ -20,39 +18,11 @@ body {
 	background-color: #333b3d;
 }
 
- 
-.reaction {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.txt_bar {
+	margin: 0 9px 0 5px;
+	color: gray;
 }
-
-.circle {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 80%;
-	height: 100%;
-	
-	border-radius: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.page-item > a{
-    color:#f55555; 
-}
-.page-item > a:hover{
-    color:#f55555; 
-}
-.active2 > a{
-    background-color:#f55555 !important; 
-    border: 1px solid #f55555 !important; 
-} 
 </style>
-<title>스터디 홈즈</title>
-</head>
 <body>
 
 
@@ -68,16 +38,18 @@ body {
 
 	<div class="container">
 		<div class="row pt-5">
-<!------------------------- 왼쪽 사이드메뉴 -----------------					---------------------------------------------------->
+			<!----------------왼쪽 사이드 메뉴 ------------------------------------------------------------------------>
 			<%--aside부분 --%>
                 <%@include file="/common/community_menu.jsp" %>
-                
-                
-<!-- ---------------------------메인검색-------------------------------------------------------- -->
+
+
+			<!---------------------    메인 검색     ------------------------------------------------------------------ -->
+			
 			<div class="main col-sm-9">
 				<h2 style="font-weight: bold">${boardName}</h2>
-				<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
-				<form action = "<%=request.getContextPath()%>/community/comSearch" method = post>
+				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
+				
+				<form action = "<%=request.getContextPath()%>/community/comSearch?boardid=${boardid}" method = post>
 					<input type = "hidden" name = "boardid" value = "${boardid}"/>
 					<div class="row">
 						<div class="col-xs-12 col-sm-11 col-md-10">
@@ -88,7 +60,7 @@ body {
 									    <option value="content">내용</option>						
 									</select>
 						</div>
-							<input type="text" class="form-control rounded" name = "searchData"
+							<input type="text"  class="form-control rounded" name = "searchData"
 								placeholder="내용을 검색해보세요!" required="required"/>
 						</div>
 						</div>
@@ -98,8 +70,10 @@ body {
 					</div>
 				
 				</form>
+				
+				
 				<br />
-<!-- ------------------------------------------------------------------------------------ -->
+
 				<div style="float: left">
 					<strong>최신순</strong> &nbsp;<strong>·</strong> 댓글많은순 &nbsp;<strong>·</strong>
 					좋아요순
@@ -112,18 +86,18 @@ body {
 
 
 				<br />
-
-
-				<!-------------메인 커뮤니티 게시판 --------------------------------------------------------------------------------------------------------- -->
-				<div class="container">
+				
+				
+	<!-- -------------------메인--------------------------------------------------- -->
+	<div class="container">
 					<table class="table">
-						<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
+						<c:if test = "${empty searchList }"> <!-- list.size() 가 0이면 -->
 				
 								<p>작성된 글이 없습니다.</p>
 				
 						</c:if>
 					
-						<c:forEach var="com" items="${list}">
+						<c:forEach var="com" items="${searchList}">
 							<tr>
 								<td>
 									<div class="row">
@@ -193,26 +167,26 @@ body {
 					<li
 						class='page-item <c:if test ="${startPage <= bottomLine }"> disabled </c:if> '><a
 						class="page-link"
-						href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${startPage-bottomLine}">이전</a></li>
+						href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${startPage-bottomLine}">Previous</a></li>
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<li
-							class='page-item <c:if test = "${i==pageInt}" > active active2</c:if> '>
+							class='page-item <c:if test = "${i==pageInt}" > active </c:if> '>
 							<a class="page-link"
-							href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${i}">${i}</a>
+							href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${i}&searchData=${searchData}&part=${part}">${i}</a>
 						</li>
 					</c:forEach>
 					<li
 						class='page-item <c:if test ="${endPage >= maxPage}"> disabled </c:if>  '>
 						<a class="page-link"
-						href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${startPage+bottomLine}">다음</a>
+						href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${startPage+bottomLine}">Next</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
+	
+			
+			
 
-
-	<br>
-	<br>
 </body>
 </html>
