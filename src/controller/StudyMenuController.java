@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Community;
+import model.GroupMember;
 import model.Search;
 import model.StudyMenu;
 import service.CommunityBoardDao;
@@ -162,7 +163,10 @@ public class StudyMenuController extends MskimRequestMapping {
     // group insert
     GroupMemberDao gm = new GroupMemberDao();
     System.out.println(studymenu);
-    gm.groupInsert(studymenu, 1);
+    GroupMember gmem = new GroupMember();
+    gmem.setBoardnum(studymenu.getBoard_num());
+    gmem.setNickname(studymenu.getNickname());
+    gm.groupInsert(gmem, 1);
 
     String msg = "게시물 등록 실패";
     String url = request.getContextPath() + "/studymenu/studyWriteForm";

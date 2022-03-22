@@ -67,6 +67,19 @@ public class NoticeDao {
     }
     return 0;
   }
+  
+  
+  public Notice noticeGetByNoticeNum(int noticeNum) {
 
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try {
+      return sqlSession.selectOne(NS + "noticeGetByNoticeNum", noticeNum);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MybatisConnection.close(sqlSession);
+    }
+    return null;
+  }
 
 }

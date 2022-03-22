@@ -137,8 +137,17 @@ a {
 	font-weight: bold;
 	color: #175cbe;
 }
-}
 
+.page-item > a{
+    color:#f55555; 
+}
+.page-item > a:hover{
+    color:#f55555; 
+}
+.active2 > a{
+    background-color:#f55555 !important; 
+    border: 1px solid #f55555 !important; 
+} 
  
 </style>
 </head>
@@ -254,6 +263,7 @@ a {
 								</p>
 								<p class="b-p">${s.region }</p>
 								<div>
+								    ${s.nickname }
 									<p class="b-p d-inline-block">
 										&#11088;&#11088;&#11088;&#11088;&#11088;</p>
 									<p class="b-p b-rep d-inline-block ">평가:100%</p>
@@ -273,15 +283,15 @@ a {
 					
 					<li 
 						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">Previous</a></li>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">이전</a></li>
 						
 					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
-						<li class='page-item <c:if test = "${i == pageInt}" >  active </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${i}">${i}</a></li>
+						<li class='page-item <c:if test = "${i == pageInt}" > active active2 </c:if>' >
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${i}">${i}</a></li>
 					
 					</c:forEach>
 						<li class='page-item <c:if test = "${endPage >= maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">Next</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">다음</a></li>
 					</ul>
 				</nav>
 
