@@ -39,6 +39,17 @@ body {
 	justify-content: center;
 	align-items: center;
 }
+
+.page-item > a{
+    color:#f55555; 
+}
+.page-item > a:hover{
+    color:#f55555; 
+}
+.active2 > a{
+    background-color:#f55555 !important; 
+    border: 1px solid #f55555 !important; 
+} 
 </style>
 <title>스터디 홈즈</title>
 </head>
@@ -65,8 +76,8 @@ body {
 <!-- ---------------------------메인검색-------------------------------------------------------- -->
 			<div class="main col-sm-9">
 				<h2 style="font-weight: bold">${boardName}</h2>
-				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
-				<form action = "<%=request.getContextPath()%>/community/comSearch?boardid=${boardid}" method = post>
+				<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
+				<form action = "<%=request.getContextPath()%>/community/comSearch" method = post>
 					<input type = "hidden" name = "boardid" value = "${boardid}"/>
 					<div class="row">
 						<div class="col-xs-12 col-sm-11 col-md-10">
@@ -182,10 +193,10 @@ body {
 					<li
 						class='page-item <c:if test ="${startPage <= bottomLine }"> disabled </c:if> '><a
 						class="page-link"
-						href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${startPage-bottomLine}">Previous</a></li>
+						href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${startPage-bottomLine}">이전</a></li>
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<li
-							class='page-item <c:if test = "${i==pageInt}" > active </c:if> '>
+							class='page-item <c:if test = "${i==pageInt}" > active active2</c:if> '>
 							<a class="page-link"
 							href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${i}">${i}</a>
 						</li>
@@ -193,7 +204,7 @@ body {
 					<li
 						class='page-item <c:if test ="${endPage >= maxPage}"> disabled </c:if>  '>
 						<a class="page-link"
-						href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${startPage+bottomLine}">Next</a>
+						href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${startPage+bottomLine}">다음</a>
 					</li>
 				</ul>
 			</div>

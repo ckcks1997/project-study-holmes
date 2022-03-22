@@ -30,4 +30,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         values(notice_seq.nextval, #{to}, #{from}, null, #{boardid}, 0, sysdate )
 	</insert>
 
+    <select id="noticeGetByNoticeNum" parameterType="int" resultType="notice">
+        select * from notice where notice_num = #{notice_num} 
+    </select>
+
 </mapper>

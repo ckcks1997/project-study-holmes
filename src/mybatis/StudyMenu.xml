@@ -53,4 +53,18 @@
 	where rnum between #{start} and #{end}
 	</select> 
 	
+	<select id="allstudySearch" parameterType="Search" resultType="StudyMenu">
+	select * from study_menu where upper (${part}) like upper (#{searchData}) order by regdate desc
+	</select>
+	
+	<select id="allstudySearchCount" resultType="int" parameterType="map">
+	select count(*) from study_menu where (${part}) like upper (#{searchData})
+	</select>
+	
+	<select id = "studySearchAllList" resultType = "studymenu"  parameterType = "map">
+	select * from (select rownum rnum, a.* from 
+	(select * from study_menu (${part}) like upper (#{searchData}) order by regdate desc) a)
+	where rnum between #{start} and #{end}
+	</select> 
+	
 </mapper>

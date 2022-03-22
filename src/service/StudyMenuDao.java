@@ -195,7 +195,53 @@ public class StudyMenuDao {
 				MybatisConnection.close(sqlSession);
 			}
 			return null;
+	 }	 
 	 
+	 
+		/* 전체검색 */	 
+	 public List<StudyMenu> allstudySearch(Search sh) {
+			SqlSession sqlSession = MybatisConnection.getConnection();
+			List<StudyMenu> list = null;
+			try {
+			list = sqlSession.selectList(NS + "allstudySearch", sh);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			}
+			return list;
+		}
+	 
+	 public int allstudySearchCount(String menuid, String part, String searchData) {
+			SqlSession sqlSession = MybatisConnection.getConnection();
+			try {
+				map.clear();
+				map.put("part", part);
+				map.put("searchData", "%" + searchData + "%");
+				map.put("menuid", menuid);
+				return sqlSession.selectOne(NS + "allstudySearchCount", map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			}
+			return 0;
+		}
+	 
+	 public List<StudyMenu> studySearchAllList(int pageInt, int limit, int menuAllCount, String menuid) {
+			SqlSession sqlSession = MybatisConnection.getConnection();
+			try {
+				map.clear();
+				map.put("menuid", menuid);
+				map.put("start", (pageInt - 1) * limit + 1);
+				map.put("end", pageInt * limit);
+				return sqlSession.selectList(NS + "studySearchAllList", map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			}
+			return null;
 	 }	 
 }
 

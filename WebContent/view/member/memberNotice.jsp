@@ -11,13 +11,12 @@
  }
  
 .container-css{
-    background-color: #ddd;
-    border-radius:20px;
+    background-color: #fff;
 }
 
 .box-css{
-    background-color: #eee;
-    border-radius:10px;
+    background-color: #fff; 
+    border-bottom: 1px solid #ddd;
 }
 </style>
 </head>
@@ -30,15 +29,15 @@
                 <br>
                 <div class="col-9 mx-auto">
                     <h1>알림 목록</h1>
-                    <hr align="left" width="250px" style="border: 0.5px solid #c47100" />
+                    <hr align="left" width="230px" style="border: 0.5px solid #c47100" />
                     <br> 
                      
                      <div class="container shadow-sm container-css p-5 ">
                          <div class="d-flex flex-column justify-content-center">
                          
                          <c:forEach  items="${noticeList}" var="i">
-                            <a href="">
-                                <div class="border row box-css"> 
+                            <a href="<%=request.getContextPath()%>/studymember/noticeInfo?noticeNum=${i.notice_num}">
+                                <div class="row box-css"> 
                                     <div class="col n_info">
 	                                    <div class="row">
 	                                        <div class="col">
@@ -53,7 +52,7 @@
 	                                        내용: ${i.info}
 	                                    </c:if>
 	                                    <c:if test="${i.info2 != null}">
-	                                        내용: 스터디 초대요청 ${i.info2}
+	                                        내용: 스터디 초대요청 
 	                                    </c:if>
 	                                    </div>
                                     </div>

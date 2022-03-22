@@ -40,7 +40,7 @@ public class BoardController extends MskimRequestMapping{
   }
   
   
-  //ajax 실험(head 알림상태 가져오기)
+  //ajax(head 알림상태 가져오기)
   @RequestMapping("notice")
   public String notice(HttpServletRequest request, HttpServletResponse response) {
  

@@ -33,7 +33,34 @@ body {
 .footer-content {
 	padding-top: 50px;
 }
+ .c-border{
+    border: 2px solid #f55555;
+    border-radius: 10px;
+ }
  
+  .btn-cancel{
+    background-color:#777;
+    border:1px solid #777;
+    color:white;
+ }
+ 
+  .btn-cancel:hover{
+    color:white;
+ }
+ 
+   .btn-cancel > a:hover{
+    color:white;
+ }
+ 
+ .btn-save{
+    background-color:#f55555;
+    border:1px solid #f55555;
+    color:white;
+ }
+ 
+  .btn-save:hover{
+    color:white;
+ }
 </style>
 <body>
 <!-- --------------------------------------------------------------명언------------------------------------------------------------ -->	
@@ -108,24 +135,24 @@ body {
 							placeholder="Leave a comment here" id="content"></textarea>
 
 					</div>
-
+                    <br>
                     <%--지도 api --%>
                     <div>
 	                    <p>모임할 장소를 지도에<em> 클릭</em> 해주세요</p> 
-	                    <div id="map" style="width:100%;height:350px;"></div>
-	                    <div id="clickLatlng"></div>
-	                
+	                    <div class="c-border" id="map" style="width:100%;height:350px;"></div>
+ 
 	                    <input type="hidden" id="latitude" name="latitude">
                         <input type="hidden" id="longitude" name="longitude">
                         
                     </div>
-                        
-					<div class="d-grid gap-2 " style="float: right;">
-						<button class="btn btn-dark">
-						<a href="<%=request.getContextPath()%>/studymenu/studyWriteForm">취소 </a>
+                        <br>
+					<div class="container text-center"  >
+						<button class="btn btn-cancel">
+						<a href="<%=request.getContextPath()%>/studymenu/studyMenuList">취소 </a>
 						</button>
-						<button class="btn btn-dark" type="submit">저장</button>
+						<button class="btn btn-save" type="submit">저장</button>
 					</div>
+					<br>
 				</form>
 			</div>
 		</div>

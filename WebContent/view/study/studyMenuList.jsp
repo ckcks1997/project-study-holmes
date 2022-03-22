@@ -134,8 +134,17 @@ a {
 	font-weight: bold;
 	color: #175cbe;
 }
-}
 
+.page-item > a{
+    color:#f55555; 
+}
+.page-item > a:hover{
+    color:#f55555; 
+}
+.active2 > a{
+    background-color:#f55555 !important; 
+    border: 1px solid #f55555 !important; 
+} 
  
 </style>
 </head>
@@ -169,8 +178,32 @@ a {
 				 
 					
 <!-- --------------------------------------------------------------검색------------------------------------------------------------ -->							
+																																	
+						<c:if test="${menuid eq 1 }">
 						<div>
-							<div class="input-group rounded" method="post">
+							<div class="input-group rounded">
+							<form action = "allstudySearch" method="post">
+							<div class="d-flex flex-row align-items-center">
+								 
+									<select class="custom-select" name="part">
+									    <option value="title">제목</option>						
+									</select>
+								 
+								    <div class="d-flex flex-row">
+									<input type="text" class="form-control rounded"
+										placeholder="Search" aria-label="Search"
+										aria-describedby="search-addon" name="searchData" required="required"/> 
+								    <input type="submit" class="input-group-text border-0" value="검색"> 
+								    </div>
+							</div>
+							</form>
+							</div>
+						</div>
+						</c:if>
+						
+						<c:if test="${menuid != 1}">															
+						<div>
+							<div class="input-group rounded">
 							<form action = "studySearch" method="post">
 							<div class="d-flex flex-row align-items-center">
 								 
@@ -188,6 +221,7 @@ a {
 							</form>
 							</div>
 						</div>
+						</c:if>
 				 
 <!-- --------------------------------------------------------------지역태그------------------------------------------------------------ -->						
 					<div>
@@ -249,6 +283,7 @@ a {
 								</p>
 								<p class="b-p">${s.region }</p>
 								<div>
+								    ${s.nickname }
 									<p class="b-p d-inline-block">
 										&#11088;&#11088;&#11088;&#11088;&#11088;</p>
 									<p class="b-p b-rep d-inline-block ">평가:100%</p>
@@ -269,15 +304,15 @@ a {
 					<ul class="pagination justify-content-center">				
 					<li 
 						class='page-item <c:if test="${a_startPage <= a_bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">Previous</a></li>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${a_startPage - a_bottomLine}">이전</a></li>
 						
 					<c:forEach var="i" begin="${ a_startPage }" end="${a_endPage}">
-						<li class='page-item <c:if test = "${i == pageInt}" >  active </c:if>'>
+						<li class='page-item <c:if test = "${i == pageInt}" >  active active2</c:if>'>
 						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${i}">${i}</a></li>
 					
 					</c:forEach>
 						<li class='page-item <c:if test = "${a_endPage >= a_maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">Next</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + a_bottomLine}">다음</a></li>
 					</ul>
 				</nav>
 				</c:if>
@@ -289,15 +324,15 @@ a {
 										
 					<li 
 						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">Previous</a></li>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">이전</a></li>
 						
 					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
-						<li class='page-item <c:if test = "${i == pageInt}" >  active </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${i}">${i}</a></li>
+						<li class='page-item <c:if test = "${i == pageInt}" > active active2 </c:if>' >
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${i}">${i}</a></li>
 					
 					</c:forEach>
 						<li class='page-item <c:if test = "${endPage >= maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">Next</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">다음</a></li>
 					</ul>
 				</nav>
 				</c:if>
