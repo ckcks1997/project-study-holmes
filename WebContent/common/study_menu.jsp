@@ -56,7 +56,7 @@ a:hover {
 	                </div>
                     <div class="aside-content">
                         <a href="<%=request.getContextPath()%>/studymenu/studyMenuList?menuid=1">
-                        <li class="<c:if test="${menuid eq 1 }">selected</c:if>">
+                        <li class="<c:if test="${menuid eq 1}">selected</c:if>">
                                 전체 스터디 </li></a>
                     </div>
                     <div class="aside-content">
