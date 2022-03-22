@@ -8,15 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-<<<<<<< HEAD
-import model.Search;
-import model.StudyMenu;
-=======
+
+
+
 import model.GroupMember;
 import model.Search;
 import model.StudyMenu;
 
->>>>>>> 2eedd190cfafe8fa31993d6e324719b967e55d2e
+
 import service.GroupMemberDao;
 import service.NoticeDao;
 import service.StudyMenuDao;
@@ -137,12 +136,12 @@ public class StudyMenuController extends MskimRequestMapping{
 		}
 	
 	
-<<<<<<< HEAD
+
 	
 	
-=======
+
 	/*---------------------------------------------------------------------------*/
->>>>>>> 2eedd190cfafe8fa31993d6e324719b967e55d2e
+
 	@RequestMapping("writePro")
 	public String writePro(HttpServletRequest request, 
 			HttpServletResponse response) {
@@ -391,7 +390,7 @@ public class StudyMenuController extends MskimRequestMapping{
 	  }			
 	 
 	 
-<<<<<<< HEAD
+
 	 
 	 /*
 	   * 내가 쓴 게시물  스터디 게시물
@@ -415,7 +414,7 @@ public class StudyMenuController extends MskimRequestMapping{
 	
 	 
 	 
-=======
+
 	 /*---------------------------------------------------------------------------*/
 	 // 스터디 참가신청 버튼을 누를 때
 	  @RequestMapping("studyIn")
@@ -428,7 +427,7 @@ public class StudyMenuController extends MskimRequestMapping{
 	    int board_num = Integer.parseInt(request.getParameter("board_num"));
 	    String nickname_from = (String) request.getParameter("f_nickname");
 	    String nickname_to = (String) request.getParameter("t_nickname");
->>>>>>> 2eedd190cfafe8fa31993d6e324719b967e55d2e
+
 
 	    System.out.println(nickname_to);
 	    NoticeDao nd = new NoticeDao();

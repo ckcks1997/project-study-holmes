@@ -37,9 +37,9 @@
 	select * from study_menu where board_num = #{board_num}
 	</select>
 	
-<<<<<<< HEAD
+
 	
-<!-- 세션 = 내아이디  -->
+
 	<select id="list2"  resultType="studymenu" parameterType = "map">
 	select * form study_menu where nickname = #{nickname}
 	</select>
@@ -51,7 +51,7 @@
 		select * from study_menu) a) where rnum BETWEEN #{start} and #{end}		
 	</select> -->
 
-=======
+
 	<select id="studySearch" parameterType="map" resultType="StudyMenu">
 	select * from study_menu where (${part}) like upper (#{searchData})
 	and menuid = #{menuid}

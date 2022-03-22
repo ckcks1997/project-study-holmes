@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
-<<<<<<< HEAD
 
-=======
+
+
 import model.GroupMember;
->>>>>>> 2eedd190cfafe8fa31993d6e324719b967e55d2e
+
 import model.MemberTag;
 import model.Notice;
 import model.StudyMember;
