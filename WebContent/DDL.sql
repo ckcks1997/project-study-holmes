@@ -48,8 +48,7 @@ create table NOTICE
     REGDATE       DATE
 )
 
-insert into notice values (NOTICE_SEQ.nextval, 'aaa', 'qqq', 'test123한글',null, 0, sysdate)
-
+ 
 --- community 테이블 
 drop table community;
 
