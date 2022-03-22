@@ -29,6 +29,38 @@
 	border-bottom:2px solid #f55555;
     font-weight:bold;
 }
+
+
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+
+
+
 </style>
 </head>
 <body>
@@ -41,11 +73,26 @@
 			</div>
 			<div class="aside-content" onclick="location.href='<%=request.getContextPath()%>/studymember/myprofile'">
 				<li class=""> 프로필 </li>
+			</div>
+		
+					
+			<div class="aside-content">
+				<div class="dropdown">
+  <div class="dropbtn"> 작성한 게시글</div>
+  <div class="dropdown-content">
+    <a href="#"><div class="aside-content" onclick="location.href='<%=request.getContextPath()%>/community/myList1'">커뮤니티 게시글</div></a>
+    <a href="#"><div class="aside-content" onclick="location.href='<%=request.getContextPath()%>/studymenu/myList2'">스터디 게시글</div></a>
+
+  </div>
+</div>
 
 			</div>
+
+
 			<h5> 작성한 게시글</h5>
 			<div class="aside-content" onclick="location.href=' <%=request.getContextPath()%>/studymember/mywrite_study' ">
 				<li class=""> 스터디 게시글</li>
+
 			</div>
 			<div class="aside-content" onclick="location.href=' <%=request.getContextPath()%>/studymember/mywrite_community' ">
                 <li class=""> 커뮤니티 게시글</li>

@@ -118,9 +118,9 @@
 /* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */
 
 .checked{
-width:20px;
-height:20px;
-background-color:yellow;
+width:55px;
+height:55px;
+background-image : url("http://localhost:7498/study-homles-mvc2/img/check.jpeg");
 }
 </style>
 
@@ -258,26 +258,32 @@ background-color:yellow;
      renderCalender();
  };
 
+ //버튼 리스너에서 데이터가 들어오는 것으로 추정되어, 
+ //해당 const에 대한 조건문 작성해봣는데, css정상적으로 출력이 안되서 롤백함, check 부분으로 이동
  const goToday = () =>{
       alert("출석체크 완료!!")
      date = new Date();
      renderCalender();
      check();
  }
- </script>
-	<script>
  
-
- 
+ //출석 데이터 정상적으로 들어갔는지 check
+ //하기 if문을 아예 먹질 않음, 해당 부분을 조정하면 해결 가능할것으로 보임
  function check() {
- let con = document.querySelector(".today");
- 
- alert(con.innerHTML+"일 출석완료되었습니다.");
- 
-	location.href = "<%=request.getContextPath()%>/attend/check_pro";
- 
- con.innerHTML='<img src="<%=request.getContextPath()%>/img/check.jpeg" />'
- }
+	 let con = document.querySelector(".today");
+	 if(con == "undefiend" || con == null || con == "") {
+		 alert(con.innerHTML+"일은 이미 출석완료되었습니다.");
+	 }else {
+		 //goToday에서 이미 데이터가 들어오기 때문에 최초로 check를 해도 이미 출석완료로 뜸
+		 //goToday부분에서 조건을 달거나, 다른 처리를 해야할 듯함
+	 alert(con.innerHTML+"일 출석완료되었습니다."); 
+	 location.href = "<%=request.getContextPath()%>/attend/check_pro";
+		
+		 }	 
+		
+	 
+
+	 }
  
  </script>
 </body>

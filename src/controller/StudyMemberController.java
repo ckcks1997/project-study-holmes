@@ -4,12 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import com.oreilly.servlet.MultipartRequest;
+
 import model.GroupMember;
 import model.MemberTag;
 import model.Notice;
@@ -302,8 +303,13 @@ public class StudyMemberController extends MskimRequestMapping {
   }
   
   
-    /*마이페이지*/
-
+ 
+  
+  
+  
+  
+  
+  
   /*
    * 마이페이지
    * */

@@ -2,17 +2,16 @@ package controller;
 
 
 import java.io.UnsupportedEncodingException;
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import model.Search;
+import model.StudyMenu;
 import model.GroupMember;
 import model.Search;
 import model.StudyMenu;
-
 import service.GroupMemberDao;
 import service.NoticeDao;
 import service.StudyMenuDao;
@@ -132,8 +131,7 @@ public class StudyMenuController extends MskimRequestMapping{
 		return "/view/alert.jsp";	
 		}
 	
-	
-	/*---------------------------------------------------------------------------*/
+
 	@RequestMapping("writePro")
 	public String writePro(HttpServletRequest request, 
 			HttpServletResponse response) {
@@ -384,7 +382,27 @@ public class StudyMenuController extends MskimRequestMapping{
 		  return "/view/study/studyMenuInfo.jsp";
 	  }			
 	 
+	 	 
+	 /*
+	   * 내가 쓴 게시물  스터디 게시물
+	   */
+	  
+	 @RequestMapping("myList2")
+		public String myList2(HttpServletRequest request, 
+				HttpServletResponse response) {
+		
+			HttpSession session = request.getSession();
+			String msg = "로그인이 필요합니다";
+			String url ="studymember/loginForm";
+			 if(session.getAttribute("memberNickname")!= null) {
+					
+			}
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);  
+			return "/view/study/myList2.jsp";	
+			}
 	 
+
 	 /*---------------------------------------------------------------------------*/
 	 // 스터디 참가신청 버튼을 누를 때
 	  @RequestMapping("studyIn")

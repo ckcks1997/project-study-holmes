@@ -50,8 +50,8 @@ body {
 					<c:if test="${com.boardid =='1'}"> 질문 & 답변</c:if>
 					<c:if test="${com.boardid =='2'}"> 자유</c:if>
 					<c:if test="${com.boardid =='3'}"> 정보공유</c:if>
-					<c:if test="${com.boardid =='4'}"> 공지사항</c:if>
-					<c:if test="${com.boardid =='5'}"> 블로그</c:if>
+					<c:if test="${com.boardid =='4'}"> 공지</c:if>
+					<c:if test="${com.boardid =='5'}"> 문의사항</c:if>
 				</h2>
 
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
@@ -142,20 +142,20 @@ body {
 						</c:forEach>
 					</c:if>
 					</div>
+					
 					<div class="row">
-						<div class="col-xs-12 col-sm-11 col-md-10">
-							<form name = "rf" enctype="multipart/form-data" action = "<%=request.getContextPath()%>/reply/writeReply" method="post">
-								
+					
+					
+						<div class="col-md-10">
 								<input type="hidden" id = "board_num" name="board_num" value="${com.board_num}">
 								<input type="hidden" name="reply_nickname" value="${sessionScope.memberNickname}">
-								
 								<textarea rows="5" cols="80" name="reply_content"
-									placeholder="댓글을 달아주세요" id="reply_content"></textarea>
-								<div class="col-xs-12 col-sm-1 col-md-2">
-									<input type="submit" class="btn btn-danger" value = "등록"/>
-								</div>
-							</form>
+									placeholder="댓글을 달아주세요" id="reply_content"></textarea>	
 						</div>
+						<div class="col-md-2">							
+									<input type="button" id = "writeReply" class="btn btn-danger" value = "등록"/>
+						</div>
+					
 					</div>
 					
 
@@ -212,7 +212,44 @@ body {
 					</div>
 
 
+<script>
 
+$("#writeReply").on("click", function(){
+	var reply_content = document.querySelector("#reply_content")
+	
+  alert(reply_content.value)
+	var reply = {
+			"board_num" : "${com.board_num}",
+			"reply_content" : reply_content.value
+			
+	}
+
+
+
+	$.ajax({ 
+		type: "post",
+		url: "<%=request.getContextPath()%>/reply/writeReply",
+		data: reply,
+		dataType: 'text',
+		success : function(data){
+			alert("전송성공");
+			var obj = json.parse(reply) 
+		
+			
+
+		},
+		error: function (result){
+			console.log(result)
+			alert("error");
+		}	
+	}); //end ajax
+
+	
+})
+
+	
+
+</script>
 			
 
 

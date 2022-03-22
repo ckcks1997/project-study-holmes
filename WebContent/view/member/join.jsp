@@ -65,7 +65,7 @@ body {
  
 
 input[type=button], input[type=submit], input[type=reset] {
-	background-color: #C47100;
+	background-color: #f55555;
 	border: none;
 	color: white;
 	padding: 15px 80px;
@@ -80,7 +80,7 @@ input[type=button], input[type=submit], input[type=reset] {
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover
 	{
-	background-color: #C47100;
+	background-color: #f22222;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active
@@ -157,12 +157,12 @@ input[type=text]:placeholder {
 	padding-left:70px;
 	margin-top:5px;
 }
-.btn-brown{
-    background:#c47100;
+.btn-color1{
+    background:#f55555;
     color:white;
 }
-.btn-brown:hover{
-    background:#c47100;
+.btn-color1:hover{
+    background:#f55555;
     color:white;
 }
 .span-info{
@@ -211,7 +211,7 @@ function win_upload(){
 				<div class="alert mx-5 py-0 mb-0 " id="validation-view" role="alert" display="none"></div>
                 <div class="d-md-flex justify-content-center align-items-center mx-5">
 					<input type="text" id="email" class=" "  name="email" placeholder="example@studyhomles.com" required  > 
-					<button class="btn btn-brown" id="emailChk" type="button" onclick="idChk()">확인</button>
+					<button class="btn btn-color1" id="emailChk" type="button" onclick="idChk()">확인</button>
                 </div>
 				<p class="nameholder">비밀번호</p>
 				  <div class="alert mx-5 py-0 my-0" id="validation-view2" role="alert"  display="none"></div>
@@ -226,17 +226,17 @@ function win_upload(){
 				<div class="alert mx-5 py-0 my-0" id="validation-view3" role="alert"  display="none"></div>
 				<div class="d-md-flex justify-content-center align-items-center mx-5">
 				    <input type="text" placeholder="닉네임" id="nickname" name="nickname" class=" " required > 
-				    <button class="btn btn-brown" id="emailChk" type="button" onclick="nicknameChk()">확인</button>
+				    <button class="btn btn-color1" id="emailChk" type="button" onclick="nicknameChk()">확인</button>
                 </div>
 				<p class="nameholder">전화번호</p>
 				<input type="text" 	placeholder="전화번호" name="tel" class="m-2">
 					<p class="nameholder">프로필 사진</p>
 				<div class="col-4 mx-auto my-2 bg-none">
 					<img src="" width="100" height="100" id="pic" onerror="this.src='<%=request.getContextPath()%>/img/profile_empty.jpg'"> <br>
-					<button type="button" class="btn btn-sm m-2 btn-brown" onclick="win_upload()">프로필 사진등록</button>
+					<button type="button" class="btn btn-sm m-2 btn-color1" onclick="win_upload()">프로필 사진등록</button>
 				</div>
 
-				<br> <input type="submit" class=" btn-brown" value="회원가입"> <br> <br>
+				<br> <input type="submit" class=" btn-color1" value="회원가입"> <br> <br>
 			</form>
 
 			<div id="formFooter">

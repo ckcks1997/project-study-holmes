@@ -10,46 +10,71 @@
 
 
 <style>
-body {
-	height: 100vh;
-}
-
 /* 명언 */
 .famous-saying-box {
 	height: 150px;
 	background-color: #333b3d;
 }
 
- 
-.reaction {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.color-white {
+	color: white;
 }
 
-.circle {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 80%;
-	height: 100%;
-	
-	border-radius: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.footer-content {
+	padding-top: 50px;
 }
 
-.page-item > a{
-    color:#f55555; 
+/* aside */
+ul, li {
+	list-style: none;
 }
-.page-item > a:hover{
-    color:#f55555; 
+
+li>a {
+	color: rgb(10, 10, 10);
 }
-.active2 > a{
-    background-color:#f55555 !important; 
-    border: 1px solid #f55555 !important; 
-} 
+
+a:hover {
+	text-decoration: none;
+}
+
+
+/* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */ 
+            .pic_box{ 
+                width: 150px;
+                height: 150px; 
+                border-radius: 70%;
+                overflow: hidden;
+            }
+            .pic_box_pic{
+                width: 100%;
+                height:100%;
+                object-fit: cover;
+            }
+            .face_img{
+                width: 100%;
+                height: 100%;
+            }
+            .face_img > img{
+                width: 50px;
+                height: 50px;
+            }
+            .font-sm{
+                font-size: 0.8rem;
+            }
+            h1,h3,h5{
+                font-weight: bold;
+            }
+            .container-css{
+                background: #f8f8f8;
+                border-radius: 20px;
+            }
+            .icon-red{
+                color:white;
+                background: red;
+                padding: 2px;
+                border-radius:10px;
+            }
+        }
 </style>
 <title>스터디 홈즈</title>
 </head>
@@ -60,8 +85,10 @@ body {
 	<div class="container-fluid famous-saying-box">
 		<div class="container p-3">
 			<div class="mt-3">
-				<h2 style="color: white">이야기를 나눠요</h2>
-				<p style="color: white">어려운 내용은 함께 토론해봐요</p>
+				
+				<h3 class="color-white">오늘의 명언</h3>
+				<div class="color-white">생각 없이 배우기만 하면 얻는 것이 없고, 생각만 하고 배우지 않으면 오류나 독단에 빠질 위험이 있다. -공자</div>
+			
 			</div>
 		</div>
 	</div>
@@ -70,48 +97,19 @@ body {
 		<div class="row pt-5">
 <!------------------------- 왼쪽 사이드메뉴 -----------------					---------------------------------------------------->
 			<%--aside부분 --%>
-                <%@include file="/common/community_menu.jsp" %>
-                
-                
-<!-- ---------------------------메인검색-------------------------------------------------------- -->
-			<div class="main col-sm-9">
-				<h2 style="font-weight: bold">${boardName}</h2>
+           <%@include file="/common/myinfo_menu.jsp" %>
 
-				<hr align="left" width="150px" style= "border: 0.5px solid #c47100" />
-
-
-				<form action = "<%=request.getContextPath()%>/community/comSearch" method = post>
-					<input type = "hidden" name = "boardid" value = "${boardid}"/>
-					<div class="row">
-						<div class="col-xs-12 col-sm-11 col-md-10">
-						<div class = "d-flex flex-row align-items-center">
-						<div class = "col-md-2">
-						<select class="custom-select" name="part">
-									    <option value="title">제목</option>
-									    <option value="content">내용</option>						
-									</select>
-						</div>
-							<input type="text" class="form-control rounded" name = "searchData"
-								placeholder="내용을 검색해보세요!" required="required"/>
-						</div>
-						</div>
-						<div class="col-xs-12 col-sm-1 col-md-2 btn-search">
-							<input class="btn btn-dark" type="submit" name = "search" value = "검색"/>
-						</div>
-					</div>
+			<div class="col-sm-9">
+				<h1>커뮤니티 게시글</h1>
+				<hr align="left" width="350px" style="border: 0.5px solid #c47100" />
 				
-				</form>
 				<br />
-<!-- ------------------------------------------------------------------------------------ -->
+
 				<div style="float: left">
 					<strong>최신순</strong> &nbsp;<strong>·</strong> 댓글많은순 &nbsp;<strong>·</strong>
 					좋아요순
 				</div>
-				<div class="mb-2" style="float: right">
-					<button type="button" class="btn btn-dark"
-						onclick="location.href='<%=request.getContextPath()%>/community/comWriteForm'">글쓰기
-					</button>
-				</div>
+				
 
 
 				<br />
@@ -120,12 +118,6 @@ body {
 				<!-------------메인 커뮤니티 게시판 --------------------------------------------------------------------------------------------------------- -->
 				<div class="container">
 					<table class="table">
-						<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
-				
-								<p>작성된 글이 없습니다.</p>
-				
-						</c:if>
-					
 						<c:forEach var="com" items="${list}">
 							<tr>
 								<td>
@@ -196,10 +188,10 @@ body {
 					<li
 						class='page-item <c:if test ="${startPage <= bottomLine }"> disabled </c:if> '><a
 						class="page-link"
-						href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${startPage-bottomLine}">이전</a></li>
+						href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${startPage-bottomLine}">Previous</a></li>
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<li
-							class='page-item <c:if test = "${i==pageInt}" > active active2</c:if> '>
+							class='page-item <c:if test = "${i==pageInt}" > active </c:if> '>
 							<a class="page-link"
 							href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${i}">${i}</a>
 						</li>
@@ -207,12 +199,13 @@ body {
 					<li
 						class='page-item <c:if test ="${endPage >= maxPage}"> disabled </c:if>  '>
 						<a class="page-link"
-						href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${startPage+bottomLine}">다음</a>
+						href="<%=request.getContextPath()%>/community/comBoardList?pageNum=${startPage+bottomLine}">Next</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
+
 
 
 	<br>

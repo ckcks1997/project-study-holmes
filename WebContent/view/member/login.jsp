@@ -60,7 +60,7 @@ body {
 
 /* FORM TYPOGRAPHY*/
 input[type=button], input[type=submit], input[type=reset] {
-	background-color: #C47100;
+	background-color: #f55555;
 	border: none;
 	color: white;
 	padding: 15px 80px;
@@ -68,14 +68,13 @@ input[type=button], input[type=submit], input[type=reset] {
 	text-decoration: none;
 	display: inline-block;
 	text-transform: uppercase;
-	font-size: 13px;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 30px;
 	margin: 5px 20px 40px 20px;
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover
 	{
-	background-color: #C47100;
+	background-color: #f22222;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active
@@ -153,6 +152,8 @@ input[type=text]:placeholder {
     border-radius:15px;
 }
 
+ 
+
 </style>
 </head>
 <body>
@@ -169,9 +170,9 @@ input[type=text]:placeholder {
 
 			<!-- Login Form -->
 			<form action="<%=request.getContextPath()%>/studymember/loginPro">
-				<input type="text" id="id" class="fadeIn second" name="id" placeholder="email id"> 
-				<input type="password" id="password" class="fadeIn third" name="password" placeholder="password"> 
-				<input	type="submit" class="fadeIn fourth my-1" value="로그인"> <br>
+				<input type="text" id="id" class=" " name="id" placeholder="email id"> 
+				<input type="password" id="password" class=" " name="password" placeholder="password"> 
+				<input	type="submit" class=" login-btn my-1" value="로그인"> <br>
 				<a class="btn" href="join">회원가입</a>
 				<a class="btn" href="findPassword">비밀번호 찾기</a>
 				<br> <br>

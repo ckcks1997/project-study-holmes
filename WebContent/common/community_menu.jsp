@@ -42,14 +42,14 @@ a:hover {
 <body>
 	<aside class="col-sm-3">
 		<div class="col aside">
-			<h4>함께 공부해요</h4>
+			<h4><strong>함께 공부해요</strong></h4>
 			<div class="aside-content">
 				<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=1"><li class=" <c:if test="${boardid eq 1 }">selected</c:if> ">질문 답변</li></a>
 				<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=2"><li class="<c:if test="${boardid eq 2 }">selected</c:if>">자유</li></a>
 				<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=3"><li class="<c:if test="${boardid eq 3 }">selected</c:if>">정보공유</li></a> <br>
-				<h4>공지사항</h4>
-				<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=4"><li class="<c:if test="${boardid eq 4 }">selected</c:if>"> 공지사항 </li></a>
-				<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=5"><li class="<c:if test="${boardid eq 5 }">selected</c:if>"> 블로그 </li></a>
+				<h4><strong>With</strong></h4>
+				<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=4"><li class="<c:if test="${boardid eq 4 }">selected</c:if>"> 공지 </li></a>
+				<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=5"><li class="<c:if test="${boardid eq 5 }">selected</c:if>"> 문의사항 </li></a>
 
 			</div>
 		</div>
