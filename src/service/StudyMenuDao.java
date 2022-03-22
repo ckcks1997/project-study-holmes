@@ -115,9 +115,8 @@ public class StudyMenuDao {
 			}
 			return null;
 	  }
-<<<<<<< HEAD
-	  
-	 
+ 
+
 	 public List<StudyMenu> list2(String list2) {
 
 			SqlSession sqlSession = MybatisConnection.getConnection();
@@ -136,8 +135,7 @@ public class StudyMenuDao {
 			return list;
 
 		}
-	 
-	 
+	  
 	 
 		/*
 		 * public List<StudyMenu> allList() {
@@ -149,8 +147,7 @@ public class StudyMenuDao {
 		 * 
 		 * return null; }
 		 */
-=======
->>>>>>> 2eedd190cfafe8fa31993d6e324719b967e55d2e
+ 
 	 
 	 
 	 

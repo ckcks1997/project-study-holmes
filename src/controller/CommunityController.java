@@ -2,18 +2,13 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.oreilly.servlet.MultipartRequest;
-
 import model.Community;
-<<<<<<< HEAD
-import service.CommunityBoardDao;
-=======
 import model.Reply;
 import model.Search;
 import model.StudyMember;
@@ -21,7 +16,6 @@ import model.StudyMenu;
 import service.CommunityBoardDao;
 import service.StudyMemberDao;
 import service.StudyMenuDao;
->>>>>>> 2eedd190cfafe8fa31993d6e324719b967e55d2e
  
 
 

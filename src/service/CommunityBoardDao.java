@@ -3,17 +3,10 @@ package service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
-
-<<<<<<< HEAD
-import model.Community;
-=======
-
-
 import model.Community;
 import model.Search;
->>>>>>> 2eedd190cfafe8fa31993d6e324719b967e55d2e
+
 import util.MybatisConnection;
 
 public class CommunityBoardDao {
