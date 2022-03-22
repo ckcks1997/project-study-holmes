@@ -1,12 +1,12 @@
 package controller;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import model.Attend;
-import model.Community;
 import service.AttendDao;
-import service.CommunityBoardDao;
 
 public class AttendCheckController extends MskimRequestMapping {
 
@@ -31,8 +31,7 @@ public class AttendCheckController extends MskimRequestMapping {
      
     return "/view/alert.jsp";
   }
-  
-  
+ 
   /*
    * 날짜 체크
    * */

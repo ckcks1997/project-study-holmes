@@ -1,19 +1,15 @@
 package controller;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-import com.oreilly.servlet.MultipartRequest;
-import model.Notice;
+
 import model.Community;
-import service.NoticeDao;
+import model.Notice;
 import service.CommunityBoardDao;
+import service.NoticeDao;
  
 
 
@@ -56,6 +52,10 @@ public class BoardController extends MskimRequestMapping{
  
     return "/single/alert_ajax.jsp";
   }
+  
+  
+  
+  
   
 }
  

@@ -49,7 +49,7 @@
 				<h6>
 					<small><span class="best">BEST</span> <c:if
 							test="${s.menuid =='1'}"> 전체스터디</c:if> <c:if
-							test="${s.menuid =='2'}"> 개발/프로그맹</c:if> <c:if
+							test="${s.menuid =='2'}"> 개발/프로그래밍</c:if> <c:if
 							test="${s.menuid =='3'}"> 보안/네트워크</c:if> <c:if
 							test="${s.menuid =='4'}"> 크리에이티브</c:if> <c:if
 							test="${s.menuid =='5'}"> 직무/마케팅</c:if> <c:if
