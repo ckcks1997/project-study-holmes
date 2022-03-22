@@ -20,7 +20,8 @@ import service.StudyMenuDao;
 //WebServlet("/studymenu/*")
 public class StudyMenuController extends MskimRequestMapping{
 	
-	@RequestMapping("studyMenuList")
+	
+	@RequestMapping("studyMenuList") 
 	public String studyMenuList(HttpServletRequest request, 
 			HttpServletResponse response) {
 
@@ -110,6 +111,8 @@ public class StudyMenuController extends MskimRequestMapping{
 	return "/view/study/studyMenuList.jsp";
 	}	
 	
+	
+	/*---------------------------------------------------------------------------*/
 	@RequestMapping("studyWriteForm")
 	public String studyWriteForm(HttpServletRequest request, 
 			HttpServletResponse response) {
@@ -128,6 +131,8 @@ public class StudyMenuController extends MskimRequestMapping{
 		return "/view/alert.jsp";	
 		}
 	
+	
+	/*---------------------------------------------------------------------------*/
 	@RequestMapping("writePro")
 	public String writePro(HttpServletRequest request, 
 			HttpServletResponse response) {
@@ -182,74 +187,106 @@ public class StudyMenuController extends MskimRequestMapping{
 		return "/view/alert.jsp";
 	}
 	
+	
+	/*---------------------------------------------------------------------------*/
 	@RequestMapping("studySearch")
 	public String studySearch(HttpServletRequest request, 
 			HttpServletResponse response) {
-		
-		HttpSession session = request.getSession();
-		
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String part = request.getParameter("part");
-		String searchData = request.getParameter("searchData");
-		Search sh = new Search();
-		sh.setPart(part);
-		sh.setSearchData("%" + searchData + "%");
-		
-		StudyMenuDao dao = new StudyMenuDao();
-		List<StudyMenu> list = dao.studySearch(sh);
-		request.setAttribute("list", list);
-		
-		String menuid = "";
-		int pageInt = 1;
-		int limit = 9;
-		
-		if (request.getParameter("menuid") !=null) {
-			session.setAttribute("menuid", request.getParameter("menuid"));
-			session.setAttribute("pageNum", "1");
-		}
-		
-		menuid = (String) session.getAttribute("menuid");
-		
-		if (menuid==null) { 
-			menuid = "1"; 
-			}
+
+		String part = "";
+		String  searchData = ""; 
+		  
+		part = request.getParameter("part");
+		searchData = request.getParameter("searchData");
+		String menuid = request.getParameter("menuid");
+			
+		StudyMenuDao sm = new StudyMenuDao();
+		sm.studySearch(part,searchData,menuid);
+			
+		return "/studymenu/studySearchList";
+	}
+			
+			
+
+	/*---------------------------------------------------------------------------*/
+	  @RequestMapping("studySearchList")
+	  public String studySearchList(HttpServletRequest request, HttpServletResponse response) {
+		  HttpSession session = request.getSession();
 		 
-		
-		if (request.getParameter("pageNum") !=null) {
-			session.setAttribute("pageNum", request.getParameter("pageNum"));
-		}
-		
+		  String menuid = "";
+		  int pageInt = 1;
+		  int limit = 9;
+		  String part = request.getParameter("part"); 
+		  String searchData = request.getParameter("searchData"); 
+		  
+		  
+		  if(request.getParameter("menuid")!= null) { 
+			  session.setAttribute("menuid", request.getParameter("menuid")); 
+			  session.setAttribute("pageNum", "1");	 
+		  }
+		  
+		  menuid = (String)session.getAttribute("menuid");
+		  if(menuid == null) {
+			  menuid ="1";
+		  }
+		  
+		  if (request.getParameter("pageNum")!=null) {
+			  session.setAttribute("pageNum", request.getParameter("pageNum"));
+		  }
+		  
 		  String pageNum =(String)session.getAttribute("pageNum");
 		  if(pageNum == null) {
 			  pageNum = "1";
 		  }
 		  
-		pageInt = Integer.parseInt(pageNum);
+		  pageInt = Integer.parseInt(pageNum);
+		  request.setAttribute("part",part);
+		  request.setAttribute("searchData",searchData);
+		  
+		  StudyMenuDao sm = new StudyMenuDao();
+		  int menucount = sm.studySearchCount(menuid,part,searchData);
+		  List<StudyMenu> list = sm.studySearchList(pageInt, limit, menucount, menuid,part,searchData);
+		  int menunum = menucount - limit * (pageInt-1);
+		  int bottomLine = 3;
+		  int startPage = (pageInt-1)/bottomLine * bottomLine + 1;
+		  int endPage = startPage + bottomLine -1;
+		  int maxPage = (menucount/limit)+(menucount % limit==0? 0:1);
+		  if(endPage > maxPage) endPage = maxPage;
+		  
+			String menuName = "";
+			switch (menuid) {
+			case "1": menuName="전체 스터디";
+			case "2": menuName="개발/프로그래밍"; break;
+			case "3": menuName="보안/네트워크"; break;
+			case "4": menuName="크리에이티브"; break;
+			case "5": menuName="직무/마케팅"; break;
+			case "6": menuName="학문/외국어"; break;
+			case "7": menuName="교양"; break;	
+			}
 		
-		StudyMenuDao sd = new StudyMenuDao();
-		int searchCount = sd.searchCount(menuid);
-		List<StudyMenu> searchList = sd.menuList(pageInt, limit, searchCount, menuid);
-		
-		int searchnum = searchCount - (pageInt -1) * limit;
-		
-		int bottomLine = 3;
-		int startPage = (pageInt -1 )/ bottomLine * bottomLine + 1;
-		int endPage = startPage + bottomLine -1;
-		int maxPage = (searchCount / limit) + (searchCount % limit == 0 ? 0 : 1);
-		if (endPage > maxPage) endPage = maxPage;
-		
-		request.setAttribute("searchList", searchList);
-		request.setAttribute("searchnum", searchnum);
-		
-		
-		return "/view/study/menuSearchList.jsp";
-	}
+	  	request.setAttribute("menuName", menuName);
+		request.setAttribute("menuid", menuid);
+		request.setAttribute("pageInt", pageInt);
+		request.setAttribute("menucount", menucount);
+		request.setAttribute("list", list);
+		request.setAttribute("menunum", menunum);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("bottomLine", bottomLine);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("maxPage", maxPage);
 
+		  
+	   return "/view/study/menuSearchList.jsp";
+	 }
+
+	  
+	  /*---------------------------------------------------------------------------*/
 	 @RequestMapping("studyMenuInfo")
 	  public String studyMenuInfo(HttpServletRequest request, HttpServletResponse response) {
 		  
@@ -258,7 +295,7 @@ public class StudyMenuController extends MskimRequestMapping{
 		  StudyMenu s = smd.menuBoardOne(board_num);
 		  request.setAttribute("s", s);
 		  	  	  
-		  //session의 닉네임 가져오기
+	
 		  HttpSession session = request.getSession();
 		  String loginNick = (String)session.getAttribute("memberNickname");
 		  request.setAttribute("loginNick", loginNick);
@@ -267,6 +304,8 @@ public class StudyMenuController extends MskimRequestMapping{
 		  return "/view/study/studyMenuInfo.jsp";
 	  }			
 	 
+	 
+	 /*---------------------------------------------------------------------------*/
 	 // 스터디 참가신청 버튼을 누를 때
 	  @RequestMapping("studyIn")
 	  public String studyIn(HttpServletRequest request, HttpServletResponse response) {
