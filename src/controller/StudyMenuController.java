@@ -178,6 +178,9 @@ public class StudyMenuController extends MskimRequestMapping{
 	String msg="게시물 등록 실패";
 	String url=request.getContextPath()+"/studymenu/studyWriteForm";
 	
+	System.out.println("=============================");
+	System.out.println(num);
+	System.out.println("=============================");
 	if (num==1) {
 		msg="게시물 등록 성공";
 		url=request.getContextPath()+"/studymenu/studyMenuList?pageNum=1";
@@ -338,7 +341,7 @@ public class StudyMenuController extends MskimRequestMapping{
 		  
 			String menuName = "";
 			switch (menuid) {
-			case "1": menuName="전체 스터디";
+			case "1": menuName="전체 스터디"; break;
 			case "2": menuName="개발/프로그래밍"; break;
 			case "3": menuName="보안/네트워크"; break;
 			case "4": menuName="크리에이티브"; break;
