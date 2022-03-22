@@ -4,18 +4,26 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import com.oreilly.servlet.MultipartRequest;
+<<<<<<< HEAD
+
+=======
+import model.GroupMember;
+>>>>>>> 2eedd190cfafe8fa31993d6e324719b967e55d2e
 import model.MemberTag;
 import model.Notice;
 import model.StudyMember;
+import model.StudyMenu;
+import service.GroupMemberDao;
 import service.MemberTagDao;
 import service.NoticeDao;
 import service.StudyMemberDao;
+import service.StudyMenuDao;
 
 
 // @WebServlet("/studymember/*")
@@ -43,8 +51,72 @@ public class StudyMemberController extends MskimRequestMapping {
     request.setAttribute("url", url);
     return "/view/alert.jsp";
   }
+  /*
+   * 알림 상세
+   * */
+  @RequestMapping("noticeInfo")
+  public String noticeInfo(HttpServletRequest request, HttpServletResponse response) {
+
+    String id = (String) request.getSession().getAttribute("memberNickname");
+    String msg = "로그인이 필요합니다";
+    String url = request.getContextPath()+"/studymember/loginForm";
+    if(id != null) {
+      NoticeDao nd = new NoticeDao();
+      StudyMenuDao md = new StudyMenuDao(); 
+      int noticeNum = Integer.parseInt(request.getParameter("noticeNum"));
+      Notice n = nd.noticeGetByNoticeNum(noticeNum);
+      StudyMenu menu = md.menuBoardOne(Integer.parseInt(n.getInfo2()));
+      String title = menu.getTitle();
+      if(n.getNickname_to().equals(id)) {
+        request.setAttribute("notice", n);
+        request.setAttribute("title", title);
+        return "/view/member/memberNoticeInfo.jsp";
+      }      
+    }
+    request.setAttribute("msg", msg);
+    request.setAttribute("url", url);
+    return "/view/alert.jsp";
+  }
   
-  
+  /*
+   * 알림-그룹초대 수락
+   * */
+  @RequestMapping("groupAccept")
+  public String groupAccept(HttpServletRequest request, HttpServletResponse response) {
+
+    String id = (String) request.getSession().getAttribute("memberNickname");
+ 
+   
+    String msg = "로그인이 필요합니다";
+    String url = request.getContextPath()+"/studymember/loginForm";
+    if(id != null) {
+      NoticeDao nd = new NoticeDao();
+      StudyMenuDao md = new StudyMenuDao(); 
+      
+      int noticeNum = Integer.parseInt(request.getParameter("notice_num")); //알림번호 가져옴
+      Notice n = nd.noticeGetByNoticeNum(noticeNum); //알림정보 조회
+      StudyMenu menu = md.menuBoardOne(Integer.parseInt(n.getInfo2())); //알림정보에 있는 스터디 보드번호로 보드조회
+ 
+      if(n.getNickname_to().equals(id)) { //세션과 알림 받은사람 비교, 본인확인
+        GroupMemberDao gmd = new GroupMemberDao(); //group에 초대하는 과정
+        GroupMember gm = new GroupMember();
+        gm.setBoardnum(menu.getBoard_num());
+        gm.setNickname(n.getNickname_from()); 
+        gmd.groupInsert(gm, 0);
+        
+        
+        /*TODO: 스터디에 참가한 사람에게 알림 전송*/
+        
+        
+        msg = "등록되었습니다";
+        url = request.getContextPath()+"/studymember/notice";
+         
+      }      
+    }
+    request.setAttribute("msg", msg);
+    request.setAttribute("url", url);
+    return "/view/alert.jsp";
+  }
   /*
    * 로그인 페이지
    * */
@@ -234,8 +306,13 @@ public class StudyMemberController extends MskimRequestMapping {
   }
   
   
-    /*마이페이지*/
-
+ 
+  
+  
+  
+  
+  
+  
   /*
    * 마이페이지
    * */

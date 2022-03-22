@@ -73,4 +73,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     where ROWNUM &lt; 5
 </select> 
 
+
+		<!-- 세션 = 내아이디  -->
+	<select id="mylist1" resultType = "community"  parameterType = "string">
+	select * from community where nickname = #{nickname} 
+	</select>
+
 </mapper>

@@ -2,22 +2,18 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Enumeration;
 import java.util.List;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionContext;
 
 import com.oreilly.servlet.MultipartRequest;
 
-
 import model.Community;
+<<<<<<< HEAD
+import service.CommunityBoardDao;
+=======
 import model.Reply;
 import model.Search;
 import model.StudyMember;
@@ -25,6 +21,7 @@ import model.StudyMenu;
 import service.CommunityBoardDao;
 import service.StudyMemberDao;
 import service.StudyMenuDao;
+>>>>>>> 2eedd190cfafe8fa31993d6e324719b967e55d2e
  
 
 
@@ -319,6 +316,34 @@ public class CommunityController extends MskimRequestMapping{
 
   }
  
+
+  
+  
+  
+  
+  //내가쓴 커뮤니티 게시글//
+  @RequestMapping("myList1")
+  public String myList1(HttpServletRequest request,  HttpServletResponse response) {
+	  
+	  HttpSession session = request.getSession();
+	  String nickname = (String) session.getAttribute("memberNickname");
+	  CommunityBoardDao cbd = new CommunityBoardDao();
+	  List<Community> list = cbd.mylist1(nickname);
+	  String msg = "로그인이 필요합니다";
+	  String url = request.getContextPath()+"/studymember/loginForm";
+	  
+	  if(session.getAttribute("memberNickname")!= null) {
+		  request.setAttribute("list",list);
+		return "/view/community/myList1.jsp";
+	  }
+	  
+	  request.setAttribute("msg", msg);
+	  request.setAttribute("url", url);
+	  
+	 return "/view/main.jsp";
+  }
+  
+  
   
   //검색한 페이지
   @RequestMapping("comSearchList")

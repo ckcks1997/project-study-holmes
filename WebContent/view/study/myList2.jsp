@@ -3,21 +3,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+List<StudyMenu> list = (List<StudyMenu>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
- 
-body {
-	color: #454545;
-	font-size: 1rem;
-	font-weight: 500;
-	line-height: 1.5;
-}
-
-a {
+ a {
 	color: #454545;
 }
 
@@ -56,95 +51,72 @@ a {
 .footer-content {
 	padding-top: 50px;
 }
-
-
-/* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */
-.search {
-	display: inline-block;
+/* 명언 */
+.famous-saying-box {
+	height: 150px;
+	background-color: #333b3d;
 }
 
-.tagbox {
-    color: white;
-    font-weight: 700;
-	display: inline-block;
-	width: 60px;
-	height: 40px;
-	line-height: 30px;
-	text-align: center;
-	padding: 5px;
-	margin-right:5px;
-	background-color: #f55555;
-	border: none;
-	border-radius: 15%;
-}
-
-.tagbox-etc {
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	line-height: 30px;
-	text-align: center;
-	background-color: #f55555;
-	border-radius: 15%;
-}
-
-.tagbox>a {
+.color-white {
 	color: white;
-	font-size: 0.8 rem;
 }
 
-/* 스터디글 상자 */
-.study-box {
-	width: 230px;
-	height: 300px;
-	background: rgb(255, 255, 255);
-	margin: 10px;
-	margin-bottom: 40px;
+.footer-content {
+	padding-top: 50px;
 }
 
-.img {
-	
+/* aside */
+ul, li {
+	list-style: none;
 }
 
-.img>img {
-	width: 100%;
-	height: 100%;
+li>a {
+	color: rgb(10, 10, 10);
 }
 
-.b-h5 {
-	font-weight: bold;
-	margin: 0;
+a:hover {
+	text-decoration: none;
 }
 
-.b-p {
-	margin-bottom: 0;
-}
 
-.b-people {
-	margin: 0;
-}
+/* 아래서부터는 페이지 종속css, 다른페이지에 복붙할 필요 x */ 
+            .pic_box{ 
+                width: 150px;
+                height: 150px; 
+                border-radius: 70%;
+                overflow: hidden;
+            }
+            .pic_box_pic{
+                width: 100%;
+                height:100%;
+                object-fit: cover;
+            }
+            .face_img{
+                width: 100%;
+                height: 100%;
+            }
+            .face_img > img{
+                width: 50px;
+                height: 50px;
+            }
+            .font-sm{
+                font-size: 0.8rem;
+            }
+            h1,h3,h5{
+                font-weight: bold;
+            }
+            .container-css{
+                background: #f8f8f8;
+                border-radius: 20px;
+            }
+            .icon-red{
+                color:white;
+                background: red;
+                padding: 2px;
+                border-radius:10px;
+            }
+        }
 
-.b-rep {
-	font-size: 12px;
-}
-
-.b-price {
-	margin-bottom: 0;
-	font-size: 1.2rem;
-	font-weight: bold;
-	color: #175cbe;
-}
-
-.page-item > a{
-    color:#f55555; 
-}
-.page-item > a:hover{
-    color:#f55555; 
-}
-.active2 > a{
-    background-color:#f55555 !important; 
-    border: 1px solid #f55555 !important; 
-} 
  
 </style>
 </head>
@@ -166,44 +138,20 @@ a {
 		
 <!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->	
 			<%--aside부분 --%>
-                <%@include file="/common/study_menu.jsp" %>
+                <%@include file="/common/myinfo_menu.jsp" %>
 			
 <!-- --------------------------------------------------------------메인------------------------------------------------------------ -->		
 			
 			<div class="col-sm-9">
-				<h1>오프라인 스터디</h1>
+				<h1>스터디 게시글</h1>
 				<hr align="left" width="350px" style="border: 0.5px solid #c47100" />
 				<br>
-				<h4>${menuName}</h4>
+				
 				 
 					
 <!-- --------------------------------------------------------------검색------------------------------------------------------------ -->							
-																																	
-						<c:if test="${menuid eq 1 }">
 						<div>
-							<div class="input-group rounded">
-							<form action = "allstudySearch" method="post">
-							<div class="d-flex flex-row align-items-center">
-								 
-									<select class="custom-select" name="part">
-									    <option value="title">제목</option>						
-									</select>
-								 
-								    <div class="d-flex flex-row">
-									<input type="text" class="form-control rounded"
-										placeholder="Search" aria-label="Search"
-										aria-describedby="search-addon" name="searchData" required="required"/> 
-								    <input type="submit" class="input-group-text border-0" value="검색"> 
-								    </div>
-							</div>
-							</form>
-							</div>
-						</div>
-						</c:if>
-						
-						<c:if test="${menuid != 1}">															
-						<div>
-							<div class="input-group rounded">
+							<div class="input-group rounded" method="post">
 							<form action = "studySearch" method="post">
 							<div class="d-flex flex-row align-items-center">
 								 
@@ -221,7 +169,6 @@ a {
 							</form>
 							</div>
 						</div>
-						</c:if>
 				 
 <!-- --------------------------------------------------------------지역태그------------------------------------------------------------ -->						
 					<div>
@@ -258,15 +205,15 @@ a {
 				
 				
 <!-- --------------------------------------------------------------게시판------------------------------------------------------------ -->						
-				<button class="btn btn-info d-block ml-auto">
-					<a href="<%=request.getContextPath()%>/studymenu/studyWriteForm" style="color: white;">글쓰기 </a>
-				</button>
+				
 				<div class="container d-flex align-content-between flex-wrap">
 				
 				<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
-				<p>작성된 글이 없습니다.</p>				
-				</c:if>	
-												
+				
+				<p>작성된 글이 없습니다.</p>
+				
+				</c:if>			
+				
 				<c:if test="${list !=null }">				
 				<c:forEach var="s" items="${list}">
 					<div class="study-box ">
@@ -283,7 +230,6 @@ a {
 								</p>
 								<p class="b-p">${s.region }</p>
 								<div>
-								    ${s.nickname }
 									<p class="b-p d-inline-block">
 										&#11088;&#11088;&#11088;&#11088;&#11088;</p>
 									<p class="b-p b-rep d-inline-block ">평가:100%</p>
@@ -297,46 +243,24 @@ a {
 				</div>
 <!-- --------------------------------------------------------------페이지 번호------------------------------------------------------------ -->
 				<br> <br>
-				
-	  			<!-- 전체스터디페이징 -->
-				<c:if test="${menuid eq 1 }">
 				<nav class="container">
-					<ul class="pagination justify-content-center">				
+					<ul class="pagination justify-content-center">
+					
+					
 					<li 
-						class='page-item <c:if test="${a_startPage <= a_bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${a_startPage - a_bottomLine}">이전</a></li>
+						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">Previous</a></li>
 						
-					<c:forEach var="i" begin="${ a_startPage }" end="${a_endPage}">
-						<li class='page-item <c:if test = "${i == pageInt}" >  active active2</c:if>'>
+					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
+						<li class='page-item <c:if test = "${i == pageInt}" >  active </c:if>'>
 						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${i}">${i}</a></li>
 					
 					</c:forEach>
-						<li class='page-item <c:if test = "${a_endPage >= a_maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + a_bottomLine}">다음</a></li>
-					</ul>
-				</nav>
-				</c:if>
-				
-				<!-- 나머지페이징 -->
-				<c:if test="${menuid != 1}">
-				<nav class="container">
-					<ul class="pagination justify-content-center">
-										
-					<li 
-						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">이전</a></li>
-						
-					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
-						<li class='page-item <c:if test = "${i == pageInt}" > active active2 </c:if>' >
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${i}">${i}</a></li>
-					
-					</c:forEach>
 						<li class='page-item <c:if test = "${endPage >= maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">다음</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">Next</a></li>
 					</ul>
 				</nav>
-				</c:if>
-				
+
 			</div>
 		</div>
 	</div>

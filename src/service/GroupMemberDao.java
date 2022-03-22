@@ -6,7 +6,8 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import model.Attend;
-import model.Community; 
+import model.Community;
+import model.GroupMember;
 import model.StudyMenu;
 import util.MybatisConnection;
 
@@ -29,12 +30,12 @@ public class GroupMemberDao {
            return 0;
      }
  
-	    public int groupInsert(StudyMenu sm, int represent) {
+	    public int groupInsert(GroupMember sm, int represent) {
           
 	         SqlSession sqlSession = MybatisConnection.getConnection();
 	           try {
 	             map.clear();
-	             map.put("board_num", sm.getBoard_num());
+	             map.put("board_num", sm.getBoardnum());
                  map.put("nickname", sm.getNickname());
 	             map.put("represent", represent); 
 	           return sqlSession.insert(NS+"groupInsert", map);
