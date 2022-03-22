@@ -94,9 +94,7 @@ h1, h3, h5 {
 				<br>
 				<div class="container container-css  p-5">
 				    
-					<h5>닉네임</h5>
-					<input class="form-control input-border-round" type="text" name="nickname" value="${memberInfo.nickname}" disabled> <br>
-
+					
 
 				</div>
 				<br>

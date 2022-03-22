@@ -116,8 +116,8 @@
 			</form>
 		</div>
 		<div class="container">
-			<h2>지금 뜨는 컨텐츠</h2>
-			<hr align="left" width="300px" style="border: 0.5px solid #c47100" />
+			<h2>최신 컨텐츠</h2>
+			<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
 			<div class="d-flex justify-content-between " >
 				<div class="container">
 					<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="" width="100%" height="200px" />

@@ -8,12 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
-
-import model.GroupMember;
 import model.Search;
 import model.StudyMenu;
+import model.GroupMember;
 
 
 import service.GroupMemberDao;
@@ -135,10 +132,7 @@ public class StudyMenuController extends MskimRequestMapping{
 		return "/view/alert.jsp";	
 		}
 	
-	
 
-	
-	
 
 	/*---------------------------------------------------------------------------*/
 
@@ -389,9 +383,7 @@ public class StudyMenuController extends MskimRequestMapping{
 		  return "/view/study/studyMenuInfo.jsp";
 	  }			
 	 
-	 
 
-	 
 	 /*
 	   * 내가 쓴 게시물  스터디 게시물
 	   */
@@ -410,10 +402,7 @@ public class StudyMenuController extends MskimRequestMapping{
 			request.setAttribute("url", url);  
 			return "/view/study/myList2.jsp";	
 			}
-	 
-	
-	 
-	 
+
 
 	 /*---------------------------------------------------------------------------*/
 	 // 스터디 참가신청 버튼을 누를 때

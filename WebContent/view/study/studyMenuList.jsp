@@ -145,6 +145,9 @@ a {
     background-color:#f55555 !important; 
     border: 1px solid #f55555 !important; 
 } 
+.text-css{
+    width: 200px;
+}
  
 </style>
 </head>
@@ -212,7 +215,7 @@ a {
 									</select>
 								 
 								    <div class="d-flex flex-row">
-									<input type="text" class="form-control rounded"
+									<input type="text" class="form-control rounded text-css"
 										placeholder="Search" aria-label="Search"
 										aria-describedby="search-addon" name="searchData" required="required"/> 
 								    <input type="submit" class="input-group-text border-0" value="검색"> 

@@ -56,7 +56,7 @@
 	select * from study_menu where (${part}) like upper (#{searchData})
 	and menuid = #{menuid}
 	</select>
->>>>>>> 2eedd190cfafe8fa31993d6e324719b967e55d2e
+
 	
 	<select id="studySearchCount" resultType="int" parameterType="map">
 	select count(*) from study_menu where  menuid = #{menuid}
