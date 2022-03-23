@@ -181,10 +181,11 @@ a {
 				 
 					
 <!-- --------------------------------------------------------------검색------------------------------------------------------------ -->							
-																																	
+										
+						<c:if test="${menuid eq 8 }">
 						<div>
 							<div class="input-group rounded">
-							<form action = "<%=request.getContextPath()%>/studymenu/onSearch" method="post">
+							<form action = "onAllSearch" method="post">
 							<input type = "hidden" name = "menuid" value = "${menuid}"/>
 							<div class="d-flex flex-row align-items-center">
 								 
@@ -202,6 +203,30 @@ a {
 							</form>
 							</div>
 						</div>
+						</c:if>
+						
+						<c:if test="${menuid != 8}">															
+						<div>
+							<div class="input-group rounded">
+							<form action = "onSearch" method="post">
+							<input type = "hidden" name = "menuid" value = "${menuid}"/>
+							<div class="d-flex flex-row align-items-center">
+								 
+									<select class="custom-select" name="part">
+									    <option value="title">제목</option>						
+									</select>
+								 
+								    <div class="d-flex flex-row">
+									<input type="text" class="form-control rounded text-css"
+										placeholder="Search" aria-label="Search"
+										aria-describedby="search-addon" name="searchData" required="required"/> 
+								    <input type="submit" class="input-group-text border-0" value="검색"> 
+								    </div>
+							</div>
+							</form>
+							</div>
+						</div>
+						</c:if>
 						
 								 
 <!-- --------------------------------------------------------------지역태그------------------------------------------------------------ -->						
@@ -275,7 +300,12 @@ a {
 							
 							<div class="px-2 pt-3">
 								<h5 class="b-h5">${s.title}</h5>
-								<p class="b-price">${s.price=="0" ? "무료":s.price  }</p>
+								<c:if test="${s.price =='0'}">
+								<p class="b-price">무료</p>
+								</c:if>
+								<c:if test="${s.price !='0'}">
+								<p class="b-price">$ ${s.price }</p>
+								</c:if>
 								<p class="b-people">
 									<i class="fa-solid fa-user-group"></i> ${s.pernum}
 								</p>

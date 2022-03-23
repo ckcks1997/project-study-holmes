@@ -115,6 +115,19 @@
 				<div class="container p-0 my-2 bg-white text-white">
                     <hr>
 				</div>
+				<div class="postInfo">
+					<p>
+						${s.nickname} · ${s.regdate}
+
+
+						<c:if test="${loginNick eq s.nickname}">
+							<span class="txt_bar">|</span>
+							<a
+								href="<%=request.getContextPath()%>/studymenu/onoffStudyUpdateForm?board_num=${s.board_num}"
+								style="color: gray;"> 수정</a>
+						</c:if>
+					</p>
+				</div>
 
 				<br> ${s.content } <br> <br> <i class="fa-solid fa-user-group"></i>${s.pernum} <br>
 
@@ -185,10 +198,10 @@
 
 
 					<button type="button" class="btn btn-dark mt-3"
-						onclick="location.href ='comBoardList'">목록으로</button>
+						onclick="location.href ='onoffStudyMenuList'">목록으로</button>
 					<button type="button" class="btn btn-dark mt-3">신고</button>
 
-					<c:if test="${loginNick eq com.nickname}">
+					<c:if test="${loginNick eq s.nickname}">
 						<button type="button" data-toggle="modal"
 							data-target="#deleteModal" class="btn btn-danger mt-3">삭제</button>
 					</c:if>
@@ -203,6 +216,39 @@
 		</div>
 	</div>
 	<br>
+	
+	<div class="modal fade" id="deleteModal" aria-hidden="true"
+		tabindex="-1" aria-labelledby="deleteBoardLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<form
+					action="<%=request.getContextPath()%>/studymenu/onoffStudyDelete"
+					method="post">
+					<div class="form-group">
+						<input type="hidden" id="board_num" name="board_num"
+							value="${s.board_num}">
+						<div class="modal-header">
+							<h5 class="modal-title" id="deleteBoardLabel">게시글 삭제</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+
+						<div class="modal-body">이 글을 삭제합니다. 계속하시겠습니까?</div>
+
+
+						<div class="modal-footer">
+							<input type="submit" class="btn btn-primary" value="확인">
+							<button class="btn btn-outline-primary" data-dismiss="modal">취소</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
 	
 	
 <!-- -------------------------------댓글 자바스크립트----------------------------------------------------------------------------- -->

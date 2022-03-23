@@ -90,39 +90,40 @@ body {
 
 
 				<form name="mf"
-					action="<%=request.getContextPath()%>/studymenu/offWritePro"
+					action="<%=request.getContextPath()%>/studymenu/offStudyUpdatePro"
 					  method="post">
+					  <input type = "hidden" name = "board_num" value = "${sm.board_num}">
 					<br /> <br />
 				
 																						
 					<div class="form-group">
 						<label>제목</label>
-						 <input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요" />
+						 <input type="text" class="form-control" name="title" value="${sm.title}" />
 					</div>	
 					
 					 <div class="row">
     			<div class="col-xs-12 col-sm-3 col-md-3">
 					<div class="form-group">
                        <label>과목</label>
-                        <input type="text" name="subject" class="form-control" placeholder="ex) 영어,과학,수학.....">
+                        <input type="text" name="subject" class="form-control" value="${sm.subject}">
                        </div>
                     </div>	 			 
     			<div class="col-xs-12 col-sm-3 col-md-3">
 					<div class="form-group">
                        <label>지역</label>
-                       <input type="text" name="region" class="form-control" placeholder="ex) 경기 수원">                      
+                       <input type="text" name="region" class="form-control" value="${sm.region}">                      
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-3 col-md-3">
 					<div class="form-group">
                        <label>가격</label>
-                       <input type="number" name="price" class="form-control" placeholder="무료일 경우 0을 입력하세요">                      
+                       <input type="text" name="price" class="form-control" value="${sm.price}">                      
 					</div>
 				</div>
                 <div class="col-xs-12 col-sm-3 col-md-3">
     				<div class="form-group">
     				<label>인원수</label>
-                        <input type="number" name="pernum" class="form-control" placeholder="예상인원수">
+                        <input type="number" name="pernum" class="form-control" value="${sm.pernum}">
 					</div>
 				</div>
 				
@@ -132,7 +133,7 @@ body {
 					<div class="form-group">
 						<label>내용 :</label>
 						<textarea class="summernote" name="content"
-							placeholder="Leave a comment here" id="content"></textarea>
+							placeholder="Leave a comment here" id="content">${sm.content}</textarea>
 
 					</div>
                     <br>
@@ -141,14 +142,14 @@ body {
 	                    <p>모임할 장소를 지도에<em> 클릭</em> 해주세요</p> 
 	                    <div class="c-border" id="map" style="width:100%;height:350px;"></div>
                         <div id="clickLatlng"></div>
-	                    <input type="hidden" id="latitude" name="latitude">
-                        <input type="hidden" id="longitude" name="longitude">
+	                    <input type="hidden" id="latitude" name="latitude" value="${sm.latitude}">
+                        <input type="hidden" id="longitude" name="longitude" value="${sm.longitude}">
                         
                     </div>
                         <br>
 					<div class="container text-center"  >
 						<button class="btn btn-cancel">
-						<a href="<%=request.getContextPath()%>/studymenu/offStudyMenuList">취소 </a>
+						<a href="<%=request.getContextPath()%>/studymenu/offStudyMenuInfo?board_num=${sm.board_num}">취소 </a>
 						</button>
 						<button class="btn btn-save" type="submit">저장</button>
 					</div>

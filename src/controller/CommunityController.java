@@ -81,6 +81,7 @@ public class CommunityController extends MskimRequestMapping{
 	   request.setAttribute("endPage",endPage);
 	   request.setAttribute("maxPage",maxPage);
 	   
+	   
 	 
 	  
 	  
