@@ -79,7 +79,7 @@
 		<div class="row pt-5">
 <!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->
 			<%--aside부분 --%>
-			<%@include file="/common/study_menu.jsp"%>
+			<%@include file="/common/offstudy_menu.jsp"%>
 <!-- --------------------------------------------------------------게시글------------------------------------------------------------ -->
 
 			<div class="col-sm-9">
@@ -91,13 +91,15 @@
 				<div class="container p-0 my-2 bg-white text-white">
                     <hr>
 				</div>
-				<br> ${s.content } <br> 
+
+				<br> ${s.content } <br> <br> <i class="fa-solid fa-user-group"></i>${s.pernum} <br>
+
 				<br>
 
 
 <!-- --------------------------------------------------------------지도------------------------------------------------------------ -->
 
-                <h3>지도 위치</h3>
+                <h3>스터디할 장소</h3>
 				<div class="container ">
 					<div class="c-border mx-auto" id="map" style="width: 70%; height: 300px;"></div>	 
 				</div>

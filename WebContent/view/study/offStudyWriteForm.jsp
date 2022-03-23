@@ -80,7 +80,7 @@ body {
 <!-- --------------------------------------------------------------사이드------------------------------------------------------------ -->	
 
 			<%--aside부분 --%>
-                <%@include file="/common/study_menu.jsp" %>
+                <%@include file="/common/offstudy_menu.jsp" %>
 
 <!-- --------------------------------------------------------------게시글------------------------------------------------------------ -->				
 			<div class="main col-sm-9">
@@ -90,7 +90,7 @@ body {
 
 
 				<form name="mf"
-					action="<%=request.getContextPath()%>/studymenu/writePro"
+					action="<%=request.getContextPath()%>/studymenu/offWritePro"
 					  method="post">
 					<br /> <br />
 				
@@ -148,7 +148,7 @@ body {
                         <br>
 					<div class="container text-center"  >
 						<button class="btn btn-cancel">
-						<a href="<%=request.getContextPath()%>/studymenu/studyMenuList">취소 </a>
+						<a href="<%=request.getContextPath()%>/studymenu/offstudyMenuList">취소 </a>
 						</button>
 						<button class="btn btn-save" type="submit">저장</button>
 					</div>
