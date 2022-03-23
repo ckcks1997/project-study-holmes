@@ -66,6 +66,8 @@ create table community
 
 create sequence board_seq;
 
+alter table community add replycnt number;
+
 
 --- study_menu 테이블
 
