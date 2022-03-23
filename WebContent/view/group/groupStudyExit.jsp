@@ -116,14 +116,14 @@ h1, h3, h5 {
 	                </div>
 	                    
 				    <c:forEach items="${groupMemberList}" var="i">
-					    <form action="<%=request.getContextPath()%>/group/score">
+					    
 					         <input type="hidden" value="${i.nickname}" name="nickname_to">
 				             <div class="row items m-3">
 							        <div class="col">
 							           <span class="i-title"> ${i.nickname }</span> 
 			                        </div>
 			                        <div class="col">
-			                           <select class="custom-select" name="score">
+			                           <select id="score_${i.nickname}" class="custom-select" name="score">
 		                                        <option value="-10">1</option>        
 		                                        <option value="-5">2</option>    
 		                                        <option value="-1" selected>3</option>    
@@ -132,19 +132,43 @@ h1, h3, h5 {
 		                               </select>
 			                        </div>
 			                        <div class="col">
-			                             <button class="btn btn-danger" onclick="">평가</button>
+			                             <button class="btn btn-danger" id="btn_${i.nickname}" onclick="score_submit('${i.nickname}')">평가</button>
 			                        </div>
 				              </div>
-		                </form> 
+		                 
 				    </c:forEach>
 					<br>
-                    <button class="btn btn-danger" onclick="">스터디 종료</button>
+                    <button class="btn btn-danger"onclick="location.href='<%=request.getContextPath() %>/group/groupexitpro?boardnum=${groupMemberList[0].boardnum}'" >스터디 종료</button>
 				</div>
 				<br>
              </div>
          </div>
      </div>
 				 
- 
+ <script>
+ function score_submit(nickname){
+	 let score_value = document.querySelector('#score_'+nickname).value;
+	 let str = {
+			 "nickname" : nickname,
+			 "score_value" : score_value
+	 }
+	 $.ajax({ 
+	        type: "post",
+	        url: "<%=request.getContextPath()%>/group/score",
+	        data: str,
+	        dataType: 'text',
+	        success : function(result){
+	            alert("평가되었습니다");
+	            document.querySelector('#btn_'+nickname).disabled=true;
+	            document.querySelector('#btn_'+nickname).innerHTML="평가완료";
+	        },
+	        error: function (result){
+	            console.log(result)
+	            alert("error");
+	        }   
+	    }); //end ajax
+	 
+ }
+ </script>
 
 </body>

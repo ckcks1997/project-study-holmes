@@ -151,6 +151,7 @@ create table WEBCHAT2
 )
 
 --평가기록 테이블
+create sequence reputation_seq;
 create table reputation_estimate
 (
     NUM      NUMBER not null

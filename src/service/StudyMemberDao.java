@@ -29,7 +29,20 @@ public class StudyMemberDao {
 
     return null;
   }
+  
+  public StudyMember studyMembeByNickname(String id) {
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try {
+      return sqlSession.selectOne(NS + "studyMembeByNickname", id);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MybatisConnection.close(sqlSession);
+    }
 
+    return null;
+  }
+  
    
   public int insertStudyMember(HttpServletRequest req) {
     SqlSession sqlSession = MybatisConnection.getConnection();
@@ -130,7 +143,22 @@ public class StudyMemberDao {
   }
   
   
-  
+  public int changePoint(int point, String nickname) {
+    
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try { 
+      map.clear();
+      map.put("point", point);
+      map.put("nickname", nickname);
+      return sqlSession.update(NS + "changePoint", map);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MybatisConnection.close(sqlSession);
+    }
+
+    return 0;
+  }
   
   
 }

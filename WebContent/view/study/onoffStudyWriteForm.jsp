@@ -11,8 +11,6 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 
-<%--지도 api --%>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5372162b2eb56a4c9831bbd9732f6a3"></script>
 
 </head>
 <style>
@@ -101,25 +99,24 @@ body {
 					</div>	
 					
 					 <div class="row">
-    			<div class="col-xs-12 col-sm-3 col-md-3">
+    			<div class="col-xs-12 col-sm-4 col-md-4">
 					<div class="form-group">
                        <label>과목</label>
                         <input type="text" name="subject" class="form-control" placeholder="ex) 영어,과학,수학.....">
                        </div>
-                    </div>	 			 
-    			<div class="col-xs-12 col-sm-3 col-md-3">
-					<div class="form-group">
-                       <label>지역</label>
-                       <input type="text" name="region" class="form-control" placeholder="ex) 경기 수원">                      
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-3 col-md-3">
+                    </div>
+                    
+                   
+                      <input type="hidden" name="region" class="form-control" value="온라인">                      
+								 
+    			
+				<div class="col-xs-12 col-sm-4 col-md-4">
 					<div class="form-group">
                        <label>가격</label>
                        <input type="text" name="price" class="form-control" placeholder="무료일 경우 0을 입력하세요">                      
 					</div>
 				</div>
-                <div class="col-xs-12 col-sm-3 col-md-3">
+                <div class="col-xs-12 col-sm-4 col-md-4">
     				<div class="form-group">
     				<label>인원수</label>
                         <input type="number" name="pernum" class="form-control" placeholder="예상인원수">
@@ -135,20 +132,14 @@ body {
 							placeholder="Leave a comment here" id="content"></textarea>
 
 					</div>
+					<input type="hidden" id="latitude" name="latitude" value="0">
+                    <input type="hidden" id="longitude" name="longitude" value="0">
                     <br>
-                    <%--지도 api --%>
-                    <div>
-	                    <p>모임할 장소를 지도에<em> 클릭</em> 해주세요</p> 
-	                    <div class="c-border" id="map" style="width:100%;height:350px;"></div>
-                        <div id="clickLatlng"></div>
-	                    <input type="hidden" id="latitude" name="latitude">
-                        <input type="hidden" id="longitude" name="longitude">
-                        
-                    </div>
+                    
                         <br>
 					<div class="container text-center"  >
 						<button class="btn btn-cancel">
-						<a href="<%=request.getContextPath()%>/studymenu/onoffstudyMenuList">취소 </a>
+						<a href="<%=request.getContextPath()%>/studymenu/onoffStudyMenuList">취소 </a>
 						</button>
 						<button class="btn btn-save" type="submit">저장</button>
 					</div>
@@ -165,50 +156,6 @@ body {
 			lang : "ko-KR"
 		});
 	</script>
-	
-	<%--지도 관련 스크립트 --%>
-	
-	<script>
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = { 
-	        center: new kakao.maps.LatLng(37.553244943104694, 126.97265812139825), // 지도의 중심좌표
-	        level: 8 // 지도의 확대 레벨
-	    };
-	
-	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-	
-	// 지도를 클릭한 위치에 표출할 마커입니다
-	var marker = new kakao.maps.Marker({ 
-	    // 지도 중심좌표에 마커를 생성합니다 
-	    position: map.getCenter() 
-	}); 
-	// 지도에 마커를 표시합니다
-	marker.setMap(map);
-	
-	// 지도에 클릭 이벤트를 등록합니다
-	// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
-	    
-	    // 클릭한 위도, 경도 정보를 가져옵니다 
-	var latlng = mouseEvent.latLng; 
-	    
-	    // 마커 위치를 클릭한 위치로 옮깁니다
-	marker.setPosition(latlng);
-	    
-	var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-	    message += '경도는 ' + latlng.getLng() + ' 입니다'; 
-	   // 제거시 데이터 안들어감
-	    
-	var resultDiv = document.getElementById('clickLatlng'); 
-	    resultDiv.innerHTML = message;
-	    
- 	var latitude = document.getElementById('latitude'); 
-	var longitude = document.getElementById('longitude'); 
-	    latitude.value = latlng.getLat();
-	    longitude.value =  latlng.getLng();
-	    
-	});
-</script>
 
 </body>
 </html>

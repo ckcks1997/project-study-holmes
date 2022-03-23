@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reputationestimate">
+
+    <insert id="insertReputation" parameterType="reputationestimate" >
+        insert into reputation_estimate values(reputation_seq.nextval, #{group_num},#{nickname_to},#{nickname_from},#{score},sysdate)
+    </insert>
+ 
+
+</mapper>

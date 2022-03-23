@@ -6,10 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import model.Attend;
 import model.Community;
 import model.GroupMember;
+import model.ReputationEstimate;
+import model.StudyMember;
 import model.group.GroupInList;
 import service.AttendDao;
 import service.CommunityBoardDao;
 import service.GroupMemberDao;
+import service.ReputationEstimateDao;
+import service.StudyMemberDao;
 
 //group
 public class GroupStudyController extends MskimRequestMapping {
@@ -88,20 +92,62 @@ public class GroupStudyController extends MskimRequestMapping {
     return "/view/alert.jsp";
   }
   
+  
+  @RequestMapping("groupexitpro")
+  public String groupExitPro(HttpServletRequest request, HttpServletResponse response) {
+    
+    String nickname = (String) request.getSession().getAttribute("memberNickname");
+    String boardnum = request.getParameter("boardnum");
+     
+    String msg= "로그인이 필요합니다";
+    String url= "main"; //main으로 보내기, alert.jsp파일 참고
+    
+    if(nickname != null) {
+      System.out.println(boardnum);
+      System.out.println(nickname);
+      GroupMemberDao gmd = new GroupMemberDao();
+      System.out.println("================");
+      gmd.groupDelete(Integer.parseInt(boardnum), nickname);
+      msg= "스터디가 종료되었습니다.";
+      url= "main"; //main으로 보내기, alert.jsp파일 참고
+    }
+    
+    request.setAttribute("msg", msg);
+    request.setAttribute("url", url);
+     
+    return "/view/alert.jsp";
+  }
+  
   @RequestMapping("score")
   public String score(HttpServletRequest request, HttpServletResponse response) {
     
     String nickname = (String) request.getSession().getAttribute("memberNickname");
-    String nickname_to = request.getParameter("nickname_to");
-    String score = request.getParameter("score");
+    String nickname_to = request.getParameter("nickname");
+    int score = Integer.parseInt(request.getParameter("score_value"));
     String msg= "로그인이 필요합니다";
     String url= "main"; //main으로 보내기, alert.jsp파일 참고
     
     if(nickname != null) {
 
       System.out.println(nickname_to);
-      System.out.println(score+"====");
-      return "/view/group/groupStudyExit.jsp";
+      System.out.println(score);
+      //평가정보 기록
+      ReputationEstimateDao rd = new ReputationEstimateDao();
+      ReputationEstimate re = new ReputationEstimate();
+      re.setNickname_from(nickname);
+      re.setNickname_to(nickname_to);
+      re.setScore(score);
+      rd.insertReputation(re);
+      
+      //회원정보에 점수 추가
+      StudyMemberDao sd = new StudyMemberDao();
+      System.out.println(nickname_to+"==");
+      StudyMember member = sd.studyMembeByNickname(nickname_to);
+      int val = member.getPoint();
+      val+=score;
+      
+      sd.changePoint(val, nickname_to); 
+      return "/single/score_ajax.jsp";
     }
     
     request.setAttribute("msg", msg);
