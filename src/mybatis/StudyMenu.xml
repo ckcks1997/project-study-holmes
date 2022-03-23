@@ -82,5 +82,10 @@
 	(select * from study_menu (${part}) like upper (#{searchData}) order by regdate desc) a)
 	where rnum between #{start} and #{end}
 	</select> 
+
+	<select id="mylist2" resultType = "studymenu"  parameterType = "string">
+	select * from study_menu where nickname = #{nickname} 
+	</select>
+
 	
 </mapper>

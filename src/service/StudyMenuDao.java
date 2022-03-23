@@ -270,6 +270,25 @@ public class StudyMenuDao {
 			}
 			return null;
 	 }	 
+	 
+	 public List<StudyMenu> mylist2(String mylist2) {
+
+			SqlSession sqlSession = MybatisConnection.getConnection();
+			
+			List<StudyMenu> list = null;
+			try {
+				
+			list = sqlSession.selectList(NS + "mylist2", mylist2);
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			}
+			
+			return list;
+
+		}
 }
 
 		 	

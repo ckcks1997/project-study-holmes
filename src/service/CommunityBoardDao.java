@@ -3,10 +3,10 @@ package service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.ibatis.session.SqlSession;
-import model.Community;
-import model.Search;
 
+import org.apache.ibatis.session.SqlSession;
+
+import model.Community;
 import util.MybatisConnection;
 
 public class CommunityBoardDao {
@@ -246,5 +246,18 @@ public class CommunityBoardDao {
 	   
 	   
 	   
+	   
+	   public List<Community> comBoardmyList1(String boardid) {
+	         
+	         SqlSession sqlSession = MybatisConnection.getConnection();
+	           try {                 
+	           return sqlSession.selectList(NS+"comBoardmyList1",boardid);
+	           } catch (Exception e) {
+	               e.printStackTrace();
+	           } finally {
+	               MybatisConnection.close(sqlSession);
+	           } 
+	           return null;
+	     }
 	   
 }

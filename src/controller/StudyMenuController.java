@@ -8,11 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.GroupMember;
 import model.Search;
 import model.StudyMenu;
-import model.GroupMember;
-
-
 import service.GroupMemberDao;
 import service.NoticeDao;
 import service.StudyMenuDao;
@@ -388,20 +386,28 @@ public class StudyMenuController extends MskimRequestMapping{
 	   * 내가 쓴 게시물  스터디 게시물
 	   */
 	  
-	 @RequestMapping("myList2")
-		public String myList2(HttpServletRequest request, 
-				HttpServletResponse response) {
-		
-			HttpSession session = request.getSession();
-			String msg = "로그인이 필요합니다";
-			String url ="studymember/loginForm";
-			 if(session.getAttribute("memberNickname")!= null) {
-					
-			}
-			request.setAttribute("msg", msg);
-			request.setAttribute("url", url);  
-			return "/view/study/myList2.jsp";	
-			}
+	 //내가쓴 커뮤니티 게시글//
+	  @RequestMapping("myList2")
+	  public String myList2(HttpServletRequest request,  HttpServletResponse response) {
+		  
+		  HttpSession session = request.getSession();
+		  String nickname = (String) session.getAttribute("memberNickname");
+		  StudyMenuDao smd = new StudyMenuDao();
+		  List<StudyMenu> list = smd.mylist2(nickname);
+		  String msg = "로그인이 필요합니다";
+		  String url = request.getContextPath()+"/studymember/loginForm";
+		  
+		  if(session.getAttribute("memberNickname")!= null) {
+			  request.setAttribute("list",list);
+			  return "/view/study/myList2.jsp";	
+		  }
+		  
+		  request.setAttribute("msg", msg);
+		  request.setAttribute("url", url);
+		  
+		 return "/view/main.jsp";
+	  }
+
 
 
 	 /*---------------------------------------------------------------------------*/

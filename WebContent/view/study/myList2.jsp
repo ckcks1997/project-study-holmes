@@ -148,57 +148,9 @@ a:hover {
 				<br>
 				
 				 
-					
-<!-- --------------------------------------------------------------검색------------------------------------------------------------ -->							
-						<div>
-							<div class="input-group rounded" method="post">
-							<form action = "studySearch" method="post">
-							<div class="d-flex flex-row align-items-center">
-								 
-									<select class="custom-select" name="part">
-									    <option value="title">제목</option>						
-									</select>
-								 
-								    <div class="d-flex flex-row">
-									<input type="text" class="form-control rounded"
-										placeholder="Search" aria-label="Search"
-										aria-describedby="search-addon" name="searchData" required="required"/> 
-								    <input type="submit" class="input-group-text border-0" value="검색"> 
-								    </div>
-							</div>
-							</form>
-							</div>
-						</div>
+									
 				 
-<!-- --------------------------------------------------------------지역태그------------------------------------------------------------ -->						
-					<div>
-						<div class="d-flex align-items-end rounded mt-2" method="post">
-						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
-						<input type="hidden" aria-label="Search" name="part" value="region">
-						<input type="hidden" aria-label="Search" name="searchData" value="서울">
-					    <input type="submit" class="tagbox" value="#서울"> 
-						</form>
-						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
-						<input type="hidden" aria-label="Search" name="part" value="region">
-						<input type="hidden" aria-label="Search" name="searchData" value="경기">
-					    <input type="submit" class="tagbox" value="#경기"> 
-						</form>
-						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
-						<input type="hidden" aria-label="Search" name="part" value="region">
-						<input type="hidden" aria-label="Search" name="searchData" value="부산">
-					    <input type="submit" class="tagbox" value="#부산"> 
-						</form>
-												
-						<div class="tagbox tagbox-etc">
-							<a href="#">...</a>
-						</div>
-				
-						
-						</div>
-					</div>									
+								
 													
 					
 
@@ -208,9 +160,8 @@ a:hover {
 				
 				<div class="container d-flex align-content-between flex-wrap">
 				
-				<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
+				<c:if test = "${empty list }">
 				
-				<p>작성된 글이 없습니다.</p>
 				
 				</c:if>			
 				
@@ -249,15 +200,15 @@ a:hover {
 					
 					<li 
 						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage - bottomLine}">Previous</a></li>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/myList2?pageNum=${startPage - bottomLine}">Previous</a></li>
 						
 					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
 						<li class='page-item <c:if test = "${i == pageInt}" >  active </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${i}">${i}</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/myList2?pageNum=${i}">${i}</a></li>
 					
 					</c:forEach>
 						<li class='page-item <c:if test = "${endPage >= maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/studyMenuList?pageNum=${startPage + bottomLine}">Next</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/myList2?pageNum=${startPage + bottomLine}">Next</a></li>
 					</ul>
 				</nav>
 
