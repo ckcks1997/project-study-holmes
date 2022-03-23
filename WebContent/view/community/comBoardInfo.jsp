@@ -114,7 +114,7 @@ body {
 													<path
 										d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
 													</svg>
-							</span> 댓글수
+							</span> 댓글수 ${reply_count }
 						</div>
 
 
@@ -133,16 +133,24 @@ body {
 				<div>
 					<h5 style="font-weight: bold">댓글 ${reply_count}</h5>
 					<hr style="border: 0.5px thick 333b3d" />
-					<c:forEach var = "reply" items = "${list}">
 					<div id = "replyList">
-					
-							<p>${reply.nickname}  ${reply.regdate}</p>
-							<p>${reply.content}</p>
+					<c:forEach var="reply" items="${reply_list}">
+						<div class ="row">
+						<div class = "col-md-10">
+						<input type = "hidden" name = "reply_num" value = "${reply.reply_num}">
+						<p>${reply.reply_num }</p>
+							<p>${reply.nickname} · ${reply.regdate2}</p>
+						</div>
+						<div class = "col-md-2">
+							<input type="button" id = "deleteReply" class="btn btn-light" value = "삭제"/>
+						</div>
+						</div>
+							<p>${reply.content}</p>	
+							
 							<hr style="border: 0.5px solid 333b3d" />
-						
-					</div>
 					</c:forEach>
 					
+					</div>
 					<div class="row">
 					
 					
@@ -248,8 +256,15 @@ $("#writeReply").on("click", function(){
 			
 			
 			
-			let line = '<p>'+nickname+' · '+ regdate +'</p>'
-			            +  '<p>'+content+'</p>'
+			let line =  '<div class = "row">'
+						+ '<div class = "col-md-10">'
+						+ '<p>'+nickname+' · '+ regdate +'</p>'
+			          	+ '</div>'
+			          	+ '<div class = "col-md-2">'
+			          	+ '<button type = "button" class = "btn btn-light">삭제</button>'
+			          	+ '</div>'
+			          	+ '</div>'
+						+  '<p>'+content+'</p>'
 			            +  '<hr style="border: 0.5px solid 333b3d" />';
 			
 			
@@ -263,11 +278,42 @@ $("#writeReply").on("click", function(){
 
 		},
 		error: function (result){
-			console.log(result)
+			console.log(result);
 			alert("error");
 		}	
 	}); //end ajax
 
+	
+})
+
+
+
+
+
+//deleteReply
+$('#deleteReply').on("click", function(){
+	
+	var reply = {
+					"reply_num" : "${reply.reply_num}"
+	}
+	
+	$.ajax({
+		type: 'post',
+		url : "<%=request.getContextPath()%>/reply/deleteReply",
+		data: reply,
+		dataType: 'text',
+		success : function(result){
+			alert("삭제성공");
+			var deleteReply = document.querySelector('#replyList')
+			deleteReply.innerHTML =""
+			
+		},
+		error: function(result){
+			console.log(result);
+			alert(error);
+		}
+		
+	})
 	
 })
 

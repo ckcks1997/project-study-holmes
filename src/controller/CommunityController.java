@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import model.Community;
-
-
+import model.Reply;
 import service.CommunityBoardDao;
+import service.ReplyDao;
  
 
 
@@ -80,7 +80,13 @@ public class CommunityController extends MskimRequestMapping{
 	   request.setAttribute("endPage",endPage);
 	   request.setAttribute("maxPage",maxPage);
 	   
-	   
+	   //댓글
+	   /*
+	   ReplyDao rd = new ReplyDao();
+	   int reply_count = rd.replyCount(board_num);
+	   request.setAttribute("reply_count", reply_count);
+	   */
+	  
 	  
 	  
     return "/view/community/comBoardList.jsp";
@@ -184,9 +190,24 @@ public class CommunityController extends MskimRequestMapping{
 	  String loginNick = (String)session.getAttribute("memberNickname");
 	  request.setAttribute("loginNick", loginNick);
 	  
+	  //댓글
+	 
+	  ReplyDao rd = new ReplyDao();
+	  Reply reply = new Reply();
+	 
 	  
+	  List<Reply> reply_list = rd.replyWriteList(board_num);
+	  int reply_count = rd.replyCount(board_num);
+	  request.setAttribute("reply_list", reply_list);
+	  request.setAttribute("reply_count", reply_count);
 	  
 	  return "/view/community/comBoardInfo.jsp";
+	  
+	  
+	  
+	  
+	  
+	  
   }
   
   

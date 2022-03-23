@@ -17,15 +17,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 <!-- 댓글 가져오기 -->
-<select id = "replyWriteList" resultType = "reply" parameterType = "String">
-	select * from reply 
+<select id = "replyWriteList" resultType = "reply" parameterType = "int">
+	select nickname, content, to_char(regdate, 'yyyy-mm-dd') regdate2 from reply 
 	where board_num = #{board_num}
-	order by reply_num desc
+	order by regdate asc
 </select>
 
 
 <!-- 댓글 갯수 -->
-<select id = "replyCount" resultType = "int" parameterType = "String">
+<select id = "replyCount" resultType = "int" parameterType = "int">
 	select count(*) from reply where board_num = #{board_num}
 </select>
 

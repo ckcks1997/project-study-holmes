@@ -43,10 +43,10 @@ public class ReplyDao {
 	  
 	  
 	  
-	  public List<Reply> replyWriteList(String board_num) {
+	  public List<Reply> replyWriteList(int board_num) {
 		  SqlSession sqlSession = MybatisConnection.getConnection();
 		  try {
-			  return sqlSession.selectOne(NS+"replyWriteList", board_num);
+			  return sqlSession.selectList(NS+"replyWriteList", board_num);
 		  } catch(Exception e) {
 			  e.printStackTrace();
 		  } finally {
@@ -57,7 +57,7 @@ public class ReplyDao {
 	  }
 	  
 	  
-	  public int replyCount(String board_num) {
+	  public int replyCount(int board_num) {
 		  
 		  SqlSession sqlSession = MybatisConnection.getConnection();
 		  try {

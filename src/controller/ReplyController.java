@@ -31,8 +31,7 @@ public class ReplyController extends MskimRequestMapping {
 		
 		
 		rd.insertReply(reply); //댓글 저장하기
-		List<Reply> list = rd.replyWriteList(board_num);
-		request.setAttribute("list", list);
+		
 		
 		
 		return "/view/alert.jsp";	
