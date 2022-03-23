@@ -730,7 +730,7 @@ public class StudyMenuController extends MskimRequestMapping{
 		  HttpSession session = request.getSession();
 		  String nickname = (String) session.getAttribute("memberNickname");
 		  StudyMenuDao smd = new StudyMenuDao();
-		  List<StudyMenu> list = smd.list2(nickname);
+		  List<StudyMenu> list = smd.mylist2(nickname);
 		  String msg = "로그인이 필요합니다";
 		  String url = request.getContextPath()+"/studymember/loginForm";
 		  

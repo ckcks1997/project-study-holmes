@@ -271,7 +271,6 @@ public class StudyMenuDao {
 				map.put("start", (pageInt - 1) * limit + 1);
 				map.put("end", pageInt * limit);
 				return sqlSession.selectList(NS + "offallList", map);
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -279,6 +278,7 @@ public class StudyMenuDao {
 			}
 			return null;
 	 }	 
+ 
 	 
 	 public List<StudyMenu> onoffallList(int pageInt, int limit, int menuAllCount, String menuid) {
 			SqlSession sqlSession = MybatisConnection.getConnection();
@@ -338,6 +338,26 @@ public class StudyMenuDao {
 			}
 			return null;
 		}
+	 
+	 public List<StudyMenu> mylist2(String mylist2) {
+
+			SqlSession sqlSession = MybatisConnection.getConnection();
+			
+			List<StudyMenu> list = null;
+			try {
+				
+			list = sqlSession.selectList(NS + "mylist2", mylist2);
+			return list;
+			
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			}
+
+			return null;
+	 }	 
 	 
 
 }
