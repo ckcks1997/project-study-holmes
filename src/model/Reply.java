@@ -9,7 +9,23 @@ public class Reply {
 		private String nickname;
 		private Date regdate;
 		private String content;
+		private String regdate2;
 		
+		
+		
+		
+		
+		
+		public String getRegdate2() {
+			return regdate2;
+		}
+
+
+		public void setRegdate2(String regdate2) {
+			this.regdate2 = regdate2;
+		}
+
+
 		public Reply() {}
 
 

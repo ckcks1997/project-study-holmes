@@ -1,37 +1,44 @@
 package controller;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
-
-import com.oreilly.servlet.MultipartRequest;
-
-import model.Community;
 import model.Reply;
-import service.CommunityBoardDao;
 import service.ReplyDao;
-import util.MybatisConnection;
 
 public class ReplyController extends MskimRequestMapping {
 
 	
 	@RequestMapping("writeReply")
 	public String writeReply(HttpServletRequest request, HttpServletResponse response) {
-		String a = request.getParameter("board_num");
-		String b = request.getParameter("reply_content");
+		HttpSession session = request.getSession();
 		
-		System.out.println(a);
-		System.out.println(b);
-		return "/view/aaa.jsp";	
+		String nickname = (String) session.getAttribute("memberNickname");
+		String board_num = request.getParameter("board_num");
+		String reply_content = request.getParameter("reply_content");
+		
+		ReplyDao rd = new ReplyDao();
+		int reply_num = rd.replyNextNum();
+		
+		Reply reply = new Reply();
+		reply.setBoard_num(Integer.parseInt(board_num));
+		reply.setReply_num(reply_num);
+		reply.setNickname(nickname);
+		reply.setContent(reply_content);
+		
+		
+		rd.insertReply(reply); //댓글 저장하기
+		
+		
+		
+		return "/view/alert.jsp";	
 	}
 	
 	
-
+	
 	
 
 } // end class

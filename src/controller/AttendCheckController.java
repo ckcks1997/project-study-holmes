@@ -46,4 +46,5 @@ public class AttendCheckController extends MskimRequestMapping {
     request.setAttribute("url", url);
     return "/view/alert.jsp";
   }
+  
 }

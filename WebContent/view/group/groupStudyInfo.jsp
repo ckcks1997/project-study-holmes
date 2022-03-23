@@ -70,19 +70,9 @@ h1, h3, h5 {
 	font-weight: bold;
 	color: #C47100;
 }
-
-.a-color{
-    color:black;
-}
-.a-color:hover{
-    color:black;
-}
-.items{
-    
-}
-.i-title{
-    font-size:1.2rem;
-    font-weight: 700;
+.btn-c{
+    background-color:#f55555;
+    color:white;
 }
 </style>
 </head>
@@ -108,35 +98,33 @@ h1, h3, h5 {
 				<br>
 				<div class="container container-css  p-5">
 				<h3> 스터디 목록 </h3>
-				<br>
 			        <div class="row">
 	                    <div class="col">
-	                      <h5>스터디 제목</h5> 
+	                      스터디 멤버
 	                    </div>
 	                </div>
 	                    
-				    <c:forEach items="${list}" var="i">
-                      <a class="a-color" href="<%=request.getContextPath()%>/group/studyinfo?boardnum=${i.boardnum}">
-				        <div class="row items m-3">
+				    <c:forEach items="${groupMemberList}" var="i">
+                      <a>
+				        <div class="row">
 					        <div class="col">
-					           <span class="i-title"> ${i.title }</span>
-					           <c:if test="${i.represent eq 1}"> 리더 </c:if>
-                               <c:if test="${i.represent eq 0}"> 조원 </c:if>
+					           ${i.nickname}
 	                        </div>
-	                        <div class="col">
-	                           
-	                        </div> 
+	                         
+					 
 				        </div>
 				      </a>
 				    </c:forEach>
 					
+					<a class="btn btn-c" href="<%=request.getContextPath()%>/chat/chat?boardnum=${groupMemberList[0].boardnum}">채팅 입장</a>
+                    <a class="btn btn-c" href="<%=request.getContextPath()%>/group/groupexit?boardnum=${groupMemberList[0].boardnum}">스터디 종료</a>
 
 				</div>
 				<br>
              </div>
          </div>
      </div>
-				 
+	
  
 
 </body>

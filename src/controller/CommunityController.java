@@ -1,21 +1,24 @@
 package controller;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import com.oreilly.servlet.MultipartRequest;
+
 import model.Community;
 import model.Reply;
-import model.Search;
-import model.StudyMember;
-import model.StudyMenu;
 import service.CommunityBoardDao;
-import service.StudyMemberDao;
-import service.StudyMenuDao;
+import service.ReplyDao;
+ 
+
+
+
+
+
  
 
 
@@ -78,11 +81,91 @@ public class CommunityController extends MskimRequestMapping{
 	   request.setAttribute("endPage",endPage);
 	   request.setAttribute("maxPage",maxPage);
 	   
-	   
+	   //댓글
+	   /*
+	   ReplyDao rd = new ReplyDao();
+	   int reply_count = rd.replyCount(board_num);
+	   request.setAttribute("reply_count", reply_count);
+	   */
+	  
 	  
 	  
     return "/view/community/comBoardList.jsp";
   }
+	
+	
+	
+	
+	@RequestMapping("comBoardmyList1")
+	   public String comBoardmyList1(HttpServletRequest request, HttpServletResponse response) {
+		  HttpSession session = request.getSession();
+		  String boardid = "";
+		  int pageInt = 1;
+		  int limit = 4;
+		  
+		  if(request.getParameter("boardid")!= null) {
+			  session.setAttribute("boardid", request.getParameter("boardid"));
+			  session.setAttribute("pageNum", "1");		  
+		  }
+		  
+		  boardid = (String)session.getAttribute("boardid");
+		  if(boardid == null) {
+			  boardid ="1";
+		  }
+		  
+		  if (request.getParameter("pageNum")!=null) {
+			  session.setAttribute("pageNum", request.getParameter("pageNum"));
+		  }
+		  
+		  String pageNum =(String)session.getAttribute("pageNum");
+		  if(pageNum == null) {
+			  pageNum = "1";
+		  }
+		  
+		  pageInt = Integer.parseInt(pageNum);
+		  
+		  CommunityBoardDao cbd = new CommunityBoardDao();
+		  int boardcount = cbd.comBoardCount(boardid);
+		  List<Community> list = cbd.comBoardList(pageInt, limit, boardcount, boardid);
+		  int boardnum = boardcount - limit * (pageInt-1);
+		  int bottomLine = 3;
+		  int startPage = (pageInt-1)/bottomLine * bottomLine + 1;
+		  int endPage = startPage + bottomLine -1;
+		  int maxPage = (boardcount/limit)+(boardcount % limit==0? 0:1);
+		  if(endPage > maxPage) endPage = maxPage;
+		  
+		  String boardName = "내가쓴 게시판";
+		
+		  
+		   request.setAttribute("boardName",boardName);
+		   request.setAttribute("pageInt",pageInt);
+		   request.setAttribute("boardid",boardid);
+		   request.setAttribute("boardcount",boardcount);
+		   request.setAttribute("list",list);
+		   request.setAttribute("boardnum",boardnum);
+		   request.setAttribute("startPage",startPage);
+		   request.setAttribute("bottomLine", bottomLine);
+		   request.setAttribute("endPage",endPage);
+		   request.setAttribute("maxPage",maxPage);
+
+		  
+		  
+	    return "/view/community/comBoardList.jsp";
+	  }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
   
   
   //글쓰기 페이지
@@ -120,7 +203,7 @@ public class CommunityController extends MskimRequestMapping{
 	  MultipartRequest multi = null;
 	  try {
 		multi = new MultipartRequest(request, path, size,"utf-8");
-	} catch (IOException e) {
+	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
@@ -182,9 +265,24 @@ public class CommunityController extends MskimRequestMapping{
 	  String loginNick = (String)session.getAttribute("memberNickname");
 	  request.setAttribute("loginNick", loginNick);
 	  
+	  //댓글
+	 
+	  ReplyDao rd = new ReplyDao();
+	  Reply reply = new Reply();
+	 
 	  
+	  List<Reply> reply_list = rd.replyWriteList(board_num);
+	  int reply_count = rd.replyCount(board_num);
+	  request.setAttribute("reply_list", reply_list);
+	  request.setAttribute("reply_count", reply_count);
 	  
 	  return "/view/community/comBoardInfo.jsp";
+	  
+	  
+	  
+	  
+	  
+	  
   }
   
   
@@ -213,7 +311,7 @@ public class CommunityController extends MskimRequestMapping{
 	  MultipartRequest multi = null;
 	  try {
 		multi = new MultipartRequest(request, path, size, "utf-8");
-	  } catch (IOException e) {
+	  } catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	  }
@@ -286,7 +384,7 @@ public class CommunityController extends MskimRequestMapping{
 			HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

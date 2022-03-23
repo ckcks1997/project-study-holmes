@@ -13,8 +13,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	insert into group_member values(group_member_seq.nextval, #{board_num}, #{represent}, #{nickname}, sysdate)
 </insert> 
   
+<select id = "groupInList"  parameterType = "String" resultType="groupinlist">
+    select A.BOARDNUM, A.REPRESENT, A.REGDATE, B.title from GROUP_MEMBER A, study_menu B
+	where A.boardnum = B.board_num
+	and A.NICKNAME = #{nickname}
+	order by A.REGDATE desc
+</select> 
 
-
+<select id = "groupListByBoardnum"  parameterType = "String" resultType="groupmember">
+select * from GROUP_MEMBER where BOARDNUM = #{id}
+</select> 
 
 
 </mapper>

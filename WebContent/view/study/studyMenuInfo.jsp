@@ -89,18 +89,11 @@
 
 				<h2>${s.title}</h2>
 				<div class="container p-0 my-2 bg-white text-white">
-					<div class="s-round px-2">
-						<span>무료</span>
-					</div>
-					<div class="s-round px-2">
-						<span>서울</span>
-
-					</div>
-					<div class="s-round px-2">
-						<span>오프</span>
-					</div>
+                    <hr>
 				</div>
+
 				<br> ${s.content } <br> <br> <i class="fa-solid fa-user-group"></i>${s.pernum} <br>
+
 				<br>
 
 
@@ -132,6 +125,7 @@
 
 
                 <br>
+                <br> 전체 스터디 인원: ${s.pernum} 명 <br>
                 <form action="<%=request.getContextPath()%>/studymenu/studyIn" method="post">
 	                <input type="hidden" name="board_num" value="${s.board_num}">
 	                <input type="hidden" name="t_nickname" value="${s.nickname}">

@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
         <typeAlias type="model.Attend" alias = "attend" />
         
-
+        <typeAlias type="model.group.GroupInList" alias = "groupinlist" />
         
           <typeAlias type="model.Likes" alias = "Likes" />
 
@@ -24,8 +24,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         
         <typeAlias type="model.Reply" alias = "Reply" />
 
-
         <typeAlias type="model.GroupMember" alias = "groupmember" />
+        
+        <typeAlias type="model.WebChat" alias = "webchat" />
         
 	</typeAliases>
 	<environments default="development">
@@ -55,13 +56,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <mapper resource ="mybatis/Notice.xml" />
 
         <mapper resource = "mybatis/Reply.xml"/>
-
         
          <mapper resource = "mybatis/Likes.xml"/>
 
-
         <mapper resource = "mybatis/GroupMember.xml"/>
-
+        
+        <mapper resource = "mybatis/WebChat.xml"/>
      </mappers>
 
 </configuration>

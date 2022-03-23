@@ -59,7 +59,7 @@
 	
 
 	
-<!-- 세션 = 내아이디  -->
+
 	<select id="list2"  resultType="studymenu" parameterType = "map">
 	select * form study_menu where nickname = #{nickname}
 	</select>
@@ -86,9 +86,15 @@
 	</select>
 	
 	<select id = "studySearchAllList" resultType = "studymenu"  parameterType = "map">
-	select * from (select rownum rnum, a.* from
-	(select * from study_menu where upper (${part}) like upper (#{searchData}) order by regdate desc) a)
-	where rnum between #{start} and #{end} 
+	select * from (select rownum rnum, a.* from 
+	(select * from study_menu (${part}) like upper (#{searchData}) order by regdate desc) a)
+	where rnum between #{start} and #{end}
+	</select> 
+
+	<select id="mylist2" resultType = "studymenu"  parameterType = "string">
+	select * from study_menu where nickname = #{nickname} 
 	</select>
+
+
 	
 </mapper>

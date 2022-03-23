@@ -261,6 +261,7 @@ public class StudyMenuDao {
 			return null;
 	 }	 
 	 
+
 	 
 	 public List<StudyMenu> offallList(int pageInt, int limit, int menuAllCount, String menuid) {
 			SqlSession sqlSession = MybatisConnection.getConnection();
@@ -270,6 +271,7 @@ public class StudyMenuDao {
 				map.put("start", (pageInt - 1) * limit + 1);
 				map.put("end", pageInt * limit);
 				return sqlSession.selectList(NS + "offallList", map);
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -337,6 +339,7 @@ public class StudyMenuDao {
 			return null;
 		}
 	 
+
 }
 
 		 	

@@ -7,8 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Search;
-import model.StudyMenu;
+
 import model.GroupMember;
 import model.Search;
 import model.StudyMenu;
@@ -719,26 +718,34 @@ public class StudyMenuController extends MskimRequestMapping{
 		  return "/view/study/studyMenuInfo.jsp";
 	  }			
 	 
-	 	 
+
 	 /*
 	   * 내가 쓴 게시물  스터디 게시물
 	   */
 	  
-	 @RequestMapping("myList2")
-		public String myList2(HttpServletRequest request, 
-				HttpServletResponse response) {
-		
-			HttpSession session = request.getSession();
-			String msg = "로그인이 필요합니다";
-			String url ="studymember/loginForm";
-			 if(session.getAttribute("memberNickname")!= null) {
-					
-			}
-			request.setAttribute("msg", msg);
-			request.setAttribute("url", url);  
-			return "/view/study/myList2.jsp";	
-			}
-	 
+	 //내가쓴 커뮤니티 게시글//
+	  @RequestMapping("myList2")
+	  public String myList2(HttpServletRequest request,  HttpServletResponse response) {
+		  
+		  HttpSession session = request.getSession();
+		  String nickname = (String) session.getAttribute("memberNickname");
+		  StudyMenuDao smd = new StudyMenuDao();
+		  List<StudyMenu> list = smd.list2(nickname);
+		  String msg = "로그인이 필요합니다";
+		  String url = request.getContextPath()+"/studymember/loginForm";
+		  
+		  if(session.getAttribute("memberNickname")!= null) {
+			  request.setAttribute("list",list);
+			  return "/view/study/myList2.jsp";	
+		  }
+		  
+		  request.setAttribute("msg", msg);
+		  request.setAttribute("url", url);
+		  
+		 return "/view/main.jsp";
+	  }
+
+
 
 	 /*---------------------------------------------------------------------------*/
 	 // 스터디 참가신청 버튼을 누를 때
@@ -752,6 +759,7 @@ public class StudyMenuController extends MskimRequestMapping{
 	    int board_num = Integer.parseInt(request.getParameter("board_num"));
 	    String nickname_from = (String) request.getParameter("f_nickname");
 	    String nickname_to = (String) request.getParameter("t_nickname");
+
 
 	    System.out.println(nickname_to);
 	    NoticeDao nd = new NoticeDao();

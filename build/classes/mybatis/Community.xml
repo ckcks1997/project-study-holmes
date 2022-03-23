@@ -74,9 +74,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select> 
 
 
-		<!-- 세션 = 내아이디  -->
+		<!-- 내가 쓴 글  -->
 	<select id="mylist1" resultType = "community"  parameterType = "string">
 	select * from community where nickname = #{nickname} 
 	</select>
 
+	<!-- 내가쓴 글 목록 -->
+	<select id = "comBoardmyList1" resultType = "community"  parameterType = "map">
+	select  * from (select rownum rnum, a.* from (
+	select * from community where boardid = #{boardid} order by board_num desc) a)
+	where rnum between #{start} and #{end}
+</select> 
 </mapper>

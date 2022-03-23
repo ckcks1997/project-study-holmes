@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 댓글 등록 -->
 <insert id = "insertReply" parameterType = "reply">
-	insert into reply values (#{reply_num}, #{board_num}, #{nickname}, sysdate,#{content})
+	insert into reply values (#{reply_num}, #{board_num}, #{nickname}, sysdate, #{content})
 </insert>
 
 
@@ -16,16 +16,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select reply_seq.nextval from dual
 </select>
 
-<select id = "replyList" resultType = "reply">
-	select * from reply r, study_member m
-	where r.nickname = m.nickname and board_num = #{board_num}
-	order by reply_num
+<!-- 댓글 가져오기 -->
+<select id = "replyWriteList" resultType = "reply" parameterType = "int">
+	select nickname, content, to_char(regdate, 'yyyy-mm-dd') regdate2 from reply 
+	where board_num = #{board_num}
+	order by regdate asc
 </select>
 
 
 <!-- 댓글 갯수 -->
-<select id = "replyCount" resultType = "int" parameterType = "string">
+<select id = "replyCount" resultType = "int" parameterType = "int">
 	select count(*) from reply where board_num = #{board_num}
 </select>
+
+
 
 </mapper>
