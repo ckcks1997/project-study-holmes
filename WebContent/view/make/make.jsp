@@ -109,7 +109,7 @@ a:hover {
 
 			<div class="main col-sm-9">
 				<h5><strong>스터디홈즈를 소개합니다</strong></h5>
-				<hr align="left" width="150px" style= "border: 0.5px solid #c47100" />
+				<hr align="left" width="250px" style="background-color: #c47100; height:1px;" />
 				<div class="main col-sm-9">
 					<h6><strong>스터디 홈즈는 이렇게 만들어졌어요</strong></h6>
 						<div class = "row">

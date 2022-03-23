@@ -23,6 +23,14 @@ body {
 	margin: 0 9px 0 5px;
 	color: gray;
 }
+
+/*댓글 작성자 날짜*/
+#replyInfo { 
+	font-size: 15px;
+	font-weight: 600;
+	color : gray;
+
+}
 </style>
 <body>
 
@@ -53,8 +61,8 @@ body {
 					<c:if test="${com.boardid =='4'}"> 공지</c:if>
 					<c:if test="${com.boardid =='5'}"> 문의사항</c:if>
 				</h2>
-
-				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
+				
+				<hr align="left" width="150px" style="background-color: #c47100; height:1px;" />
 				<input type="hidden" id="board_num" name="board_num"
 					value="${com.board_num}"> <input type="hidden"
 					name="nickname" value='${com.nickname}'>
@@ -132,11 +140,11 @@ body {
 				<!-- ------------------댓글 ------------------------------------------------------------------------ -->
 				<div>
 					<h5 style="font-weight: bold">댓글 ${reply_count}</h5>
-					<hr style="border: 0.5px thick 333b3d" />
+					<hr style="background-color: #c47100; height:0.7px;" />
 					<div id="replyList">
 						<c:forEach var="reply" items="${reply_list}">						
 								<div class = "reply"  id="r${reply.reply_num}">
-									<div class="row">
+									<div class="row" id = "replyInfo">
 										<div class="col-md-10">
 											<input type="hidden" id="reply_num" name="reply_num"
 												value="${reply.reply_num}">

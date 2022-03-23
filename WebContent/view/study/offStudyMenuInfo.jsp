@@ -139,7 +139,7 @@
 <!-- --------------------------------------------------------------댓글------------------------------------------------------------ -->
 			<div>
 					<h5 style="font-weight: bold">댓글 ${reply_count}</h5>
-					<hr style="border: 0.5px thick 333b3d" />
+					<hr style="background-color: #c47100; height:0.7px;" />
 					<div id="replyList">
 						<c:forEach var="reply" items="${reply_list}">						
 								<div class = "reply"  id="r${reply.reply_num}">
