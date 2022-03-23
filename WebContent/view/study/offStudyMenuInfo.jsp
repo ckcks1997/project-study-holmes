@@ -113,13 +113,13 @@
 				<h1>상세보기</h1>
 				<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
 				<br>
-
-				<h2>${s.title}</h2>
+                
+				<h2>${s.title}</h2> 
 				<div class="container p-0 my-2 bg-white text-white">
                     <hr>
 				</div>
-
-				<br> ${s.content } <br> <br> <i class="fa-solid fa-user-group"></i>${s.pernum} <br>
+                   <h5>상세내용</h5>
+				<br> ${s.content } <br> <br> <i class="fa-solid fa-user-group"></i>인원: ${s.pernum} <br>
 
 				<br>
 
@@ -128,8 +128,9 @@
 
                 <h3>스터디 장소</h3>
                 주소: ${s.region}
+                <br>
 				<div class="container ">
-					<div class="c-border mx-auto" id="map" style="width: 70%; height: 300px;"></div>	 
+					<div class="c-border" id="map" style="width: 70%; height: 300px;"></div>	 
 				</div>
 
 
