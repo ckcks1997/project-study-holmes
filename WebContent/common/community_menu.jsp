@@ -24,12 +24,11 @@ a:hover {
 .aside-content {
     display: block;
     width: 200px;
-    /*height와 line-height를 같은 값으로 주면 세로로 중앙 정렬이 된다.*/
-    height: 40px;
     line-height: 40px;
     text-align: left;
     padding-left: 10px;
 }
+ 
 
 .selected, .selected:hover {
     padding-left:10px;
@@ -40,8 +39,8 @@ a:hover {
 </style>
 </head>
 <body>
-	<aside class="col-sm-3">
-		<div class="col aside">
+	<aside class="col-lg-3 mb-5">
+		<div class="col aside ">
 			<h4><strong>함께 공부해요</strong></h4>
 			<div class="aside-content">
 				<a href="<%=request.getContextPath()%>/community/comBoardList?boardid=1"><li class=" <c:if test="${boardid eq 1 }">selected</c:if> ">질문 답변</li></a>
@@ -53,5 +52,5 @@ a:hover {
 
 			</div>
 		</div>
-	</aside>
+	</aside> 
 </body>

@@ -61,7 +61,7 @@ body {
 
 
 			<!---------------------    메인      ------------------------------------------------------------------ -->
-			<div class="main col-sm-9">
+			<div class="main col-lg-9">
 
 				<h2 style="font-weight: bold">
 					<c:if test="${com.boardid =='1'}"> 질문 & 답변</c:if>

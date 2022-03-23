@@ -113,7 +113,7 @@ body {
 				<div class="col-xs-12 col-sm-4 col-md-4">
 					<div class="form-group">
                        <label>가격</label>
-                       <input type="text" name="price" class="form-control" placeholder="무료일 경우 0을 입력하세요">                      
+                       <input type="number" name="price" class="form-control" placeholder="무료일 경우 0을 입력하세요">                      
 					</div>
 				</div>
                 <div class="col-xs-12 col-sm-4 col-md-4">
