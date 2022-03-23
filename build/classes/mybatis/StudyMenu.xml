@@ -65,31 +65,20 @@
 	</select>
 
 	<select id="studySearch" parameterType="map" resultType="StudyMenu">
-	select * from study_menu where upper (${part}) like upper (#{searchData})
+	select * from study_menu where (${part}) like upper (#{searchData})
 	and menuid = #{menuid}
 	</select>
 
-	
 	<select id="studySearchCount" resultType="int" parameterType="map">
-	select count(*) from study_menu where  menuid = #{menuid}
-	and (${part}) like upper (#{searchData})
+	select count(*) from study_menu where  menuid = #{menuid} and (${part}) like upper (#{searchData})
 	</select>
 	
 	<select id = "studySearchList" resultType = "studymenu"  parameterType = "map">
 	select * from (select rownum rnum, a.* from 
-	(select * from study_menu where menuid = #{menuid} and upper (${part}) like upper (#{searchData}) order by regdate desc) a)
+	(select * from study_menu where menuid = #{menuid} and (${part}) like upper (#{searchData}) order by board_num desc) a)
 	where rnum between #{start} and #{end}
 	</select> 
 	
-	<select id="studySearchAllCount" resultType="int" parameterType="map">
-	select count(*) from study_menu where (${part}) like upper (#{searchData})
-	</select>
-	
-	<select id = "studySearchAllList" resultType = "studymenu"  parameterType = "map">
-	select * from (select rownum rnum, a.* from 
-	(select * from study_menu (${part}) like upper (#{searchData}) order by regdate desc) a)
-	where rnum between #{start} and #{end}
-	</select> 
 
 	<select id="mylist2" resultType = "studymenu"  parameterType = "string">
 	select * from study_menu where nickname = #{nickname} 

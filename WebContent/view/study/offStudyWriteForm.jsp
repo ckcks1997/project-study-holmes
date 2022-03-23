@@ -148,7 +148,7 @@ body {
                         <br>
 					<div class="container text-center"  >
 						<button class="btn btn-cancel">
-						<a href="<%=request.getContextPath()%>/studymenu/offstudyMenuList">취소 </a>
+						<a href="<%=request.getContextPath()%>/studymenu/offStudyMenuList">취소 </a>
 						</button>
 						<button class="btn btn-save" type="submit">저장</button>
 					</div>
