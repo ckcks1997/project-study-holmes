@@ -84,6 +84,22 @@ h1, h3, h5 {
     font-size:1.2rem;
     font-weight: 700;
 }
+.leader{
+    padding:3px;
+    color:white;
+    font-weight:700;
+    font-size:0.8rem;
+    background-color:#f55555;
+    border-radius:5px;
+}
+.jowon{
+    padding:3px;
+    color:white;
+    font-weight:700;
+    font-size:0.8rem;
+    background-color:#555555;
+    border-radius:5px;
+}
 </style>
 </head>
 <body>
@@ -111,7 +127,7 @@ h1, h3, h5 {
 				<br>
 			        <div class="row">
 	                    <div class="col">
-	                      <h5>스터디 제목</h5> 
+	                      <h5>진행중인 스터디</h5> 
 	                    </div>
 	                </div>
 	                    
@@ -120,14 +136,15 @@ h1, h3, h5 {
 				        <div class="row items m-3">
 					        <div class="col">
 					           <span class="i-title"> ${i.title }</span>
-					           <c:if test="${i.represent eq 1}"> 리더 </c:if>
-                               <c:if test="${i.represent eq 0}"> 조원 </c:if>
+					           <c:if test="${i.represent eq 1}"> <span class="leader"> 리더 </span> </c:if>
+                               <c:if test="${i.represent eq 0}"> <span class="jowon"> 조원 </span> </c:if>
 	                        </div>
 	                        <div class="col">
 	                           
 	                        </div> 
 				        </div>
 				      </a>
+				      <hr>
 				    </c:forEach>
 					
 

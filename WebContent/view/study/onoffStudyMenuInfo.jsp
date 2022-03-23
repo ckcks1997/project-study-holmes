@@ -122,23 +122,67 @@
 
 <!-- --------------------------------------------------------------댓글------------------------------------------------------------ -->
 				<div>
-					<h5 style="font-weight: bold">댓글 2</h5>
-					<hr style="border: 0.5px thick 333b3d" />
-					<p>도사미 · 4일 전</p>
-					<p>간식 주나요?</p>
+					<h5 style="font-weight: bold">댓글 ${reply_count}</h5>
+					<hr style="background-color: #c47100; height:0.7px;" />
+					<div id="replyList">
+						<c:forEach var="reply" items="${reply_list}">						
+								<div class = "reply"  id="r${reply.reply_num}">
+									<div class="row">
+										<div class="col-md-10">
+											<input type="hidden" id="reply_num" name="reply_num"
+												value="${reply.reply_num}">
+											<p>${reply.nickname}· ${reply.regdate2}</p>
+										</div>
 
-					<hr style="border: 0.5px thick 333b3d" />
-					<p>작성자 · 일주일 전</p>
-					<p>아니요..</p>
-					<hr style="border: 0.5px solid 333b3d" />
+										<c:if test="${loginNick eq reply.nickname}">
+											<div class="col-md-2">
+												<input type="button" class="btn btn-light"
+													onclick="deleteReply('${reply.reply_num}')" value="삭제" />
+											</div>
+										</c:if>
+										
+									</div>
 
-					<textarea class="form-control" id="comment" rows="3"></textarea>
-					<button type="button" class="btn btn-danger mt-3">작성</button>
-					<button type="button" class="btn btn-dark mt-3">목록으로</button>
+									<p>${reply.content}</p>
+
+									<hr style="border: 0.5px solid 333b3d" />
+
+								</div>
+							
+						</c:forEach>
+
+					</div>
+					<div class="row">
+
+
+						<div class="col-md-10">
+							<input type="hidden" id="board_num" name="board_num"
+								value="${s.board_num}"> <input type="hidden"
+								name="reply_nickname" id="reply_nickname"
+								value="${sessionScope.memberNickname}">
+
+							<textarea rows="5" cols="80" name="reply_content"
+								placeholder="댓글을 달아주세요" id="reply_content"></textarea>
+						</div>
+						<div class="col-md-2">
+							<input type="button" id="writeReply" class="btn btn-danger"
+								value="등록" />
+						</div>
+
+					</div>
+
+
+					<button type="button" class="btn btn-dark mt-3"
+						onclick="location.href ='comBoardList'">목록으로</button>
 					<button type="button" class="btn btn-dark mt-3">신고</button>
-					<button type="button" class="btn btn-dark mt-3">삭제</button>
-				</div>
 
+					<c:if test="${loginNick eq com.nickname}">
+						<button type="button" data-toggle="modal"
+							data-target="#deleteModal" class="btn btn-danger mt-3">삭제</button>
+					</c:if>
+
+				</div>
+<!-- --------------------------------- 댓글 끝-------------------------------------------------------------------- -->
 
 
 
@@ -147,5 +191,127 @@
 		</div>
 	</div>
 	<br>
+	
+	
+<!-- -------------------------------댓글 자바스크립트----------------------------------------------------------------------------- -->
+	
+	<script>
+//댓글입력
+$("#writeReply").on("click", function(){
+	var reply_content = document.querySelector("#reply_content")
+	
+  //alert(reply_content.value)
+	var reply = {
+			"board_num" : "${s.board_num}",
+			"reply_content" : reply_content.value			
+	}
+
+
+
+	$.ajax({ 
+		type: "post",
+		url: "<%=request.getContextPath()%>/reply/writeReply",
+		data: reply,
+		dataType: 'text',
+		success : function(result){
+			result = result.trim()
+			result.replace(" ","")
+			
+			//alert("["+result+"]");
+			//alert(result);
+		
+			var newReply = document.querySelector('#replyList')
+			var reply_num = result
+			var nickname = document.querySelector('#reply_nickname').value
+			var content = document.querySelector('#reply_content').value
+			var today = new Date();
+			var year =today.getFullYear();
+			var month = today.getMonth()+1; 
+			var date = today.getDate();
+			var regdate = year + '-' + month + '-' + date;
+			
+			let temp = 'id="r'+reply_num+'"'
+			
+			
+			let line =  '<div class = "reply"       '+temp+' >'
+						+ '<div class = "row">'
+						+ '<div class = "col-md-10">'
+						+ '<input type = "hidden" id = "reply_num" name = "reply_num" value= '+reply_num+'>'
+						+ '<p>'+nickname+' · '+ regdate +'</p>'
+			          	+ '</div>'
+			          	+ '<div class = "col-md-2">'
+			          	+ '<input type = "button" class = "btn btn-light"       onclick="deleteReply(\''+reply_num +'\')" value = "삭제"/>'
+			          	+ '</div>'
+			      		+ '</div>'
+						+  '<p>'+content+'</p>'
+			            +  '<hr style="border: 0.5px solid 333b3d" />'
+			        	+ '</div>' ;
+			
+			
+			            
+			 newReply.innerHTML +=line
+							
+				
+			
+			
+			
+
+		},
+		error: function (result){
+			console.log(result);
+			alert("error");
+		}	
+	}); //end ajax
+
+	
+})
+
+
+
+
+
+//댓글삭제
+function deleteReply(num){
+
+	//alert(num)
+	var deleteReply = {
+					"reply_num" :num
+	}
+
+	
+	$.ajax({
+		type: 'post',
+		url : "<%=request.getContextPath()%>/reply/deleteReply",
+				data : deleteReply,
+				dataType : 'text',
+				success : function(result) {
+					alert("댓글이 삭제됩니다");
+					//alert(result)
+					var deleteReply = document.querySelector('#r' + num)
+					//alert(deleteReply.innerHTML) //삭제할 내용 확인
+					deleteReply.innerHTML = ""
+
+				},
+				error : function(result) {
+					console.log(result);
+					alert("error");
+				}
+
+			})
+
+		}
+		$('#deleteReply').on("click", function() {
+			var reply_num = document.querySelector("#reply_num")
+
+		})
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

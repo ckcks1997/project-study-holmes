@@ -7,15 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.oreilly.servlet.MultipartRequest;
-
 import model.Community;
 import model.GroupMember;
-import model.Search;
+
 import model.StudyMenu;
 import service.CommunityBoardDao;
 import service.GroupMemberDao;
 import service.NoticeDao;
+
 import service.StudyMenuDao;
 
 //WebServlet("/studymenu/*")
@@ -1350,8 +1349,7 @@ public class StudyMenuController extends MskimRequestMapping {
 			  String url = "";
 			  if(smd.studyUpdate(sm)>0) {
 				   msg = "수정되었습니다";
-				   url = request.getContextPath()+"/studymenu/offStudyMenuInfo?board_num="+sm.getBoard_num();
-				 
+				   url = request.getContextPath()+"/studymenu/offStudyMenuInfo?board_num="+sm.getBoard_num();				 
 			  } else {
 				  msg = "수정이 실패하였습니다";
 			  }
@@ -1416,6 +1414,84 @@ public class StudyMenuController extends MskimRequestMapping {
 				  
 				  return "/view/alert.jsp";
 				  
+			  }
+			  /*---------------------------------------------------------------------------*/
+			  @RequestMapping("onStudyDelete") 
+			  public String onStudyDelete(HttpServletRequest request, HttpServletResponse response) {
+				  
+				  int board_num = Integer.parseInt(request.getParameter("board_num"));
+				  StudyMenuDao smd = new StudyMenuDao();
+				  StudyMenu sm = smd.studyMenuOne(board_num);
+				  request.setAttribute("sm", sm);
+				  		  
+				  String msg = "";
+				  String url = "";
+				  
+				  if(smd.studyDelete(board_num)>0) {
+					  
+					  msg = "게시글이 삭제되었습니다.";
+					  url = request.getContextPath()+"/studymenu/onStudyMenuList";
+				  } else {
+					  msg= "삭제가 불가능합니다";
+					  url = request.getContextPath()+"/studymenu/onStudyMenuInfo";
+				  }
+				
+				  request.setAttribute("msg", msg);
+				  request.setAttribute("url", url);
+				
+				  return "/view/alert.jsp";
+			  }
+			  
+			  @RequestMapping("offStudyDelete") 
+			  public String offStudyDelete(HttpServletRequest request, HttpServletResponse response) {
+				  
+				  int board_num = Integer.parseInt(request.getParameter("board_num"));
+				  StudyMenuDao smd = new StudyMenuDao();
+				  StudyMenu sm = smd.studyMenuOne(board_num);
+				  request.setAttribute("sm", sm);
+				  		  
+				  String msg = "";
+				  String url = "";
+				  
+				  if(smd.studyDelete(board_num)>0) {
+					  
+					  msg = "게시글이 삭제되었습니다.";
+					  url = request.getContextPath()+"/studymenu/offStudyMenuList";
+				  } else {
+					  msg= "삭제가 불가능합니다";
+					  url = request.getContextPath()+"/studymenu/offStudyMenuInfo";
+				  }
+				
+				  request.setAttribute("msg", msg);
+				  request.setAttribute("url", url);
+				
+				  return "/view/alert.jsp";
+			  }
+			  
+			  @RequestMapping("onoffStudyDelete") 
+			  public String onoffStudyDelete(HttpServletRequest request, HttpServletResponse response) {
+				  
+				  int board_num = Integer.parseInt(request.getParameter("board_num"));
+				  StudyMenuDao smd = new StudyMenuDao();
+				  StudyMenu sm = smd.studyMenuOne(board_num);
+				  request.setAttribute("sm", sm);
+				  		  
+				  String msg = "";
+				  String url = "";
+				  
+				  if(smd.studyDelete(board_num)>0) {
+					  
+					  msg = "게시글이 삭제되었습니다.";
+					  url = request.getContextPath()+"/studymenu/onoffStudyMenuList";
+				  } else {
+					  msg= "삭제가 불가능합니다";
+					  url = request.getContextPath()+"/studymenu/onoffStudyMenuInfo";
+				  }
+				
+				  request.setAttribute("msg", msg);
+				  request.setAttribute("url", url);
+				
+				  return "/view/alert.jsp";
 			  }
 			  
 	  

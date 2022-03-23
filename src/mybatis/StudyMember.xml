@@ -9,7 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="string">
 		select * from study_member where email=#{value}
 	</select> 
-
+    <select id="studyMembeByNickname" resultType="studymember"
+        parameterType="string">
+        select * from study_member where nickname=#{value}
+    </select> 
 	<insert id="insertStudyMember" parameterType="studymember">
 		insert into study_member (email, password, nickname, name, tel, picture, point, regdate)
 		values(#{email},#{password},#{nickname},#{name},#{tel},#{picture}, 50, sysdate)
@@ -35,7 +38,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update study_member set password = #{newPass} where email=#{email}
     </update> 
 
-
+    <update id="changePoint" parameterType="map">
+        update study_member set point = #{point} where nickname=#{nickname}
+    </update> 
 
 	
 

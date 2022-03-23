@@ -134,10 +134,16 @@
 	content = #{content}, latitude = #{latitude}, longitude = #{longitude} where board_num = #{board_num}
 	</update>
 	
+	<delete id="studyDelete" parameterType= "int">
+	delete from study_menu where board_num = #{board_num}
+</delete>
+	
 
 	<select id="mylist2" resultType = "studymenu"  parameterType = "string">
 	select * from study_menu where nickname = #{nickname} 
 	</select>
+	
+	
 
 
 	

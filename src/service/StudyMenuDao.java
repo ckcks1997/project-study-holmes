@@ -484,6 +484,18 @@ public class StudyMenuDao {
 		  
 	  }
 	 
+	 public int studyDelete (int board_num) {
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+		 try {
+		  return sqlSession.update(NS+"studyDelete", board_num);
+		 } catch(Exception e) {
+			 e.printStackTrace();
+		 } finally {
+			 MybatisConnection.close(sqlSession);
+		 }
+		  return 0;
+	  }
+	 
 
 }
 

@@ -73,5 +73,21 @@ public class GroupMemberDao {
 	           } 
 	           return null;
 	     }
+	       
+	        public int groupDelete(int boardnum, String nickname) {
+	          
+	             SqlSession sqlSession = MybatisConnection.getConnection();
+	               try {
+	                 map.clear();
+	                 map.put("boardnum", boardnum);
+	                 map.put("nickname", nickname); 
+	               return sqlSession.delete(NS+"groupDelete", map);
+	               } catch (Exception e) {
+	                   e.printStackTrace();
+	               } finally {
+	                   MybatisConnection.close(sqlSession);
+	               } 
+	               return 0;
+	         }
 	   
 }

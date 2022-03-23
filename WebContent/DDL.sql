@@ -29,7 +29,6 @@ create table MEMBER_TAG
     TAG_NUM NUMBER       not null  primary key,
     EMAIL   VARCHAR2(50) not null,
     TAG     VARCHAR2(30) not null
-
 )
 
 ---
@@ -152,6 +151,7 @@ create table WEBCHAT2
 )
 
 --평가기록 테이블
+create sequence reputation_seq;
 create table reputation_estimate
 (
     NUM      NUMBER not null
