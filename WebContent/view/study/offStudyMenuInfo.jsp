@@ -49,8 +49,26 @@
 
 <!-- --------------------------------------------------------------정보배너------------------------------------------------------------ -->
 			<div style="float: left; margin: 20px">
-				<img src="<%=request.getContextPath()%>/img/study-img.jpg"
-					width="260">
+
+                      <c:if test="${s.menuid == 2 }">
+                          <img src="<%=request.getContextPath()%>/img/studymenu/programming.jpg" alt="" width=260>
+                      </c:if>
+                      <c:if test="${s.menuid == 3 }">
+                         <img src="<%=request.getContextPath()%>/img/studymenu/security.jpg" alt="" width=260>
+                     </c:if>
+                      <c:if test="${s.menuid == 4 }">
+                         <img src="<%=request.getContextPath()%>/img/studymenu/creative.jpg" alt="" width=260>
+                      </c:if>
+                      <c:if test="${s.menuid == 5 }">
+                        <img src="<%=request.getContextPath()%>/img/studymenu/marketing.jpg" alt=""width=260>
+                     </c:if>
+                     <c:if test="${s.menuid == 6 }">
+                        <img src="<%=request.getContextPath()%>/img/studymenu/language.jpg" alt="" width=260>
+                    </c:if>
+                    <c:if test="${s.menuid == 7 }">
+                       <img src="<%=request.getContextPath()%>/img/studymenu/etc.jpg" alt="" width=260>
+                    </c:if>
+
 			</div>
 
 			<div>
@@ -73,7 +91,7 @@
 				</h6>
 				<br>
 				<h6>
-					<small>&nbsp; (이미지) <span>${s.nickname}</span> # 태그 태그
+					<small>&nbsp; 작성자: <span>${s.nickname}</span>
 					</small>
 				</h6>
 				<br>
@@ -121,7 +139,8 @@
 
 <!-- --------------------------------------------------------------지도------------------------------------------------------------ -->
 
-                <h3>스터디할 장소</h3>
+                <h3>스터디 장소</h3>
+                주소: ${s.region}
 				<div class="container ">
 					<div class="c-border mx-auto" id="map" style="width: 70%; height: 300px;"></div>	 
 				</div>
@@ -149,6 +168,7 @@
                 <br>
                 <br> 전체 스터디 인원: ${s.pernum} 명 <br>
                 <form action="<%=request.getContextPath()%>/studymenu/studyIn" method="post">
+                    <input type="hidden" name="board_name" value="offStudyMenuList">
 	                <input type="hidden" name="board_num" value="${s.board_num}">
 	                <input type="hidden" name="t_nickname" value="${s.nickname}">
 	                <input type="hidden" name="f_nickname" value="${loginNick}">

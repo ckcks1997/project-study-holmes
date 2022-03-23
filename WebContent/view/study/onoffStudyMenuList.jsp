@@ -175,7 +175,7 @@ a {
 			
 			<div class="col-sm-9">
 				<h1>온오프라인 스터디</h1>
-				<hr align="left" width="170px" style="background-color: #c47100; height:1px;" />
+				<hr align="left" width="350px" style="background-color: #c47100; height:1px;" />
 				<br>
 				<h4>${menuName}</h4>
 				 
@@ -276,9 +276,26 @@ a {
 				<c:forEach var="s" items="${list}">
 					<div class="study-box ">
 						<a href="<%=request.getContextPath()%>/studymenu/onoffStudyMenuInfo?board_num=${s.board_num}">											
-							<div class="img">
-								<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="">
-							</div>
+							                         <div class="img">
+                             <c:if test="${s.menuid == 16 }">
+                                <img src="<%=request.getContextPath()%>/img/studymenu/programming.jpg" alt="">
+                             </c:if>
+                              <c:if test="${s.menuid == 17 }">
+                                <img src="<%=request.getContextPath()%>/img/studymenu/security.jpg" alt="">
+                             </c:if>
+                              <c:if test="${s.menuid == 18 }">
+                                <img src="<%=request.getContextPath()%>/img/studymenu/creative.jpg" alt="">
+                             </c:if>
+                              <c:if test="${s.menuid == 19 }">
+                                <img src="<%=request.getContextPath()%>/img/studymenu/marketing.jpg" alt="">
+                             </c:if>
+                              <c:if test="${s.menuid == 20 }">
+                                <img src="<%=request.getContextPath()%>/img/studymenu/language.jpg" alt="">
+                             </c:if>
+                              <c:if test="${s.menuid == 21 }">
+                                <img src="<%=request.getContextPath()%>/img/studymenu/etc.jpg" alt="">
+                             </c:if>
+                            </div>
 							
 							<div class="px-2 pt-3">
 								<h5 class="b-h5">${s.title}</h5>

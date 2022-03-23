@@ -1511,7 +1511,7 @@ public class StudyMenuController extends MskimRequestMapping {
 		List<StudyMenu> list = smd.mylist2(nickname);
 		String msg = "로그인이 필요합니다";
 		String url = request.getContextPath() + "/studymember/loginForm";
-
+	
 		if (session.getAttribute("memberNickname") != null) {
 			request.setAttribute("list", list);
 			return "/view/study/myList2.jsp";
@@ -1522,6 +1522,7 @@ public class StudyMenuController extends MskimRequestMapping {
 
 		return "/view/main.jsp";
 	}
+
 
 	/*---------------------------------------------------------------------------*/
 	// 스터디 참가신청 버튼을 누를 때

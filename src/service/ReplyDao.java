@@ -99,8 +99,19 @@ public class ReplyDao {
 		  
 	  }
 	  
-	  
-	  
+	  public int comReplyCountUp(int board_num) {
+		  
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+		  try {
+			  return sqlSession.selectOne(NS+"comReplyCountUp", board_num);
+		  } catch(Exception e) {
+			  e.printStackTrace();
+		  } finally {
+			  MybatisConnection.close(sqlSession);
+		  }
+		  return 0;		  
+		  
+	  }
 	  
 	  
 		  

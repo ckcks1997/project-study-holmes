@@ -39,4 +39,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	delete from reply where reply_num = #{reply_num}
 </select>
 
+
+<!-- 원글에 댓글 수 하나씩 저장하기 -->
+<update id = "comReplyCountUp" parameterType = "int">
+	update community set replycnt = replycnt + 1
+	where board_num = #{board_num}
+</update>
+
+
 </mapper>

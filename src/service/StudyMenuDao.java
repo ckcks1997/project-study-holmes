@@ -454,6 +454,7 @@ public class StudyMenuDao {
 			return null;
 	 }	 
 	 
+
 	 public int studyUpdate(StudyMenu sm) {
 		  SqlSession sqlSession = MybatisConnection.getConnection();
 		  
@@ -496,6 +497,25 @@ public class StudyMenuDao {
 		  return 0;
 	  }
 	 
+
+	 
+     public List<StudyMenu> mainNewStudy3() {
+
+       SqlSession sqlSession = MybatisConnection.getConnection();
+       
+       List<StudyMenu> list = null;
+       try {
+       list = sqlSession.selectList(NS + "mainNewStudy3");
+       return list;
+
+       } catch (Exception e) {
+           e.printStackTrace();
+       } finally {
+           MybatisConnection.close(sqlSession);
+       }
+
+       return null;
+}   
 
 }
 
