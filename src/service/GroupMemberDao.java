@@ -3,12 +3,13 @@ package service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import javax.swing.GroupLayout.Group;
 import org.apache.ibatis.session.SqlSession;
 import model.Attend;
 import model.Community;
 import model.GroupMember;
 import model.StudyMenu;
+import model.group.GroupInList;
 import util.MybatisConnection;
 
 public class GroupMemberDao {
@@ -45,6 +46,32 @@ public class GroupMemberDao {
 	               MybatisConnection.close(sqlSession);
 	           } 
 	           return 0;
+	     }
+	    
+	       public List<GroupInList> groupInList(String nickname) {
+	          
+             SqlSession sqlSession = MybatisConnection.getConnection();
+               try {
+               return sqlSession.selectList(NS+"groupInList", nickname);
+               } catch (Exception e) {
+                   e.printStackTrace();
+               } finally {
+                   MybatisConnection.close(sqlSession);
+               } 
+               return null;
+         }
+	       
+	       public List<GroupMember> groupListByBoardnum(String id) {
+	            
+	         SqlSession sqlSession = MybatisConnection.getConnection();
+	           try {
+	           return sqlSession.selectList(NS+"groupListByBoardnum", id);
+	           } catch (Exception e) {
+	               e.printStackTrace();
+	           } finally {
+	               MybatisConnection.close(sqlSession);
+	           } 
+	           return null;
 	     }
 	   
 }

@@ -107,5 +107,14 @@
         <url-pattern>/likes/*</url-pattern>
     </servlet-mapping>
  
+     <servlet>
+        <servlet-name>ChatController</servlet-name>
+        <servlet-class>controller.ChatController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ChatController</servlet-name>
+        <url-pattern>/chat/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>

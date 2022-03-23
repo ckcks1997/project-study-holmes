@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="webchat">
+
+	<select id="nextNum" resultType="int">
+		select chatseq.nextval from dual
+	</select>
+
+    <insert id="insertWebChat" parameterType="webchat" >
+        insert into webchat values(#{num},#{groupId},#{userId},#{message})
+    </insert>
+    
+    <select id="listWebChat"  parameterType="String" resultType="webchat">
+        select * from webchat where group_Id = #{groupId}
+    </select>
+
+</mapper>

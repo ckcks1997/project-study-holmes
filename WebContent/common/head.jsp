@@ -98,7 +98,6 @@
 							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">공지사항</a> 
 							<a class="dropdown-item" href="#">출석체크</a>
 						</div></li>
-					<li class="nav-item"><a class="nav-link" href="#">스터디룸</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">만든이</a></li>
 				</ul>
 

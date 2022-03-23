@@ -16,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
         <typeAlias type="model.Attend" alias = "attend" />
         
+        <typeAlias type="model.group.GroupInList" alias = "groupinlist" />
 
         
           <typeAlias type="model.Likes" alias = "Likes" />
