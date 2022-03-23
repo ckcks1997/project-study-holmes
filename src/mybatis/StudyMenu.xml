@@ -84,6 +84,9 @@
 	select * from study_menu where nickname = #{nickname} 
 	</select>
 
+    <select id="mainNewStudy3" resultType = "studymenu">   
+        SELECT ROWNUM, A.* FROM (SELECT * FROM STUDY_MENU ORDER BY REGDATE DESC ) A WHERE ROWNUM &lt; 4
+    </select>
 
 	
 </mapper>

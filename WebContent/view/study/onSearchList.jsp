@@ -175,7 +175,7 @@ a {
 			
 			<div class="col-sm-9">
 				<h1>온라인 스터디</h1>
-				<hr align="left" width="170px" style="background-color: #c47100; height:1px;" />
+				<hr align="left" width="250px" style="background-color: #c47100; height:1px;" />
 				<br>
 				<h4>${menuName}</h4>
 				 

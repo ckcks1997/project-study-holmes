@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import model.Community;
 import model.Notice;
+import model.StudyMenu;
 import service.CommunityBoardDao;
 import service.NoticeDao;
+import service.StudyMenuDao;
  
 
 
@@ -32,6 +34,12 @@ public class BoardController extends MskimRequestMapping{
     request.setAttribute("list1", list1);
     request.setAttribute("list2", list2);
     request.setAttribute("list3", list3);
+    
+    StudyMenuDao sd = new StudyMenuDao();
+    List<StudyMenu> slist = sd.mainNewStudy3();
+    request.setAttribute("slist", slist);
+    
+    
     return "/view/main.jsp";
   }
   

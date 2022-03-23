@@ -48,8 +48,24 @@
 
 <!-- --------------------------------------------------------------정보배너------------------------------------------------------------ -->
 			<div style="float: left; margin: 20px">
-				<img src="<%=request.getContextPath()%>/img/study-img.jpg"
-					width="260">
+				     <c:if test="${s.menuid == 16 }">
+                          <img src="<%=request.getContextPath()%>/img/studymenu/programming.jpg" alt="" width=260>
+                      </c:if>
+                      <c:if test="${s.menuid == 17 }">
+                         <img src="<%=request.getContextPath()%>/img/studymenu/security.jpg" alt="" width=260>
+                     </c:if>
+                      <c:if test="${s.menuid == 18 }">
+                         <img src="<%=request.getContextPath()%>/img/studymenu/creative.jpg" alt="" width=260>
+                      </c:if>
+                      <c:if test="${s.menuid == 19 }">
+                        <img src="<%=request.getContextPath()%>/img/studymenu/marketing.jpg" alt=""width=260>
+                     </c:if>
+                     <c:if test="${s.menuid == 20 }">
+                        <img src="<%=request.getContextPath()%>/img/studymenu/language.jpg" alt="" width=260>
+                    </c:if>
+                    <c:if test="${s.menuid == 21 }">
+                       <img src="<%=request.getContextPath()%>/img/studymenu/etc.jpg" alt="" width=260>
+                    </c:if>
 			</div>
 
 			<div>
@@ -72,7 +88,7 @@
 				</h6>
 				<br>
 				<h6>
-					<small>&nbsp; (이미지) <span>${s.nickname}</span> # 태그 태그
+					<small>&nbsp; 작성자: <span>${s.nickname}</span> 
 					</small>
 				</h6>
 				<br>
@@ -106,6 +122,7 @@
                 <br>
                 <br> 전체 스터디 인원: ${s.pernum} 명 <br>
                 <form action="<%=request.getContextPath()%>/studymenu/studyIn" method="post">
+                    <input type="hidden" name="board_name" value="onoffStudyMenuList">
 	                <input type="hidden" name="board_num" value="${s.board_num}">
 	                <input type="hidden" name="t_nickname" value="${s.nickname}">
 	                <input type="hidden" name="f_nickname" value="${loginNick}">

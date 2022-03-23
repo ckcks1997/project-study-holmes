@@ -294,6 +294,24 @@ public class StudyMenuDao {
 			return null;
 	 }	 
 	 
+	 
+     public List<StudyMenu> mainNewStudy3() {
+
+       SqlSession sqlSession = MybatisConnection.getConnection();
+       
+       List<StudyMenu> list = null;
+       try {
+       list = sqlSession.selectList(NS + "mainNewStudy3");
+       return list;
+
+       } catch (Exception e) {
+           e.printStackTrace();
+       } finally {
+           MybatisConnection.close(sqlSession);
+       }
+
+       return null;
+}   
 
 }
 

@@ -6,6 +6,21 @@
 <meta charset="UTF-8">
 
 <style>
+h1, h3, h5 {
+    font-weight: bold;
+}
+/* 명언 */
+            .famous-saying-box {
+                height: 150px;
+                background-color: #333b3d;
+            }
+            .color-white {
+                color: white;
+            }
+            .footer-content {
+                padding-top: 50px;
+            }
+
 td, th {
 	padding: 10px;
 }
@@ -94,6 +109,8 @@ td, th {
 .btn-submit{
 max-width:100px;
 }
+
+
 </style>
 
 <title>Insert title here</title>
@@ -102,20 +119,31 @@ max-width:100px;
  
 
 <body>
+        <div class="container-fluid famous-saying-box">
+            <div class="container p-3">
+                <div class="mt-3">
+                    <h3 class="color-white">오늘의 명언</h3>
+                    <div class="color-white">
+                        생각 없이 배우기만 하면 얻는 것이 없고, 생각만 하고 배우지 않으면 오류나 독단에 빠질
+                        위험이 있다. -공자
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <div class="container">
     <br>
     <div class="col-6 mx-auto">
-        <h3>채팅방</h3>
-        <hr>
+        <h1>채팅방</h1>
+        <hr align="left" width="150px" style="border: 0.5px solid #c47100" />
+ 
     </div>
     
     <div class="  d-flex justify-content-center align-items-center">
 	<table >
 		<tr>
-			<th><p>
-					Group:${boardnum}:${memberNickname}</p></th>
-			
-			
+			<th><p>그룹 채팅방</p></th>
+					
 		</tr>
 		<tr>
 			
