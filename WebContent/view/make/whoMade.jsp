@@ -17,6 +17,10 @@ body {
 	background-color: #333b3d;
 }
 
+h5{
+    font-family: "kita";
+}
+
 ul, li {
 	list-style: none;
 }

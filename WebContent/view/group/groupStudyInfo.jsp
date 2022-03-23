@@ -100,20 +100,19 @@ h1, h3, h5 {
 				<h3> 스터디 목록 </h3>
 			        <div class="row">
 	                    <div class="col">
-	                      스터디 멤버
+	                      <h5>스터디 멤버</h5>
 	                    </div>
 	                </div>
-	                    
+	                    <hr>
 				    <c:forEach items="${groupMemberList}" var="i">
                       <a>
 				        <div class="row">
 					        <div class="col">
 					           ${i.nickname}
 	                        </div>
-	                         
-					 
 				        </div>
 				      </a>
+				      <hr>
 				    </c:forEach>
 					
 					<a class="btn btn-c" href="<%=request.getContextPath()%>/chat/chat?boardnum=${groupMemberList[0].boardnum}">채팅 입장</a>
