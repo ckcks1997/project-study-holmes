@@ -63,5 +63,28 @@ public class GroupStudyController extends MskimRequestMapping {
     return "/view/alert.jsp";
   }
   
+  @RequestMapping("groupexit")
+  public String groupExit(HttpServletRequest request, HttpServletResponse response) {
+    
+    String nickname = (String) request.getSession().getAttribute("memberNickname");
+    String boardnum = request.getParameter("boardnum");
+    
+    String msg= "로그인이 필요합니다";
+    String url= "main"; //main으로 보내기, alert.jsp파일 참고
+    
+    if(nickname != null) {
+
+      
+      GroupMemberDao gmd = new GroupMemberDao();
+      List<GroupMember> groupMemberList = gmd.groupListByBoardnum(boardnum);
+      request.setAttribute("groupMemberList", groupMemberList);
+      return "/view/group/groupStudyExit.jsp";
+    }
+    
+    request.setAttribute("msg", msg);
+    request.setAttribute("url", url);
+     
+    return "/view/alert.jsp";
+  }
    
 }

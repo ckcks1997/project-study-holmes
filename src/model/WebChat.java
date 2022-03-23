@@ -3,15 +3,15 @@ package model;
 public class WebChat {
 
   private int num;
-  private String groupId;
-  private String userId;
+  private String boardnum;
+  private String memberNickname;
   private String message;
 
   public WebChat() {}
 
   public WebChat(String[] strs) {
-    this.groupId = strs[0];
-    this.userId = strs[1];
+    this.boardnum = strs[0];
+    this.memberNickname = strs[1];
     this.message = strs[2];
   }
 
@@ -23,20 +23,20 @@ public class WebChat {
     this.num = num;
   }
 
-  public String getGroupId() {
-    return groupId;
+  public String getBoardnum() {
+    return boardnum;
   }
 
-  public void setGroupId(String groupId) {
-    this.groupId = groupId;
+  public void setBoardnum(String boardnum) {
+    this.boardnum = boardnum;
   }
 
-  public String getUserId() {
-    return userId;
+  public String getMemberNickname() {
+    return memberNickname;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setMemberNickname(String memberNickname) {
+    this.memberNickname = memberNickname;
   }
 
   public String getMessage() {
@@ -49,9 +49,11 @@ public class WebChat {
 
   @Override
   public String toString() {
-    return "{\"num\":\"" + num + "\", \"groupId\":\"" + groupId + "\", \"userId\":\"" + userId
-        + "\", \"message\":\"" + message + "\"}";
+    return "{\"num\":\"" + num + "\", \"boardnum\":\"" + boardnum + "\", \"memberNickname\":\""
+        + memberNickname + "\", \"message\":\"" + message + "\"}";
   }
+
+ 
 
 
 

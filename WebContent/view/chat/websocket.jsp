@@ -103,24 +103,25 @@ td, th {
 		<tr>
 			<th><p>
 					Group:${boardnum}:${memberNickname}</p></th>
-			<th><p>chat group</p></th>
+			
 			
 		</tr>
 		<tr>
 			
 			<td>
 			<div id="messageWindow">
-				<c:forEach var="webchat" items="${li }">
-				    <c:if test="${webchat.userId.equals(userId) }">
+				<c:forEach var="webchat" items="${li}">
+				    <c:if test="${webchat.memberNickname.equals(memberNickname) }">
 				    <div class="right">
 				        <div id="me">나:${webchat.message}</div>
 				    </div>
 				    
 				    </c:if>
-				<c:if test="${!webchat.userId.equals(userId) }">
+				<c:if test="${!webchat.memberNickname.equals(memberNickname) }">
                     
                       <div class="left">
-                        <div id="you">${webchat.userId}:${webchat.message}</div>
+                       
+                        <div id="you">${webchat.memberNickname}:${webchat.message}</div>
                     </div>
                     </c:if>
 				</c:forEach>
@@ -133,9 +134,7 @@ td, th {
 					<div class="upstat"></div>
 				</div>
 			</td>
-			<td valign="top">
-				<a href="<%=request.getContextPath() %>/socket/chat?groupId=g1&userId=u1" target="_blank">g1:u1</a> <br>
-            </td>
+
 		</tr>
 
 	</table>
@@ -181,7 +180,7 @@ function onMessage(event) {
 				+" </div></div>"
 	}
 	else{  
-	    msgarea.innerHTML += "<div class='left'><div id='you'>"+json.userId+':' + json.message+" </div></div>"	 ;
+	    msgarea.innerHTML += "<div class='left'><div id='you'>"+json.memberNickname+':' + json.message+" </div></div>"	 ;
 	}
 	msgarea.scrollTop=msgarea.scrollHeight;
 }
@@ -228,16 +227,15 @@ function init(){
     	let formData = new FormData(); //ajax는 같은주소로 두번 못보낸다. 랜덤함수가 필요..
     	
     	formData.append("file", files[0]);
-    	formData.append("groupId",' ${boardnum}');
-    	formData.append("userId", '${memberNickname}');
+    	formData.append("boardnum",' ${boardnum}');
+    	formData.append("memberNickname", '${memberNickname}');
         
     	let httpreq = new XMLHttpRequest();
     	
-    	httpreq.open("POST", "upload.jsp", true);
+    	httpreq.open("POST", "<%=request.getContextPath()%>/chat/upload", true);
     	httpreq.send(formData);
     	httpreq.onload = function(e){
-    		if(httpreq.status == 200){
-    			<%--alert(httpreq.responseText)--%>
+    		if(httpreq.status == 200){ 
     			sendFile(httpreq.responseText);
     		}else{
     			alert("error: "+httpreq.responseText)
@@ -246,10 +244,11 @@ function init(){
     }
     
     function sendFile(filename){
+    	console.log(filename+"===")
     	msgarea.innerHTML += "<div class='right'><div id='me'>"
     	+ "<img src='<%=request.getContextPath()%>/upload/"+ filename + "' width='200px' />"
     	+" </div></div>" ;
-    	webSocket.send('${groupId}:${memberNickname}:' + filename);
+    	webSocket.send('${boardnum}:${memberNickname}:' + filename);
         msgarea.scrollTop=msgarea.scrollHeight;
     }
     

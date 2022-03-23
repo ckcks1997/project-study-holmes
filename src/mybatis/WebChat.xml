@@ -6,15 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="webchat">
 
 	<select id="nextNum" resultType="int">
-		select chatseq.nextval from dual
+		select chatseq2.nextval from dual
 	</select>
 
     <insert id="insertWebChat" parameterType="webchat" >
-        insert into webchat values(#{num},#{groupId},#{userId},#{message})
+        insert into webchat2 values(#{num},#{boardnum},#{memberNickname},#{message})
     </insert>
     
     <select id="listWebChat"  parameterType="String" resultType="webchat">
-        select * from webchat where group_Id = #{groupId}
+        select * from webchat2 where boardnum = #{boardnum} 
     </select>
 
 </mapper>

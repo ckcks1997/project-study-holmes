@@ -28,7 +28,7 @@ public class GroupChat {
     
     synchronized (clients) { //hashmap이라 싱크
       if (clients.get(session) == null) {
-        clients.put(session, webChat.getGroupId());
+        clients.put(session, webChat.getBoardnum());
       } else {
       
       ChatMybatisDao dao = new ChatMybatisDao();
@@ -38,8 +38,9 @@ public class GroupChat {
       }
       for (Session client : clients.keySet()) {
         //자기자신한테는 보내지 않는다, 자기 그룹에만 보낸다.
-        if (!client.equals(session) && clients.get(client).equals(webChat.getGroupId())) {
+        if (!client.equals(session) && clients.get(client).equals(webChat.getBoardnum())) {
           client.getBasicRemote().sendText(webChat.toString());
+          System.out.println(webChat.toString()+"===");
         }
       }
     }
