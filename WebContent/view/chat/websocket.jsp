@@ -12,16 +12,17 @@ td, th {
 
 #messageWindow {
 	width: 500px;
-	height: 400px;
+	height: 600px;
 	overflow: auto;
-	background-color: grey;
-	border: solid 1px grey;
+	background-color: #fdfdff;
+	border: solid 1px #eee;
+	border-radius: 10px;
 }
 
 #you {
 	display: inline-block;
 	position: relative;
-	background: yellow;
+	background: #eef;
 	border-radius: 5px;
 	padding: 3px;
 }
@@ -29,13 +30,13 @@ td, th {
 #me {
 	display: inline-block;
 	position: relative;
-	background: white;
+	background: #efdfdf;
 	border-radius: 5px;
 	padding: 3px;
 }
 
 #you:after {
-	border-top: 10px solid yellow;
+	border-top: 10px solid  #eef;
 	border-left: 10px solid transparent;
 	border-right: 0px solid transparent;
 	border-bottom: 0px solid transparent;
@@ -68,9 +69,8 @@ td, th {
 
 #upload {
 	position: relative;
-	width: 300px;
-	height: 200px;
-	margin: 10px;
+	width: 100%;
+	height: 200px; 
 }
 
 .updrop {
@@ -91,6 +91,9 @@ td, th {
 	margin-top: 10px;
 	background: #f5f5f5;
 }
+.btn-submit{
+max-width:100px;
+}
 </style>
 
 <title>Insert title here</title>
@@ -99,7 +102,15 @@ td, th {
  
 
 <body>
-	<table>
+    <div class="container">
+    <br>
+    <div class="col-6 mx-auto">
+        <h3>채팅방</h3>
+        <hr>
+    </div>
+    
+    <div class="  d-flex justify-content-center align-items-center">
+	<table >
 		<tr>
 			<th><p>
 					Group:${boardnum}:${memberNickname}</p></th>
@@ -128,8 +139,12 @@ td, th {
 			
 			
 			</div>
-				<div id="messageWindow"></div> <br> <input id="inputMessage" type="text" /> <input type="button" value="send" onClick="sendText()" />
-				<div id="upload">
+				  <br> 
+				  <div class="row text-center">
+	       			  <input class="col form-control" id="inputMessage" type="text" /> 
+    				  <input class="col btn btn-secondary btn-submit" type="button" value="전송" onClick="sendText()" />
+				  </div>
+				<div id="upload" class=" my-3">
 					<div class="updrop">파일을 드래그해서 올리세요</div>
 					<div class="upstat"></div>
 				</div>
@@ -138,6 +153,8 @@ td, th {
 		</tr>
 
 	</table>
+	</div>
+	</div>
 	<script>
 
 const msgarea = document.getElementById("messageWindow");

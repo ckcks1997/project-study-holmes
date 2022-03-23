@@ -17,7 +17,6 @@ public class StudyMenu {
 	private String latitude; //위도 
 	private String longitude; //경도\
 	
-	
 	public StudyMenu() {
 		
 	}

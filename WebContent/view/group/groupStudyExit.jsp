@@ -132,13 +132,13 @@ h1, h3, h5 {
 		                               </select>
 			                        </div>
 			                        <div class="col">
-			                             <button class="btn btn-danger" onclick="score_submit('${i.nickname}')">평가</button>
+			                             <button class="btn btn-danger" id="btn_${i.nickname}" onclick="score_submit('${i.nickname}')">평가</button>
 			                        </div>
 				              </div>
 		                 
 				    </c:forEach>
 					<br>
-                    <button class="btn btn-danger" >스터디 종료</button>
+                    <button class="btn btn-danger"onclick="location.href='<%=request.getContextPath() %>/group/groupexitpro?boardnum=${groupMemberList[0].boardnum}'" >스터디 종료</button>
 				</div>
 				<br>
              </div>
@@ -158,9 +158,9 @@ h1, h3, h5 {
 	        data: str,
 	        dataType: 'text',
 	        success : function(result){
-	            alert("전송성공");
-	            
-	             
+	            alert("평가되었습니다");
+	            document.querySelector('#btn_'+nickname).disabled=true;
+	            document.querySelector('#btn_'+nickname).innerHTML="평가완료";
 	        },
 	        error: function (result){
 	            console.log(result)

@@ -82,7 +82,7 @@ create table study_menu
 	pernum number(10),
 	region varchar2(30),
 	content varchar2(4000),
-	menuid varchar2(1),
+	menuid varchar2(2),
 	regdate date,
 	latitude number,
 	longitude number
