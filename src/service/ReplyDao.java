@@ -70,6 +70,39 @@ public class ReplyDao {
 		  return 0;		  
 		  
 	  }
+	  
+	  public int deleteReply(int reply_num) {
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+		  try {
+			  return sqlSession.update(NS+"deleteReply",reply_num);
+		  } catch(Exception e) {
+				 e.printStackTrace();
+		  } finally {
+				 MybatisConnection.close(sqlSession);
+		  }
+			  return 0;
+		  
+	  }
+	  
+	  public Reply replyOne(int reply_num) {
+		 SqlSession sqlSession = MybatisConnection.getConnection();
+		  
+		  try {
+		  return sqlSession.selectOne(NS+"replyOne",reply_num);
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  } finally {
+			  MybatisConnection.close(sqlSession);
+		  }
+		  
+		  return null;
+		  
+	  }
+	  
+	  
+	  
+	  
+	  
 		  
 }
 	 

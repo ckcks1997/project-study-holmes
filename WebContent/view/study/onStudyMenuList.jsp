@@ -184,7 +184,7 @@ a {
 																																	
 						<div>
 							<div class="input-group rounded">
-							<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">
+							<form action = "<%=request.getContextPath()%>/studymenu/onSearch" method="post">
 							<input type = "hidden" name = "menuid" value = "${menuid}"/>
 							<div class="d-flex flex-row align-items-center">
 								 
@@ -208,19 +208,19 @@ a {
 					<div>
 						<div class="d-flex align-items-end rounded mt-2" method="post">
 						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
+						<form action = "<%=request.getContextPath()%>/studymenu/onSearch" method="post">															
 						<input type="hidden" aria-label="Search" name="part" value="region">
 						<input type="hidden" aria-label="Search" name="searchData" value="서울">
 					    <input type="submit" class="tagbox" value="#서울"> 
 						</form>
 						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
+						<form action = "<%=request.getContextPath()%>/studymenu/sonSearch" method="post">															
 						<input type="hidden" aria-label="Search" name="part" value="region">
 						<input type="hidden" aria-label="Search" name="searchData" value="경기">
 					    <input type="submit" class="tagbox" value="#경기"> 
 						</form>
 						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
+						<form action = "<%=request.getContextPath()%>/studymenu/onSearch" method="post">															
 						<input type="hidden" aria-label="Search" name="part" value="region">
 						<input type="hidden" aria-label="Search" name="searchData" value="부산">
 					    <input type="submit" class="tagbox" value="#부산"> 
@@ -251,7 +251,7 @@ a {
 				<c:if test="${list !=null }">				
 				<c:forEach var="s" items="${list}">
 					<div class="study-box ">
-						<a href="<%=request.getContextPath()%>/studymenu/studyMenuInfo?board_num=${s.board_num}">											
+						<a href="<%=request.getContextPath()%>/studymenu/onStudyMenuInfo?board_num=${s.board_num}">											
 							<div class="img">
 								<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="">
 							</div>
@@ -262,7 +262,7 @@ a {
 								<p class="b-people">
 									<i class="fa-solid fa-user-group"></i> ${s.pernum}
 								</p>
-								<p class="b-p">${s.region }</p>
+							
 								<div>
 								    ${s.nickname }
 									<p class="b-p d-inline-block">

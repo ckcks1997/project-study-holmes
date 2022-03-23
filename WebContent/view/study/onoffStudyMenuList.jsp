@@ -184,7 +184,7 @@ a {
 																																	
 						<div>
 							<div class="input-group rounded">
-							<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">
+							<form action = "<%=request.getContextPath()%>/studymenu/onoffSearch" method="post">
 							<input type = "hidden" name = "menuid" value = "${menuid}"/>
 							<div class="d-flex flex-row align-items-center">
 								 
@@ -295,7 +295,7 @@ a {
 				<c:if test="${list !=null }">				
 				<c:forEach var="s" items="${list}">
 					<div class="study-box ">
-						<a href="<%=request.getContextPath()%>/studymenu/studyMenuInfo?board_num=${s.board_num}">											
+						<a href="<%=request.getContextPath()%>/studymenu/onoffStudyMenuInfo?board_num=${s.board_num}">											
 							<div class="img">
 								<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="">
 							</div>
@@ -306,7 +306,7 @@ a {
 								<p class="b-people">
 									<i class="fa-solid fa-user-group"></i> ${s.pernum}
 								</p>
-								<p class="b-p">${s.region }</p>
+								
 								<div>
 								    ${s.nickname }
 									<p class="b-p d-inline-block">

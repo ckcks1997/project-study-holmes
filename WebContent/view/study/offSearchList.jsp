@@ -244,12 +244,12 @@ a {
 				</button>
 				<div class="container d-flex align-content-between flex-wrap">
 				
-				<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
+				<c:if test = "${empty searchList }"> <!-- list.size() 가 0이면 -->
 				<p>작성된 글이 없습니다.</p>				
 				</c:if>	
 												
-				<c:if test="${list !=null }">				
-				<c:forEach var="s" items="${list}">
+				<c:if test="${searchList !=null }">				
+				<c:forEach var="s" items="${searchList}">
 					<div class="study-box ">
 						<a href="<%=request.getContextPath()%>/studymenu/offStudyMenuInfo?board_num=${s.board_num}">											
 							<div class="img">

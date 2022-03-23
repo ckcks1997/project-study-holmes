@@ -32,12 +32,29 @@ public class ReplyController extends MskimRequestMapping {
 		
 		rd.insertReply(reply); //댓글 저장하기
 		
+		request.setAttribute("reply_num", reply_num);
 		
-		
-		return "/view/alert.jsp";	
+		return "/single/num.jsp";	
 	}
 	
-	
+	@RequestMapping("deleteReply")
+	public String deleteReply(HttpServletRequest request, HttpServletResponse response) {
+		
+		int reply_num = Integer.parseInt(request.getParameter("reply_num"));
+		
+		System.out.println(reply_num);
+		
+		
+		ReplyDao rd = new ReplyDao();
+		Reply reply =  rd.replyOne(reply_num);
+		request.setAttribute("reply", reply);
+		rd.deleteReply(reply_num);
+		
+		
+		
+
+		return "/view/alert.jsp";
+	}
 	
 	
 
