@@ -91,6 +91,19 @@
 				<div class="container p-0 my-2 bg-white text-white">
                     <hr>
 				</div>
+				<div class="postInfo">
+					<p>
+						${s.nickname} · ${s.regdate}
+
+
+						<c:if test="${loginNick eq s.nickname}">
+							<span class="txt_bar">|</span>
+							<a
+								href="<%=request.getContextPath()%>/studymenu/onoffStudyUpdateForm?board_num=${s.board_num}"
+								style="color: gray;"> 수정</a>
+						</c:if>
+					</p>
+				</div>
 
 				<br> ${s.content } <br> <br> <i class="fa-solid fa-user-group"></i>${s.pernum} <br>
 

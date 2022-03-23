@@ -8,6 +8,10 @@
 		select count(*) from study_menu where menuid = #{menuid}
 	</select>
 	
+	<select id = "studyMenuOne" resultType = "studymenu" parameterType ="int">
+	select * from study_menu where board_num = #{board_num}
+	</select>
+	
 	<select id="offAllCount" resultType="int">
 		select count(*) from study_menu where menuid between 2 and 7
 	</select>
@@ -63,7 +67,7 @@
 	<select id="list2"  resultType="studymenu" parameterType = "map">
 	select * form study_menu where nickname = #{nickname}
 	</select>
-
+	<!-- ============================================================================================================== -->
 	<select id="studySearch" parameterType="map" resultType="StudyMenu">
 	select * from study_menu where (${part}) like upper (#{searchData})
 	and menuid = #{menuid}
@@ -78,6 +82,57 @@
 	(select * from study_menu where menuid = #{menuid} and (${part}) like upper (#{searchData}) order by board_num desc) a)
 	where rnum between #{start} and #{end}
 	</select> 
+	
+	<!-- ============================================================================================================== -->
+	<select id="onAllSearch" parameterType="map" resultType="StudyMenu">
+	select * from study_menu where (${part}) like upper (#{searchData})
+	and menuid between 9 and 14
+	</select>
+
+	<select id="onAllSearchCount" resultType="int" parameterType="map">
+	select count(*) from study_menu where  menuid between 9 and 14 and (${part}) like upper (#{searchData})
+	</select>
+	
+	<select id = "onAllSearchList" resultType = "studymenu"  parameterType = "map">
+	select * from (select rownum rnum, a.* from 
+	(select * from study_menu where menuid between 9 and 14 and (${part}) like upper (#{searchData}) order by board_num desc) a)
+	where rnum between #{start} and #{end}
+	</select> 
+	<!-- ============================================================================================================== -->
+	<select id="offAllSearch" parameterType="map" resultType="StudyMenu">
+	select * from study_menu where (${part}) like upper (#{searchData})
+	and menuid between 2 and 7
+	</select>
+
+	<select id="offAllSearchCount" resultType="int" parameterType="map">
+	select count(*) from study_menu where  menuid between 2 and 7 and (${part}) like upper (#{searchData})
+	</select>
+	
+	<select id = "offAllSearchList" resultType = "studymenu"  parameterType = "map">
+	select * from (select rownum rnum, a.* from 
+	(select * from study_menu where menuid between 2 and 7 and (${part}) like upper (#{searchData}) order by board_num desc) a)
+	where rnum between #{start} and #{end}
+	</select> 
+	<!-- ============================================================================================================== -->
+	<select id="onoffAllSearch" parameterType="map" resultType="StudyMenu">
+	select * from study_menu where (${part}) like upper (#{searchData})
+	and menuid between 16 and 21
+	</select>
+
+	<select id="onoffAllSearchCount" resultType="int" parameterType="map">
+	select count(*) from study_menu where  menuid between 16 and 21 and (${part}) like upper (#{searchData})
+	</select>
+	
+	<select id = "onoffAllSearchList" resultType = "studymenu"  parameterType = "map">
+	select * from (select rownum rnum, a.* from 
+	(select * from study_menu where menuid between 16 and 21 and (${part}) like upper (#{searchData}) order by board_num desc) a)
+	where rnum between #{start} and #{end}
+	</select> 
+	<!-- ============================================================================================================== -->
+	<update id = "studyUpdate" parameterType = "studymenu">
+	update study_menu set title = #{title}, subject = #{subject}, region = #{region}, pernum = #{pernum}, price = #{price}, 
+	content = #{content}, latitude = #{latitude}, longitude = #{longitude} where board_num = #{board_num}
+	</update>
 	
 
 	<select id="mylist2" resultType = "studymenu"  parameterType = "string">

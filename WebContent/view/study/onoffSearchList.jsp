@@ -182,32 +182,11 @@ a {
 					
 <!-- --------------------------------------------------------------검색------------------------------------------------------------ -->							
 																																	
+						<c:if test="${menuid eq 15 }">
 						<div>
 							<div class="input-group rounded">
-							<form action = "<%=request.getContextPath()%>/studymenu/onoffSearch" method="post">
+							<form action = "onoffAllSearch" method="post">
 							<input type = "hidden" name = "menuid" value = "${menuid}"/>
-							<div class="d-flex flex-row align-items-center">
-								 
-									<select class="custom-select" name="part">
-									    <option value="title">제목</option>						
-									</select>
-								 
-								    <div class="d-flex flex-row">
-									<input type="text" class="form-control rounded"
-										placeholder="Search" aria-label="Search"
-										aria-describedby="search-addon" name="searchData" required="required"/> 
-								    <input type="submit" class="input-group-text border-0" value="검색"> 
-								    </div>
-							</div>
-							</form>
-							</div>
-						</div>
-						
-					
-						<%-- <c:if test="${menuid eq 1 }">
-						<div>
-							<div class="input-group rounded">
-							<form action = "allstudySearch" method="post">
 							<div class="d-flex flex-row align-items-center">
 								 
 									<select class="custom-select" name="part">
@@ -226,10 +205,11 @@ a {
 						</div>
 						</c:if>
 						
-						<c:if test="${menuid != 1}">															
+						<c:if test="${menuid != 15}">															
 						<div>
 							<div class="input-group rounded">
-							<form action = "studySearch" method="post">
+							<form action = "onoffSearch" method="post">
+							<input type = "hidden" name = "menuid" value = "${menuid}"/>
 							<div class="d-flex flex-row align-items-center">
 								 
 									<select class="custom-select" name="part">
@@ -246,7 +226,7 @@ a {
 							</form>
 							</div>
 						</div>
-						</c:if> --%>
+						</c:if>
 				 
 <!-- --------------------------------------------------------------지역태그------------------------------------------------------------ -->						
 					<div>
@@ -302,7 +282,12 @@ a {
 							
 							<div class="px-2 pt-3">
 								<h5 class="b-h5">${s.title}</h5>
-								<p class="b-price">${s.price=="0" ? "무료":s.price  }</p>
+								<c:if test="${s.price =='0'}">
+								<p class="b-price">무료</p>
+								</c:if>
+								<c:if test="${s.price !='0'}">
+								<p class="b-price">$ ${s.price }</p>
+								</c:if>
 								<p class="b-people">
 									<i class="fa-solid fa-user-group"></i> ${s.pernum}
 								</p>
@@ -323,21 +308,20 @@ a {
 <!-- --------------------------------------------------------------페이지 번호------------------------------------------------------------ -->
 				<br> <br>
 				
-	  			<!-- 전체스터디페이징 -->
-				<c:if test="${menuid eq 15 }">
+	  			<c:if test="${menuid eq 15 }">
 				<nav class="container">
 					<ul class="pagination justify-content-center">				
 					<li 
-						class='page-item <c:if test="${a_startPage <= a_bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/onoffStudyMenuList?pageNum=${a_startPage - a_bottomLine}">이전</a></li>
+						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/onoffAllSearchList?pageNum=${startPage - bottomLine}">이전</a></li>
 						
-					<c:forEach var="i" begin="${ a_startPage }" end="${a_endPage}">
+					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
 						<li class='page-item <c:if test = "${i == pageInt}" >  active active2</c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/onoffStudyMenuList?pageNum=${i}">${i}</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/onoffAllSearchList?pageNum=${i}&searchData=${searchData}&part=${part}">${i}</a></li>
 					
 					</c:forEach>
 						<li class='page-item <c:if test = "${a_endPage >= a_maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/onoffStudyMenuList?pageNum=${a_startPage + a_bottomLine}">다음</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/onoffAllSearchList?pageNum=${startPage + bottomLine}">다음</a></li>
 					</ul>
 				</nav>
 				</c:if>
@@ -349,15 +333,15 @@ a {
 										
 					<li 
 						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/onoffStudyMenuList?pageNum=${startPage - bottomLine}">이전</a></li>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/onoffSearchList?pageNum=${startPage - bottomLine}">이전</a></li>
 						
 					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
 						<li class='page-item <c:if test = "${i == pageInt}" > active active2 </c:if>' >
-						<a class="page-link " href="<%=request.getContextPath()%>studymenu/onoffStudyMenuList?pageNum=${i}">${i}</a></li>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/onoffSearchList?pageNum=${i}&searchData=${searchData}&part=${part}">${i}</a></li>
 					
 					</c:forEach>
 						<li class='page-item <c:if test = "${endPage >= maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>studymenu/onoffStudyMenuList?pageNum=${startPage + bottomLine}">다음</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/onoffSearchList?pageNum=${startPage + bottomLine}">다음</a></li>
 					</ul>
 				</nav>
 				</c:if>

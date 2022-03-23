@@ -88,21 +88,22 @@ body {
 
 
 				<form name="mf"
-					action="<%=request.getContextPath()%>/studymenu/onoffWritePro"
-					  method="post">
+					action="<%=request.getContextPath()%>/studymenu/onoffStudyUpdatePro"
+					method="post">
+					<input type = "hidden" name = "board_num" value = "${sm.board_num}">
 					<br /> <br />
 				
 																						
 					<div class="form-group">
 						<label>제목</label>
-						 <input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요" />
+						 <input type="text" class="form-control" name="title" value="${sm.title}" />
 					</div>	
 					
 					 <div class="row">
     			<div class="col-xs-12 col-sm-4 col-md-4">
 					<div class="form-group">
                        <label>과목</label>
-                        <input type="text" name="subject" class="form-control" placeholder="ex) 영어,과학,수학.....">
+                        <input type="text" name="subject" class="form-control" value="${sm.subject}">
                        </div>
                     </div>
                     
@@ -113,13 +114,13 @@ body {
 				<div class="col-xs-12 col-sm-4 col-md-4">
 					<div class="form-group">
                        <label>가격</label>
-                       <input type="number" name="price" class="form-control" placeholder="무료일 경우 0을 입력하세요">                      
+                       <input type="number" name="price" class="form-control" value="${sm.price}">                      
 					</div>
 				</div>
                 <div class="col-xs-12 col-sm-4 col-md-4">
     				<div class="form-group">
     				<label>인원수</label>
-                        <input type="number" name="pernum" class="form-control" placeholder="예상인원수">
+                        <input type="number" name="pernum" class="form-control" value="${sm.pernum}">
 					</div>
 				</div>
 				
@@ -129,7 +130,7 @@ body {
 					<div class="form-group">
 						<label>내용 :</label>
 						<textarea class="summernote" name="content"
-							placeholder="Leave a comment here" id="content"></textarea>
+							placeholder="Leave a comment here" id="content">${sm.content}</textarea>
 
 					</div>
 					<input type="hidden" id="latitude" name="latitude" value="0">
@@ -139,9 +140,9 @@ body {
                         <br>
 					<div class="container text-center"  >
 						<button class="btn btn-cancel">
-						<a href="<%=request.getContextPath()%>/studymenu/onoffStudyMenuList">취소 </a>
+						<a href="<%=request.getContextPath()%>/studymenu/onoffStudyMenuInfo?board_num=${sm.board_num}">취소 </a>
 						</button>
-						<button class="btn btn-save" type="submit">저장</button>
+						<button class="btn btn-save" type="submit">수정</button>
 					</div>
 					<br>
 				</form>
