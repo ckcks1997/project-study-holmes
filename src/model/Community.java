@@ -13,6 +13,7 @@ public class Community {
 	private String ip;
 	private int readcnt;
 	private String nickname;
+	private int replycnt;
 	
 	public Community() {
 		
@@ -22,7 +23,7 @@ public class Community {
 	
 	
 	public Community(int board_num, String title, String content, int likes, String boardid, Date regdate, String ip,
-			int readcnt, String nickname) {
+			int readcnt, String nickname, int replycnt) {
 		super();
 		this.board_num = board_num;
 		this.title = title;
@@ -33,6 +34,7 @@ public class Community {
 		this.ip = ip;
 		this.readcnt = readcnt;
 		this.nickname = nickname;
+		this.replycnt = replycnt;
 	}
 
 
@@ -164,13 +166,28 @@ public class Community {
 	}
 
 
+	
+
+
+	public int getReplycnt() {
+		return replycnt;
+	}
+
+
+
+
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
+	}
+
+
 
 
 	@Override
 	public String toString() {
 		return "Community [board_num=" + board_num + ", title=" + title + ", content=" + content + ", likes=" + likes
 				+", boardid=" + boardid + ", regdate=" + regdate + ", ip=" + ip + ", readcnt="
-				+ readcnt + ",nickname=" + nickname + "]";
+				+ readcnt + ",nickname=" + nickname + ", replycnt=" + replycnt + "]";
 	}
 
 	

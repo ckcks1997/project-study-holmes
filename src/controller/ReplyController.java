@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Community;
 import model.Reply;
 import service.ReplyDao;
 
@@ -29,9 +30,13 @@ public class ReplyController extends MskimRequestMapping {
 		reply.setNickname(nickname);
 		reply.setContent(reply_content);
 		
-		
 		rd.insertReply(reply); //댓글 저장하기
 		
+		
+		//원글의 replycnt에 +1하기 
+		rd.comReplyCountUp(Integer.parseInt(board_num));
+
+		//reply_num은 댓글의 번호
 		request.setAttribute("reply_num", reply_num);
 		
 		return "/single/num.jsp";	
