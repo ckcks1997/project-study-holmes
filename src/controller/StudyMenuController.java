@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.GroupMember;
+import model.Reply;
 import model.Search;
 import model.StudyMenu;
 import service.GroupMemberDao;
 import service.NoticeDao;
+import service.ReplyDao;
 import service.StudyMenuDao;
 
 //WebServlet("/studymenu/*")
@@ -713,7 +715,19 @@ public class StudyMenuController extends MskimRequestMapping{
 		  HttpSession session = request.getSession();
 		  String loginNick = (String)session.getAttribute("memberNickname");
 		  request.setAttribute("loginNick", loginNick);
-		    
+		  
+		  
+		  
+		  //댓글보여주기
+		  ReplyDao rd = new ReplyDao();
+			 
+			
+		  List<Reply> reply_list = rd.replyWriteList(board_num);
+		  int reply_count = rd.replyCount(board_num);
+		  
+		  request.setAttribute("reply_list", reply_list);
+		  request.setAttribute("reply_count", reply_count);  
+		  
 		  
 		  return "/view/study/studyMenuInfo.jsp";
 	  }			

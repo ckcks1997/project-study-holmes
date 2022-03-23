@@ -81,12 +81,7 @@ public class CommunityController extends MskimRequestMapping{
 	   request.setAttribute("endPage",endPage);
 	   request.setAttribute("maxPage",maxPage);
 	   
-	   //댓글
-	   /*
-	   ReplyDao rd = new ReplyDao();
-	   int reply_count = rd.replyCount(board_num);
-	   request.setAttribute("reply_count", reply_count);
-	   */
+	 
 	  
 	  
 	  
@@ -265,8 +260,7 @@ public class CommunityController extends MskimRequestMapping{
 	  String loginNick = (String)session.getAttribute("memberNickname");
 	  request.setAttribute("loginNick", loginNick);
 	  
-	  //댓글
-	 
+	  //댓글보여주기
 	  ReplyDao rd = new ReplyDao();
 	 
 	

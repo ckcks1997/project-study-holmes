@@ -29,7 +29,6 @@ create table MEMBER_TAG
     TAG_NUM NUMBER       not null  primary key,
     EMAIL   VARCHAR2(50) not null,
     TAG     VARCHAR2(30) not null
-
 )
 
 ---

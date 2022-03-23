@@ -132,6 +132,7 @@ body {
 									<div class="row">
 
 										<div class="col-sm-9">
+										<input type = "hidden" name = "board_num" value = "${com.board_num}">
 											<a
 												href="<%=request.getContextPath() %>/community/comBoardInfo?board_num=${com.board_num}"
 												style="color: black">
@@ -167,7 +168,7 @@ body {
   													<path
 																	d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
 													</svg>
-														</span>${com.readcnt}</div>
+														</span>${com.readcnt }</div>
 													<div class="comment">
 														<span> <svg xmlns="http://www.w3.org/2000/svg"
 																width="16" height="16" fill="currentColor"

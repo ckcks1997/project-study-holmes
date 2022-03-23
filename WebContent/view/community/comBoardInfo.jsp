@@ -40,7 +40,7 @@ body {
 		<div class="row pt-5">
 			<!----------------왼쪽 사이드 메뉴 ------------------------------------------------------------------------>
 			<%--aside부분 --%>
-                <%@include file="/common/community_menu.jsp" %>
+			<%@include file="/common/community_menu.jsp"%>
 
 
 			<!---------------------    메인      ------------------------------------------------------------------ -->
@@ -114,7 +114,7 @@ body {
 													<path
 										d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
 													</svg>
-							</span> 댓글수 ${reply_count }
+							</span>${reply_count }
 						</div>
 
 
@@ -129,44 +129,57 @@ body {
 				<br /> <br /> <br />
 
 
-<!-- ------------------댓글 ------------------------------------------------------------------------ -->
+				<!-- ------------------댓글 ------------------------------------------------------------------------ -->
 				<div>
 					<h5 style="font-weight: bold">댓글 ${reply_count}</h5>
 					<hr style="border: 0.5px thick 333b3d" />
-					<div id = "replyList">
-					<c:forEach var="reply" items="${reply_list}">
-						<div class ="row"      id = "r${reply.reply_num}">
-						<div class = "col-md-10">
-						<input type = "hidden" id = "reply_num" name = "reply_num" value = "${reply.reply_num}">
-							<p>${reply.nickname} · ${reply.regdate2}</p>
-						</div>
-						<div class = "col-md-2">
-							<input type="button"  class="btn btn-light"  onclick="deleteReply('${reply.reply_num}')"value = "삭제"/>
-						</div>
-				
-							<p>${reply.content}</p>	
+					<div id="replyList">
+						<c:forEach var="reply" items="${reply_list}">						
+								<div class = "reply"  id="r${reply.reply_num}">
+									<div class="row">
+										<div class="col-md-10">
+											<input type="hidden" id="reply_num" name="reply_num"
+												value="${reply.reply_num}">
+											<p>${reply.nickname}· ${reply.regdate2}</p>
+										</div>
+
+										<c:if test="${loginNick eq reply.nickname}">
+											<div class="col-md-2">
+												<input type="button" class="btn btn-light"
+													onclick="deleteReply('${reply.reply_num}')" value="삭제" />
+											</div>
+										</c:if>
+										
+									</div>
+
+									<p>${reply.content}</p>
+
+									<hr style="border: 0.5px solid 333b3d" />
+
+								</div>
 							
-							<hr style="border: 0.5px solid 333b3d" />
-						</div>
-					</c:forEach>
-					
+						</c:forEach>
+
 					</div>
 					<div class="row">
-					
-					
+
+
 						<div class="col-md-10">
-								<input type="hidden" id = "board_num" name="board_num" value="${com.board_num}">
-								<input type="hidden" name="reply_nickname"     id ="reply_nickname"   value="${sessionScope.memberNickname}">
-								
-								<textarea rows="5" cols="80" name="reply_content"
-									placeholder="댓글을 달아주세요" id="reply_content"></textarea>	
+							<input type="hidden" id="board_num" name="board_num"
+								value="${com.board_num}"> <input type="hidden"
+								name="reply_nickname" id="reply_nickname"
+								value="${sessionScope.memberNickname}">
+
+							<textarea rows="5" cols="80" name="reply_content"
+								placeholder="댓글을 달아주세요" id="reply_content"></textarea>
 						</div>
-						<div class="col-md-2">							
-									<input type="button" id = "writeReply" class="btn btn-danger" value = "등록"/>
+						<div class="col-md-2">
+							<input type="button" id="writeReply" class="btn btn-danger"
+								value="등록" />
 						</div>
-					
+
 					</div>
-					
+
 
 					<button type="button" class="btn btn-dark mt-3"
 						onclick="location.href ='comBoardList'">목록으로</button>
@@ -176,57 +189,57 @@ body {
 						<button type="button" data-toggle="modal"
 							data-target="#deleteModal" class="btn btn-danger mt-3">삭제</button>
 					</c:if>
-				
+
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 	<br>
 	<br>
-	
-					<!-------------- 게시글 삭제 모달창 --------------------------------------------------------------------------------------------------------------------------------->
 
-					<div class="modal fade" id="deleteModal" aria-hidden="true"
-						tabindex="-1" aria-labelledby="deleteBoardLabel">
-						<div class="modal-dialog">
-							<div class="modal-content">
+	<!-------------- 게시글 삭제 모달창 --------------------------------------------------------------------------------------------------------------------------------->
 
-								<form
-									action="<%=request.getContextPath()%>/community/comBoardDelete"
-									method="post">
-									<div class="form-group">
-										<input type="hidden" id="board_num" name="board_num"
-											value="${com.board_num}">
-										<div class="modal-header">
-											<h5 class="modal-title" id="deleteBoardLabel">게시글 삭제</h5>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
+	<div class="modal fade" id="deleteModal" aria-hidden="true"
+		tabindex="-1" aria-labelledby="deleteBoardLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
 
-										<div class="modal-body">이 글을 삭제합니다. 계속하시겠습니까?</div>
+				<form
+					action="<%=request.getContextPath()%>/community/comBoardDelete"
+					method="post">
+					<div class="form-group">
+						<input type="hidden" id="board_num" name="board_num"
+							value="${com.board_num}">
+						<div class="modal-header">
+							<h5 class="modal-title" id="deleteBoardLabel">게시글 삭제</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+
+						<div class="modal-body">이 글을 삭제합니다. 계속하시겠습니까?</div>
 
 
-										<div class="modal-footer">
-											<input type="submit" class="btn btn-primary" value="확인">
-											<button class="btn btn-outline-primary" data-dismiss="modal">취소</button>
-										</div>
-									</div>
-								</form>
-
-							</div>
+						<div class="modal-footer">
+							<input type="submit" class="btn btn-primary" value="확인">
+							<button class="btn btn-outline-primary" data-dismiss="modal">취소</button>
 						</div>
 					</div>
+				</form>
 
+			</div>
+		</div>
+	</div>
 
-<script>
+<!-- -----------------------------댓글 자바스크립트-------------------------------------------- -->
+	<script>
 //댓글입력
 $("#writeReply").on("click", function(){
 	var reply_content = document.querySelector("#reply_content")
 	
-  alert(reply_content.value)
+  //alert(reply_content.value)
 	var reply = {
 			"board_num" : "${com.board_num}",
 			"reply_content" : reply_content.value			
@@ -244,7 +257,7 @@ $("#writeReply").on("click", function(){
 			result.replace(" ","")
 			
 			//alert("["+result+"]");
-			alert(result);
+			//alert(result);
 		
 			var newReply = document.querySelector('#replyList')
 			var reply_num = result
@@ -259,7 +272,8 @@ $("#writeReply").on("click", function(){
 			let temp = 'id="r'+reply_num+'"'
 			
 			
-			let line =  '<div class = "row"       '+temp+' >'
+			let line =  '<div class = "reply"       '+temp+' >'
+						+ '<div class = "row">'
 						+ '<div class = "col-md-10">'
 						+ '<input type = "hidden" id = "reply_num" name = "reply_num" value= '+reply_num+'>'
 						+ '<p>'+nickname+' · '+ regdate +'</p>'
@@ -267,7 +281,7 @@ $("#writeReply").on("click", function(){
 			          	+ '<div class = "col-md-2">'
 			          	+ '<input type = "button" class = "btn btn-light"       onclick="deleteReply(\''+reply_num +'\')" value = "삭제"/>'
 			          	+ '</div>'
-			      
+			      		+ '</div>'
 						+  '<p>'+content+'</p>'
 			            +  '<hr style="border: 0.5px solid 333b3d" />'
 			        	+ '</div>' ;
@@ -298,7 +312,7 @@ $("#writeReply").on("click", function(){
 //댓글삭제
 function deleteReply(num){
 
-	alert(num)
+	//alert(num)
 	var deleteReply = {
 					"reply_num" :num
 	}
@@ -307,40 +321,30 @@ function deleteReply(num){
 	$.ajax({
 		type: 'post',
 		url : "<%=request.getContextPath()%>/reply/deleteReply",
-		data: deleteReply,
-		dataType: 'text',
-		success : function(result){
-			alert("댓글이 삭제되었습니다");
-			var deleteReply = document.querySelector('#r'+num)
-			alert(deleteReply.innerHTML)
-			deleteReply.innerHTML =""
-			
-		},
-		error: function(result){
-			console.log(result);
-			alert("error");
+				data : deleteReply,
+				dataType : 'text',
+				success : function(result) {
+					alert("댓글이 삭제됩니다");
+					//alert(result)
+					var deleteReply = document.querySelector('#r' + num)
+					//alert(deleteReply.innerHTML) //삭제할 내용 확인
+					deleteReply.innerHTML = ""
+
+				},
+				error : function(result) {
+					console.log(result);
+					alert("error");
+				}
+
+			})
+
 		}
-		
-	})
-	
-	
-	
-	
-	
-	
-	
-}
-$('#deleteReply').on("click", function(){
-	var reply_num = document.querySelector("#reply_num")
-	
-	
-	
-})
+		$('#deleteReply').on("click", function() {
+			var reply_num = document.querySelector("#reply_num")
 
-	
+		})
+	</script>
 
-</script>
-			
 
 
 </body>
