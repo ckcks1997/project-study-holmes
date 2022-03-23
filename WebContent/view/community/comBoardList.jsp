@@ -53,9 +53,26 @@ body {
 
 .reactions {
 	font-size: 13px;
-
-
 }
+
+.divide {
+	font-weight:700;
+    color: #777;
+}
+
+
+a:link {
+	color:black;
+}
+
+
+a:hover {
+    color:#f55555;
+    text-decoration: none;
+}
+
+
+
 </style>
 <title>스터디 홈즈</title>
 </head>
@@ -109,9 +126,12 @@ body {
 				</form>
 				<br />
 <!-- ------------------------------------------------------------------------------------ -->
-				<div style="float: left">
-					<strong>최신순</strong> &nbsp;<strong>·</strong> 댓글많은순 &nbsp;<strong>·</strong>
-					좋아요순
+				<div class = "row col-sm-9 divide" style="float: left">
+					<a href ="<%=request.getContextPath()%>/community/comBoardList">최신순</a>
+					<strong> · </strong> 
+					<a href = "<%=request.getContextPath()%>/community/comBoardReply">댓글순</a>
+					<strong> · </strong>
+					<a href ="<%=request.getContextPath()%>/community/comBoardRead">조회수순</a>
 				</div>
 				<div class="mb-2" style="float: right">
 					<button type="button" class="btn btn-dark"

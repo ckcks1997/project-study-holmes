@@ -17,7 +17,7 @@ create table study_member
     profile_intro varchar(2000)
 );
 
-insert into study_member values ('a@a.com', '1111', 'test1', 'name1','010-0000-0000',null, sysdate,50,null)
+insert into study_member values ('a@a.com', '1111', 'test1', 'name1','010-0000-0000',null, sysdate,50,null);
 
 ---
 ---태그정보(study_member의 email을 join해서 가져옴)
