@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 댓글 가져오기 -->
 <select id = "replyWriteList" resultType = "reply" parameterType = "int">
-	select nickname, content, to_char(regdate, 'yyyy-mm-dd') regdate2 from reply 
+	select reply_num, nickname, content, to_char(regdate, 'yyyy-mm-dd') regdate2 from reply 
 	where board_num = #{board_num}
 	order by regdate asc
 </select>
@@ -29,6 +29,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select count(*) from reply where board_num = #{board_num}
 </select>
 
+<!-- 댓글 하나가져오기 -->
+<select id = "replyOne" resultType = "reply" parameterType = "int">
+	select * from reply where reply_num = #{reply_num}
+</select>
 
+<!-- 댓글 삭제 -->
+<select id = "deleteReply" parameterType = "int">
+	delete from reply where reply_num = #{reply_num}
+</select>
 
 </mapper>

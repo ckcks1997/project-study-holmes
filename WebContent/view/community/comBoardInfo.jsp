@@ -135,19 +135,19 @@ body {
 					<hr style="border: 0.5px thick 333b3d" />
 					<div id = "replyList">
 					<c:forEach var="reply" items="${reply_list}">
-						<div class ="row">
+						<div class ="row"      id = "r${reply.reply_num}">
 						<div class = "col-md-10">
-						<input type = "hidden" name = "reply_num" value = "${reply.reply_num}">
-						<p>${reply.reply_num }</p>
+						<input type = "hidden" id = "reply_num" name = "reply_num" value = "${reply.reply_num}">
 							<p>${reply.nickname} · ${reply.regdate2}</p>
 						</div>
 						<div class = "col-md-2">
-							<input type="button" id = "deleteReply" class="btn btn-light" value = "삭제"/>
+							<input type="button"  class="btn btn-light"  onclick="deleteReply('${reply.reply_num}')"value = "삭제"/>
 						</div>
-						</div>
+				
 							<p>${reply.content}</p>	
 							
 							<hr style="border: 0.5px solid 333b3d" />
+						</div>
 					</c:forEach>
 					
 					</div>
@@ -222,10 +222,9 @@ body {
 
 
 <script>
-
+//댓글입력
 $("#writeReply").on("click", function(){
 	var reply_content = document.querySelector("#reply_content")
-	
 	
   alert(reply_content.value)
 	var reply = {
@@ -241,10 +240,14 @@ $("#writeReply").on("click", function(){
 		data: reply,
 		dataType: 'text',
 		success : function(result){
-			alert("전송성공");
+			result = result.trim()
+			result.replace(" ","")
 			
+			//alert("["+result+"]");
+			alert(result);
 		
 			var newReply = document.querySelector('#replyList')
+			var reply_num = result
 			var nickname = document.querySelector('#reply_nickname').value
 			var content = document.querySelector('#reply_content').value
 			var today = new Date();
@@ -253,19 +256,21 @@ $("#writeReply").on("click", function(){
 			var date = today.getDate();
 			var regdate = year + '-' + month + '-' + date;
 			
+			let temp = 'id="r'+reply_num+'"'
 			
 			
-			
-			let line =  '<div class = "row">'
+			let line =  '<div class = "row"       '+temp+' >'
 						+ '<div class = "col-md-10">'
+						+ '<input type = "hidden" id = "reply_num" name = "reply_num" value= '+reply_num+'>'
 						+ '<p>'+nickname+' · '+ regdate +'</p>'
 			          	+ '</div>'
 			          	+ '<div class = "col-md-2">'
-			          	+ '<button type = "button" class = "btn btn-light">삭제</button>'
+			          	+ '<input type = "button" class = "btn btn-light"       onclick="deleteReply(\''+reply_num +'\')" value = "삭제"/>'
 			          	+ '</div>'
-			          	+ '</div>'
+			      
 						+  '<p>'+content+'</p>'
-			            +  '<hr style="border: 0.5px solid 333b3d" />';
+			            +  '<hr style="border: 0.5px solid 333b3d" />'
+			        	+ '</div>' ;
 			
 			
 			            
@@ -290,30 +295,45 @@ $("#writeReply").on("click", function(){
 
 
 
-//deleteReply
-$('#deleteReply').on("click", function(){
-	
-	var reply = {
-					"reply_num" : "${reply.reply_num}"
+//댓글삭제
+function deleteReply(num){
+
+	alert(num)
+	var deleteReply = {
+					"reply_num" :num
 	}
+
 	
 	$.ajax({
 		type: 'post',
 		url : "<%=request.getContextPath()%>/reply/deleteReply",
-		data: reply,
+		data: deleteReply,
 		dataType: 'text',
 		success : function(result){
-			alert("삭제성공");
-			var deleteReply = document.querySelector('#replyList')
+			alert("댓글이 삭제되었습니다");
+			var deleteReply = document.querySelector('#r'+num)
+			alert(deleteReply.innerHTML)
 			deleteReply.innerHTML =""
 			
 		},
 		error: function(result){
 			console.log(result);
-			alert(error);
+			alert("error");
 		}
 		
 	})
+	
+	
+	
+	
+	
+	
+	
+}
+$('#deleteReply').on("click", function(){
+	var reply_num = document.querySelector("#reply_num")
+	
+	
 	
 })
 

@@ -193,11 +193,11 @@ public class CommunityController extends MskimRequestMapping{
 	  //댓글
 	 
 	  ReplyDao rd = new ReplyDao();
-	  Reply reply = new Reply();
 	 
-	  
+	
 	  List<Reply> reply_list = rd.replyWriteList(board_num);
 	  int reply_count = rd.replyCount(board_num);
+	  
 	  request.setAttribute("reply_list", reply_list);
 	  request.setAttribute("reply_count", reply_count);
 	  
