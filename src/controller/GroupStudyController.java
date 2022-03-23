@@ -6,10 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import model.Attend;
 import model.Community;
 import model.GroupMember;
+import model.ReputationEstimate;
 import model.group.GroupInList;
 import service.AttendDao;
 import service.CommunityBoardDao;
 import service.GroupMemberDao;
+import service.ReputationEstimateDao;
 
 //group
 public class GroupStudyController extends MskimRequestMapping {
@@ -92,16 +94,23 @@ public class GroupStudyController extends MskimRequestMapping {
   public String score(HttpServletRequest request, HttpServletResponse response) {
     
     String nickname = (String) request.getSession().getAttribute("memberNickname");
-    String nickname_to = request.getParameter("nickname_to");
-    String score = request.getParameter("score");
+    String nickname_to = request.getParameter("nickname");
+    int score = Integer.parseInt(request.getParameter("score_value"));
     String msg= "로그인이 필요합니다";
     String url= "main"; //main으로 보내기, alert.jsp파일 참고
     
     if(nickname != null) {
 
       System.out.println(nickname_to);
-      System.out.println(score+"====");
-      return "/view/group/groupStudyExit.jsp";
+      System.out.println(score);
+      ReputationEstimateDao rd = new ReputationEstimateDao();
+      ReputationEstimate re = new ReputationEstimate();
+      re.setNickname_from(nickname);
+      re.setNickname_to(nickname_to);
+      re.setScore(score);
+      rd.insertReputation(re);
+      
+      return "/single/score_ajax.jsp";
     }
     
     request.setAttribute("msg", msg);
