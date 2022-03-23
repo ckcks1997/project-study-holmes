@@ -1,21 +1,23 @@
 package controller;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+
+
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import model.Community;
-import model.Reply;
-import model.Search;
-import model.StudyMember;
-import model.StudyMenu;
+
+
 import service.CommunityBoardDao;
-import service.StudyMemberDao;
-import service.StudyMenuDao;
+ 
+
+
+
+
+
  
 
 
@@ -120,7 +122,7 @@ public class CommunityController extends MskimRequestMapping{
 	  MultipartRequest multi = null;
 	  try {
 		multi = new MultipartRequest(request, path, size,"utf-8");
-	} catch (IOException e) {
+	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
@@ -213,7 +215,7 @@ public class CommunityController extends MskimRequestMapping{
 	  MultipartRequest multi = null;
 	  try {
 		multi = new MultipartRequest(request, path, size, "utf-8");
-	  } catch (IOException e) {
+	  } catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	  }
@@ -286,7 +288,7 @@ public class CommunityController extends MskimRequestMapping{
 			HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

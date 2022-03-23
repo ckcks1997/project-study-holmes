@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 댓글 등록 -->
 <insert id = "insertReply" parameterType = "reply">
-	insert into reply values (#{reply_num}, #{board_num}, #{nickname}, sysdate,#{content})
+	insert into reply values (#{reply_num}, #{board_num}, #{nickname}, sysdate, #{content})
 </insert>
 
 
@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id = "replyList" resultType = "reply">
 	select * from reply r, study_member m
 	where r.nickname = m.nickname and board_num = #{board_num}
-	order by reply_num
+	order by reply_num desc
 </select>
 
 

@@ -39,7 +39,7 @@
 	
 
 	
-<!-- 세션 = 내아이디  -->
+
 	<select id="list2"  resultType="studymenu" parameterType = "map">
 	select * form study_menu where nickname = #{nickname}
 	</select>

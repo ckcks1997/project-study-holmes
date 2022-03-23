@@ -134,13 +134,11 @@ body {
 					<h5 style="font-weight: bold">댓글 2</h5>
 					<hr style="border: 0.5px thick 333b3d" />
 					<div id = "replyList">
-					<c:if test ="${replyList != null }">
-						<c:forEach var="reply" items="${replyList}">
+					
 							<p>${reply.nickname} · ${reply.regdate}</p>
 							<p>${reply.content}</p>
 							<hr style="border: 0.5px solid 333b3d" />
-						</c:forEach>
-					</c:if>
+						
 					</div>
 					
 					<div class="row">
@@ -233,8 +231,9 @@ $("#writeReply").on("click", function(){
 		dataType: 'text',
 		success : function(data){
 			alert("전송성공");
-			var obj = json.parse(reply) 
-		
+			
+			
+			
 			
 
 		},
