@@ -1,6 +1,7 @@
 package service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -41,7 +42,35 @@ public class ReplyDao {
 	  }
 	  
 	  
+	  
+	  public List<Reply> replyWriteList(String board_num) {
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+		  try {
+			  return sqlSession.selectOne(NS+"replyWriteList", board_num);
+		  } catch(Exception e) {
+			  e.printStackTrace();
+		  } finally {
+			  MybatisConnection.close(sqlSession);
+		  }
+		  return null;		  
 		  
 	  }
-
+	  
+	  
+	  public int replyCount(String board_num) {
+		  
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+		  try {
+			  return sqlSession.selectOne(NS+"replyCount", board_num);
+		  } catch(Exception e) {
+			  e.printStackTrace();
+		  } finally {
+			  MybatisConnection.close(sqlSession);
+		  }
+		  return 0;		  
+		  
+	  }
+		  
+}
+	 
 

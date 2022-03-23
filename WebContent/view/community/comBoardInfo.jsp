@@ -131,22 +131,25 @@ body {
 
 <!-- ------------------댓글 ------------------------------------------------------------------------ -->
 				<div>
-					<h5 style="font-weight: bold">댓글 2</h5>
+					<h5 style="font-weight: bold">댓글 ${reply_count}</h5>
 					<hr style="border: 0.5px thick 333b3d" />
+					<c:forEach var = "reply" items = "${list}">
 					<div id = "replyList">
 					
-							<p>${reply.nickname} · ${reply.regdate}</p>
+							<p>${reply.nickname}  ${reply.regdate}</p>
 							<p>${reply.content}</p>
 							<hr style="border: 0.5px solid 333b3d" />
 						
 					</div>
+					</c:forEach>
 					
 					<div class="row">
 					
 					
 						<div class="col-md-10">
 								<input type="hidden" id = "board_num" name="board_num" value="${com.board_num}">
-								<input type="hidden" name="reply_nickname" value="${sessionScope.memberNickname}">
+								<input type="hidden" name="reply_nickname"     id ="reply_nickname"   value="${sessionScope.memberNickname}">
+								
 								<textarea rows="5" cols="80" name="reply_content"
 									placeholder="댓글을 달아주세요" id="reply_content"></textarea>	
 						</div>
@@ -215,11 +218,11 @@ body {
 $("#writeReply").on("click", function(){
 	var reply_content = document.querySelector("#reply_content")
 	
+	
   alert(reply_content.value)
 	var reply = {
 			"board_num" : "${com.board_num}",
-			"reply_content" : reply_content.value
-			
+			"reply_content" : reply_content.value			
 	}
 
 
@@ -229,9 +232,31 @@ $("#writeReply").on("click", function(){
 		url: "<%=request.getContextPath()%>/reply/writeReply",
 		data: reply,
 		dataType: 'text',
-		success : function(data){
+		success : function(result){
 			alert("전송성공");
 			
+		
+			var newReply = document.querySelector('#replyList')
+			var nickname = document.querySelector('#reply_nickname').value
+			var content = document.querySelector('#reply_content').value
+			var today = new Date();
+			var year =today.getFullYear();
+			var month = today.getMonth()+1; 
+			var date = today.getDate();
+			var regdate = year + '-' + month + '-' + date;
+			
+			
+			
+			
+			let line = '<p>'+nickname+' · '+ regdate +'</p>'
+			            +  '<p>'+content+'</p>'
+			            +  '<hr style="border: 0.5px solid 333b3d" />';
+			
+			
+			            
+			 newReply.innerHTML +=line
+							
+				
 			
 			
 			
