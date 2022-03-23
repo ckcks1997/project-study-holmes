@@ -30,6 +30,14 @@
     border:2px solid #F55555;
     border-radius: 10px;
 }
+
+/*댓글 작성자 날짜*/
+#replyInfo { 
+	font-size: 15px;
+	font-weight: 600;
+	color : gray;
+
+}
 </style>
 </head>
 <body>
@@ -125,17 +133,17 @@
 				<br> <br>
 
 <!-- --------------------------------------------------------------댓글------------------------------------------------------------ -->
-						<div>
+				<div class = "col-md-10">
 					<h5 style="font-weight: bold">댓글 ${reply_count}</h5>
-					<hr style="background-color: #c47100; height:0.7px;" />
+					<hr align="left" style="background-color: #c47100; height:0.7px;" />
 					<div id="replyList">
 						<c:forEach var="reply" items="${reply_list}">						
 								<div class = "reply"  id="r${reply.reply_num}">
 									<div class="row">
-										<div class="col-md-10">
+										<div class="col-md-10" id = "replyInfo">
 											<input type="hidden" id="reply_num" name="reply_num"
 												value="${reply.reply_num}">
-											<p>${reply.nickname}· ${reply.regdate2}</p>
+											<p>${reply.nickname} · ${reply.regdate2}</p>
 										</div>
 
 										<c:if test="${loginNick eq reply.nickname}">
@@ -146,10 +154,10 @@
 										</c:if>
 										
 									</div>
-
+									<div class = "col-md-12 replyTxt">
 									<p>${reply.content}</p>
-
-									<hr style="border: 0.5px solid 333b3d" />
+									</div>
+									<hr align="left" style="background-color: 333b3d; height:0.7px;" />
 
 								</div>
 							
@@ -165,7 +173,7 @@
 								name="reply_nickname" id="reply_nickname"
 								value="${sessionScope.memberNickname}">
 
-							<textarea rows="5" cols="80" name="reply_content"
+							<textarea class = "col-md-12" rows="5" cols="80" name="reply_content"
 								placeholder="댓글을 달아주세요" id="reply_content"></textarea>
 						</div>
 						<div class="col-md-2">
@@ -186,8 +194,7 @@
 					</c:if>
 
 				</div>
-
-<!-- -----------------------------------댓글 끝---------------------------------------------------------------- -->
+<!-- --------------------------------- 댓글 끝-------------------------------------------------------------------- -->
 
 
 
@@ -197,9 +204,10 @@
 	</div>
 	<br>
 	
-<!-- ---------------------------------댓글 자바스크립트------------------------------------------------------------------------- -->
-
-<script>
+	
+<!-- -------------------------------댓글 자바스크립트----------------------------------------------------------------------------- -->
+	
+	<script>
 //댓글입력
 $("#writeReply").on("click", function(){
 	var reply_content = document.querySelector("#reply_content")
@@ -239,7 +247,7 @@ $("#writeReply").on("click", function(){
 			
 			let line =  '<div class = "reply"       '+temp+' >'
 						+ '<div class = "row">'
-						+ '<div class = "col-md-10">'
+						+ '<div class = "col-md-10" id = "replyInfo">'
 						+ '<input type = "hidden" id = "reply_num" name = "reply_num" value= '+reply_num+'>'
 						+ '<p>'+nickname+' · '+ regdate +'</p>'
 			          	+ '</div>'
@@ -247,8 +255,10 @@ $("#writeReply").on("click", function(){
 			          	+ '<input type = "button" class = "btn btn-light"       onclick="deleteReply(\''+reply_num +'\')" value = "삭제"/>'
 			          	+ '</div>'
 			      		+ '</div>'
-						+  '<p>'+content+'</p>'
-			            +  '<hr style="border: 0.5px solid 333b3d" />'
+			      		+ '<div class = "col-md-12 replyTxt">'
+						+ '<p>'+content+'</p>'
+						+ '</div>' 
+			            +  '<hr align="left" style="background-color: 333b3d; height:0.7px;" />'
 			        	+ '</div>' ;
 			
 			
@@ -309,8 +319,6 @@ function deleteReply(num){
 
 		})
 	</script>
-
-
 
 
 </body>
