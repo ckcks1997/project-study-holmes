@@ -140,4 +140,25 @@ nickname varchar2(10)
 
 create sequence likes_seq;
 
+----채팅 테이블
+create sequence chatseq2;
+create table WEBCHAT2
+(
+    NUM      NUMBER not null
+        primary key,
+    boardnum VARCHAR2(30),
+    memberNickname  VARCHAR2(30),
+    MESSAGE  VARCHAR2(3000)
+)
 
+--평가기록 테이블
+create table reputation_estimate
+(
+    NUM      NUMBER not null
+        primary key,
+    group_num number,
+    nickname_to  VARCHAR2(30),
+    nickname_from  VARCHAR2(30),
+    didit number,
+    regdate date
+)

@@ -6,7 +6,7 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
  
-<title>스터디 진행현황</title>
+<title>스터디 나가기</title>
 <style>
 /* 명언 */
 .famous-saying-box {
@@ -103,34 +103,42 @@ h1, h3, h5 {
             
 			<br> <br>
 			<div class="col-lg-9 mx-auto">
-				<h1>스터디 진행현황</h1>
+				<h1>스터디 평가</h1>
 				<hr align="left" width="300px" style="border: 0.5px solid #c47100" />
 				<br>
 				<div class="container container-css  p-5">
-				<h3> 스터디 목록 </h3>
+				<h3> 그룹원 평가 </h3>
 				<br>
 			        <div class="row">
 	                    <div class="col">
-	                      <h5>스터디 제목</h5> 
+	                      <h5>그룹원</h5> 
 	                    </div>
 	                </div>
 	                    
-				    <c:forEach items="${list}" var="i">
-                      <a class="a-color" href="<%=request.getContextPath()%>/group/studyinfo?boardnum=${i.boardnum}">
-				        <div class="row items m-3">
-					        <div class="col">
-					           <span class="i-title"> ${i.title }</span>
-					           <c:if test="${i.represent eq 1}"> 리더 </c:if>
-                               <c:if test="${i.represent eq 0}"> 조원 </c:if>
-	                        </div>
-	                        <div class="col">
-	                           
-	                        </div> 
-				        </div>
-				      </a>
+				    <c:forEach items="${groupMemberList}" var="i">
+					    <form action="<%=request.getContextPath()%>/group/score">
+					         <input type="hidden" value="${i.nickname}" name="nickname_to">
+				             <div class="row items m-3">
+							        <div class="col">
+							           <span class="i-title"> ${i.nickname }</span> 
+			                        </div>
+			                        <div class="col">
+			                           <select class="custom-select" name="score">
+		                                        <option value="-10">1</option>        
+		                                        <option value="-5">2</option>    
+		                                        <option value="-1" selected>3</option>    
+		                                        <option value="2">4</option>    
+		                                        <option value="3">5</option>                   
+		                               </select>
+			                        </div>
+			                        <div class="col">
+			                             <button class="btn btn-danger" onclick="">평가</button>
+			                        </div>
+				              </div>
+		                </form> 
 				    </c:forEach>
-					
-
+					<br>
+                    <button class="btn btn-danger" onclick="">스터디 종료</button>
 				</div>
 				<br>
              </div>
