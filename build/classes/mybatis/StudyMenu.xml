@@ -8,8 +8,16 @@
 		select count(*) from study_menu where menuid = #{menuid}
 	</select>
 	
-	<select id="menuAllCount" resultType="int">
-		select count(*) from study_menu
+	<select id="offAllCount" resultType="int">
+		select count(*) from study_menu where menuid between 2 and 7
+	</select>
+	
+	<select id="onAllCount" resultType="int">
+		select count(*) from study_menu where menuid between 9 and 14
+	</select>
+	
+	<select id="onoffAllCount" resultType="int">
+		select count(*) from study_menu where menuid between 16 and 21
 	</select>
 
 	<select id="menuList" resultType="studymenu" parameterType="map">
@@ -18,9 +26,21 @@
 		where rnum BETWEEN #{start} and #{end}
 	</select>
 	
-	<select id="allList" resultType="studymenu" parameterType="map">
+	<select id="onallList" resultType="studymenu" parameterType="map">
 		select * from ( select rownum rnum, a.* from (
-		select * from study_menu order by regdate desc) a)
+		select * from study_menu where menuid between 9 and 14 order by regdate desc) a)
+		where rnum BETWEEN #{start} and #{end}
+	</select>
+	
+	<select id="offallList" resultType="studymenu" parameterType="map">
+		select * from ( select rownum rnum, a.* from (
+		select * from study_menu where menuid between 2 and 7 order by regdate desc) a)
+		where rnum BETWEEN #{start} and #{end}
+	</select>
+	
+	<select id="onoffallList" resultType="studymenu" parameterType="map">
+		select * from ( select rownum rnum, a.* from (
+		select * from study_menu where menuid between 16 and 21 order by regdate desc) a)
 		where rnum BETWEEN #{start} and #{end}
 	</select>
 		
@@ -43,17 +63,9 @@
 	<select id="list2"  resultType="studymenu" parameterType = "map">
 	select * form study_menu where nickname = #{nickname}
 	</select>
-	
-	
-	
-<!-- 	<select id = "allList" resultType = "studymenu">
-	select * from  ( select rownum rnum, a.* from (
-		select * from study_menu) a) where rnum BETWEEN #{start} and #{end}		
-	</select> -->
-
 
 	<select id="studySearch" parameterType="map" resultType="StudyMenu">
-	select * from study_menu where (${part}) like upper (#{searchData})
+	select * from study_menu where upper (${part}) like upper (#{searchData})
 	and menuid = #{menuid}
 	</select>
 
@@ -65,22 +77,18 @@
 	
 	<select id = "studySearchList" resultType = "studymenu"  parameterType = "map">
 	select * from (select rownum rnum, a.* from 
-	(select * from study_menu where menuid = #{menuid} and (${part}) like upper (#{searchData}) order by regdate desc) a)
+	(select * from study_menu where menuid = #{menuid} and upper (${part}) like upper (#{searchData}) order by regdate desc) a)
 	where rnum between #{start} and #{end}
 	</select> 
 	
-	<select id="allstudySearch" parameterType="Search" resultType="StudyMenu">
-	select * from study_menu where upper (${part}) like upper (#{searchData}) order by regdate desc
-	</select>
-	
-	<select id="allstudySearchCount" resultType="int" parameterType="map">
+	<select id="studySearchAllCount" resultType="int" parameterType="map">
 	select count(*) from study_menu where (${part}) like upper (#{searchData})
 	</select>
 	
 	<select id = "studySearchAllList" resultType = "studymenu"  parameterType = "map">
-	select * from (select rownum rnum, a.* from 
-	(select * from study_menu (${part}) like upper (#{searchData}) order by regdate desc) a)
-	where rnum between #{start} and #{end}
-	</select> 
+	select * from (select rownum rnum, a.* from
+	(select * from study_menu where upper (${part}) like upper (#{searchData}) order by regdate desc) a)
+	where rnum between #{start} and #{end} 
+	</select>
 	
 </mapper>
