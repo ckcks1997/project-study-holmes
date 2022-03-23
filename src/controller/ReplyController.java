@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,23 +30,16 @@ public class ReplyController extends MskimRequestMapping {
 		reply.setContent(reply_content);
 		
 		
-		int num = rd.insertReply(reply); //댓글 저장하기
-		String msg = "댓글 등록이 되지 않습니다";
-		String url = request.getContextPath()+"/community/comBoardInfo";
+		rd.insertReply(reply); //댓글 저장하기
+		List<Reply> list = rd.replyWriteList(board_num);
+		request.setAttribute("list", list);
 		
-		if(num==1) {
-			msg = "댓글이 등록되었습니다";
-			url = request.getContextPath() +"/community/comBoardInfo?board_num="+board_num;
-		}
-		request.setAttribute("msg", msg);
-		request.setAttribute("url", url);
-	
 		
 		return "/view/alert.jsp";	
 	}
 	
 	
-
+	
 	
 
 } // end class

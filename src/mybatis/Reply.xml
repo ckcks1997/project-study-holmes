@@ -16,16 +16,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select reply_seq.nextval from dual
 </select>
 
-<select id = "replyList" resultType = "reply">
-	select * from reply r, study_member m
-	where r.nickname = m.nickname and board_num = #{board_num}
+<!-- 댓글 가져오기 -->
+<select id = "replyWriteList" resultType = "reply" parameterType = "String">
+	select * from reply 
+	where board_num = #{board_num}
 	order by reply_num desc
 </select>
 
 
 <!-- 댓글 갯수 -->
-<select id = "replyCount" resultType = "int" parameterType = "string">
+<select id = "replyCount" resultType = "int" parameterType = "String">
 	select count(*) from reply where board_num = #{board_num}
 </select>
+
+
 
 </mapper>
