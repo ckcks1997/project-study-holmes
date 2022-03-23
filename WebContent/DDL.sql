@@ -150,3 +150,15 @@ create table WEBCHAT2
     memberNickname  VARCHAR2(30),
     MESSAGE  VARCHAR2(3000)
 )
+
+--평가기록 테이블
+create table reputation_estimate
+(
+    NUM      NUMBER not null
+        primary key,
+    group_num number,
+    nickname_to  VARCHAR2(30),
+    nickname_from  VARCHAR2(30),
+    didit number,
+    regdate date
+)

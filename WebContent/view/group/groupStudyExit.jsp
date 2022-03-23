@@ -116,23 +116,29 @@ h1, h3, h5 {
 	                </div>
 	                    
 				    <c:forEach items="${groupMemberList}" var="i">
-				        <div class="row items m-3">
-					        <div class="col">
-					           <span class="i-title"> ${i.nickname }</span> 
-	                        </div>
-	                        <div class="col">
-	                           <select class="custom-select" name="part">
-                                        <option value="-10">1</option>        
-                                        <option value="-5">2</option>    
-                                        <option value="-1" selected>3</option>    
-                                        <option value="2">4</option>    
-                                        <option value="3">5</option>                   
-                               </select>
-	                        </div> 
-				        </div>
+					    <form action="<%=request.getContextPath()%>/group/score">
+					         <input type="hidden" value="${i.nickname}" name="nickname_to">
+				             <div class="row items m-3">
+							        <div class="col">
+							           <span class="i-title"> ${i.nickname }</span> 
+			                        </div>
+			                        <div class="col">
+			                           <select class="custom-select" name="score">
+		                                        <option value="-10">1</option>        
+		                                        <option value="-5">2</option>    
+		                                        <option value="-1" selected>3</option>    
+		                                        <option value="2">4</option>    
+		                                        <option value="3">5</option>                   
+		                               </select>
+			                        </div>
+			                        <div class="col">
+			                             <button class="btn btn-danger" onclick="">평가</button>
+			                        </div>
+				              </div>
+		                </form> 
 				    </c:forEach>
-					
-
+					<br>
+                    <button class="btn btn-danger" onclick="">스터디 종료</button>
 				</div>
 				<br>
              </div>
