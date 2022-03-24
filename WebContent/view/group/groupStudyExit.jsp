@@ -113,10 +113,19 @@ h1, h3, h5 {
 	                    <div class="col">
 	                      <h5>그룹원</h5> 
 	                    </div>
+	                    <div class="col">
+                          <h5>점수</h5> 
+                        </div>
+                        <div class="col">
+                          <h5>평가내용</h5> 
+                        </div>
+                        <div class="col">
+                          <h5>평가 </h5> 
+                        </div>
 	                </div>
 	                    
 				    <c:forEach items="${groupMemberList}" var="i">
-					    
+				        <c:if test="${i.nickname != memberNickname}">					    
 					         <input type="hidden" value="${i.nickname}" name="nickname_to">
 				             <div class="row items m-3">
 							        <div class="col">
@@ -138,10 +147,12 @@ h1, h3, h5 {
 			                             <button class="btn btn-danger" id="btn_${i.nickname}" onclick="score_submit('${i.nickname}')">평가</button>
 			                        </div>
 				              </div>
-		                 
+		                 </c:if>
 				    </c:forEach>
 					<br>
-                    <button class="btn btn-danger"onclick="location.href='<%=request.getContextPath() %>/group/groupexitpro?boardnum=${groupMemberList[0].boardnum}'" >스터디 종료</button>
+					<div class="text-center">
+                        <button class="btn btn-danger"onclick="location.href='<%=request.getContextPath() %>/group/groupexitpro?boardnum=${groupMemberList[0].boardnum}'" >스터디 종료</button>
+					</div>
 				</div>
 				<br>
              </div>
