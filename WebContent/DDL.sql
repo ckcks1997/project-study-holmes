@@ -60,13 +60,14 @@ create table community
 	boardid	    varchar2(1),
 	regdate	    date,
 	ip	        varchar(20),
-	readcnt	    number(10),
-	nickname    varchar(10)
+	readcnt	    number,
+	nickname    varchar(10),
+	replycnt    number
 );
 
 create sequence board_seq;
 
-alter table community add replycnt number;
+
 
 
 --- study_menu 테이블

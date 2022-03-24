@@ -17,6 +17,7 @@ public class ReplyController extends MskimRequestMapping {
 	public String writeReply(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		
+		
 		String nickname = (String) session.getAttribute("memberNickname");
 		String board_num = request.getParameter("board_num");
 		String reply_content = request.getParameter("reply_content");
@@ -35,6 +36,8 @@ public class ReplyController extends MskimRequestMapping {
 		
 		//원글의 replycnt에 +1하기 
 		rd.comReplyCountUp(Integer.parseInt(board_num));
+		System.out.println("board_num:" + board_num);
+		
 
 		//reply_num은 댓글의 번호
 		request.setAttribute("reply_num", reply_num);

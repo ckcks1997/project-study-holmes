@@ -61,7 +61,7 @@ body {
 }
 
 
-a:link {
+a {
 	color:black;
 }
 
@@ -128,9 +128,9 @@ a:hover {
 <!-- ------------------------------------------------------------------------------------ -->
 				<div class = "row col-sm-9 divide" style="float: left">
 					<a href ="<%=request.getContextPath()%>/community/comBoardList">최신순</a>
-					<strong> · </strong> 
+					 &nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp;
 					<a href = "<%=request.getContextPath()%>/community/comBoardReply">댓글순</a>
-					<strong> · </strong>
+					&nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp;
 					<a href ="<%=request.getContextPath()%>/community/comBoardRead">조회수순</a>
 				</div>
 				<div class="mb-2" style="float: right">

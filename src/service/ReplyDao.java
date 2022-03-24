@@ -103,7 +103,7 @@ public class ReplyDao {
 		  
 		  SqlSession sqlSession = MybatisConnection.getConnection();
 		  try {
-			  return sqlSession.selectOne(NS+"comReplyCountUp", board_num);
+			  return sqlSession.update(NS+"comReplyCountUp", board_num);
 		  } catch(Exception e) {
 			  e.printStackTrace();
 		  } finally {
