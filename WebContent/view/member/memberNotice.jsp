@@ -9,15 +9,18 @@
  .n_info{
     color:black;
  }
- 
+ .n_info:hover{
+    background-color: #ddd; 
+}
 .container-css{
     background-color: #fff;
 }
 
 .box-css{
     background-color: #fff; 
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd; 
 }
+
 </style>
 </head>
 <body>
@@ -28,17 +31,20 @@
                 <br>
                 <br>
                 <div class="col-9 mx-auto">
-                    <h1>알림 목록</h1>
+                    <h2>알림 목록</h2>
                     <hr align="left" width="230px" style="border: 0.5px solid #c47100" />
                     <br> 
                      
                      <div class="container shadow-sm container-css p-5 ">
                          <div class="d-flex flex-column justify-content-center">
-                         
+                         <div class="row">
+                            <h4 class="col">제목</h4>
+                            <h4 class="col text-right">날짜</h4>
+                         </div>
                          <c:forEach  items="${noticeList}" var="i">
                             <a href="<%=request.getContextPath()%>/studymember/noticeInfo?noticeNum=${i.notice_num}">
                                 <div class="row box-css"> 
-                                    <div class="col n_info">
+                                    <div class="col n_info ">
 	                                    <div class="row">
 	                                        <div class="col">
 	                                          from: ${i.nickname_from} 
