@@ -29,7 +29,7 @@ create table MEMBER_TAG
     TAG_NUM NUMBER       not null  primary key,
     EMAIL   VARCHAR2(50) not null,
     TAG     VARCHAR2(30) not null
-)
+);
 
 ---
 ---NOTICE (알림)테이블
@@ -45,7 +45,7 @@ create table NOTICE
     INFO2         VARCHAR2(200),
     ISREAD        NUMBER,
     REGDATE       DATE
-)
+);
 
  
 --- community 테이블 
@@ -114,7 +114,7 @@ create table GROUP_MEMBER
     REPRESENT     NUMBER,
     NICKNAME     VARCHAR2(30) not null,
     REGDATE      DATE
-)
+);
 
 --채팅 테이블
 --numnumber(스터디넘버)
@@ -151,7 +151,7 @@ create table WEBCHAT2
     boardnum VARCHAR2(30),
     memberNickname  VARCHAR2(30),
     MESSAGE  VARCHAR2(3000)
-)
+);
 
 --평가기록 테이블
 create sequence reputation_seq;
@@ -164,4 +164,4 @@ create table reputation_estimate
     nickname_from  VARCHAR2(30),
     didit number,
     regdate date
-)
+);
