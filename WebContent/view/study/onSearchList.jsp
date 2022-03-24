@@ -237,9 +237,11 @@ a {
 
 				
 <!-- --------------------------------------------------------------게시판------------------------------------------------------------ -->						
+				<c:if test="${menuid != 8}">
 				<button class="btn btn-info d-block ml-auto">
 					<a href="<%=request.getContextPath()%>/studymenu/onStudyWriteForm" style="color: white;">글쓰기 </a>
 				</button>
+				</c:if>
 				<div class="container d-flex align-content-between flex-wrap">
 				
 				<c:if test = "${empty searchList }"> <!-- list.size() 가 0이면 -->
@@ -277,17 +279,14 @@ a {
 								<p class="b-price">무료</p>
 								</c:if>
 								<c:if test="${s.price !='0'}">
-								<p class="b-price">$ ${s.price }</p>
+								<p class="b-price"> ${s.price } 원</p>
 								</c:if>
 								<p class="b-people">
 									<i class="fa-solid fa-user-group"></i> ${s.pernum}
 								</p>
 							
 								<div>
-								    ${s.nickname }
-									<p class="b-p d-inline-block">
-										&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-									<p class="b-p b-rep d-inline-block ">평가:100%</p>
+								    작성자: ${s.nickname } 
 								</div>
 							</div>
 						  </a>
