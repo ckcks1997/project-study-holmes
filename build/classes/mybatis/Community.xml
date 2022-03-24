@@ -9,6 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select count(*) from community where boardid = #{boardid}
 </select> 
 
+<select id = "myComCount" resultType = "int" parameterType = "String">
+	select count(*) from community where nickname = #{nickname}
+</select> 
+
 <!-- 최신순 출력 -->
 <select id = "comBoardList" resultType = "community"  parameterType = "map">
 	select  * from (select rownum rnum, a.* from (

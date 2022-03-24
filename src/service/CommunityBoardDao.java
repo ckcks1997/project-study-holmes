@@ -30,6 +30,19 @@ public class CommunityBoardDao {
 			return 0;
 	  }
 	  
+	  public int myComCount(String nickname) {
+			
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+			try {
+			return sqlSession.selectOne(NS+"myComCount",nickname);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			} 
+			return 0;
+	  }
+	  
 	  //검색 수
 	  public int comSearchCount(String boardid,String part,String searchData) {
 			

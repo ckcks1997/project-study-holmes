@@ -8,6 +8,10 @@
 		select count(*) from study_menu where menuid = #{menuid}
 	</select>
 	
+	<select id="myStudyCount" resultType="int" parameterType="string">
+		select count(*) from study_menu where nickname = #{nickname}
+	</select>
+	
 	<select id = "studyMenuOne" resultType = "studymenu" parameterType ="int">
 	select * from study_menu where board_num = #{board_num}
 	</select>

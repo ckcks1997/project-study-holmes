@@ -27,6 +27,17 @@ public class StudyMenuDao {
 		return 0;
 	}
 	
+	public int myStudyCount(String nickname) {
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			return sqlSession.selectOne(NS + "myStudyCount", nickname);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		return 0;
+	}
 	
 	
 	public int onAllCount() {
