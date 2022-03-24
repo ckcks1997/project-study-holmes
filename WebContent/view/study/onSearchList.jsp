@@ -190,11 +190,13 @@ a {
 							<div class="d-flex flex-row align-items-center">
 								 
 									<select class="custom-select" name="part">
-									    <option value="title">제목</option>						
+									    <option value="title">제목</option>
+									    <option value="content">내용</option>
+									    <option value="nickname">작성자</option>						
 									</select>
 								 
 								    <div class="d-flex flex-row">
-									<input type="text" class="form-control rounded"
+									<input type="text" class="form-control rounded text-css"
 										placeholder="Search" aria-label="Search"
 										aria-describedby="search-addon" name="searchData" required="required"/> 
 								    <input type="submit" class="input-group-text border-0" value="검색"> 
@@ -213,7 +215,9 @@ a {
 							<div class="d-flex flex-row align-items-center">
 								 
 									<select class="custom-select" name="part">
-									    <option value="title">제목</option>						
+									    <option value="title">제목</option>
+									    <option value="content">내용</option>
+									    <option value="nickname">작성자</option>						
 									</select>
 								 
 								    <div class="d-flex flex-row">
@@ -230,39 +234,7 @@ a {
 						
 						
 								 
-<!-- --------------------------------------------------------------지역태그------------------------------------------------------------ -->						
-					<div>
-						<div class="d-flex align-items-end rounded mt-2" method="post">
-						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
-						<input type="hidden" aria-label="Search" name="part" value="region">
-						<input type="hidden" aria-label="Search" name="searchData" value="서울">
-					    <input type="submit" class="tagbox" value="#서울"> 
-						</form>
-						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
-						<input type="hidden" aria-label="Search" name="part" value="region">
-						<input type="hidden" aria-label="Search" name="searchData" value="경기">
-					    <input type="submit" class="tagbox" value="#경기"> 
-						</form>
-						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
-						<input type="hidden" aria-label="Search" name="part" value="region">
-						<input type="hidden" aria-label="Search" name="searchData" value="부산">
-					    <input type="submit" class="tagbox" value="#부산"> 
-						</form>
-												
-						<div class="tagbox tagbox-etc">
-							<a href="#">...</a>
-						</div>
-				
-						
-						</div>
-					</div>									
-													
-					
 
-				
 				
 <!-- --------------------------------------------------------------게시판------------------------------------------------------------ -->						
 				<button class="btn btn-info d-block ml-auto">
