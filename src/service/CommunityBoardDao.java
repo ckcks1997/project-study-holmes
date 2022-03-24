@@ -153,8 +153,6 @@ public class CommunityBoardDao {
 	  
 	  
 	  
-	  
-	  
 	  public int comInsertBoard(Community com) {
 		  
 			SqlSession sqlSession = MybatisConnection.getConnection();

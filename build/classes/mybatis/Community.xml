@@ -72,6 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	and boardid = #{boardid}	
 </select>
 
+
 <!-- 검색수 -->
 <select id = "comSearchCount" resultType = "int" parameterType = "map">
 	select count(*) from community where boardid = #{boardid} and (${part}) like upper (#{searchData})

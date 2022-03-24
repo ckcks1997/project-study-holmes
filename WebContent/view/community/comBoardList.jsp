@@ -165,9 +165,7 @@ a:hover {
 												<p style = "font-size: 17px; font-weight: bold;">
 													${com.title}
 												</p>
-												<p style = "font-size: 15px;">
-													${com.content} 
-												</p> <br />
+												 <br />
 												<h6 style = "color: gray;">
 													<small>${com.nickname} · ${com.regdate} </small>
 												</h6>

@@ -541,11 +541,8 @@ public class CommunityController extends MskimRequestMapping{
   }
  
 
-  
-  
-  
-  
- 
+
+
   
   
   

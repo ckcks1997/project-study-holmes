@@ -18,10 +18,59 @@ body {
 	background-color: #333b3d;
 }
 
-.txt_bar {
-	margin: 0 9px 0 5px;
-	color: gray;
+ 
+.reaction {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
+
+.circle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 80%;
+	height: 100%;
+	
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.page-item > a{
+    color:#f55555; 
+}
+.page-item > a:hover{
+    color:#f55555; 
+}
+.active2 > a{
+    background-color:#f55555 !important; 
+    border: 1px solid #f55555 !important; 
+} 
+
+.reactions {
+	font-size: 13px;
+}
+
+.divide {
+	font-weight:700;
+    color: #777;
+}
+
+
+a {
+	color:black;
+}
+
+
+a:hover {
+    color:#f55555;
+    text-decoration: none;
+}
+
+
+
 </style>
 <body>
 
@@ -74,9 +123,9 @@ body {
 				
 				<br />
 
-				<div style="float: left">
-					<strong>최신순</strong> &nbsp;<strong>·</strong> 댓글많은순 &nbsp;<strong>·</strong>
-					좋아요순
+				<div class = "row col-sm-9 divide" style="float: left">
+					<a href ="<%=request.getContextPath()%>/community/comBoardList">최신순</a>
+					
 				</div>
 				<div class="mb-2" style="float: right">
 					<button type="button" class="btn btn-dark"
@@ -106,13 +155,11 @@ body {
 											<a
 												href="<%=request.getContextPath() %>/community/comBoardInfo?board_num=${com.board_num}"
 												style="color: black">
-												<h4>
-													<strong>${com.title}</strong>
-												</h4>
-												<h5>
-													<small>${com.content} </small>
-												</h5> <br />
-												<h6>
+												<p style = "font-size: 17px; font-weight: bold;">
+													${com.title}
+												</p>
+												<br>
+												<h6 style = "color: gray;">
 													<small>${com.nickname} · ${com.regdate} </small>
 												</h6>
 											</a>
@@ -167,10 +214,10 @@ body {
 					<li
 						class='page-item <c:if test ="${startPage <= bottomLine }"> disabled </c:if> '><a
 						class="page-link"
-						href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${startPage-bottomLine}">Previous</a></li>
+						href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${startPage-bottomLine}">이전</a></li>
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<li
-							class='page-item <c:if test = "${i==pageInt}" > active </c:if> '>
+							class='page-item <c:if test = "${i==pageInt}" > active active2 </c:if> '>
 							<a class="page-link"
 							href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${i}&searchData=${searchData}&part=${part}">${i}</a>
 						</li>
@@ -178,7 +225,7 @@ body {
 					<li
 						class='page-item <c:if test ="${endPage >= maxPage}"> disabled </c:if>  '>
 						<a class="page-link"
-						href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${startPage+bottomLine}">Next</a>
+						href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${startPage+bottomLine}">다음</a>
 					</li>
 				</ul>
 			</div>
