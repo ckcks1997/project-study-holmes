@@ -122,10 +122,7 @@ a:hover {
                                     
                                     포인트:${memberInfo.point}  
                                   </div>
-                                  <div class="container m-1">
-                                    
-                                    스터디 횟수: 
-                                  </div>
+
                                   <div class="container m-1">
                                      
                                     가입일: <fmt:formatDate value="${memberInfo.regdate}" pattern="yyyy년 M월 d일"/>
@@ -154,24 +151,40 @@ a:hover {
                                         </c:choose>
                                         </div>
                                         <div class="col-md-9">
-                                            <p class="my-1">스터디 리더를 23번 했어요 </p>  
-                                            <p class="my-1">스터디원을 12번 했어요 </p>
+                                            <c:choose>
+                                            <c:when test="${memberInfo.point >= 50}">
+                                                <p class="my-1">매너 상태가 좋습니다. </p>  
+                                             </c:when>
+                                             <c:when test="${memberInfo.point > 30}">
+                                                <p class="my-1">매너 상태가 보통입니다. </p>  
+                                             </c:when>
+                                             <c:otherwise>
+                                                <p class="my-1">매너 상태가 좋지 않습니다. </p>  
+                                             </c:otherwise>
+                                          </c:choose>
                                         </div>
                                     </div>
                                 </div>
                             <br>
                             <div class="d-md-flex justify-content-center align-items-center col-md-6 px-0">
                                 <div class="container ">
-                                    <h5>받은 매너평가 </h5> 
-                                    <p class="my-1">시간 약속을 잘 지켜요</p>
-                                    <p class="my-1">시간 약속을 잘 지켜요</p>
-                                    <p class="my-1">시간 약속을 잘 지켜요</p>
+                                    <h5>최근 받은 매너평가 </h5> 
+                                    <c:if test="${repList != null}">
+                                        <c:forEach items="${repList}" var="i" >
+                                            <p class="my-1">${i.info}</p>
+                                        </c:forEach> 
+                                    </c:if>
+                                    <c:if test="${empty repList}">
+                                       아직 매너 정보가 없습니다.
+                                    </c:if>
                                 </div>
                             </div>
                          </div>
                      </div>
                      <br>
 
+
+<%-- 
                      <div class="d-md-flex shadow-sm container-css p-5">
                          <div class="container">
                              <h5>현재 스터디</h5>
@@ -211,12 +224,13 @@ a:hover {
                            </table>
                         </div>
                      </div>
-
+--%>
                     <br>
                     <br>
 
  
                 </div>
+                
             </div>
         </div>
 

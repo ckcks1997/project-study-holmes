@@ -171,14 +171,15 @@ input[type=text]:placeholder {
 			<!-- Login Form -->
 			<form action="<%=request.getContextPath()%>/studymember/loginPro">
 				<input type="text" id="id" class=" " name="id" placeholder="email id"> 
-				<input type="password" id="password" class=" " name="password" placeholder="password"> 
-				<input	type="submit" class=" login-btn my-1" value="로그인"> <br>
+				<input type="password" id="password" class="mb-3 " name="password" placeholder="password"> 
+				<input	type="submit" class=" login-btn my-2" value="로그인"> <br> 
 				<a class="btn" href="join">회원가입</a>
-				<a class="btn" href="findPassword">비밀번호 찾기</a>
+				<a class="btn" href="#">비밀번호 찾기</a>
 				<br> <br>
 			</form>
 
 			<!-- Remind Passowrd -->
+			<%--
             <div id="formFooter">
                 <h5>간편 회원가입</h5>
                 <p>SNS 계정으로 간편하게 로그인하세요</p>
@@ -187,7 +188,7 @@ input[type=text]:placeholder {
                     <a class="underlineHover login-font" href="#" >네이버 로그인</a>
                 </div>
             </div>
-
+ --%>
 		</div>
 	</div>
 

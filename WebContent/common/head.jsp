@@ -76,7 +76,11 @@
 .dropdown-item:active{
     background-color:#f55555 !important;
 }
-
+.a-no-deco, 
+.a-no-deco:hover 
+{
+    color:white;
+}
 </style>
 </head>
 <body>

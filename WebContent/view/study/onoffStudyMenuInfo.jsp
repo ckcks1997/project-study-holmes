@@ -174,6 +174,7 @@ a:hover{
 
 				<br>
                 <br>
+                <c:if test="${loginNick != null}">
                 <br> 전체 스터디 인원: ${s.pernum} 명 <br>
                 <form action="<%=request.getContextPath()%>/studymenu/studyIn" method="post">
                     <input type="hidden" name="board_name" value="onoffStudyMenuList">
@@ -183,6 +184,7 @@ a:hover{
 					<input type="submit" class=" btn fadeIn fourth my-1" value="참가신청"
 					style="background-color: #c47100; color: white; border-color: white;">
                 </form>
+                </c:if>
 
 				<br> <br>
 
