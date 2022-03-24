@@ -20,10 +20,9 @@ public class GroupChat {
 
   @OnMessage
   public void onMessage(String message, Session session) throws IOException {
-
+    String[] msg = message.split(":"); 
     WebChat webChat = new WebChat(message.split(":"));
-    System.out.println(webChat);
-
+    System.out.println("=="+webChat+"==");
 
     
     synchronized (clients) { //hashmap이라 싱크

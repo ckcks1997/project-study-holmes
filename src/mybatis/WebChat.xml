@@ -10,11 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
     <insert id="insertWebChat" parameterType="webchat" >
-        insert into webchat2 values(#{num},#{boardnum},#{memberNickname},#{message})
+        insert into webchat2 values(#{num},#{boardnum},#{memberNickname},#{message},#{file})
     </insert>
     
     <select id="listWebChat"  parameterType="String" resultType="webchat">
-        select * from webchat2 where boardnum = #{boardnum} 
+        select * from webchat2 where boardnum = #{boardnum} order by num asc
     </select>
 
 </mapper>
