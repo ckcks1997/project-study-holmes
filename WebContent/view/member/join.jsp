@@ -238,7 +238,7 @@ function win_upload(){
 
 				<br> <input type="submit" class=" btn-color1" value="회원가입"> <br> <br>
 			</form>
-
+<%--
 			<div id="formFooter">
 				<h5>간편 회원가입</h5>
 				<p>SNS 계정으로 간편하게 로그인하세요</p>
@@ -247,7 +247,7 @@ function win_upload(){
 				    <a class="underlineHover login-font" href="#" >네이버 로그인</a>
 				</div>
 			</div>
-
+ --%>
 		</div>
 	</div>
 
