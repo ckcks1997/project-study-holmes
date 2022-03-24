@@ -190,11 +190,13 @@ a {
 							<div class="d-flex flex-row align-items-center">
 								 
 									<select class="custom-select" name="part">
-									    <option value="title">제목</option>						
+									    <option value="title">제목</option>
+									    <option value="content">내용</option>
+									    <option value="nickname">작성자</option>						
 									</select>
 								 
 								    <div class="d-flex flex-row">
-									<input type="text" class="form-control rounded"
+									<input type="text" class="form-control rounded text-css"
 										placeholder="Search" aria-label="Search"
 										aria-describedby="search-addon" name="searchData" required="required"/> 
 								    <input type="submit" class="input-group-text border-0" value="검색"> 
@@ -213,7 +215,9 @@ a {
 							<div class="d-flex flex-row align-items-center">
 								 
 									<select class="custom-select" name="part">
-									    <option value="title">제목</option>						
+									   <option value="title">제목</option>
+									   <option value="content">내용</option>
+									   <option value="nickname">작성자</option>							
 									</select>
 								 
 								    <div class="d-flex flex-row">
@@ -230,43 +234,72 @@ a {
 						
 								 
 <!-- --------------------------------------------------------------지역태그------------------------------------------------------------ -->						
+					<c:if test="${menuid eq 1 }">
+					
 					<div>
 						<div class="d-flex align-items-end rounded mt-2" method="post">
 						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
-						<input type="hidden" aria-label="Search" name="part" value="region">
-						<input type="hidden" aria-label="Search" name="searchData" value="서울">
-					    <input type="submit" class="tagbox" value="#서울"> 
+							<form action = "<%=request.getContextPath()%>/studymenu/offAllSearch" method="post">															
+								<input type="hidden" aria-label="Search" name="part" value="region">
+								<input type="hidden" aria-label="Search" name="searchData" value="서울">
+					   			<input type="submit" class="tagbox" value="#서울"> 
+							</form>
+						
+							<form action = "<%=request.getContextPath()%>/studymenu/offAllSearch" method="post">															
+								<input type="hidden" aria-label="Search" name="part" value="region">
+								<input type="hidden" aria-label="Search" name="searchData" value="경기">
+					    		<input type="submit" class="tagbox" value="#경기"> 
+							</form>
+						
+							<form action = "<%=request.getContextPath()%>/studymenu/offAllSearch" method="post">															
+								<input type="hidden" aria-label="Search" name="part" value="region">
+								<input type="hidden" aria-label="Search" name="searchData" value="부산">
+					    		<input type="submit" class="tagbox" value="#부산"> 
+							</form>
+												
+							<div class="tagbox tagbox-etc">
+								<a href="#">...</a>
+							</div>								
+						</div>
+					</div>									
+				</c:if>		
+							
+				<c:if test="${menuid != 1}">	
+				
+					<div>
+						<div class="d-flex align-items-end rounded mt-2" method="post">
+						
+						<form action = "<%=request.getContextPath()%>/studymenu/offSearch" method="post">															
+							<input type="hidden" aria-label="Search" name="part" value="region">
+							<input type="hidden" aria-label="Search" name="searchData" value="서울">
+					   	 	<input type="submit" class="tagbox" value="#서울"> 
 						</form>
 						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
-						<input type="hidden" aria-label="Search" name="part" value="region">
-						<input type="hidden" aria-label="Search" name="searchData" value="경기">
-					    <input type="submit" class="tagbox" value="#경기"> 
+						<form action = "<%=request.getContextPath()%>/studymenu/offSearch" method="post">															
+							<input type="hidden" aria-label="Search" name="part" value="region">
+							<input type="hidden" aria-label="Search" name="searchData" value="경기">
+					    	<input type="submit" class="tagbox" value="#경기"> 
 						</form>
 						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
-						<input type="hidden" aria-label="Search" name="part" value="region">
-						<input type="hidden" aria-label="Search" name="searchData" value="부산">
-					    <input type="submit" class="tagbox" value="#부산"> 
+						<form action = "<%=request.getContextPath()%>/studymenu/offSearch" method="post">															
+							<input type="hidden" aria-label="Search" name="part" value="region">
+							<input type="hidden" aria-label="Search" name="searchData" value="부산">
+					   		<input type="submit" class="tagbox" value="#부산"> 
 						</form>
 												
 						<div class="tagbox tagbox-etc">
 							<a href="#">...</a>
 						</div>
-				
-						
-						</div>
-					</div>									
-													
+					</div>
+				</div>					
 					
-
-				
-				
+				</c:if>																														
 <!-- --------------------------------------------------------------게시판------------------------------------------------------------ -->						
+				<c:if test="${menuid != 1}">
 				<button class="btn btn-info d-block ml-auto">
 					<a href="<%=request.getContextPath()%>/studymenu/offStudyWriteForm" style="color: white;">글쓰기 </a>
 				</button>
+				</c:if>
 				<div class="container d-flex align-content-between flex-wrap">
 				
 				<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
@@ -304,17 +337,14 @@ a {
 								<p class="b-price">무료</p>
 								</c:if>
 								<c:if test="${s.price !='0'}">
-								<p class="b-price">$ ${s.price }</p>
+								<p class="b-price"> ${s.price } 원</p>
 								</c:if>
 								<p class="b-people">
 									<i class="fa-solid fa-user-group"></i> ${s.pernum}
 								</p>
-								<p class="b-p">${s.region }</p>
+								<p class="b-p">지역: ${s.region }</p>
 								<div>
-								    ${s.nickname }
-									<p class="b-p d-inline-block">
-										&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-									<p class="b-p b-rep d-inline-block ">평가:100%</p>
+								   작성자: ${s.nickname } 
 								</div>
 							</div>
 						  </a>

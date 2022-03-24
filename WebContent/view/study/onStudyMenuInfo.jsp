@@ -39,6 +39,7 @@
 
 }
 
+
 /*댓글 textarea 출력시 css*/
 .replyTxt {
 	 word-wrap : break-word; /*영역 넘어가면 줄바꿈하기*/
@@ -47,6 +48,17 @@
 }
 
 
+
+
+a{
+    color:black;
+}
+a:hover{
+    color:black;
+}
+.white, .white:hover{
+    color:white;
+}
 
 </style>
 </head>
@@ -93,12 +105,30 @@
 				<br>
 				<h3>${s.title}</h3>
 				<h6>
-					<small> &#11088;&#11088;&#11088;&#11088;&#11088; 85점 11명의
-						평가 · 20번의 스터디 경험 </small>
+                     <c:choose>
+                    <c:when test="${repVal.point > 50  }">
+                        <small> &#11088;&#11088;&#11088;&#11088;&#11088;   ${repVal.point}점 </small>
+                     </c:when>
+                     <c:when test="${repVal.point > 40  }">
+                        <small> &#11088;&#11088;&#11088;&#11088;  ${repVal.point}점  </small>
+                     </c:when>
+                     <c:when test="${repVal.point > 30  }">
+                        <small> &#11088;&#11088;&#11088;  ${repVal.point}점  </small>
+                     </c:when>
+                     <c:when test="${repVal.point > 20  }">
+                        <small> &#11088;&#11088;  ${repVal.point}점  </small>
+                     </c:when>
+                     <c:when test="${repVal.point > 10  }">
+                        <small> &#11088; ${repVal.point}점  </small>
+                     </c:when>
+                      <c:otherwise>
+                      점수가 없습니다.
+                     </c:otherwise>
+                </c:choose>
 				</h6>
 				<br>
 				<h6>
-					<small>&nbsp; 작성자: <span>${s.nickname}</span> 
+					<small>&nbsp; 작성자: <a class="white" href="<%=request.getContextPath()%>/studymember/userinfo?usernick=${s.nickname}"><span>${s.nickname}</span></a> 
 					</small>
 				</h6>
 				<br>
@@ -127,7 +157,7 @@
 				</div>
 				<div class="postInfo">
 					<p>
-						${s.nickname} · ${s.regdate}
+						<a href="<%=request.getContextPath()%>/studymember/userinfo?usernick=${s.nickname}">${s.nickname}</a> · ${s.regdate}
 
 
 						<c:if test="${loginNick eq s.nickname}">

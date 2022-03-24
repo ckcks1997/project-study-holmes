@@ -106,13 +106,15 @@ h1, h3, h5 {
 	                    <hr>
 				    <c:forEach items="${groupMemberList}" var="i">
                       <a>
-				        <div class="row">
-					        <div class="col">
-					           ${i.nickname}
-	                        </div>
-				        </div>
+                      <div class="col-sm-6 mx-auto">
+					       <div class="row">
+						       <div class="col-sm-6">
+						           ${i.nickname}
+		                       </div>
+					       </div>
+    				      <hr>
+    				  </div>
 				      </a>
-				      <hr>
 				    </c:forEach>
 					
 					<a class="btn btn-c" href="<%=request.getContextPath()%>/chat/chat?boardnum=${groupMemberList[0].boardnum}">채팅 입장</a>

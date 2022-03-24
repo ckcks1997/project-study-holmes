@@ -9,19 +9,26 @@ public class ReputationEstimate {
   private String nickname_to;
   private String nickname_from;
   private int score;
+  private String info;
   private Date regdate;
   
   public ReputationEstimate() { }
   
+   
+
   public ReputationEstimate(int num, int group_num, String nickname_to, String nickname_from,
-      int score, Date regdate) {
+      int score, String info, Date regdate) {
+    super();
     this.num = num;
     this.group_num = group_num;
     this.nickname_to = nickname_to;
     this.nickname_from = nickname_from;
     this.score = score;
+    this.info = info;
     this.regdate = regdate;
   }
+
+
 
   public int getNum() {
     return num;
@@ -63,6 +70,15 @@ public class ReputationEstimate {
     this.score = score;
   }
 
+  
+  public String getInfo() {
+    return info;
+  }
+
+  public void setInfo(String info) {
+    this.info = info;
+  }
+
   public Date getRegdate() {
     return regdate;
   }
@@ -70,14 +86,12 @@ public class ReputationEstimate {
   public void setRegdate(Date regdate) {
     this.regdate = regdate;
   }
-
+ 
   @Override
   public String toString() {
     return "{\"num\":\"" + num + "\", \"group_num\":\"" + group_num + "\", \"nickname_to\":\""
         + nickname_to + "\", \"nickname_from\":\"" + nickname_from + "\", \"score\":\"" + score
-        + "\", \"regdate\":\"" + regdate + "\"}";
+        + "\", \"info\":\"" + info + "\", \"regdate\":\"" + regdate + "\"}";
   }
-  
-  
-  
+ 
 }

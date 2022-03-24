@@ -185,18 +185,18 @@ a:hover {
 					<li
 						class='page-item <c:if test ="${startPage <= bottomLine }"> disabled </c:if> '><a
 						class="page-link"
-						href="<%=request.getContextPath()%>/community/myList1?pageNum=${startPage-bottomLine}">이전</a></li>
+						href="<%=request.getContextPath()%>/community/comBoardmyList1?pageNum=${startPage-bottomLine}">Previous</a></li>
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<li
 							class='page-item <c:if test = "${i==pageInt}" > active </c:if> '>
 							<a class="page-link"
-							href="<%=request.getContextPath()%>/community/myList1?pageNum=${i}">${i}</a>
+							href="<%=request.getContextPath()%>/community/comBoardmyList1?pageNum=${i}">${i}</a>
 						</li>
 					</c:forEach>
 					<li
 						class='page-item <c:if test ="${endPage >= maxPage}"> disabled </c:if>  '>
 						<a class="page-link"
-						href="<%=request.getContextPath()%>/community/myList1?pageNum=${startPage+bottomLine}">다음</a>
+						href="<%=request.getContextPath()%>/community/comBoardmyList1?pageNum=${startPage+bottomLine}">Next</a>
 					</li>
 				</ul>
 			</div>

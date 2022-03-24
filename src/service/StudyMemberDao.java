@@ -29,6 +29,19 @@ public class StudyMemberDao {
 
     return null;
   }
+   
+  public StudyMember studyMemberOneByNick(String id) {
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try {
+      return sqlSession.selectOne(NS + "studyMemberOneByNick", id);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MybatisConnection.close(sqlSession);
+    }
+
+    return null;
+  }
   
   public StudyMember studyMembeByNickname(String id) {
     SqlSession sqlSession = MybatisConnection.getConnection();
@@ -160,5 +173,17 @@ public class StudyMemberDao {
     return 0;
   }
   
-  
+ public StudyMember getPoint(String nickname) {
+    
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try {  
+      return sqlSession.selectOne(NS + "getPoint", nickname); 
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MybatisConnection.close(sqlSession);
+    }
+
+    return null;
+  }
 }

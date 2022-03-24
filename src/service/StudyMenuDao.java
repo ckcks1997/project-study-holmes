@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import model.Community;
 import model.Search;
 import model.StudyMenu;
 import util.MybatisConnection;
@@ -430,29 +429,26 @@ public class StudyMenuDao {
 	 }	 
 	 
 	
-	 
-	 
-	 
-	 
-	 public List<StudyMenu> mylist2(String mylist2) {
-
+	 public List<StudyMenu> mylist2(int pageInt, int limit, int menucount, String menuid, String nickname) {
 			SqlSession sqlSession = MybatisConnection.getConnection();
-			
-			List<StudyMenu> list = null;
 			try {
-				
-			list = sqlSession.selectList(NS + "mylist2", mylist2);
-			return list;
-			
-
+				map.clear();
+				map.put("menuid", menuid);
+				map.put("start", (pageInt - 1) * limit + 1);
+				map.put("end", pageInt * limit);
+				map.put("nickname",nickname);
+				return sqlSession.selectList(NS + "mylist2", map);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				MybatisConnection.close(sqlSession);
 			}
-
 			return null;
-	 }	 
+		}
+	 
+	 
+	 
+
 	 
 
 	 public int studyUpdate(StudyMenu sm) {
