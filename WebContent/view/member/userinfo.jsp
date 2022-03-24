@@ -108,9 +108,7 @@ a:hover {
                                  </c:if>
                                  </div>
                                  <br>
-                                 <div class="d-flex justify-content-center">
-                                     <button class="btn btn-primary">사진 변경</button>
-                                 </div>
+                                  
                              </div>
                               <div class="constainer col-md-9">
                                   <div class="container m-1">
@@ -161,10 +159,10 @@ a:hover {
                             <br>
                             <div class="d-md-flex justify-content-center align-items-center col-md-6 px-0">
                                 <div class="container ">
-                                    <h5>받은 매너평가 </h5> 
-                                    <p class="my-1">시간 약속을 잘 지켜요</p>
-                                    <p class="my-1">시간 약속을 잘 지켜요</p>
-                                    <p class="my-1">시간 약속을 잘 지켜요</p>
+                                    <h5>최근 받은 매너평가 </h5> 
+                                    <c:forEach items="${repList}" var="i" >
+                                        <p class="my-1">${i.info}</p>
+                                    </c:forEach> 
                                 </div>
                             </div>
                          </div>
