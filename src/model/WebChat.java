@@ -6,13 +6,14 @@ public class WebChat {
   private String boardnum;
   private String memberNickname;
   private String message;
-
+  private String file;
   public WebChat() {}
 
   public WebChat(String[] strs) {
     this.boardnum = strs[0];
     this.memberNickname = strs[1];
     this.message = strs[2];
+    this.file = strs[3];
   }
 
   public int getNum() {
@@ -47,14 +48,19 @@ public class WebChat {
     this.message = message;
   }
 
+  
+  public String getFile() {
+    return file;
+  }
+
+  public void setFile(String file) {
+    this.file = file;
+  }
+
   @Override
   public String toString() {
     return "{\"num\":\"" + num + "\", \"boardnum\":\"" + boardnum + "\", \"memberNickname\":\""
-        + memberNickname + "\", \"message\":\"" + message + "\"}";
+        + memberNickname + "\", \"message\":\"" + message + "\", \"file\":\"" + file + "\"}";
   }
-
- 
-
-
 
 }

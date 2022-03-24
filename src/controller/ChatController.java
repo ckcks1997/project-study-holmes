@@ -48,7 +48,7 @@ public class ChatController extends MskimRequestMapping {
       e.printStackTrace();
     }
     
-    
+    System.out.println(path);
     filename = multi.getFilesystemName("file");
     String boardnum= multi.getParameter("boardnum");
     String memberNickname = multi.getParameter("memberNickname");

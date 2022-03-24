@@ -151,17 +151,30 @@ max-width:100px;
 			<div id="messageWindow">
 				<c:forEach var="webchat" items="${li}">
 				    <c:if test="${webchat.memberNickname.equals(memberNickname) }">
-				    <div class="right">
-				        <div id="me">나:${webchat.message}</div>
-				    </div>
-				    
+					    <c:if test='${webchat.file.equals("-") }'>
+						    <div class="right">
+						        <div id="me">나:${webchat.message}</div>
+						    </div>
+					    </c:if>
+					    <c:if test='${webchat.message.equals("-") }'>
+                            <div class="right">
+                                <div id="me"><img src="<%=request.getContextPath()%>/upload/${webchat.file}" width='200px' > </div>
+                            </div>
+                        </c:if>
 				    </c:if>
+				    
 				<c:if test="${!webchat.memberNickname.equals(memberNickname) }">
+                    <c:if test='${webchat.file.equals("-") }'>
+                        <div class="left">
+                            <div id="you">${webchat.memberNickname}:${webchat.message}</div>
+                        </div>
+                    </c:if>
+                     <c:if test='${webchat.message.equals("-") }'>
+                         <div class="left">
+                            <div id="you"><img src="<%=request.getContextPath()%>/upload/${webchat.file}" width='200px' > </div>
+                         </div>
+                     </c:if>
                     
-                      <div class="left">
-                       
-                        <div id="you">${webchat.memberNickname}:${webchat.message}</div>
-                    </div>
                     </c:if>
 				</c:forEach>
 			
@@ -205,7 +218,7 @@ webSocket.onmessage = function(event) {
 
 function onOpen(event){
 	msgarea.innerHTML += new Date() + "연결 성공";
-	webSocket.send('${boardnum}:${memberNickname}:입장했습니다')
+	webSocket.send('${boardnum}:${memberNickname}:입장했습니다:-')
 }
 
 function onError(event) {
@@ -217,11 +230,12 @@ function onMessage(event) {
 	let line = event.data
 	let json = JSON.parse(line)
 	
-	
-	if(event.data.includes('.')){
+	console.log("event.data: "+event.data)
+	console.log("vile: "+json.file)
+	if(json.file != "-"){
 		 
 		msgarea.innerHTML +="<div class='left'><div id='you'>" 
-			+"<img src='<%=request.getContextPath()%>/upload/"+ json.message +"'width='200px' />"
+			+"<img src='<%=request.getContextPath()%>/upload/"+ json.file +"'width='200px' />"
 				+" </div></div>"
 	}
 	else{  
@@ -234,7 +248,7 @@ function sendText(){
 	if(inputMessage.value!=''){
 		msgarea.innerHTML += "<div class='right'><div id='me'>"+ inputMessage.value+" </div></div>" ;
 		
-		webSocket.send('${boardnum}:${memberNickname}:' + inputMessage.value);
+		webSocket.send('${boardnum}:${memberNickname}:' + inputMessage.value+":-");
 		msgarea.scrollTop=msgarea.scrollHeight;
 		inputMessage.value="";
 	}
@@ -288,12 +302,11 @@ function init(){
     	}
     }
     
-    function sendFile(filename){
-    	console.log(filename+"===")
+    function sendFile(filename){ 
     	msgarea.innerHTML += "<div class='right'><div id='me'>"
     	+ "<img src='<%=request.getContextPath()%>/upload/"+ filename + "' width='200px' />"
     	+" </div></div>" ;
-    	webSocket.send('${boardnum}:${memberNickname}:' + filename);
+    	webSocket.send('${boardnum}:${memberNickname}:-:' + filename);
         msgarea.scrollTop=msgarea.scrollHeight;
     }
     
