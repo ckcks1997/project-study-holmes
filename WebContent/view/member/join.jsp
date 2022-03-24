@@ -202,7 +202,7 @@ function win_upload(){
 			<!-- Login Form -->
 			<form action="<%=request.getContextPath()%>/studymember/joinPro" name="f" onsubmit="return inputChk(this)" >
 			    <input type="hidden" name="picture">
-                <input type="hidden" id="idchk" name="idchk"> 
+                <input type="hidden" id="idchk" name="idchk" value="<c:if test="${!empty kakaoemail }">'1'</c:if>"> 
                 <input type="hidden" id="pwchk" name="pwchk">
                 <input type="hidden" id="nickchk" name="nickchk">
                 <br>
@@ -210,7 +210,7 @@ function win_upload(){
                 <p class="nameholder">email</p>
 				<div class="alert mx-5 py-0 mb-0 " id="validation-view" role="alert" display="none"></div>
                 <div class="d-md-flex justify-content-center align-items-center mx-5">
-					<input type="text" id="email" class=" "  name="email" placeholder="example@studyhomles.com" required  > 
+					<input type="text" id="email" class=" "  name="email" placeholder="example@studyhomles.com" value="${kakaoemail}" required  > 
 					<button class="btn btn-color1" id="emailChk" type="button" onclick="idChk()">확인</button>
                 </div>
 				<p class="nameholder">비밀번호</p>

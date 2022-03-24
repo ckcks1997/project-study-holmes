@@ -173,9 +173,41 @@ public class StudyMemberController extends MskimRequestMapping {
         System.out.println(mem);
         msg = "비밀번호 확인하세요";
       }
-    }
-
+    } 
     request.setAttribute("msg", msg);
+    request.setAttribute("url", url);
+    return "/view/alert.jsp";
+  }
+  /*
+   * 카카오 로그인
+   * */
+  @RequestMapping("kakaologin")
+  public String kakaoLogin(HttpServletRequest request, HttpServletResponse response) {
+
+     
+    try {
+      request.setCharacterEncoding("utf-8");
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+    
+    String kakaoemail = request.getParameter("kakaoemail"); // email
+    System.out.println(kakaoemail+"==");
+    StudyMemberDao sd = new StudyMemberDao();
+    
+    StudyMember member = sd.studyMemberOne(kakaoemail);
+    System.out.println(member+"===");
+    if(member == null) {
+      request.setAttribute("kakaoemail", kakaoemail);
+      return "/view/member/join.jsp";
+    }
+    
+    request.getSession().setAttribute("memberID", member.getEmail());
+    request.getSession().setAttribute("memberNickname", member.getNickname());
+    request.getSession().setAttribute("memberPicture", member.getPicture());
+     
+    String msg = "";
+    String url = request.getContextPath() + "/board/main"; 
     request.setAttribute("url", url);
     return "/view/alert.jsp";
   }
@@ -203,7 +235,18 @@ public class StudyMemberController extends MskimRequestMapping {
   @RequestMapping("join")
   public String memberJoin(HttpServletRequest request, HttpServletResponse response) {
     
-    return "/view/member/join.jsp";
+    try {
+      request.setCharacterEncoding("utf-8");
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    } 
+    if(request.getSession().getAttribute("memerNickname") == null) {      
+      return "/view/member/join.jsp";
+    }
+    
+    String msg = "";
+    String url = request.getContextPath() + "/board/main"; 
+    return "/view/alert.jsp";
   }
 
   /*
