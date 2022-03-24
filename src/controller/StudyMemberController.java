@@ -329,6 +329,10 @@ public class StudyMemberController extends MskimRequestMapping {
       StudyMemberDao md = new StudyMemberDao();
       StudyMember mem = md.studyMemberOne(memberID);
       request.setAttribute("memberInfo", mem);
+    //유저 평판
+      ReputationEstimateDao rd = new ReputationEstimateDao();
+      List<ReputationEstimate> repList = rd.getReputation(mem.getNickname());
+      request.setAttribute("repList", repList);
     }
 
     request.setAttribute("msg", msg);
