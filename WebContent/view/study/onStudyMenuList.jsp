@@ -235,9 +235,11 @@ a {
 								 
 
 <!-- --------------------------------------------------------------게시판------------------------------------------------------------ -->						
+				<c:if test="${menuid != 8}">
 				<button class="btn btn-info d-block ml-auto">
 					<a href="<%=request.getContextPath()%>/studymenu/onStudyWriteForm" style="color: white;">글쓰기 </a>
 				</button>
+				</c:if>
 				<div class="container d-flex align-content-between flex-wrap">
 				
 				<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
