@@ -31,13 +31,24 @@
     border-radius: 10px;
 }
 
-/*댓글 작성자 날짜*/
-#replyInfo { 
+/* 게시글 , 댓글 작성자 날짜*/
+.postInfo, #replyInfo { 
 	font-size: 15px;
 	font-weight: 600;
 	color : gray;
 
 }
+
+
+/*댓글 textarea 출력시 css*/
+.replyTxt {
+	 word-wrap : break-word; /*영역 넘어가면 줄바꿈하기*/
+	 word-break: break-word; /* 영문의 경우 단어단위로 줄바꿈하기 */
+	
+}
+
+
+
 
 a{
     color:black;
@@ -48,6 +59,7 @@ a:hover{
 .white, .white:hover{
     color:white;
 }
+
 </style>
 </head>
 <body>
@@ -137,7 +149,7 @@ a:hover{
 <!-- --------------------------------------------------------------게시글------------------------------------------------------------ -->
 
 			<div class="col-sm-9">
-				<h1>상세보기</h1>
+				<h2 style = "font-weight: bold;">상세보기</h2>
 				<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
 				<br>
 

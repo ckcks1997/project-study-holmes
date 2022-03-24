@@ -102,10 +102,10 @@ a:hover {
 				<h5>
 					<strong>만든 이</strong>
 				</h5>
-				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
+				<hr align="left" width="170px" style="background-color: #c47100; height:1px;" />
 				<div class="main col-sm-9">
 
-					<div class="d-md-flex shadow-sm container-css p-5">
+					
 						<div class="container">
 							<div class="col-sm-3">
 								<img class="who-img"
@@ -116,60 +116,18 @@ a:hover {
 								<p>류찬혁</p>
 							</div>
 						</div>
-					</div>
+					
 					<br>
 					<br>
 
 
-					<div class="d-md-flex shadow-sm container-css p-5">
-						<div class="container">
-							<div class="col-sm-3">
-								<img class="who-img"
-									src="<%=request.getContextPath()%>/img/whoProfile.jpg"
-									alt="who">
-							</div>
-							<div class="col-sm-9">
-								<p>이재성</p>
-							</div>
-						</div>
-					</div>
-					<br>
-					<br>
+					
 
 
-
-					<div class="d-md-flex shadow-sm container-css p-5">
-						<div class="container">
-							<div class="col-sm-3">
-								<img class="who-img"
-									src="<%=request.getContextPath()%>/img/whoProfile.jpg"
-									alt="who">
-							</div>
-							<div class="col-sm-9">
-
-								<p>김은지</p>
-
-							</div>
-						</div>
-					</div>
-					<br>
-					<br>
+					
 
 
-					<div class="d-md-flex shadow-sm container-css p-5">
-						<div class="container">
-							<div class="col-sm-3">
-								<img class="who-img"
-									src="<%=request.getContextPath()%>/img/whoProfile.jpg"
-									alt="who">
-							</div>
-							<div class="col-sm-9">
-								<p>최준현</p>
-							</div>
-						</div>
-					</div>
-					<br>
-					<br>
+					
 
 				</div>
 			</div>

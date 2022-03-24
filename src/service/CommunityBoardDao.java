@@ -280,12 +280,12 @@ public class CommunityBoardDao {
 	   
 	   
 	   
-	   public List<Community> comBoardmyList1(int pageInt, int limit, int boardcount, String boardid, String nickname) {
+	   public List<Community> comBoardmyList1(int pageInt, int limit, int boardcount, String nickname) {
 			  
 			  SqlSession sqlSession = MybatisConnection.getConnection();
 				try {
 					map.clear();
-					map.put("boardid", boardid);
+					
 					map.put("start", (pageInt-1)*limit+1);
 					map.put("end", pageInt*limit);
 					map.put("nickname", nickname);

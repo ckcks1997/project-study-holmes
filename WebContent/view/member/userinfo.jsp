@@ -91,7 +91,7 @@ a:hover {
                 
                 <br>
                 <br>
-                <div class="col-lg-9">
+                <div class="col-lg-9 mx-auto">
                     <h1>유저 정보</h1>
                     <hr align="left" width="250px" style="border: 0.5px solid #c47100" />
                     <br> 
@@ -121,9 +121,7 @@ a:hover {
                                   </div>
                                   <div class="container m-1">
                                     
-                                    스터디 횟수: 
-                                  </div>
-                                  <div class="container m-1">
+                                    
                                      
                                     가입일: <fmt:formatDate value="${memberInfo.regdate}" pattern="yyyy년 M월 d일"/>
                                   </div>
@@ -151,8 +149,17 @@ a:hover {
                                         </c:choose>
                                         </div>
                                         <div class="col-md-9">
-                                            <p class="my-1">스터디 리더를 23번 했어요 </p>  
-                                            <p class="my-1">스터디원을 12번 했어요 </p>
+                                        <c:choose>
+	                                        <c:when test="${memberInfo.point >= 50}">
+	                                            <p class="my-1">매너 상태가 좋습니다. </p>  
+	                                         </c:when>
+	                                         <c:when test="${memberInfo.point > 30}">
+                                                <p class="my-1">매너 상태가 보통입니다. </p>  
+                                             </c:when>
+                                             <c:otherwise>
+                                                <p class="my-1">매너 상태가 좋지 않습니다. </p>  
+                                             </c:otherwise>
+                                          </c:choose>
                                         </div>
                                     </div>
                                 </div>
@@ -160,9 +167,14 @@ a:hover {
                             <div class="d-md-flex justify-content-center align-items-center col-md-6 px-0">
                                 <div class="container ">
                                     <h5>최근 받은 매너평가 </h5> 
-                                    <c:forEach items="${repList}" var="i" >
-                                        <p class="my-1">${i.info}</p>
-                                    </c:forEach> 
+                                    <c:if test="${repList != null}">
+	                                    <c:forEach items="${repList}" var="i" >
+	                                        <p class="my-1">${i.info}</p>
+	                                    </c:forEach> 
+                                    </c:if>
+                                    <c:if test="${empty repList}">
+                                       아직 매너 정보가 없습니다.
+                                    </c:if>
                                 </div>
                             </div>
                          </div>

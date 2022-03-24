@@ -147,7 +147,7 @@ a:hover {
 				<div class="container">
 					<table class="table">
 						<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
-				
+							<hr align="left" />
 								<p>작성된 글이 없습니다.</p>
 				
 						</c:if>
@@ -168,7 +168,7 @@ a:hover {
 												<p style = "font-size: 15px;">
 													${com.content} 
 												</p> <br />
-												<h6>
+												<h6 style = "color: gray;">
 													<small>${com.nickname} · ${com.regdate} </small>
 												</h6>
 											</a>
