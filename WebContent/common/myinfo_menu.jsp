@@ -80,9 +80,10 @@
 				<div class="dropdown">
   <div class="dropbtn"> 작성한 게시글</div>
   <div class="dropdown-content">
-    <a href="#"><div class="aside-content" onclick="location.href='<%=request.getContextPath()%>/community/myList1'">커뮤니티 게시글</div></a>
-    <a href="#"><div class="aside-content" onclick="location.href='<%=request.getContextPath()%>/studymenu/myList2'">스터디 게시글</div></a>
-
+     <a href="<%=request.getContextPath()%>/community/comBoardmyList1"><div class="aside-content">커뮤니티 게시글</div></a>
+   
+   
+    <a href="<%=request.getContextPath()%>/studymenu/mylist2"><div class="aside-content">스터디 게시글</div></a>
   </div>
 </div>
 

@@ -7,11 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Community;
 import model.GroupMember;
 import model.StudyMember;
 import model.StudyMenu;
-import service.CommunityBoardDao;
 import service.GroupMemberDao;
 import service.NoticeDao;
 import service.StudyMemberDao;
@@ -1512,32 +1510,74 @@ public class StudyMenuController extends MskimRequestMapping {
 	  
 	
 
-	/*
-	 * 내가 쓴 게시물 스터디 게시물
-	 */
 
 	// 내가쓴 커뮤니티 게시글//
-	@RequestMapping("myList2")
-	public String myList2(HttpServletRequest request, HttpServletResponse response) {
-
-		HttpSession session = request.getSession();
-		String nickname = (String) session.getAttribute("memberNickname");
-		StudyMenuDao smd = new StudyMenuDao();
-		List<StudyMenu> list = smd.mylist2(nickname);
-		String msg = "로그인이 필요합니다";
-		String url = request.getContextPath() + "/studymember/loginForm";
 	
-		if (session.getAttribute("memberNickname") != null) {
-			request.setAttribute("list", list);
-			return "/view/study/myList2.jsp";
-		}
+			  @RequestMapping("mylist2") 
+				public String mylist2(HttpServletRequest request, 
+						HttpServletResponse response) {
 
-		request.setAttribute("msg", msg);
-		request.setAttribute("url", url);
-
-		return "/view/main.jsp";
-	}
-
+				HttpSession session = request.getSession();
+				String nickname = (String) session.getAttribute("memberNickname");
+				String menuid = "";
+				int pageInt = 1;
+				int limit = 4;
+				
+				if (request.getParameter("menuid") !=null) {
+					session.setAttribute("menuid", request.getParameter("menuid"));
+					session.setAttribute("pageNum", "1");
+				}
+				
+				menuid = (String) session.getAttribute("menuid");
+				
+				if (menuid==null) { 
+					menuid = "1"; 
+					}
+				 
+				
+				if (request.getParameter("pageNum") !=null) {
+					session.setAttribute("pageNum", request.getParameter("pageNum"));
+				}
+				
+				  String pageNum =(String)session.getAttribute("pageNum");
+				  if(pageNum == null) {
+					  pageNum = "1";
+				  }
+				  
+				pageInt = Integer.parseInt(pageNum);
+				
+				StudyMenuDao sd = new StudyMenuDao();
+				int menucount = sd.menuCount(menuid);
+				List<StudyMenu> list = sd.mylist2(pageInt, limit, menucount, menuid, nickname);
+				
+				
+				int menunum = menucount - (pageInt -1) * limit;
+				
+				
+				int bottomLine = 3;
+				int startPage = (pageInt -1 )/ bottomLine * bottomLine + 1;
+				int endPage = startPage + bottomLine -1;
+				int maxPage = (menucount / limit) + (menucount % limit == 0 ? 0 : 1);
+				if (endPage > maxPage) endPage = maxPage;
+				
+				
+				String menuName = "스터디 게시물";
+				
+				request.setAttribute("menuName", menuName);
+				request.setAttribute("menuid", menuid);
+				request.setAttribute("pageInt", pageInt);
+				request.setAttribute("menucount", menucount);
+				request.setAttribute("list", list);
+				request.setAttribute("menunum", menunum);
+				request.setAttribute("startPage", startPage);
+				request.setAttribute("bottomLine", bottomLine);
+				request.setAttribute("endPage", endPage);
+				request.setAttribute("maxPage", maxPage);
+				
+				
+				
+				return "/view/study/myList2.jsp";
+			 }
 
 	/*---------------------------------------------------------------------------*/
 	// 스터디 참가신청 버튼을 누를 때

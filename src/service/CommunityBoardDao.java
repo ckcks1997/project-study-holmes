@@ -275,33 +275,28 @@ public class CommunityBoardDao {
 	   
 	   
 	   
-	   public List<Community> mylist1(String nickname) {
-	         
-	         SqlSession sqlSession = MybatisConnection.getConnection();
-	           try {                 
-	           return sqlSession.selectList(NS+"mylist1",nickname);
-	           } catch (Exception e) {
-	               e.printStackTrace();
-	           } finally {
-	               MybatisConnection.close(sqlSession);
-	           } 
-	           return null;
-	     }
+
 	   
 	   
 	   
 	   
-	   public List<Community> comBoardmyList1(String boardid) {
-	         
-	         SqlSession sqlSession = MybatisConnection.getConnection();
-	           try {                 
-	           return sqlSession.selectList(NS+"comBoardmyList1",boardid);
-	           } catch (Exception e) {
-	               e.printStackTrace();
-	           } finally {
-	               MybatisConnection.close(sqlSession);
-	           } 
-	           return null;
-	     }
+	   public List<Community> comBoardmyList1(int pageInt, int limit, int boardcount, String boardid, String nickname) {
+			  
+			  SqlSession sqlSession = MybatisConnection.getConnection();
+				try {
+					map.clear();
+					map.put("boardid", boardid);
+					map.put("start", (pageInt-1)*limit+1);
+					map.put("end", pageInt*limit);
+					map.put("nickname", nickname);
+	
+				return sqlSession.selectList(NS+"comBoardmyList1",map);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					MybatisConnection.close(sqlSession);
+				} 
+				return null;
+		  }
 	   
 }

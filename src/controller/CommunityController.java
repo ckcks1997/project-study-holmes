@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.File;
-import java.net.http.HttpRequest;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -232,9 +231,10 @@ public class CommunityController extends MskimRequestMapping{
 	@RequestMapping("comBoardmyList1")
 	   public String comBoardmyList1(HttpServletRequest request, HttpServletResponse response) {
 		  HttpSession session = request.getSession();
+		  String nickname = (String) session.getAttribute("memberNickname");
 		  String boardid = "";
 		  int pageInt = 1;
-		  int limit = 4;
+		  int limit = 3;
 		  
 		  if(request.getParameter("boardid")!= null) {
 			  session.setAttribute("boardid", request.getParameter("boardid"));
@@ -259,7 +259,7 @@ public class CommunityController extends MskimRequestMapping{
 		  
 		  CommunityBoardDao cbd = new CommunityBoardDao();
 		  int boardcount = cbd.comBoardCount(boardid);
-		  List<Community> list = cbd.comBoardList(pageInt, limit, boardcount, boardid);
+		  List<Community> list = cbd.comBoardmyList1(pageInt, limit, boardcount, boardid, nickname);
 		  int boardnum = boardcount - limit * (pageInt-1);
 		  int bottomLine = 3;
 		  int startPage = (pageInt-1)/bottomLine * bottomLine + 1;
@@ -283,7 +283,7 @@ public class CommunityController extends MskimRequestMapping{
 
 		  
 		  
-	    return "/view/community/comBoardList.jsp";
+	    return "/view/community/myList1.jsp";
 	  }
 	
 	
@@ -545,27 +545,7 @@ public class CommunityController extends MskimRequestMapping{
   
   
   
-  //내가쓴 커뮤니티 게시글//
-  @RequestMapping("myList1")
-  public String myList1(HttpServletRequest request,  HttpServletResponse response) {
-	  
-	  HttpSession session = request.getSession();
-	  String nickname = (String) session.getAttribute("memberNickname");
-	  CommunityBoardDao cbd = new CommunityBoardDao();
-	  List<Community> list = cbd.mylist1(nickname);
-	  String msg = "로그인이 필요합니다";
-	  String url = request.getContextPath()+"/studymember/loginForm";
-	  
-	  if(session.getAttribute("memberNickname")!= null) {
-		  request.setAttribute("list",list);
-		return "/view/community/myList1.jsp";
-	  }
-	  
-	  request.setAttribute("msg", msg);
-	  request.setAttribute("url", url);
-	  
-	 return "/view/main.jsp";
-  }
+ 
   
   
   
