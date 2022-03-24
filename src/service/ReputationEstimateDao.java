@@ -28,7 +28,17 @@ public class ReputationEstimateDao {
 	}
 	
 	
-	
+	public List<ReputationEstimate> getReputation(String nick) {
+      SqlSession sqlSession = MybatisConnection.getConnection();
+      try {
+          return sqlSession.selectList(NS + "getReputation", nick);
+      } catch (Exception e) {
+          e.printStackTrace();
+      } finally {
+          MybatisConnection.close(sqlSession);
+      }
+      return null;
+  }
 	 
 }
 

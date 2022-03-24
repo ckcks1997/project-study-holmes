@@ -16,11 +16,13 @@ import com.oreilly.servlet.MultipartRequest;
 import model.GroupMember;
 import model.MemberTag;
 import model.Notice;
+import model.ReputationEstimate;
 import model.StudyMember;
 import model.StudyMenu;
 import service.GroupMemberDao;
 import service.MemberTagDao;
 import service.NoticeDao;
+import service.ReputationEstimateDao;
 import service.StudyMemberDao;
 import service.StudyMenuDao;
 
@@ -535,6 +537,27 @@ public class StudyMemberController extends MskimRequestMapping {
  
  
     return "/view/member/mywrite_study.jsp"; 
+  }
+  
+  /*
+   * 마이페이지
+   * */
+  @RequestMapping("userinfo")
+  public String userinfo(HttpServletRequest request, HttpServletResponse response) {
+    
+    HttpSession session = request.getSession();
+    
+    //유저정보
+      String usernick = request.getParameter("usernick");
+      StudyMemberDao md = new StudyMemberDao();
+      StudyMember mem = md.studyMemberOneByNick(usernick);
+      request.setAttribute("memberInfo", mem);
+      //유저 평판
+      ReputationEstimateDao rd = new ReputationEstimateDao();
+      List<ReputationEstimate> repList = rd.getReputation(usernick);
+      request.setAttribute("repList", repList);
+      
+    return "/view/member/userinfo.jsp";
   }
   
 }

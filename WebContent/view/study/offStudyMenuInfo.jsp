@@ -38,7 +38,12 @@
 	color : gray;
 
 }
-
+a{
+    color:black;
+}
+a:hover{
+    color:black;
+}
 </style>
 </head>
 <body>
@@ -91,7 +96,7 @@
 				</h6>
 				<br>
 				<h6>
-					<small>&nbsp; 작성자: <span>${s.nickname}</span>
+					<small>&nbsp; 작성자: <a href="<%=request.getContextPath()%>/studymember/userinfo?usernick=${s.nickname}"> <span>${s.nickname}</span></a>
 					</small>
 				</h6>
 				<br>
@@ -120,7 +125,7 @@
 				</div>
 				<div class="postInfo">
 					<p>
-						${s.nickname} · ${s.regdate}
+						<a href="<%=request.getContextPath()%>/studymember/userinfo?usernick=${s.nickname}"> ${s.nickname}</a> · ${s.regdate}
 
 
 						<c:if test="${loginNick eq s.nickname}">

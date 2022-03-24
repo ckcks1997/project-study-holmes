@@ -124,6 +124,7 @@ public class GroupStudyController extends MskimRequestMapping {
     String nickname = (String) request.getSession().getAttribute("memberNickname");
     String nickname_to = request.getParameter("nickname");
     int score = Integer.parseInt(request.getParameter("score_value"));
+    String info_value = request.getParameter("info_value");
     String msg= "로그인이 필요합니다";
     String url= "main"; //main으로 보내기, alert.jsp파일 참고
     
@@ -137,6 +138,7 @@ public class GroupStudyController extends MskimRequestMapping {
       re.setNickname_from(nickname);
       re.setNickname_to(nickname_to);
       re.setScore(score);
+      re.setInfo(info_value);
       rd.insertReputation(re);
       
       //회원정보에 점수 추가

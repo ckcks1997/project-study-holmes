@@ -162,6 +162,7 @@ create table reputation_estimate
     group_num number,
     nickname_to  VARCHAR2(30),
     nickname_from  VARCHAR2(30),
-    didit number,
+    score number,
+     info  VARCHAR2(1000),
     regdate date
 );

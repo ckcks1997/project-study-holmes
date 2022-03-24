@@ -132,6 +132,9 @@ h1, h3, h5 {
 		                               </select>
 			                        </div>
 			                        <div class="col">
+                                        <input id="info_${i.nickname}" class="form-control" type="text" name="info">
+                                    </div>
+			                        <div class="col">
 			                             <button class="btn btn-danger" id="btn_${i.nickname}" onclick="score_submit('${i.nickname}')">평가</button>
 			                        </div>
 				              </div>
@@ -148,9 +151,11 @@ h1, h3, h5 {
  <script>
  function score_submit(nickname){
 	 let score_value = document.querySelector('#score_'+nickname).value;
+	 let info_value = document.querySelector('#info_'+nickname).value;
 	 let str = {
 			 "nickname" : nickname,
-			 "score_value" : score_value
+			 "score_value" : score_value,
+			 "info_value" : info_value
 	 }
 	 $.ajax({ 
 	        type: "post",
