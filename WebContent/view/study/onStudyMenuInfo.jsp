@@ -88,7 +88,7 @@
 				</h6>
 				<br>
 				<h6>
-					<small>&nbsp; 작성자: <span>${s.nickname}</span> 
+					<small>&nbsp; 작성자: <a href="<%=request.getContextPath()%>/studymember/userinfo?usernick=${s.nickname}"> <span>${s.nickname}</span></a> 
 					</small>
 				</h6>
 				<br>
