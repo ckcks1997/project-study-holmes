@@ -164,8 +164,8 @@ input[type=text]:placeholder {
 
 			<!-- Icon -->
 			<div class="fadeIn first px-4 py-4 text-left">
-				<h1>로그인</h1>
-				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
+				<h2><strong>로그인</strong></h2>
+				<hr align="left" width="130px" style="background-color: #c47100; height:1px;" />
 			</div>
 
 			<!-- Login Form -->

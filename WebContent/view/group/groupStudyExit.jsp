@@ -103,8 +103,8 @@ h1, h3, h5 {
             
 			<br> <br>
 			<div class="col-lg-9 mx-auto">
-				<h1>스터디 평가</h1>
-				<hr align="left" width="300px" style="border: 0.5px solid #c47100" />
+				<h2>스터디 평가</h2>
+				<hr align="left" width="200px" style="background-color: #c47100; height:1px;" />
 				<br>
 				<div class="container container-css  p-5">
 				<h3> 그룹원 평가 </h3>

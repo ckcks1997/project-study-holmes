@@ -56,7 +56,7 @@ a:hover {
             .font-sm{
                 font-size: 0.8rem;
             }
-            h1,h3,h5{
+            h2,h3,h5{
                 font-weight: bold;
             }
             .container-css{
@@ -92,8 +92,8 @@ a:hover {
                 <br>
                 <br>
                 <div class="col-lg-9 mx-auto">
-                    <h1>유저 정보</h1>
-                    <hr align="left" width="250px" style="border: 0.5px solid #c47100" />
+                    <h2>유저 정보</h2>
+                    <hr align="left" width="150px" style="background-color: #c47100; height:1px;" />
                     <br> 
                      
                      <div class="container shadow-sm container-css p-5">

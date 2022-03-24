@@ -193,9 +193,9 @@ function win_upload(){
 		<div id="formContent">
 
 			<div class=" first px-4 pt-4 text-left">
-				<h1>회원가입</h1>
+				<h2><strong>회원가입</strong></h2>
 				<p>스터디 홈즈에서 가치를 높이세요</p>
-				<hr align="left" width="300px" style="border: 0.5px solid #c47100" />
+				<hr align="left" width="250px" style="background-color: #c47100; height:1px;" />
 			</div>
 			 
 

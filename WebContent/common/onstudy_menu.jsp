@@ -52,7 +52,7 @@ a:hover {
 	<aside class="col-sm-3">
                 <div class="col aside">
 	                <div class="mb-3">
-	                    <h3 >스터디</h3> 
+	                    <h4><strong>스터디</strong></h4> 
 	                </div>
                     <div class="aside-content">
                         <a href="<%=request.getContextPath()%>/studymenu/onStudyMenuList?menuid=8">

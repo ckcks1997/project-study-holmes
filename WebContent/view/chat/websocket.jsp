@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <style>
-h1, h3, h5 {
+h2, h3, h5 {
     font-weight: bold;
 }
 /* 명언 */
@@ -134,8 +134,8 @@ max-width:100px;
     <div class="container">
     <br>
     <div class="col-6 mx-auto">
-        <h1>채팅방</h1>
-        <hr align="left" width="150px" style="border: 0.5px solid #c47100" />
+        <h2>채팅방</h2>
+        <hr align="left" width="130px" style="background-color: #c47100; height:1px;" />
  
     </div>
     

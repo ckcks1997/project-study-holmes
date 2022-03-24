@@ -174,8 +174,8 @@ a {
 <!-- --------------------------------------------------------------메인------------------------------------------------------------ -->		
 			
 			<div class="col-sm-9">
-				<h2 style = "font-weight: bold;">>온오프라인 스터디</h2>
-				<hr align="left" width="170px" style="background-color: #c47100; height:1px;" />
+				<h2><strong>온·오프라인 스터디</strong></h2>
+				<hr align="left" width="350px" style="background-color: #c47100; height:1px;" />
 				<br>
 				<h4>${menuName}</h4>
 				 

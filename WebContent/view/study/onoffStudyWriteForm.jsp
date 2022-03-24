@@ -82,10 +82,9 @@ body {
 
 <!-- --------------------------------------------------------------게시글------------------------------------------------------------ -->				
 			<div class="main col-sm-9">
-				<h1>스터디 모집</h1>
+				<h2><strong>스터디 모집</strong></h2>
 		
-				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
-
+				<hr align="left" width="170px" style="background-color: #c47100; height:1px;" />
 
 				<form name="mf"
 					action="<%=request.getContextPath()%>/studymenu/onoffWritePro"

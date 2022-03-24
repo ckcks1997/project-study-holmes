@@ -103,7 +103,7 @@ a:hover{
 							test="${s.menuid =='7'}"> 교양</c:if> </small>
 				</h6>
 				<br>
-				<h3>${s.title}</h3>
+				<h4>${s.title}</h4>
 				<h6>
 				<c:choose>
 					<c:when test="${repVal.point > 50  }">
@@ -149,10 +149,10 @@ a:hover{
 
 			<div class="col-sm-9">
 				<h2 style = "font-weight: bold;">상세보기</h2>
-				<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
+				<hr align="left" width="150px" style="background-color: #c47100; height:1px;" />
 				<br>
                 
-				<h2>${s.title}</h2> 
+				<h4>${s.title}</h4> 
 				<div class="container p-0 my-2 bg-white text-white">
                     <hr>
 				</div>
@@ -165,7 +165,7 @@ a:hover{
 							<span class="txt_bar">|</span>
 							<a
 								href="<%=request.getContextPath()%>/studymenu/offStudyUpdateForm?board_num=${s.board_num}"
-								style="color: gray;"> 수정</a>
+								style = "color: gray"> 수정</a>
 						</c:if>
 					</p>
 				</div>
@@ -178,9 +178,10 @@ a:hover{
 
 <!-- --------------------------------------------------------------지도------------------------------------------------------------ -->
 
-                <h3>스터디 장소</h3>
-                주소: ${s.region}
-                <br>
+				
+                <h6><strong>스터디 장소</strong></h6>
+                <p style= "font-size: 15px;">주소: ${s.region}</p>
+                
 				<div class="container ">
 					<div class="c-border" id="map" style="width: 70%; height: 300px;"></div>	 
 				</div>

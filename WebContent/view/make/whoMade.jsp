@@ -55,7 +55,13 @@ a:hover {
 	border-radius: 20px;
 }
 
+.whomade {
+	justify-content:space-between;
+	align-items: center;
+}
+
 .who-img {
+	
 	float: left;
 	top: 10%;
 	right: 5%;
@@ -64,6 +70,20 @@ a:hover {
 	height: auto;
 	border-radius: 10px;
 }
+
+.txt {
+	font-weight: bold;
+	
+	
+}
+
+.name {
+	
+	font-size: 14px;
+	
+}
+
+
 </style>
 <body>
 
@@ -107,15 +127,38 @@ a:hover {
 
 					
 						<div class="container">
-							<div class="col-sm-3">
+						<div class = "row whomade">
+							<div class="profile">
 								<img class="who-img"
 									src="<%=request.getContextPath()%>/img/whoProfile.jpg"
 									alt="who">
 							</div>
-							<div class="col-sm-9">
-								<p>류찬혁</p>
+							<div class="txt">
+								<br>
+								<br>
+								<p>KIC캠퍼스에서 자바 웹개발자 과정을 듣고 있는 학생들이
+								<br>
+							 	프로토타입 제작부터 약 2주간 만든 프로젝트입니다.</p>
+								
+								<p>관심갖고 봐주셔서 감사합니다!</p>
+							
+							
+								<div class = "name">
+								<br>	
+								<p>류찬혁 · 이재성 · 김은지 · 최준현
+								<br>	
+								 22/03/10 ~ 22/03/25</p>						 
+							
+								</div>
+							
 							</div>
+							
+							
+							</div>							
 						</div>
+					
+						
+					
 					
 					<br>
 					<br>

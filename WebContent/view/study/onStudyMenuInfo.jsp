@@ -150,10 +150,11 @@ a:hover{
 
 			<div class="col-sm-9">
 				<h2 style = "font-weight: bold;">상세보기</h2>
-				<hr align="left" width="250px" style="border: 0.5px solid #c47100" />
+				<hr align="left" width="150px" style="background-color: #c47100; height:1px;" />
+				
 				<br>
 
-				<h2>${s.title}</h2>
+				<h4>${s.title}</h4>
 				<div class="container p-0 my-2 bg-white text-white">
                     <hr>
 				</div>
@@ -166,7 +167,7 @@ a:hover{
 							<span class="txt_bar">|</span>
 							<a
 								href="<%=request.getContextPath()%>/studymenu/onStudyUpdateForm?board_num=${s.board_num}"
-								style="color: gray;"> 수정</a>
+							style = "color: gray">수정</a>
 						</c:if>
 					</p>
 				</div>

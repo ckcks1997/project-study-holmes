@@ -69,7 +69,7 @@ a:hover {
             .font-sm{
                 font-size: 0.8rem;
             }
-            h1,h3,h5{
+            h2,h3,h5{
                 font-weight: bold;
             }
             .container-css{
@@ -119,8 +119,8 @@ a:hover {
            <%@include file="/common/myinfo_menu.jsp" %>
 
 			<div class="col-lg-9">
-				<h1>커뮤니티 게시글</h1>
-				<hr align="left" width="350px" style="border: 0.5px solid #c47100" />
+				<h2>커뮤니티 게시글</h2>
+				<hr align="left" width="250px" style="background-color: #c47100; height:1px;" />
 			
 			
 				
@@ -150,13 +150,13 @@ a:hover {
 											<a
 												href="<%=request.getContextPath() %>/community/comBoardInfo?board_num=${com.board_num}"
 												style="color: black">
-												<h4>
-													<strong>${com.title}</strong>
-												</h4>
-												<h5>
-													<small>${com.content} </small>
-												</h5> <br />
-												<h6>
+												<p style = "font-size: 17px; font-weight: bold;">
+													${com.title}
+												</p>
+												<p style = "font-size: 15px;">
+													${com.content} 
+												</p> <br />
+												<h6 style = "color: gray;">
 													<small>${com.nickname} · ${com.regdate} </small>
 												</h6>
 											</a>

@@ -36,7 +36,7 @@ a:hover {
     text-decoration: none;
 }
 
-h1, h3, h5 {
+h2, h3, h5 {
 	font-weight: bold;
 }
 
@@ -91,8 +91,8 @@ h1, h3, h5 {
             
 			<br> <br>
 			<div class="col-lg-9">
-				<h1>프로필 정보</h1>
-				<hr align="left" width="300px" style="border: 0.5px solid #c47100" />
+				<h2>프로필 정보</h2>
+				<hr align="left" width="250px" style="background-color: #c47100; height:1px;" />
 				<br>
 				<div class="container container-css  p-5">
 					<h5>닉네임</h5>

@@ -28,8 +28,8 @@
                 <br>
                 <br>
                 <div class="col-9 mx-auto">
-                    <h1>알림 목록 상세</h1>
-                    <hr align="left" width="320px" style="border: 0.5px solid #c47100" />
+                    <h2><strong>알림 목록 상세</strong></h2>
+                   <hr align="left" width="250px" style="background-color: #c47100; height:1px;" />
                     <br> 
                      
                      <div class="container shadow-sm container-css p-5 ">

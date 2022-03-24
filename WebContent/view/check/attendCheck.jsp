@@ -141,8 +141,8 @@ background-image : url("http://localhost:7498/study-homles-mvc2/img/check.jpeg")
 		<div class="row pt-5">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-8">
-				<h1>출석체크</h1>
-				<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
+				<h2><strong>출석체크</strong></h2>
+				<hr align="left" width="170px" style="background-color: #c47100; height:1px;" />
 				<br />
 
 				<div class="calendar">

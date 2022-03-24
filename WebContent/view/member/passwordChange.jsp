@@ -163,8 +163,8 @@ input[type=text]:placeholder {
 
 			<!-- Icon -->
 			<div class="fadeIn first px-4 py-4 text-left">
-				<h1>비밀번호 변경</h1>
-				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
+				<h2>비밀번호 변경</h2>
+				<hr align="left" width="200px" style="background-color: #c47100; height:1px;" />
 			</div>
 
 			<!-- Login Form -->
