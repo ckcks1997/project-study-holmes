@@ -9,12 +9,12 @@ import javax.servlet.http.HttpSession;
 
 import model.Community;
 import model.GroupMember;
-
+import model.StudyMember;
 import model.StudyMenu;
 import service.CommunityBoardDao;
 import service.GroupMemberDao;
 import service.NoticeDao;
-
+import service.StudyMemberDao;
 import service.StudyMenuDao;
 
 //WebServlet("/studymenu/*")
@@ -1215,7 +1215,12 @@ public class StudyMenuController extends MskimRequestMapping {
 		HttpSession session = request.getSession();
 		String loginNick = (String) session.getAttribute("memberNickname");
 		request.setAttribute("loginNick", loginNick);
-
+		
+        // 닉네임으로 평판 가져오기
+        StudyMemberDao sd = new StudyMemberDao();
+        StudyMember repVal = sd.getPoint(s.getNickname());
+        request.setAttribute("repVal", repVal);
+        
 		return "/view/study/onStudyMenuInfo.jsp";
 	}
 
@@ -1231,7 +1236,12 @@ public class StudyMenuController extends MskimRequestMapping {
 		HttpSession session = request.getSession();
 		String loginNick = (String) session.getAttribute("memberNickname");
 		request.setAttribute("loginNick", loginNick);
-
+		
+		// 닉네임으로 평판 가져오기
+		StudyMemberDao sd = new StudyMemberDao();
+		StudyMember repVal = sd.getPoint(s.getNickname());
+		request.setAttribute("repVal", repVal);
+		
 		return "/view/study/offStudyMenuInfo.jsp";
 	}
 
@@ -1247,7 +1257,12 @@ public class StudyMenuController extends MskimRequestMapping {
 		HttpSession session = request.getSession();
 		String loginNick = (String) session.getAttribute("memberNickname");
 		request.setAttribute("loginNick", loginNick);
-
+		
+        // 닉네임으로 평판 가져오기
+        StudyMemberDao sd = new StudyMemberDao();
+        StudyMember repVal = sd.getPoint(s.getNickname());
+        request.setAttribute("repVal", repVal);
+        
 		return "/view/study/onoffStudyMenuInfo.jsp";
 	}
 	

@@ -17,5 +17,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ) A 
         where rownum &lt; 4
     </select>
-
+ 
 </mapper>

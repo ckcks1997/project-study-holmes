@@ -49,7 +49,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update study_member set point = #{point} where nickname=#{nickname}
     </update> 
 
-	
+	<select id="getPoint" parameterType="string" resultType="studymember">
+	   select * from study_member where nickname = #{nickname}
+	</select>
 
 
 </mapper>

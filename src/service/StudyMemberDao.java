@@ -173,5 +173,17 @@ public class StudyMemberDao {
     return 0;
   }
   
-  
+ public StudyMember getPoint(String nickname) {
+    
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try {  
+      return sqlSession.selectOne(NS + "getPoint", nickname); 
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MybatisConnection.close(sqlSession);
+    }
+
+    return null;
+  }
 }

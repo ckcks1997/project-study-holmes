@@ -91,8 +91,27 @@ a:hover{
 				<br>
 				<h3>${s.title}</h3>
 				<h6>
-					<small> &#11088;&#11088;&#11088;&#11088;&#11088; 85점 11명의
-						평가 · 20번의 스터디 경험 </small>
+				<c:choose>
+					<c:when test="${repVal.point > 50  }">
+						<small> &#11088;&#11088;&#11088;&#11088;&#11088;   ${repVal.point}점 </small>
+					 </c:when>
+					 <c:when test="${repVal.point > 40  }">
+	                    <small> &#11088;&#11088;&#11088;&#11088;  ${repVal.point}점  </small>
+	                 </c:when>
+	                 <c:when test="${repVal.point > 30  }">
+                        <small> &#11088;&#11088;&#11088;  ${repVal.point}점  </small>
+                     </c:when>
+                     <c:when test="${repVal.point > 20  }">
+                        <small> &#11088;&#11088;  ${repVal.point}점  </small>
+                     </c:when>
+                     <c:when test="${repVal.point > 10  }">
+                        <small> &#11088; ${repVal.point}점  </small>
+                     </c:when>
+	                  <c:otherwise>
+					  점수가 없습니다.
+					 </c:otherwise>
+				</c:choose>
+
 				</h6>
 				<br>
 				<h6>
