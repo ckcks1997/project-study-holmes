@@ -537,6 +537,22 @@ public class StudyMemberController extends MskimRequestMapping {
     return "/view/member/mywrite_study.jsp"; 
   }
   
+  /*
+   * 마이페이지
+   * */
+  @RequestMapping("userinfo")
+  public String userinfo(HttpServletRequest request, HttpServletResponse response) {
+    
+    HttpSession session = request.getSession();
+    
+      String usernick = request.getParameter("usernick");
+      StudyMemberDao md = new StudyMemberDao();
+      StudyMember mem = md.studyMemberOneByNick(usernick);
+      request.setAttribute("memberInfo", mem);
+
+    return "/view/member/userinfo.jsp";
+  }
+  
 }
 
 

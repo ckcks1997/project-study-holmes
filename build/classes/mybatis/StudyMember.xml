@@ -9,6 +9,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="string">
 		select * from study_member where email=#{value}
 	</select> 
+	
+	
+	   <select id="studyMemberOneByNick" resultType="studymember"
+        parameterType="string">
+        select * from study_member where nickname=#{value}
+    </select> 
+    
     <select id="studyMembeByNickname" resultType="studymember"
         parameterType="string">
         select * from study_member where nickname=#{value}
