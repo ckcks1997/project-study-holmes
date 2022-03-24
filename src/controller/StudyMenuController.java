@@ -1548,7 +1548,7 @@ public class StudyMenuController extends MskimRequestMapping {
 				
 				StudyMenuDao sd = new StudyMenuDao();
 				int menucount = sd.menuCount(menuid);
-				List<StudyMenu> list = sd.mylist2(pageInt, limit, menucount, menuid, nickname);
+				List<StudyMenu> list = sd.mylist2(pageInt, limit, menucount, nickname);
 				
 				
 				int menunum = menucount - (pageInt -1) * limit;

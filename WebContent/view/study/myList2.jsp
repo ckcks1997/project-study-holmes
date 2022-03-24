@@ -74,6 +74,8 @@ li>a {
 	color: rgb(10, 10, 10);
 }
 
+
+
 a:hover {
 	text-decoration: none;
 }

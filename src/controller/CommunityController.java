@@ -259,7 +259,7 @@ public class CommunityController extends MskimRequestMapping{
 		  
 		  CommunityBoardDao cbd = new CommunityBoardDao();
 		  int boardcount = cbd.comBoardCount(boardid);
-		  List<Community> list = cbd.comBoardmyList1(pageInt, limit, boardcount, boardid, nickname);
+		  List<Community> list = cbd.comBoardmyList1(pageInt, limit, boardcount, nickname);
 		  int boardnum = boardcount - limit * (pageInt-1);
 		  int bottomLine = 3;
 		  int startPage = (pageInt-1)/bottomLine * bottomLine + 1;

@@ -142,7 +142,7 @@
 	<!-- 내가 쓴 게시물 리스트 -->
 <select id="mylist2" resultType="studymenu" parameterType="map">
 		select * from ( select rownum rnum, a.* from (
-		select * from study_menu where menuid = #{menuid} and nickname = #{nickname} order by board_num desc) a)
+		select * from study_menu where nickname = #{nickname} order by board_num desc) a)
 		where rnum BETWEEN #{start} and #{end}
 	</select>
 	

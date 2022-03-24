@@ -429,11 +429,11 @@ public class StudyMenuDao {
 	 }	 
 	 
 	
-	 public List<StudyMenu> mylist2(int pageInt, int limit, int menucount, String menuid, String nickname) {
+	 public List<StudyMenu> mylist2(int pageInt, int limit, int menucount, String nickname) {
 			SqlSession sqlSession = MybatisConnection.getConnection();
 			try {
 				map.clear();
-				map.put("menuid", menuid);
+				
 				map.put("start", (pageInt - 1) * limit + 1);
 				map.put("end", pageInt * limit);
 				map.put("nickname",nickname);
