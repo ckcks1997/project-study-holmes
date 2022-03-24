@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <title>로그인</title>
 <style>
 
@@ -179,16 +180,18 @@ input[type=text]:placeholder {
 			</form>
 
 			<!-- Remind Passowrd -->
-			<%--
+			
             <div id="formFooter">
                 <h5>간편 회원가입</h5>
                 <p>SNS 계정으로 간편하게 로그인하세요</p>
                 <div class="container d-inline-flex justify-content-center sns-bg">
-                    <a class="underlineHover login-font" href="#" >구글 로그인</a> &nbsp;|&nbsp;
-                    <a class="underlineHover login-font" href="#" >네이버 로그인</a>
+                    <a class="underlineHover login-font" href="javascript:kakaoLogin();" >카카오 로그인</a> 
+                     
                 </div>
             </div>
- --%>
+		    <form action="<%=request.getContextPath()%>/studymember/kakaologin" method="post" name="lfrm" hidden>
+		        <input type="text" name="kakaoemail" id="kakaoemail" value="" />
+		    </form>
 		</div>
 	</div>
 
@@ -196,6 +199,35 @@ input[type=text]:placeholder {
 	<br />
 	<br />
 	<br />
+<script>
+        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+        window.Kakao.init('a5372162b2eb56a4c9831bbd9732f6a3');
+
+        // SDK 초기화 여부를 판단합니다.
+        console.log(Kakao.isInitialized());
+        
+        function kakaoLogin(){
+            window.Kakao.Auth.login({
+                scope:'account_email',
+                success: function(authObj){
+                    //console.log(authObj);
+                    window.Kakao.API.request({
+                        url: '/v2/user/me',
+                        success: res => {
+                            const email = res.kakao_account.email; 
+
+                            console.log(email); 
+
+                            $('#kakaoemail').val(email); 
+                            document.lfrm.submit();
+                        }
+                    });
+
+                }
+            });
+        }
+    </script>
+
 
 </body>
 </html>
