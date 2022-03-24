@@ -190,11 +190,13 @@ a {
 							<div class="d-flex flex-row align-items-center">
 								 
 									<select class="custom-select" name="part">
-									    <option value="title">제목</option>						
+									    <option value="title">제목</option>
+									    <option value="content">내용</option>
+									    <option value="nickname">작성자</option>						
 									</select>
 								 
 								    <div class="d-flex flex-row">
-									<input type="text" class="form-control rounded"
+									<input type="text" class="form-control rounded text-css"
 										placeholder="Search" aria-label="Search"
 										aria-describedby="search-addon" name="searchData" required="required"/> 
 								    <input type="submit" class="input-group-text border-0" value="검색"> 
@@ -213,7 +215,9 @@ a {
 							<div class="d-flex flex-row align-items-center">
 								 
 									<select class="custom-select" name="part">
-									    <option value="title">제목</option>						
+									      <option value="title">제목</option>
+									      <option value="content">내용</option>
+									      <option value="nickname">작성자</option>							
 									</select>
 								 
 								    <div class="d-flex flex-row">
@@ -231,37 +235,68 @@ a {
 						
 								 
 <!-- --------------------------------------------------------------지역태그------------------------------------------------------------ -->						
+					
+					
+				<c:if test="${menuid eq 1 }">
+					
 					<div>
 						<div class="d-flex align-items-end rounded mt-2" method="post">
 						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
-						<input type="hidden" aria-label="Search" name="part" value="region">
-						<input type="hidden" aria-label="Search" name="searchData" value="서울">
-					    <input type="submit" class="tagbox" value="#서울"> 
+							<form action = "<%=request.getContextPath()%>/studymenu/offAllSearch" method="post">															
+								<input type="hidden" aria-label="Search" name="part" value="region">
+								<input type="hidden" aria-label="Search" name="searchData" value="서울">
+					   			<input type="submit" class="tagbox" value="#서울"> 
+							</form>
+						
+							<form action = "<%=request.getContextPath()%>/studymenu/offAllSearch" method="post">															
+								<input type="hidden" aria-label="Search" name="part" value="region">
+								<input type="hidden" aria-label="Search" name="searchData" value="경기">
+					    		<input type="submit" class="tagbox" value="#경기"> 
+							</form>
+						
+							<form action = "<%=request.getContextPath()%>/studymenu/offAllSearch" method="post">															
+								<input type="hidden" aria-label="Search" name="part" value="region">
+								<input type="hidden" aria-label="Search" name="searchData" value="부산">
+					    		<input type="submit" class="tagbox" value="#부산"> 
+							</form>
+												
+							<div class="tagbox tagbox-etc">
+								<a href="#">...</a>
+							</div>								
+						</div>
+					</div>									
+				</c:if>		
+							
+				<c:if test="${menuid != 1}">	
+				
+					<div>
+						<div class="d-flex align-items-end rounded mt-2" method="post">
+						
+						<form action = "<%=request.getContextPath()%>/studymenu/offSearch" method="post">															
+							<input type="hidden" aria-label="Search" name="part" value="region">
+							<input type="hidden" aria-label="Search" name="searchData" value="서울">
+					   	 	<input type="submit" class="tagbox" value="#서울"> 
 						</form>
 						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
-						<input type="hidden" aria-label="Search" name="part" value="region">
-						<input type="hidden" aria-label="Search" name="searchData" value="경기">
-					    <input type="submit" class="tagbox" value="#경기"> 
+						<form action = "<%=request.getContextPath()%>/studymenu/offSearch" method="post">															
+							<input type="hidden" aria-label="Search" name="part" value="region">
+							<input type="hidden" aria-label="Search" name="searchData" value="경기">
+					    	<input type="submit" class="tagbox" value="#경기"> 
 						</form>
 						
-						<form action = "<%=request.getContextPath()%>/studymenu/studySearch" method="post">															
-						<input type="hidden" aria-label="Search" name="part" value="region">
-						<input type="hidden" aria-label="Search" name="searchData" value="부산">
-					    <input type="submit" class="tagbox" value="#부산"> 
+						<form action = "<%=request.getContextPath()%>/studymenu/offSearch" method="post">															
+							<input type="hidden" aria-label="Search" name="part" value="region">
+							<input type="hidden" aria-label="Search" name="searchData" value="부산">
+					   		<input type="submit" class="tagbox" value="#부산"> 
 						</form>
 												
 						<div class="tagbox tagbox-etc">
 							<a href="#">...</a>
 						</div>
-				
-						
-						</div>
-					</div>									
-													
+					</div>
+				</div>					
 					
-
+				</c:if>	
 				
 				
 <!-- --------------------------------------------------------------게시판------------------------------------------------------------ -->						
@@ -280,9 +315,9 @@ a {
 						<a href="<%=request.getContextPath()%>/studymenu/offStudyMenuInfo?board_num=${s.board_num}">											
 							<div class="img">
 							 <c:if test="${s.menuid == 2 }">
-                                <img src="<%=request.getContextPath()%>/img/studymenu/programming.jpg" alt="">
-                             </c:if>
-                              <c:if test="${s.menuid == 3 }">
+								<img src="<%=request.getContextPath()%>/img/studymenu/programming.jpg" alt="">
+							 </c:if>
+							  <c:if test="${s.menuid == 3 }">
                                 <img src="<%=request.getContextPath()%>/img/studymenu/security.jpg" alt="">
                              </c:if>
                               <c:if test="${s.menuid == 4 }">
