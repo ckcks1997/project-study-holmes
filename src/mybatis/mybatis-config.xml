@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         
         <typeAlias type="model.group.GroupInList" alias = "groupinlist" />
         
-          <typeAlias type="model.Likes" alias = "Likes" />
+          
 
         <typeAlias type="model.Notice" alias = "notice" />
         
@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
         <mapper resource = "mybatis/Reply.xml"/>
         
-         <mapper resource = "mybatis/Likes.xml"/>
+       
 
         <mapper resource = "mybatis/GroupMember.xml"/>
         

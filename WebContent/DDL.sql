@@ -132,15 +132,6 @@ day  date
 );
 
 
----------------좋아요 테이블
-create table likes 
-( 
-likes_num number primary key,
-board_num number, 
-nickname varchar2(10)
-);
-
-create sequence likes_seq;
 
 ----채팅 테이블
 create sequence chatseq2;
