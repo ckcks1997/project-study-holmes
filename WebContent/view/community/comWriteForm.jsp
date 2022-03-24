@@ -41,7 +41,7 @@ body {
 			<%--aside부분 --%>
                 <%@include file="/common/community_menu.jsp" %>
 <!-- -----------메인-------------------------------------------------------------------------------------------- -->
-			<div class="main col-sm-9">
+			<div class="main col-lg-9">
 				<h1>글쓰기</h1>
 		
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
@@ -76,11 +76,11 @@ body {
 			</div>
 		</div>
 	</div>
-
+    <br>
 
 	<script>
 		$('.summernote').summernote({
-			height : 150,
+			height : 350,
 			lang : "ko-KR"
 		});
 	</script>

@@ -54,7 +54,7 @@ public class CommunityBoardDao {
 	  
 	  
 	  
-	  
+	  //최신순 나열
 	  public List<Community> comBoardList(int pageInt, int limit, int boardcount, String boardid) {
 		  
 		  SqlSession sqlSession = MybatisConnection.getConnection();
@@ -72,6 +72,50 @@ public class CommunityBoardDao {
 			} 
 			return null;
 	  }
+	  
+	  
+	  
+	  //댓글순 나열
+	  	public List<Community> comBoardReply(int pageInt, int limit, int boardcount, String boardid) {
+		  
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+			try {
+				map.clear();
+				map.put("boardid", boardid);
+				map.put("start", (pageInt-1)*limit+1);
+				map.put("end", pageInt*limit);
+					
+			return sqlSession.selectList(NS+"comBoardReply",map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			} 
+			return null;
+	  }
+	  
+	  //조회수순 나열
+		public List<Community> comBoardRead(int pageInt, int limit, int boardcount, String boardid) {
+			  
+			  SqlSession sqlSession = MybatisConnection.getConnection();
+				try {
+					map.clear();
+					map.put("boardid", boardid);
+					map.put("start", (pageInt-1)*limit+1);
+					map.put("end", pageInt*limit);
+						
+				return sqlSession.selectList(NS+"comBoardRead",map);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					MybatisConnection.close(sqlSession);
+				} 
+				return null;
+		  }
+	  	
+	  
+	  
+	  
 	  
 	  //검색리스트
 	  public List<Community> comSearchList(int pageInt, int limit, int boardcount, String boardid, String part, String searchData) {

@@ -45,7 +45,7 @@ body {
 
 			<!---------------------    메인 검색     ------------------------------------------------------------------ -->
 			
-			<div class="main col-sm-9">
+			<div class="main col-lg-9">
 				<h2 style="font-weight: bold">${boardName}</h2>
 				<hr align="left" width="150px" style="border: 0.5px solid #c47100" />
 				

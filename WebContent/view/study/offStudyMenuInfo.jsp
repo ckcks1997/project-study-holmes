@@ -113,8 +113,8 @@
 				<h1>상세보기</h1>
 				<hr align="left" width="200px" style="border: 0.5px solid #c47100" />
 				<br>
-
-				<h2>${s.title}</h2>
+                
+				<h2>${s.title}</h2> 
 				<div class="container p-0 my-2 bg-white text-white">
                     <hr>
 				</div>
@@ -134,6 +134,7 @@
 
 				<br> ${s.content } <br> <br> <i class="fa-solid fa-user-group"></i>${s.pernum} <br>
 
+
 				<br>
 
 
@@ -141,8 +142,9 @@
 
                 <h3>스터디 장소</h3>
                 주소: ${s.region}
+                <br>
 				<div class="container ">
-					<div class="c-border mx-auto" id="map" style="width: 70%; height: 300px;"></div>	 
+					<div class="c-border" id="map" style="width: 70%; height: 300px;"></div>	 
 				</div>
 
 
@@ -211,9 +213,13 @@
 						</c:forEach>
 
 					</div>
+					
+					
+					
+					<!-- 로그인이 되어있으면 댓글 이용 가능 -->
+					<c:if test ="${sessionScope.memberNickname != null}">
+					
 					<div class="row">
-
-
 						<div class="col-md-10">
 							<input type="hidden" id="board_num" name="board_num"
 								value="${s.board_num}"> <input type="hidden"
@@ -227,8 +233,20 @@
 							<input type="button" id="writeReply" class="btn btn-danger"
 								value="등록" />
 						</div>
-
 					</div>
+					
+				</c:if>
+
+				
+				<!-- 로그인이 안되어있으면 댓글 이용 불가 -->
+				<c:if test = "${sessionScope.memberNickname == null}">
+					<div class = "row">
+						<div class = "col-md-10">
+							<p style ="font-weight: bold;">로그인 후 댓글 이용이 가능합니다</p>
+						</div>
+					</div>
+				</c:if>
+
 
 
 					<button type="button" class="btn btn-dark mt-3"

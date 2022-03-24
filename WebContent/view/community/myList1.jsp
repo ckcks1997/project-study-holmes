@@ -99,7 +99,7 @@ a:hover {
 			<%--aside부분 --%>
            <%@include file="/common/myinfo_menu.jsp" %>
 
-			<div class="col-sm-9">
+			<div class="col-lg-9">
 				<h1>커뮤니티 게시글</h1>
 				<hr align="left" width="350px" style="border: 0.5px solid #c47100" />
 				

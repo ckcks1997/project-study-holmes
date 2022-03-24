@@ -1533,6 +1533,8 @@ public class StudyMenuController extends MskimRequestMapping {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+
+        String board_name = (String) request.getParameter("board_name");
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		String nickname_from = (String) request.getParameter("f_nickname");
 		String nickname_to = (String) request.getParameter("t_nickname");
@@ -1542,7 +1544,7 @@ public class StudyMenuController extends MskimRequestMapping {
 		nd.noticeWrite(board_num, nickname_from, nickname_to);
 
 		String msg = "참가 요청이 전송되었습니다";
-		String url = request.getContextPath() + "/studymenu/studyMenuList";
+		String url = request.getContextPath() + "/studymenu/"+board_name;
 
 		request.setAttribute("msg", msg);
 		request.setAttribute("url", url);

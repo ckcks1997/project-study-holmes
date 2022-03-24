@@ -61,7 +61,7 @@ body {
 
 
 			<!---------------------    메인      ------------------------------------------------------------------ -->
-			<div class="main col-sm-9">
+			<div class="main col-lg-9">
 
 				<h2 style="font-weight: bold">
 					<c:if test="${com.boardid =='1'}"> 질문 & 답변</c:if>
@@ -179,9 +179,11 @@ body {
 						</c:forEach>
 
 					</div>
+					
+					<!-- 로그인이 되어있으면 댓글 이용 가능 -->
+					<c:if test ="${sessionScope.memberNickname != null}">
+					
 					<div class="row">
-
-
 						<div class="col-md-10">
 							<input type="hidden" id="board_num" name="board_num"
 								value="${com.board_num}"> <input type="hidden"
@@ -195,8 +197,20 @@ body {
 							<input type="button" id="writeReply" class="btn btn-danger"
 								value="등록" />
 						</div>
-
 					</div>
+
+				</c:if>
+				
+				
+				<!-- 로그인이 안되어있으면 댓글 이용불가 -->
+				<c:if test = "${sessionScope.memberNickname == null}">
+					<div class = "row">
+						<div class = "col-md-10">
+							<p style ="font-weight: bold;">로그인 후 댓글 이용이 가능합니다</p>
+						</div>
+					</div>
+				</c:if>
+
 
 
 					<button type="button" class="btn btn-dark mt-3"

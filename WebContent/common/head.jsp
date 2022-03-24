@@ -73,6 +73,9 @@
 .fa-solid{
     font-size:1.5rem;
 }
+.dropdown-item:active{
+    background-color:#f55555 !important;
+}
 
 </style>
 </head>
@@ -122,7 +125,7 @@
 								
 								    <li class="nav-item ">
 									    <a class="nav-link" href="<%=request.getContextPath()%>/studymember/notice">
-									       <i class="fa-solid fa-bell"></i><span class="badge badge-success" id="badgeNum"> ${noticeCount } </span>
+									       <i class="fa-solid fa-bell"></i><span class="badge badge-danger" id="badgeNum"> ${noticeCount } </span>
 									    </a>
 								    </li>
 								

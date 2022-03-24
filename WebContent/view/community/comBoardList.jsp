@@ -53,9 +53,26 @@ body {
 
 .reactions {
 	font-size: 13px;
-
-
 }
+
+.divide {
+	font-weight:700;
+    color: #777;
+}
+
+
+a {
+	color:black;
+}
+
+
+a:hover {
+    color:#f55555;
+    text-decoration: none;
+}
+
+
+
 </style>
 <title>스터디 홈즈</title>
 </head>
@@ -80,7 +97,7 @@ body {
                 
                 
 <!-- ---------------------------메인검색-------------------------------------------------------- -->
-			<div class="main col-sm-9">
+			<div class="main col-lg-9">
 				<h2 style="font-weight: bold">${boardName}</h2>
 
 				<hr align="left" width="170px" style="background-color: #c47100; height:1px;" />
@@ -109,9 +126,12 @@ body {
 				</form>
 				<br />
 <!-- ------------------------------------------------------------------------------------ -->
-				<div style="float: left">
-					<strong>최신순</strong> &nbsp;<strong>·</strong> 댓글많은순 &nbsp;<strong>·</strong>
-					좋아요순
+				<div class = "row col-sm-9 divide" style="float: left">
+					<a href ="<%=request.getContextPath()%>/community/comBoardList">최신순</a>
+					 &nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp;
+					<a href = "<%=request.getContextPath()%>/community/comBoardReply">댓글순</a>
+					&nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp;
+					<a href ="<%=request.getContextPath()%>/community/comBoardRead">조회수순</a>
 				</div>
 				<div class="mb-2" style="float: right">
 					<button type="button" class="btn btn-dark"
