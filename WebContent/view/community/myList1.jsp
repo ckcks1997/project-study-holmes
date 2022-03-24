@@ -10,6 +10,14 @@
 
 
 <style>
+
+body {
+	color: #454545;
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1.5;
+}
+
 /* 명언 */
 .famous-saying-box {
 	height: 150px;
@@ -75,6 +83,17 @@ a:hover {
                 border-radius:10px;
             }
         }
+        
+.page-item > a{
+   	 color:#f55555; 
+}
+.page-item > a:hover{
+    color:#f55555; 
+}
+.active2 > a{
+    background-color:#f55555 !important; 
+    border: 1px solid #f55555 !important; 
+} 
 </style>
 <title>스터디 홈즈</title>
 </head>
@@ -102,17 +121,24 @@ a:hover {
 			<div class="col-lg-9">
 				<h1>커뮤니티 게시글</h1>
 				<hr align="left" width="350px" style="border: 0.5px solid #c47100" />
+			
+			
 				
 				<br />
 
 				
-				
+				<c:if test = "${empty list }">
+				<p>작성된 글이 없습니다.</p>			
+				</c:if>		
 
 
 				<br />
 
 
 				<!-------------메인 커뮤니티 게시판 --------------------------------------------------------------------------------------------------------- -->
+				
+				
+				
 				<div class="container">
 					<table class="table">
 						<c:forEach var="com" items="${list}">
@@ -185,10 +211,10 @@ a:hover {
 					<li
 						class='page-item <c:if test ="${startPage <= bottomLine }"> disabled </c:if> '><a
 						class="page-link"
-						href="<%=request.getContextPath()%>/community/comBoardmyList1?pageNum=${startPage-bottomLine}">Previous</a></li>
+						href="<%=request.getContextPath()%>/community/comBoardmyList1?pageNum=${startPage-bottomLine}">이전</a></li>
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<li
-							class='page-item <c:if test = "${i==pageInt}" > active </c:if> '>
+							class='page-item <c:if test = "${i==pageInt}" > active active2 </c:if> '>
 							<a class="page-link"
 							href="<%=request.getContextPath()%>/community/comBoardmyList1?pageNum=${i}">${i}</a>
 						</li>
@@ -196,7 +222,7 @@ a:hover {
 					<li
 						class='page-item <c:if test ="${endPage >= maxPage}"> disabled </c:if>  '>
 						<a class="page-link"
-						href="<%=request.getContextPath()%>/community/comBoardmyList1?pageNum=${startPage+bottomLine}">Next</a>
+						href="<%=request.getContextPath()%>/community/comBoardmyList1?pageNum=${startPage+bottomLine}">다음</a>
 					</li>
 				</ul>
 			</div>

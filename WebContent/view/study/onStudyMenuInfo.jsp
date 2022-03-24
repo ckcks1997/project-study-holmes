@@ -128,7 +128,9 @@ a:hover{
 				</h6>
 				<br>
 				<h6>
+
 					<small>&nbsp; 작성자: <a class="white" href="<%=request.getContextPath()%>/studymember/userinfo?usernick=${s.nickname}"><span>${s.nickname}</span></a> 
+
 					</small>
 				</h6>
 				<br>

@@ -3,17 +3,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-List<StudyMenu> list = (List<StudyMenu>)request.getAttribute("list");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
- a {
+
+body {
 	color: #454545;
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1.5;
+}
+
+a {
+	color: #454545;
+}
+a:hover {
+	color:black;
+	text-decoration:none
 }
 
 
@@ -74,8 +84,6 @@ li>a {
 	color: rgb(10, 10, 10);
 }
 
-
-
 a:hover {
 	text-decoration: none;
 }
@@ -119,6 +127,53 @@ a:hover {
             }
         }
 
+/* 스터디글 상자 */
+.study-box {
+	width: 230px;
+	height: 300px;
+	background: rgb(255, 255, 255);
+	margin: 10px;
+	margin-bottom: 40px;
+}
+
+.img {
+	
+}
+
+.b-h5 {
+	font-weight: bold;
+	margin: 0;
+}
+
+.b-p {
+	margin-bottom: 0;
+}
+
+.b-people {
+	margin: 0;
+}
+
+.b-rep {
+	font-size: 12px;
+}
+
+.b-price {
+	margin-bottom: 0;
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #175cbe;
+}
+
+.page-item > a{
+    color:#f55555; 
+}
+.page-item > a:hover{
+    color:#f55555; 
+}
+.active2 > a{
+    background-color:#f55555 !important; 
+    border: 1px solid #f55555 !important; 
+} 
  
 </style>
 </head>
@@ -147,46 +202,63 @@ a:hover {
 			<div class="col-sm-9">
 				<h1>스터디 게시글</h1>
 				<hr align="left" width="350px" style="border: 0.5px solid #c47100" />
-				<br>
-				
-				 
-									
-				 
-								
-													
-					
-
-				
-				
+				<br>						 																																	
 <!-- --------------------------------------------------------------게시판------------------------------------------------------------ -->						
 				
 				<div class="container d-flex align-content-between flex-wrap">
 				
 				<c:if test = "${empty list }">
-				
-				
+				<p>작성된 글이 없습니다.</p>			
 				</c:if>			
 				
 				<c:if test="${list !=null }">				
 				<c:forEach var="s" items="${list}">
 					<div class="study-box ">
-						<a href="<%=request.getContextPath()%>/studymenu/studyMenuInfo?board_num=${s.board_num}">											
+						<a href=
+						<c:if test="${s.menuid >= 2 && s.menuid <= 7}"> 
+			       		  "<%=request.getContextPath()%>/studymenu/offStudyMenuInfo?board_num=${s.board_num}"
+			    		</c:if>
+			    		<c:if test="${s.menuid >= 9 && s.menuid <= 14}"> 
+                   		  "<%=request.getContextPath()%>/studymenu/onStudyMenuInfo?board_num=${s.board_num}"
+               			 </c:if>
+                		<c:if test="${s.menuid >= 16 && s.menuid <= 21}"> 
+                     	"<%=request.getContextPath()%>/studymenu/onoffStudyMenuInfo?board_num=${s.board_num}"
+                		</c:if>		
+                		>											
 							<div class="img">
-								<img src="<%=request.getContextPath()%>/img/study-img.jpg" alt="">
+							 <c:if test="${s.menuid == 2 ||s.menuid == 9||s.menuid == 16}">
+                                <img src="<%=request.getContextPath()%>/img/studymenu/programming.jpg" width="100%" height="200px">
+                             </c:if>
+                              <c:if test="${s.menuid == 3 ||s.menuid == 10||s.menuid == 17}">
+                                <img src="<%=request.getContextPath()%>/img/studymenu/security.jpg" width="100%" height="200px">
+                             </c:if>
+                              <c:if test="${s.menuid == 4 ||s.menuid == 11||s.menuid == 18}">
+                                <img src="<%=request.getContextPath()%>/img/studymenu/creative.jpg" width="100%" height="200px">
+                             </c:if>
+                              <c:if test="${s.menuid == 5 ||s.menuid == 12||s.menuid == 19}">
+                                <img src="<%=request.getContextPath()%>/img/studymenu/marketing.jpg" width="100%" height="200px">
+                             </c:if>
+                              <c:if test="${s.menuid == 6 ||s.menuid == 13||s.menuid == 20}">
+                                <img src="<%=request.getContextPath()%>/img/studymenu/language.jpg" width="100%" height="200px">
+                             </c:if>
+                              <c:if test="${s.menuid == 7 ||s.menuid == 14||s.menuid == 21}">
+                                <img src="<%=request.getContextPath()%>/img/studymenu/etc.jpg"  width="100%" height="200px">
+                             </c:if>
 							</div>
 							
 							<div class="px-2 pt-3">
 								<h5 class="b-h5">${s.title}</h5>
-								<p class="b-price">${s.price=="0" ? "무료":s.price  }</p>
+								<c:if test="${s.price =='0'}">
+								<p class="b-price">무료</p>
+								</c:if>
+								<c:if test="${s.price !='0'}">
+								<p class="b-price"> ${s.price } 원</p>
+								</c:if>
 								<p class="b-people">
 									<i class="fa-solid fa-user-group"></i> ${s.pernum}
 								</p>
-								<p class="b-p">${s.region }</p>
-								<div>
-									<p class="b-p d-inline-block">
-										&#11088;&#11088;&#11088;&#11088;&#11088;</p>
-									<p class="b-p b-rep d-inline-block ">평가:100%</p>
-								</div>
+								<p class="b-p">지역: ${s.region }</p>
+								
 							</div>
 						  </a>
 					   </div>
@@ -202,15 +274,15 @@ a:hover {
 					
 					<li 
 						class='page-item <c:if test="${startPage <= bottomLine}"> disabled </c:if>'>
-						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/mylist2?pageNum=${startPage - bottomLine}">Previous</a></li>
+						<a class="page-link " href="<%=request.getContextPath()%>/studymenu/mylist2?pageNum=${startPage - bottomLine}">이전</a></li>
 						
 					<c:forEach var="i" begin="${ startPage }" end="${endPage}">
-						<li class='page-item <c:if test = "${i == pageInt}" >  active </c:if>'>
+						<li class='page-item <c:if test = "${i == pageInt}" >  active active2 </c:if>'>
 						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/mylist2?pageNum=${i}">${i}</a></li>
 					
 					</c:forEach>
 						<li class='page-item <c:if test = "${endPage >= maxPage}"> disabled </c:if>'>
-						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/mylist2?pageNum=${startPage + bottomLine}">Next</a></li>
+						<a class="page-link" href="<%=request.getContextPath()%>/studymenu/mylist2?pageNum=${startPage + bottomLine}">다음</a></li>
 					</ul>
 				</nav>
 
