@@ -89,7 +89,7 @@ body {
 
 				<form name="mf"
 					action="<%=request.getContextPath()%>/studymenu/onoffWritePro"
-					  method="post">
+					  method="post" onsubmit="return inputChk(this)">
 					<br /> <br />
 				
 																						
@@ -155,6 +155,38 @@ body {
 			height : 150,
 			lang : "ko-KR"
 		});
+		
+		function inputChk(f) {
+
+			let result = document.querySelector("#result")
+			
+			if (f.title.value=='') {
+				alert("제목을 입력하세요")
+				f.title.focus()
+				return false;
+			}
+			if (f.subject.value=='') {
+				alert("과목을 입력하세요")
+				f.subject.focus()
+				return false;
+			}
+			if (f.price.value=='') {
+				alert("가격을 입력하세요")
+				f.price.focus()
+				return false;
+			}
+			if (f.pernum.value=='') {
+				alert("인원수를 입력하세요")
+				f.pernum.focus()
+				return false;
+			}
+			if (f.content.value=='') {
+				alert("내용을 입력하세요")
+				f.content.focus()
+				return false;
+			}					
+			return true;
+		}
 	</script>
 
 </body>
