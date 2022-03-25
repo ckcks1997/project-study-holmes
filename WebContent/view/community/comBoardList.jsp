@@ -105,6 +105,7 @@ a:hover {
 
 				<form action = "<%=request.getContextPath()%>/community/comSearch" method = post>
 					<input type = "hidden" name = "boardid" value = "${boardid}"/>
+					
 					<div class="row">
 						<div class="col-xs-12 col-sm-11 col-md-10">
 						<div class = "d-flex flex-row align-items-center">
@@ -113,6 +114,8 @@ a:hover {
 									    <option value="title">제목</option>
 									    <option value="content">내용</option>						
 									</select>
+						
+						
 						</div>
 							<input type="text" class="form-control rounded" name = "searchData"
 								placeholder="내용을 검색해보세요!" required="required"/>

@@ -522,19 +522,21 @@ public class CommunityController extends MskimRequestMapping{
 		}
 		
 		
-		String part = "";// 검색항목
-		String  searchData = ""; //검색입력데이터
+		
+		
 		
 		
 		   //검색
-			 part = request.getParameter("part");
-			 searchData = request.getParameter("searchData");
+			 String part = request.getParameter("part");
+			 String searchData = request.getParameter("searchData");
 		     String boardid = request.getParameter("boardid");
 			//Search sh = new Search();
 			//sh.setPart(part);
 			//sh.setSearchData("%" + searchData + "%");
 			CommunityBoardDao cbd = new CommunityBoardDao();
 			cbd.comSearch(part,searchData,boardid);
+			System.out.println("part:"+part);
+			System.out.println("searchData:"+searchData);
 			
 			return "/community/comSearchList";
 
