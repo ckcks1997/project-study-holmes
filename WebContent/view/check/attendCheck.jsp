@@ -120,7 +120,7 @@
 .checked{
 width:55px;
 height:55px;
-background-image : url("http://localhost:7498/study-homles-mvc2/img/check.jpeg");
+background-image : url("<%=request.getContextPath()%>/img/check.jpg");
 }
 </style>
 

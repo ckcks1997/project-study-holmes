@@ -116,7 +116,7 @@
 
 	<div class="container">
 		<div class="container py-5">
-			<form class="row-vh mx-auto text-center position-relative" style="width: 50vw">
+			<form class="row-vh mx-auto text-center position-relative" style="width: 100%">
 				<div class=" d-flex flex-row search-div">
 					<input id="bar" class="form-control" type="search" placeholder="스터디 검색.." aria-label="Search" style="width: 50vw" />
 					<button class="custom-btn">
