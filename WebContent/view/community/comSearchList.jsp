@@ -214,7 +214,7 @@ a:hover {
 					<li
 						class='page-item <c:if test ="${startPage <= bottomLine }"> disabled </c:if> '><a
 						class="page-link"
-						href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${startPage-bottomLine}">이전</a></li>
+						href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${startPage-bottomLine}&searchData=${searchData}&part=${part}">이전</a></li>
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<li
 							class='page-item <c:if test = "${i==pageInt}" > active active2 </c:if> '>
@@ -225,7 +225,7 @@ a:hover {
 					<li
 						class='page-item <c:if test ="${endPage >= maxPage}"> disabled </c:if>  '>
 						<a class="page-link"
-						href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${startPage+bottomLine}">다음</a>
+						href="<%=request.getContextPath()%>/community/comSearchList?pageNum=${startPage+bottomLine}&searchData=${searchData}&part=${part}">다음</a>
 					</li>
 				</ul>
 			</div>
