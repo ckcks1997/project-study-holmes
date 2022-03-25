@@ -18,6 +18,9 @@
     background-color: #fff; 
     border-bottom: 1px solid #ddd;
 }
+.c-black, .c-black:hover{
+    color:black;
+}
 </style>
 </head>
 <body>
@@ -34,7 +37,7 @@
                      
                      <div class="container shadow-sm container-css p-5 ">
                          <div class="d-flex flex-column justify-content-center">
-                            from:${notice.nickname_from } <br><br>
+                            <span>from: <span> <a  class="c-black" href="<%=request.getContextPath()%>/studymember/userinfo?usernick=${notice.nickname_from}"> ${notice.nickname_from } </a></span></span><br><br>
                             내용:
                             <c:if test="${notice.info != null }">
                             ${notice.info} <br>
