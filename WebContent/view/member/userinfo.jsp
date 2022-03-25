@@ -133,7 +133,7 @@ a:hover {
                          
                          <div class="d-md-flex justify-content-center">
                              <div class="container col-md-6 px-0"> 
-                                 <h5>나의 매너표정</h5>
+                                 <h5>${memberInfo.nickname} 님의 매너표정</h5>
                                  <div class="d-md-flex justify-content-between  align-items-center ">
                                      <div class="d-flex col-md-3 face_img  ">
                                         <c:choose>
