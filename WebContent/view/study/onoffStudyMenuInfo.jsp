@@ -170,7 +170,7 @@ a:hover{
 					</p>
 				</div>
 
-				<br> ${s.content } <br> <br> <i class="fa-solid fa-user-group"></i>${s.pernum} <br>
+				<br> ${s.content } <br> 
 
 				<br>
                 <br>
