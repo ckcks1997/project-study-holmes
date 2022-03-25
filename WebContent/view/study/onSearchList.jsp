@@ -253,22 +253,22 @@ a {
 					<div class="study-box ">
 						<a href="<%=request.getContextPath()%>/studymenu/onStudyMenuInfo?board_num=${s.board_num}">											
 							<div class="img">
-								                             <c:if test="${s.menuid == 2 }">
+							 <c:if test="${s.menuid == 9 }">
                                 <img src="<%=request.getContextPath()%>/img/studymenu/programming.jpg" alt="">
                              </c:if>
-                              <c:if test="${s.menuid == 9 }">
+                              <c:if test="${s.menuid == 10 }">
                                 <img src="<%=request.getContextPath()%>/img/studymenu/security.jpg" alt="">
                              </c:if>
-                              <c:if test="${s.menuid == 10 }">
+                              <c:if test="${s.menuid == 11 }">
                                 <img src="<%=request.getContextPath()%>/img/studymenu/creative.jpg" alt="">
                              </c:if>
-                              <c:if test="${s.menuid == 11 }">
+                              <c:if test="${s.menuid == 12 }">
                                 <img src="<%=request.getContextPath()%>/img/studymenu/marketing.jpg" alt="">
                              </c:if>
-                              <c:if test="${s.menuid == 12 }">
+                              <c:if test="${s.menuid == 13 }">
                                 <img src="<%=request.getContextPath()%>/img/studymenu/language.jpg" alt="">
                              </c:if>
-                              <c:if test="${s.menuid == 13 }">
+                              <c:if test="${s.menuid == 14 }">
                                 <img src="<%=request.getContextPath()%>/img/studymenu/etc.jpg" alt="">
                              </c:if>
 							</div>
