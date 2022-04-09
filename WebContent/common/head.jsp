@@ -13,6 +13,8 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<link href="<%=request.getContextPath() %>/common/css/footer.css" rel="stylesheet" type="text/css"> 
+
 <style>
 
 	@font-face {
@@ -22,7 +24,13 @@
 		font-weight: normal;
 		font-style: normal;
 	}
+	
+	@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
+	/* 전체 폰트 적용 */
+	* {
+	font-family: "Pretendard Variable";
+	}
 		/* button */
 	.btn-round {
 		border-radius: 20px;

@@ -1,0 +1,17 @@
+.jumbo-color{
+background-color:#303740;
+}
+.jumbo-p, .footer-brand{
+    color:white;
+}
+ .footer-brand{
+    position: relative;
+    font-family: "kita";
+    font-size:1.3rem;
+ }
+ .star-footer {
+    position: absolute;
+    top: -25%;
+    right: -15%;
+    height: 15px;
+}

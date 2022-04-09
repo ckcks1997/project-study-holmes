@@ -1,27 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- Footer -->
-<head>
-<style>
-.jumbo-color{
-background-color:#303740;
-}
-.jumbo-p, .footer-brand{
-    color:white;
-}
- .footer-brand{
-    position: relative;
-    font-family: "kita";
-    font-size:1.3rem;
- }
- .star-footer {
-    position: absolute;
-    top: -25%;
-    right: -15%;
-    height: 15px;
-}
-</style>
-</head>
+
+
 <body>
 <div class="jumbotron text-center jumbo-color" style="margin-bottom:0">
 <div class="container text-left  ">
