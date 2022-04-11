@@ -82,6 +82,9 @@ li>a {
             }
         }
         
+.page-link{
+    color: #f55555
+}
 .page-item > a{
    	 color:#f55555; 
 }
@@ -92,6 +95,7 @@ li>a {
     background-color:#f55555 !important; 
     border: 1px solid #f55555 !important; 
 } 
+
 .reactions {
 	font-size: 13px;
 }
