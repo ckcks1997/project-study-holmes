@@ -69,7 +69,7 @@ body {
 
 					
 					<div class="d-grid gap-2 " style="float: right;">
-						<button class="btn btn-dark" type="button">취소</button>
+						<button class="btn btn-dark" type="button" onclick="location.href = '<%=request.getContextPath()%>/community/comBoardList'">취소</button>
 						<button class="btn btn-dark" type="submit">저장</button>
 					</div>
 				</form>

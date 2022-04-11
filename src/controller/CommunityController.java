@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.multi.MultiLabelUI;
 
 import com.oreilly.servlet.MultipartRequest;
 
@@ -347,10 +348,22 @@ public class CommunityController extends MskimRequestMapping{
 	  //세션에 저장된 닉네임 가져와서 커뮤니티 닉네임으로 저장하기
 	  HttpSession session = request.getSession();
 	  com.setNickname(String.valueOf(session.getAttribute("memberNickname")));
-	 
 	  com.setTitle(multi.getParameter("title"));
-	  com.setContent(multi.getParameter("content"));
+	  
+	  //썸머노트는 텍스트를 <p></p>태그 붙여서 데이터저장함 -- p태그 제거하고 db저장 
+	  String content = multi.getParameter("content");
+	  //맨앞 맨뒤 p태그 제거 
+	  String content1 = content.substring(3,content.length()-4);
+	  //p태그 자체를 공백으로 
+	  String content2 = content.replaceAll("<p>", " ");
+	  String content3 = content2.replaceAll("</p>", " ");
+	  
+	  
+	  com.setContent(content1);
+	  
 	  com.setIp(request.getLocalAddr());
+	  
+	  
 	  
 	 
 	  String boardid = (String)session.getAttribute("boardid");
@@ -369,11 +382,31 @@ public class CommunityController extends MskimRequestMapping{
 		  msg= "게시물이 등록되었습니다.";
 		  url = request.getContextPath()+"/community/comBoardList?pageNum=1";
 		  
+		  
+		  
 	  }
 	  
 	  request.setAttribute("msg", msg);
 	  request.setAttribute("url", url);
 	  
+	  
+	  
+	  
+	  //글 일부만 보여주기----수정해야함 --------------------------------------------------
+	  //글자수 길이 조건 걸기 추가해야함 
+	 
+	  System.out.println(content3);
+	  
+	  if (content3.length() > 20) {
+		content3 = content3.substring(0,10);
+		System.out.println("--"+ content3+"...");
+	} else {
+		//request.setAttribute("preContent", preContent);
+		 System.out.println(content3+"...");
+	}
+	 
+	 
+	 //-----------------------------------------------------------------------
 	  
 	  
 	  return "/view/alert.jsp";

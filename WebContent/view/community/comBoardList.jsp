@@ -136,12 +136,14 @@ a:hover {
 					&nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp;
 					<a href ="<%=request.getContextPath()%>/community/comBoardRead">조회수순</a>
 				</div>
+				
+				<c:if test="${sessionScope.memberNickname != manager && boardid != 4 }">
 				<div class="mb-2" style="float: right">
 					<button type="button" class="btn btn-dark"
 						onclick="location.href='<%=request.getContextPath()%>/community/comWriteForm'">글쓰기
 					</button>
 				</div>
-
+				</c:if>
 
 				<br />
 
@@ -168,6 +170,11 @@ a:hover {
 												<p style = "font-size: 17px; font-weight: bold;">
 													${com.title}
 												</p>
+												<p style = "font-size: 17px; font-weight: bold;">
+													${preContent}
+												</p>
+												
+												
 												 <br />
 												<h6 style = "color: gray;">
 													<small>${com.nickname} · ${com.regdate} </small>
