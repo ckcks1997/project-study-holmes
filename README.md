@@ -36,7 +36,7 @@ Link
 
 초기 프론트 모델링: https://www.figma.com/file/AJvPw9I1fnItPkgoqvgpc2/%EC%8A%A4%ED%84%B0%EB%94%94-%ED%99%88%EC%A6%88?node-id=0%3A1
 
-DB 모델링: https://whimsical.com/AnvugtEurUR6F9ug3M8tY
+DB 모델링: https://whimsical.com/mvc2-UhbcTxx71xbGhyGn1Rq4BV
 
 PPT: https://www.canva.com/design/DAE7yImz3uY/Ga0IpwbzFU9ol3NfLf-h9Q/view?utm_content=DAE7yImz3uY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
