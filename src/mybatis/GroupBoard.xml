@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groupBoard">
+
+<select id = "groupBoardCount" resultType ="int" parameterType = "map">
+    select count(*) from group_board where s_board_num = #{boardnum} and boardid = #{boardid}    
+</select> 
+
+<insert id = "groupInsertBoard"  parameterType = "groupBoard">
+	insert into group_board values(group_member_seq.nextval, #{s_board_num}, 
+	#{title}, #{content},0,#{boardid}, sysdate,null,0,#{nickname})
+</insert> 
+  
+ <select id = "groupBoardList" resultType = "community"  parameterType = "map">
+	select  * from (select rownum rnum, a.* from (
+	select * from group_board where boardid = #{boardid} and s_board_num = #{s_board_num} order by board_num desc) a)
+	where rnum between #{start} and #{end}
+</select> 
+
+ 
+</mapper>

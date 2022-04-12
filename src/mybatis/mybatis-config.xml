@@ -30,7 +30,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         
         <typeAlias type="model.ReputationEstimate" alias = "reputationestimate" />
         
+
         <typeAlias type="model.Report" alias = "Report" />
+
+        <typeAlias type="model.GroupBoard" alias = "groupBoard" />
+        
+
         
 	</typeAliases>
 	<environments default="development">
@@ -60,8 +65,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <mapper resource ="mybatis/Notice.xml" />
 
         <mapper resource = "mybatis/Reply.xml"/>
-        
-       
 
         <mapper resource = "mybatis/GroupMember.xml"/>
         
@@ -70,6 +73,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <mapper resource = "mybatis/ReputationEstimate.xml"/>
         
         <mapper resource = "mybatis/Report.xml"/>
+
+        <mapper resource = "mybatis/GroupBoard.xml"/>
+        
+
      </mappers>
 
 </configuration>

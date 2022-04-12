@@ -118,13 +118,22 @@ create table GROUP_MEMBER
     REGDATE      DATE
 );
 
---채팅 테이블
---numnumber(스터디넘버)
---회원(멤버이메일)
---채팅내용(문자)
---파일이름(첨부파일) -->이것으로 첨부파일만 보이는 페이지 만들어서 자료실 만들기
-
-
+------group_board 테이블
+DROP TABLE GROUP_BOARD;
+CREATE TABLE GROUP_BOARD
+(
+    BOARD_NUM NUMBER  NOT NULL
+        PRIMARY KEY,
+    S_BOARD_NUM NUMBER   NOT NULL ,
+    TITLE     VARCHAR2(100) NOT NULL,
+    CONTENT   VARCHAR2(4000),
+    REPLYCNT  NUMBER,
+    BOARDID   VARCHAR2(1),
+    REGDATE   DATE,
+    FILE1     VARCHAR2(200),
+    READCNT   NUMBER,
+    NICKNAME  VARCHAR2(30)
+);
 
 --------studychk 테이블
 

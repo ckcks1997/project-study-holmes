@@ -1,0 +1,71 @@
+package service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import model.Community;
+import model.GroupBoard;
+import util.MybatisConnection;
+
+public class GroupBoardDao {
+
+	private static final String NS = "groupBoard.";
+	  private Map<String, Object> map = new HashMap<>();
+	
+	  
+	   
+	  
+	  public int groupBoardCount(String boardnum, String boardid) {
+		
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+			try {
+				map.clear();
+				map.put("boardnum", boardnum);
+				map.put("boardid", boardid);  
+			return sqlSession.selectOne(NS+"groupBoardCount", map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			} 
+			return 0;
+	  }
+	  
+	  public List<Community> groupBoardList(int pageInt, int limit, int boardcount, String boardid, String s_board_num) {
+		  
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+			try {
+				map.clear();
+				map.put("boardid", boardid);
+				map.put("s_board_num", s_board_num);
+				map.put("start", (pageInt-1)*limit+1);
+				map.put("end", pageInt*limit);
+					
+			return sqlSession.selectList(NS+"groupBoardList",map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			} 
+			return null;
+	  }
+	  
+	  public int groupInsertBoard(GroupBoard gbd) {
+		  
+			SqlSession sqlSession = MybatisConnection.getConnection();
+			try {
+			return sqlSession.insert(NS+"groupInsertBoard", gbd);	
+			} catch(Exception e ) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			}
+			return 0;
+			}
+	 
+	  
+}
+ 
