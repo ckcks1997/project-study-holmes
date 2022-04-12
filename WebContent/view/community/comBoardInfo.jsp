@@ -293,49 +293,71 @@ body {
       </div>
       <div class="modal-body">
  
-        <form>
+        
         	 <div class="form-check">
-  				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
- 				 <label class="form-check-label" for="exampleRadios1">
+  				<input class="form-check-input" type="radio" name="reportReason" id="reportReason1" value="1" checked>
+ 				 <label class="form-check-label" for="reportReason1">
    				 영리목적/스팸홍보성
  				 </label>
 			</div>
 			<div class="form-check">
-  				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-  				<label class="form-check-label" for="exampleRadios2">
+			 	<input class="form-check-input" type="radio" name="reportReason" id="reportReason2" value="2">
+  				<label class="form-check-label" for="reportReason2">
     			음란성/선정성
   				</label>
 			</div>
         	<div class="form-check">
-  				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-  				<label class="form-check-label" for="exampleRadios2">
+  				<input class="form-check-input" type="radio" name="reportReason" id="reportReason3" value="3">
+  				<label class="form-check-label" for="reportReason3">
     			욕설/비방/혐오/인신공격
   				</label>
 			</div>
 			<div class="form-check">
-  				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-  				<label class="form-check-label" for="exampleRadios2">
+  				<input class="form-check-input" type="radio" name="reportReason" id="reportReason4" value="4">
+  				<label class="form-check-label" for="reportReason4">
     			개인정보 노출
   				</label>
 			</div>
 			<div class="form-check">
-  				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-  				<label class="form-check-label" for="exampleRadios2">
+  				<input class="form-check-input" type="radio" name="reportReason" id="reportReason5" value="5">
+  				<label class="form-check-label" for="reportReason5">
     			도배성(같은 내용의 반복 게시)
   				</label>
 			</div>
-        </form>
+        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" id = "sendReport" class="btn btn-primary" data-dismiss="modal">신고하기</button>
+       <!-- <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#confirmReport">신고하기</button> -->
       </div>
     </div>
   </div>
 </div>
 
+<!-- -------------------------------신고확인 모달창------------------------------------------ -->
 
-
+<div class="modal fade" id = "confirmReport" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">신고</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<p>신고되었습니다</p>
+ 		<p>신고된 게시물은 누적신고수에 따라 게시글이 삭제됩니다.</p>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -423,7 +445,7 @@ $("#writeReply").on("click", function(){
 
 
 
-//댓글삭제
+//댓글삭제---------------------------------------------------------------------------------------------
 function deleteReply(num){
 
 	//alert(num)
@@ -457,6 +479,42 @@ function deleteReply(num){
 			var reply_num = document.querySelector("#reply_num")
 
 		})
+		
+		
+//신고 전달 --------------------------------------------------------------------------
+//자바스크립트 질문 ㅠㅠ 
+function reasonOption(){
+			let reasonOption = document.getElementByName("reportReason");
+			for (var i = 0; i < reasonOption.length; i++) {
+				if(reasonOption[i].checked)
+					return reasonOption[i].value;
+			}
+		}
+//----------------------------------------------
+$("#sendReport").on("click",function(){
+	let report_reason = $('input[name=reportReason]:checked').val();
+	
+	
+	let report = {
+			"report_reason": report_reason,
+			"board_num": "${com.board_num}"
+	}
+	
+	$.ajax({
+		type: "post",
+		url: "<%=request.getContextPath()%>/report/sendReport",
+		data: report,
+		dataType: 'text',
+		success : function(result) {
+			alert("신고되었습니다");
+		//	alert(report_reason); option값 잘 들어오는지 확인
+		},
+		error : function(result) {
+			console.log(result);
+			alert("error");
+		}
+	})
+})
 	</script>
 
 

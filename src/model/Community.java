@@ -14,6 +14,7 @@ public class Community {
 	private int readcnt;
 	private String nickname;
 	private int replycnt;
+	private int reportcnt;
 	
 	public Community() {
 		

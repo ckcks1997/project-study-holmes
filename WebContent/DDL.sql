@@ -160,3 +160,14 @@ create table reputation_estimate
      info  VARCHAR2(1000),
     regdate date
 );
+
+
+-----------신고 테이블 
+create table report 
+(
+report_num  number  not null primary key,
+nickname varchar2(30) not null, 
+report_reason number not null, 
+board_num  number not null
+);
+create SEQUENCE report_seq;
