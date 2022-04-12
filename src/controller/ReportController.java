@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Report;
+import service.CommunityBoardDao;
 import service.ReportDao;
 
 public class ReportController extends MskimRequestMapping{
@@ -33,10 +34,6 @@ public class ReportController extends MskimRequestMapping{
 	report.setBoard_num(board_num);
 	
 	
-	String msg = "";
-	String url = "";
-	
-	
 		//신고 등록하기 
 		int num = rd.insertReport(report);
 		if(num ==1) {
@@ -45,11 +42,17 @@ public class ReportController extends MskimRequestMapping{
 		} else {
 			System.out.println("신고 DB등록 에러");
 		}
-	
-	
-	
-	request.setAttribute("msg", msg);
-	request.setAttribute("url", url);
+		
+		
+		
+		//3번째 신고가 들어오면 게시글 삭제 
+		List<String> nicknameList = rd.reportNickname(board_num);
+		if(nicknameList.size()==3) {
+			CommunityBoardDao cbd = new CommunityBoardDao();
+			cbd.comBoardDelete(board_num);
+		} 
+		
+		
 	return "/view/alert.jsp";
 	}
 
