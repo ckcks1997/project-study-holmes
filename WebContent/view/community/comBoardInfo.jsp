@@ -227,7 +227,8 @@ body {
 
 					<button type="button" class="btn btn-dark mt-3"
 						onclick="location.href ='comBoardList'">목록으로</button>
-					<button type="button" class="btn btn-dark mt-3">신고</button>
+					<button type="button" class="btn btn-dark mt-3"data-toggle="modal"
+							data-target="#reportModal" class="btn btn-danger mt-3" >신고</button>
 
 					<c:if test="${loginNick eq com.nickname}">
 						<button type="button" data-toggle="modal"
@@ -276,6 +277,73 @@ body {
 			</div>
 		</div>
 	</div>
+
+
+<!-- --------------------신고 모달창------------------------------------------------------------------------------------- -->
+
+
+<div class="modal" id = "reportModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">신고사유를 선택해주세요</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+ 
+        <form>
+        	 <div class="form-check">
+  				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+ 				 <label class="form-check-label" for="exampleRadios1">
+   				 영리목적/스팸홍보성
+ 				 </label>
+			</div>
+			<div class="form-check">
+  				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+  				<label class="form-check-label" for="exampleRadios2">
+    			음란성/선정성
+  				</label>
+			</div>
+        	<div class="form-check">
+  				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+  				<label class="form-check-label" for="exampleRadios2">
+    			욕설/비방/혐오/인신공격
+  				</label>
+			</div>
+			<div class="form-check">
+  				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+  				<label class="form-check-label" for="exampleRadios2">
+    			개인정보 노출
+  				</label>
+			</div>
+			<div class="form-check">
+  				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+  				<label class="form-check-label" for="exampleRadios2">
+    			도배성(같은 내용의 반복 게시)
+  				</label>
+			</div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- -----------------------------댓글 자바스크립트-------------------------------------------- -->
 	<script>
