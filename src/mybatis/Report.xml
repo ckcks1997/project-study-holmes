@@ -13,5 +13,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select report_seq.nextval from dual
 </select>
 
+<!-- 게시글 당 신고한 닉네임 리스트 가져오기 -->
+<select id = "reportNickname" resultType = "String" parameterType = "int">
+	select Nickname from report where board_num = #{board_num}
+</select>
 
 </mapper>

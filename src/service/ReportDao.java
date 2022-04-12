@@ -1,6 +1,7 @@
 package service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -36,4 +37,20 @@ public class ReportDao {
 		}
 		return 0;
 	}
+	
+	
+	public List<String> reportNickname(int board_num){
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			return sqlSession.selectList(NS + "reportNickname",board_num);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return null;
+	}
+	
+	
 } //end class
