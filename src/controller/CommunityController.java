@@ -14,6 +14,7 @@ import model.Community;
 import model.Reply;
 import service.CommunityBoardDao;
 import service.ReplyDao;
+import service.ReportDao;
  
 
 
@@ -425,11 +426,12 @@ public class CommunityController extends MskimRequestMapping{
 	  //조회수 올리기
 	  cbd.comReadCountUp(board_num);
 	  
+	  //신고한 유저 닉네임 리스트 세팅
+	  ReportDao report_d = new ReportDao();
+	  List<String> nicknameList = report_d.reportNickname(board_num);
+	  request.setAttribute("nicknameList", nicknameList);
 	  
-	  //session의 닉네임 가져오기
-	  HttpSession session = request.getSession();
-	  String loginNick = (String)session.getAttribute("memberNickname");
-	  request.setAttribute("loginNick", loginNick);
+	  
 	  
 	  //댓글보여주기
 	  ReplyDao rd = new ReplyDao();

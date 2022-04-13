@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -227,10 +228,25 @@ body {
 
 					<button type="button" class="btn btn-dark mt-3"
 						onclick="location.href ='comBoardList'">목록으로</button>
-					<button type="button" class="btn btn-dark mt-3"data-toggle="modal"
-							data-target="#reportModal" class="btn btn-danger mt-3" >신고</button>
-
-					<c:if test="${loginNick eq com.nickname}">
+						
+						
+					<!-- 1)로그인 된 회원 2)글 작성자와 다른 회원만 신고버튼 활성화 -->	
+					<c:if test="${memberNickname != null && memberNickname != com.nickname}">	
+						<c:set var = "nickList" value = "${nicknameList}" />
+						<c:choose>
+						<%--리스트값에 이미 닉네임이 있다면 신고거절모달 --%>
+							<c:when test="${fn:contains(nickList, memberNickname) }">
+								<button type="button" class="btn btn-dark mt-3"data-toggle="modal"
+										data-target="#rejectModal" class="btn btn-danger mt-3" >신고</button>
+							</c:when>
+							<%--리스트값에 닉네임이 없다면 신고등록모달 --%>
+							<c:otherwise>
+							<button type="button" class="btn btn-dark mt-3"data-toggle="modal"
+										data-target="#reportModal" class="btn btn-danger mt-3" >신고</button>
+							</c:otherwise>
+							</c:choose>
+					</c:if>
+					<c:if test="${memberNickname eq com.nickname}">
 						<button type="button" data-toggle="modal"
 							data-target="#deleteModal" class="btn btn-danger mt-3">삭제</button>
 					</c:if>
@@ -279,7 +295,40 @@ body {
 	</div>
 
 
-<!-- --------------------신고 모달창------------------------------------------------------------------------------------- -->
+
+<!-- -------------------신고 거절 모달창 ------------------------------------------------------------------------>
+
+<div class="modal fade" id = "rejectModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">신고</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<p>이미 신고한 게시물입니다 <br />
+      	<br />
+ 		신고는 게시물당 한번만 가능하며 <br />
+ 		누적신고수가 3회 이상이면 삭제됩니다</p>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- --------------------신고 등록 모달창------------------------------------------------------------------------------------- -->
 
 
 <div class="modal" id = "reportModal" tabindex="-1">
