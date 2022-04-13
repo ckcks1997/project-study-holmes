@@ -172,11 +172,16 @@ create table reputation_estimate
 
 
 -----------신고 테이블 
+create SEQUENCE report_seq;
 create table report 
 (
 report_num  number  not null primary key,
 nickname varchar2(30) not null, 
-report_reason number not null, 
-board_num  number not null
+report_reason varchar2(300) not null, 
+board_num  number not null,
+writer_nickname varchar2(30) not null,
+board_num_title varchar2(100) not null,
+board_num_regdate date not null
 );
-create SEQUENCE report_seq;
+
+

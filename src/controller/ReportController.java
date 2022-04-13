@@ -18,12 +18,23 @@ public class ReportController extends MskimRequestMapping{
 	public String sendReport(HttpServletRequest request, HttpServletResponse response) {
 			
 	int board_num = Integer.parseInt(request.getParameter("board_num"));
-	int report_reason = Integer.parseInt(request.getParameter("report_reason"));
+	int report_option = Integer.parseInt(request.getParameter("report_reason"));
 	
 	//프론트에서 값 잘 넘어왔는지 확인 -----------
 	System.out.println("원 게시글: " + board_num);
-	System.out.println("신고사유: " + report_reason);
+	System.out.println("신고사유: " + report_option);
 	//--------------------------------------
+	
+	//신고사유 한번 정리-----------
+	String report_reason = "영리목적/스팸홍보성";
+	switch (report_option) {
+	case 2 :   report_reason = "음란성/선정성"; break;
+	case 3 :   report_reason = "욕설/비방/혐오"; break;
+	case 4 :   report_reason = "개인정보 노출"; break;
+	case 5 :   report_reason = "도배성(같은 내용의 반복 게시)"; break;
+	}
+	//---------------------------------
+	
 	
 	HttpSession session = request.getSession();
 	Report report = new Report();
@@ -34,10 +45,15 @@ public class ReportController extends MskimRequestMapping{
 	report.setNickname(memberNickname);
 	report.setReport_reason(report_reason);
 	report.setBoard_num(board_num);
+			//원 게시글 정보 report에 넣기
+			CommunityBoardDao cbd = new CommunityBoardDao();
+			Community com = cbd.comBoardOne(board_num); 
+	report.setWriter_nickname(com.getNickname());
+	report.setBoard_num_title(com.getTitle());
+	report.setBoard_num_regdate(com.getRegdate());
 	
-	
-		//신고 등록하기 
-		int num = rd.insertReport(memberNickname,report_reason,board_num);
+		//신고테이블에 등록하기 
+		int num = rd.insertReport(report);
 		if(num ==1) {
 			System.out.println("신고 정상 등록");
 			
@@ -50,10 +66,9 @@ public class ReportController extends MskimRequestMapping{
 		//3번째 신고가 들어오면 알림주고 게시글 삭제 
 		List<String> nicknameList = rd.reportNickname(board_num);
 		if(nicknameList.size()==3) {
-			CommunityBoardDao cbd = new CommunityBoardDao();
 			
 			//board_num에 해당하는 원 게시글 정보 찾기
-			Community com = cbd.comBoardOne(board_num);
+			com = cbd.comBoardOne(board_num);
 			//원 게시글 정보에서 작성자 닉네임만 가져오기 
 			String writer_nickname = com.getNickname();
 														//System.out.println(com); 정보확인
@@ -62,9 +77,10 @@ public class ReportController extends MskimRequestMapping{
 			NoticeDao nd = new NoticeDao();
 			String from = "관리자";
 			String info = "신고요청에 의한 게시물 삭제";
-			nd.noticeReportWrite(info, from, writer_nickname,board_num); //알림주기
+			//알림테이블에 등록하기
+			nd.noticeReportWrite(info, from, writer_nickname,board_num); 
 			
-			//cbd.comBoardDelete(board_num); 삭제하기
+			cbd.comBoardDelete(board_num); //삭제하기
 		} 
 		
 	//어떤 jsp로 보내든 상관없음

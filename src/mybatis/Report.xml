@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="report">
 
 
-<insert id = "insertReport" parameterType = "map">
-	insert into report values (report_seq.nextval, #{nickname}, #{report_reason}, #{board_num})
+<insert id = "insertReport" parameterType = "report">
+	insert into report values (report_seq.nextval, #{nickname}, #{report_reason}, #{board_num}, #{writer_nickname}, #{board_num_title}, #{board_num_regdate})
 </insert>
 
 
@@ -16,10 +16,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select nickname from report where board_num = #{board_num}
 </select>
 
-<!-- 게시글 당 신고한 사유 가져오기 -->
+<!-- 게시글 당 신고한 사유들 가져오기 -->
 <select id = "reportReason" resultType = "String" parameterType = "int">
 	select report_reason from report where board_num = #{board_num}
 </select>
 
+
+<!-- 알림을 줄 신고 정보 가져오기 -->
+<select id = "reportOne" resultType = "report" parameterType = "int">
+	select * from report where report_num = (select max(report_num) from report where board_num = #{board_num})
+</select>
 
 </mapper>

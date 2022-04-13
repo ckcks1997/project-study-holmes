@@ -1,5 +1,6 @@
 package service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,15 +16,10 @@ public class ReportDao {
 	private Map<String, Object> map = new HashMap<>();
 	
 	
-	public int insertReport(String nickname, int report_reason, int board_num) {
+	public int insertReport(Report report){
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		try {
-			map.clear();
-			map.put("nickname", nickname);
-			map.put("report_reason", report_reason);
-			map.put("board_num",board_num);
-			
-			return sqlSession.update(NS+"insertReport",map);			
+			return sqlSession.update(NS+"insertReport",report);			
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -60,6 +56,18 @@ public class ReportDao {
 		return null;
 	}
 	
+	//알림으로 신고 정보 보여줄때 사용 
+	public Report reportOne(int board_num) {
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			return sqlSession.selectOne(NS + "reportOne",board_num);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		return null;
+	}
 	
 	
 	

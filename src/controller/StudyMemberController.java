@@ -86,10 +86,12 @@ public class StudyMemberController extends MskimRequestMapping {
     		  List<String> reportReason = rd.reportReason(board_num);
     		  request.setAttribute("reportReason", reportReason);
     		  
-    		  //뷰에서 com.title로 원 게시글 제목 가져오기 위해 세팅 
-    		  CommunityBoardDao cbd = new CommunityBoardDao();
-    		  Community com = cbd.comBoardOne(board_num);
-    		  request.setAttribute("com", com);
+    		  //report테이블에서 원 글 정보가져오기 
+    		  Report report = rd.reportOne(board_num);
+    		  request.setAttribute("report", report);
+    		
+    	
+    		  
     		 
     		  
     	  }

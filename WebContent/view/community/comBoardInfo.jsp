@@ -358,7 +358,7 @@ body {
         	<div class="form-check">
   				<input class="form-check-input" type="radio" name="reportReason" id="reportReason3" value="3">
   				<label class="form-check-label" for="reportReason3">
-    			욕설/비방/혐오/인신공격
+    			욕설/비방/혐오
   				</label>
 			</div>
 			<div class="form-check">
