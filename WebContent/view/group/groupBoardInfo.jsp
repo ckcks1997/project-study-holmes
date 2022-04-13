@@ -98,10 +98,10 @@ body {
 								${groupBoard.nickname} · ${groupBoard.regdate}
 
 
-								<c:if test="${loginNick eq com.nickname}">
+								<c:if test="${loginNick eq groupBoard.nickname}">
 									<span class="txt_bar">|</span>
 									<a
-										href="<%=request.getContextPath()%>/community/comBoardUpdateForm?board_num=${com.board_num}">수정</a>
+										href="<%=request.getContextPath()%>/community/comBoardUpdateForm?board_num=${groupBoard.board_num}">수정</a>
 								</c:if>
 							</p>
 						</div>
@@ -187,7 +187,7 @@ body {
 					<div class="row">
 						<div class="col-md-10">
 							<input type="hidden" id="board_num" name="board_num"
-								value="${com.board_num}"> <input type="hidden"
+								value="${groupBoard.board_num}"> <input type="hidden"
 								name="reply_nickname" id="reply_nickname"
 								value="${sessionScope.memberNickname}">
 
@@ -215,11 +215,11 @@ body {
 
 
 					<button type="button" class="btn btn-dark mt-3"
-						onclick="location.href ='comBoardList'">목록으로</button>
+						onclick="location.href ='groupBoardList'">목록으로</button>
 					<button type="button" class="btn btn-dark mt-3"data-toggle="modal"
 							data-target="#reportModal" class="btn btn-danger mt-3" >신고</button>
 
-					<c:if test="${loginNick eq com.nickname}">
+					<c:if test="${loginNick eq groupBoard.nickname}">
 						<button type="button" data-toggle="modal"
 							data-target="#deleteModal" class="btn btn-danger mt-3">삭제</button>
 					</c:if>
@@ -244,7 +244,7 @@ body {
 					method="post">
 					<div class="form-group">
 						<input type="hidden" id="board_num" name="board_num"
-							value="${com.board_num}">
+							value="${groupBoard.board_num}">
 						<div class="modal-header">
 							<h5 class="modal-title" id="deleteBoardLabel">게시글 삭제</h5>
 							<button type="button" class="close" data-dismiss="modal"
@@ -364,7 +364,7 @@ $("#writeReply").on("click", function(){
 	
   //alert(reply_content.value)
 	var reply = {
-			"board_num" : "${com.board_num}",
+			"board_num" : "${groupBoard.board_num}",
 			"reply_content" : reply_content.value			
 	}
 
@@ -486,7 +486,7 @@ $("#sendReport").on("click",function(){
 	
 	let report = {
 			"report_reason": report_reason,
-			"board_num": "${com.board_num}"
+			"board_num": "${groupBoard.board_num}"
 	}
 	
 	$.ajax({

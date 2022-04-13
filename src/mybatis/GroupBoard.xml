@@ -24,4 +24,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select * from group_board where s_board_num = #{s_board_num} and  board_num = #{boardid}
 </select>
  
+ 
+<!-- 조회수 증가 -->
+<update id= "groupReadCountUp" parameterType= "int">
+	update group_board set readcnt = readcnt + 1 where board_num = #{board_num}
+</update>
+ 
 </mapper>

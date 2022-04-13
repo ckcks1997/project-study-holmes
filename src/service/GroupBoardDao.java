@@ -83,5 +83,17 @@ public class GroupBoardDao {
 			return null;
 	  }
 	  
+	  /*조회수 증가*/
+	  public void groupReadCountUp(int board_num) {
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+			 try {
+			  sqlSession.update(NS+"groupReadCountUp",board_num);
+			 } catch(Exception e) {
+				 e.printStackTrace();
+			 } finally {
+				 MybatisConnection.close(sqlSession);
+			 }
+		  
+	  }
 }
  

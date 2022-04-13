@@ -426,8 +426,6 @@ public class GroupStudyController extends MskimRequestMapping {
 		gb.setContent(content);
 		gb.setNickname(memberNickname);
 		
-		System.out.println("========"+gb);
-		
 		GroupBoardDao gbd = new GroupBoardDao();
 		int res = gbd.groupInsertBoard(gb);
 		System.out.println("result="+res);
@@ -449,12 +447,11 @@ public class GroupStudyController extends MskimRequestMapping {
 	  GroupBoardDao gbd = new GroupBoardDao();
 	  
 	  GroupBoard gb = gbd.groupBoardOne(s_board_num, board_num);
+	  gbd.groupReadCountUp(Integer.parseInt(board_num));
 	  
-	 
 	  //댓글보여주기
 	  ReplyDao rd = new ReplyDao();
-	 
-	
+
 	  List<Reply> reply_list = rd.replyWriteList(Integer.parseInt(board_num));
 	  int reply_count = rd.replyCount(Integer.parseInt(board_num));
 	  
