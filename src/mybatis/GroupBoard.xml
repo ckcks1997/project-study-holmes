@@ -14,11 +14,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	#{title}, #{content},0,#{boardid}, sysdate,null,0,#{nickname})
 </insert> 
   
- <select id = "groupBoardList" resultType = "community"  parameterType = "map">
+ <select id = "groupBoardList" resultType = "groupBoard"  parameterType = "map">
 	select  * from (select rownum rnum, a.* from (
 	select * from group_board where boardid = #{boardid} and s_board_num = #{s_board_num} order by board_num desc) a)
 	where rnum between #{start} and #{end}
 </select> 
 
+ <select id = "groupBoardOne" resultType = "groupBoard" parameterType ="map">
+	select * from group_board where s_board_num = #{s_board_num} and  board_num = #{boardid}
+</select>
  
 </mapper>

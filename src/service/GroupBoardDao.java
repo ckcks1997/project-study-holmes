@@ -34,7 +34,7 @@ public class GroupBoardDao {
 			return 0;
 	  }
 	  
-	  public List<Community> groupBoardList(int pageInt, int limit, int boardcount, String boardid, String s_board_num) {
+	  public List<GroupBoard> groupBoardList(int pageInt, int limit, int boardcount, String boardid, String s_board_num) {
 		  
 		  SqlSession sqlSession = MybatisConnection.getConnection();
 			try {
@@ -66,6 +66,23 @@ public class GroupBoardDao {
 			return 0;
 			}
 	 
+ 
+	  public GroupBoard groupBoardOne(String s_board_num, String boardid) {
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+			try {
+				map.clear();
+				System.out.println(boardid+":"+s_board_num);
+				map.put("boardid", boardid);
+				map.put("s_board_num", s_board_num); 
+					
+			return sqlSession.selectOne(NS+"groupBoardOne",map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			} 
+			return null;
+	  }
 	  
 }
  

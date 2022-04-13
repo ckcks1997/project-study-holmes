@@ -5,7 +5,7 @@ import java.util.Date;
 public class GroupBoard {
 
 
-	  private int group_member;
+	  private int board_num;
 	  private int s_board_num;
 	  private String title;
 	  private String content;
@@ -23,9 +23,9 @@ public class GroupBoard {
 
 
 
-	public GroupBoard(int group_member, int s_board_num, String title, String content, int replycnt, String boardid,
+	public GroupBoard(int board_num, int s_board_num, String title, String content, int replycnt, String boardid,
 			Date regdate, String file1, int readcnt, String nickname) {
-		this.group_member = group_member;
+		this.board_num = board_num;
 		this.s_board_num = s_board_num;
 		this.title = title;
 		this.content = content;
@@ -39,14 +39,14 @@ public class GroupBoard {
 
 
 
-	public int getGroup_member() {
-		return group_member;
+	public int getboard_num() {
+		return board_num;
 	}
 
 
 
-	public void setGroup_member(int group_member) {
-		this.group_member = group_member;
+	public void setboard_num(int board_num) {
+		this.board_num = board_num;
 	}
 
 
@@ -161,7 +161,7 @@ public class GroupBoard {
 
 	@Override
 	public String toString() {
-		return "{\"group_member\":\"" + group_member + "\", \"s_board_num\":\"" + s_board_num + "\", \"title\":\""
+		return "{\"board_num\":\"" + board_num + "\", \"s_board_num\":\"" + s_board_num + "\", \"title\":\""
 				+ title + "\", \"content\":\"" + content + "\", \"replycnt\":\"" + replycnt + "\", \"boardid\":\""
 				+ boardid + "\", \"regdate\":\"" + regdate + "\", \"file1\":\"" + file1 + "\", \"readcnt\":\"" + readcnt
 				+ "\", \"nickname\":\"" + nickname + "\"}";
