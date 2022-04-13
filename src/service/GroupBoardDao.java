@@ -70,8 +70,7 @@ public class GroupBoardDao {
 	  public GroupBoard groupBoardOne(String s_board_num, String boardid) {
 		  SqlSession sqlSession = MybatisConnection.getConnection();
 			try {
-				map.clear();
-				System.out.println(boardid+":"+s_board_num);
+				map.clear(); 
 				map.put("boardid", boardid);
 				map.put("s_board_num", s_board_num); 
 					

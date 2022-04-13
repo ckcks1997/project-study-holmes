@@ -81,8 +81,40 @@ body {
 	<script>
 		$('.summernote').summernote({
 			height : 350,
-			lang : "ko-KR"
+			lang : "ko-KR",
+			callbacks : {   
+				onImageUpload : function(files, editor, welEditable) {       
+					for (var i = 0; i < files.length; i++) {
+						sendFile(files[i], this);
+					}
+				}
+			} 
+
+
 		});
+		
+		function sendFile(file, el) {
+			var form_data = new FormData();
+			form_data.append('file', file);
+			$.ajax({  
+				data : form_data,
+				type : "POST",
+				url : '<%=request.getContextPath()%>/group/imageUpload',
+				cache : false,
+				contentType : false,
+				enctype : 'multipart/form-data', 
+				processData : false,
+				success : function(url) { 
+					 let res = url.trim();
+					 console.log(res)
+					$(el).summernote('insertImage', res, function($image) {
+						$image.css('width', "25%");
+					});
+				}
+			});
+		} 
+
+
 	</script>
 	
 

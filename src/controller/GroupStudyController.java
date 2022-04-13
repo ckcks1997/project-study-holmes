@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -177,7 +179,7 @@ public class GroupStudyController extends MskimRequestMapping {
    * 게시글 관련한 board_num(community, study, group board들)의 pk는 전부 같은 시퀀스(board_seq)를 공유하는데
    * group_member 자체가 Study_menu게시글의 board_num을 참고하고 있고
    * group_board의 경우 board_num시퀀스를 pk, Study_menu의 board_num을 속성으로 갖고 있어
-   * 아래 코드에서도 두 board_num 속성이 혼용되고 있습니다 ㅠㅠ..(whimsical을 확인해보시면 이해가 가실겁니다..)
+   * 아래 코드에서도 두 board_num 속성이 혼용되고 있습니다 ㅠㅠ(whimsical을 확인해보시면 이해가 가실겁니다..)
    * 
    * 초기에는 두 board_num의 이름이 혼용되었지만
    * 이후 group_board의 board_num은 s_board_num으로 선언하여 처리하고 있으니 참고하세요..
@@ -417,11 +419,14 @@ public class GroupStudyController extends MskimRequestMapping {
 		String content = (String) multi.getParameter("content");
 		
 		GroupBoard gb = new GroupBoard();
+		
 		gb.setBoardid(boardid);
 		gb.setS_board_num(Integer.parseInt(boardnum));
 		gb.setTitle(title);
 		gb.setContent(content);
 		gb.setNickname(memberNickname);
+		
+		System.out.println("========"+gb);
 		
 		GroupBoardDao gbd = new GroupBoardDao();
 		int res = gbd.groupInsertBoard(gb);
@@ -459,13 +464,35 @@ public class GroupStudyController extends MskimRequestMapping {
 	  request.setAttribute("groupBoard", gb); 
 	  
 	  return "/view/group/groupBoardInfo.jsp";
-	  
-	  
-	  
-	  
-	  
+
 	  
   }
+
+  /*이미지 업로드*/
+	@RequestMapping("imageUpload")                                             
+	public String imageUpload(HttpServletRequest request, HttpServletResponse response) {
+ 
+		String path = getServletContext().getRealPath("/")+"upload";
+		String fileName = "";
+	    //폴더가 없으면 에러남, 검사 후 폴더생성
+	    File file=new File(path);
+	    if(!file.exists()) { 
+	      file.mkdir();
+	    }
+	    
+	    String filename = null;
+	    MultipartRequest multi = null;
+	    try {
+	      multi = new MultipartRequest(request, path, 10*1024*1024, "utf-8");
+	    } catch (IOException e) { 
+	      e.printStackTrace();
+	    }
+	     
+	    filename = multi.getFilesystemName("file");
+	    System.out.println("filename="+filename);
+	    request.setAttribute("filename", filename);
+	    return "/single/picturePro2.jsp";
+	}
   
   
 }
