@@ -184,7 +184,7 @@ public class CommunityBoardDao {
 		  
 	  }
 	  
-	  
+	   
 	  public int comNextNum() {
 		  
 		  SqlSession sqlSession = MybatisConnection.getConnection();

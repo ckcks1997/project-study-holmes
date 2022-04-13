@@ -34,7 +34,7 @@ public class GroupBoardDao {
 			return 0;
 	  }
 	  
-	  public List<Community> groupBoardList(int pageInt, int limit, int boardcount, String boardid, String s_board_num) {
+	  public List<GroupBoard> groupBoardList(int pageInt, int limit, int boardcount, String boardid, String s_board_num) {
 		  
 		  SqlSession sqlSession = MybatisConnection.getConnection();
 			try {
@@ -66,6 +66,34 @@ public class GroupBoardDao {
 			return 0;
 			}
 	 
+ 
+	  public GroupBoard groupBoardOne(String s_board_num, String boardid) {
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+			try {
+				map.clear(); 
+				map.put("boardid", boardid);
+				map.put("s_board_num", s_board_num); 
+					
+			return sqlSession.selectOne(NS+"groupBoardOne",map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			} 
+			return null;
+	  }
 	  
+	  /*조회수 증가*/
+	  public void groupReadCountUp(int board_num) {
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+			 try {
+			  sqlSession.update(NS+"groupReadCountUp",board_num);
+			 } catch(Exception e) {
+				 e.printStackTrace();
+			 } finally {
+				 MybatisConnection.close(sqlSession);
+			 }
+		  
+	  }
 }
  
