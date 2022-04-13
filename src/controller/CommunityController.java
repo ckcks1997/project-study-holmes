@@ -353,16 +353,17 @@ public class CommunityController extends MskimRequestMapping{
 	  
 	  //썸머노트는 텍스트를 <p></p>태그 붙여서 데이터저장함 -- p태그 제거하고 db저장 
 	  String content = multi.getParameter("content");
-	  //맨앞 맨뒤 p태그 제거 
-	  String content1 = content.substring(3,content.length()-4);
-	  //p태그 자체를 공백으로 
+	  
+	  //content1 == 맨앞 맨뒤 p태그 제거한 내용 
+	  String content1 = content.substring(3,content.length()-4);	  
+	  com.setContent(content1);
+	  com.setIp(request.getLocalAddr());
+	  
+	  
+	  
+	  //p태그 자체를 공백으로 , content3 == 모든 <p></p>태그를 공백으로 만든 내용
 	  String content2 = content.replaceAll("<p>", " ");
 	  String content3 = content2.replaceAll("</p>", " ");
-	  
-	  
-	  com.setContent(content1);
-	  
-	  com.setIp(request.getLocalAddr());
 	  
 	  
 	  

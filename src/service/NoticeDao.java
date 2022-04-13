@@ -69,6 +69,33 @@ public class NoticeDao {
   }
   
   
+  
+  
+  
+  public int noticeReportWrite(String info, String from, String to, int board_num) {
+	    SqlSession sqlSession = MybatisConnection.getConnection();
+	    try {
+	      map.clear();
+	      map.put("info", info);
+	      map.put("from", from);
+	      map.put("to", to);
+	      map.put("board_num", board_num);
+	      
+	      return sqlSession.insert(NS + "noticeReportWrite", map);
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    } finally {
+	      MybatisConnection.close(sqlSession);
+	    }
+	    return 0;
+	  }
+  
+  
+  
+  
+  
+  
+  
   public Notice noticeGetByNoticeNum(int noticeNum) {
 
     SqlSession sqlSession = MybatisConnection.getConnection();

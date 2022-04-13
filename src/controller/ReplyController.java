@@ -42,6 +42,7 @@ public class ReplyController extends MskimRequestMapping {
 		//reply_num은 댓글의 번호
 		request.setAttribute("reply_num", reply_num);
 		
+		//어떤 jsp로 보내든 상관없음
 		return "/single/num.jsp";	
 	}
 	

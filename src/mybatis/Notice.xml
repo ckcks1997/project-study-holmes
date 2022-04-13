@@ -29,7 +29,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into notice 
         values(notice_seq.nextval, #{to}, #{from}, null, #{boardid}, 0, sysdate )
 	</insert>
-
+	
+	<insert id="noticeReportWrite" parameterType="map">
+        insert into notice 
+        values(notice_seq.nextval, #{to}, #{from}, #{info}, #{board_num}, 0, sysdate )
+	</insert>
+	
+	
     <select id="noticeGetByNoticeNum" parameterType="int" resultType="notice">
         select * from notice where notice_num = #{notice_num} 
     </select>

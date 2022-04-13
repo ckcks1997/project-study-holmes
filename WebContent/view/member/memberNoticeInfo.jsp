@@ -38,12 +38,20 @@
                      <div class="container shadow-sm container-css p-5 ">
                          <div class="d-flex flex-column justify-content-center">
                             <span>from: <span> <a  class="c-black" href="<%=request.getContextPath()%>/studymember/userinfo?usernick=${notice.nickname_from}"> ${notice.nickname_from } </a></span></span><br><br>
-                            내용:
                             <c:if test="${notice.info != null }">
-                            ${notice.info} <br>
+                            <div>
+                           제목 : ${notice.info} <br>
+                           내용 : 게시글이 신고요청에 의해 삭제되었습니다. <br />
+                           		<div>
+                           			삭제된 게시글 : " ${com.title } " 작성일자 : ${com.regdate }<br />
+      								누적 신고수가 3회 이상이면 자동으로 삭제됩니다. <br />
+      								신고 사유는 다음과 같습니다. <br />
+                          			 ${reportReason }
+                           		</div>
+                           </div>
                             </c:if>
-                          <c:if test="${notice.info2 != null }">
-                            "${notice.nickname_from }" 님이 "${title}" 스터디에 참가요청을 보냈습니다.<br>
+                          <c:if test="${notice.info == null }">
+                          	내용 : &nbsp; "${notice.nickname_from }" 님이 "${title}" 스터디에 참가요청을 보냈습니다.<br>
                                 <div class="container text-center mt-5">
                                    <button class="btn btn-primary" onclick="location.href=' <%=request.getContextPath()%>/studymember/groupAccept?notice_num=${notice.notice_num}'">참가 수락</button> 
                                    <button class="btn btn-secondary" onclick="location.href='<%=request.getContextPath()%>/studymember/notice'">알림 목록</button> 

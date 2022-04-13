@@ -12,7 +12,7 @@ import util.MybatisConnection;
 public class ReplyDao {
 	
 	private static final String NS = "reply.";
-	  //private Map<String, Object> map = new HashMap<>();
+	 // private Map<String, Object> map = new HashMap<>();
 	
 	  
 	  /*댓글등록*/

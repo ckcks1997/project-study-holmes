@@ -5,17 +5,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="report">
 
 
-<insert id = "insertReport" parameterType = "report">
-	insert into report values (#{report_num}, #{nickname}, #{report_reason}, #{board_num})
+<insert id = "insertReport" parameterType = "map">
+	insert into report values (report_seq.nextval, #{nickname}, #{report_reason}, #{board_num})
 </insert>
 
-<select id = "reportNextNum" resultType = "int">
-	select report_seq.nextval from dual
-</select>
+
 
 <!-- 게시글 당 신고한 닉네임 리스트 가져오기 -->
 <select id = "reportNickname" resultType = "String" parameterType = "int">
-	select Nickname from report where board_num = #{board_num}
+	select nickname from report where board_num = #{board_num}
 </select>
+
+<!-- 게시글 당 신고한 사유 가져오기 -->
+<select id = "reportReason" resultType = "String" parameterType = "int">
+	select report_reason from report where board_num = #{board_num}
+</select>
+
 
 </mapper>

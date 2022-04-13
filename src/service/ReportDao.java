@@ -14,10 +14,16 @@ public class ReportDao {
 	private static final String NS = "report.";
 	private Map<String, Object> map = new HashMap<>();
 	
-	public int reportNextNum() {
+	
+	public int insertReport(String nickname, int report_reason, int board_num) {
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		try {
-		return sqlSession.selectOne(NS+"reportNextNum");
+			map.clear();
+			map.put("nickname", nickname);
+			map.put("report_reason", report_reason);
+			map.put("board_num",board_num);
+			
+			return sqlSession.update(NS+"insertReport",map);			
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -26,19 +32,7 @@ public class ReportDao {
 		return 0;
 	}
 	
-	public int insertReport(Report report) {
-		SqlSession sqlSession = MybatisConnection.getConnection();
-		try {
-			return sqlSession.update(NS+"insertReport",report);			
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			MybatisConnection.close(sqlSession);
-		}
-		return 0;
-	}
-	
-	
+	//닉네임리스트 가져와서 비교할때 사용
 	public List<String> reportNickname(int board_num){
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		try {
@@ -51,6 +45,22 @@ public class ReportDao {
 		
 		return null;
 	}
+	
+	//알림으로 신고사유 보여줄때 사용 
+	public List<String> reportReason(int board_num){
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			return sqlSession.selectList(NS + "reportReason",board_num);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return null;
+	}
+	
+	
 	
 	
 } //end class
