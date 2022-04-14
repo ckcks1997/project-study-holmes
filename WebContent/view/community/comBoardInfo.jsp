@@ -102,7 +102,7 @@ body {
 								${com.nickname} · ${com.regdate}
 
 
-								<c:if test="${loginNick eq com.nickname}">
+								<c:if test="${memberNickname eq com.nickname}">
 									<span class="txt_bar">|</span>
 									<a
 										href="<%=request.getContextPath()%>/community/comBoardUpdateForm?board_num=${com.board_num}">수정</a>
@@ -174,7 +174,7 @@ body {
 											<p>${reply.nickname} · ${reply.regdate2}</p>
 										</div>
 
-										<c:if test="${loginNick eq reply.nickname}">
+										<c:if test="${memberNickname eq reply.nickname}">
 											<div class="col-md-2">
 												<input type="button" class="btn btn-light"
 													onclick="deleteReply('${reply.reply_num}')" value="삭제" />
