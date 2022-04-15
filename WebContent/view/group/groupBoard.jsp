@@ -95,47 +95,16 @@ a:hover {
 			<%--aside부분 --%>
                 <%@include file="/common/groupboard_menu.jsp" %>
                 
-                
-<!-- ---------------------------메인검색-------------------------------------------------------- -->
+                 
 			<div class="main col-lg-9">
 				<h2 style="font-weight: bold">${boardName}</h2>
 
 				<hr align="left" width="170px" style="background-color: #c47100; height:1px;" />
 
-
-				<form action = "<%=request.getContextPath()%>/community/comSearch" method = post>
-					<input type = "hidden" name = "boardid" value = "${boardid}"/>
-					
-					<div class="row">
-						<div class="col-xs-12 col-sm-11 col-md-10">
-						<div class = "d-flex flex-row align-items-center">
-						<div class = "col-md-2">
-						<select class="custom-select" name="part">
-									    <option value="title">제목</option>
-									    <option value="content">내용</option>						
-									</select>
-						
-						
-						</div>
-							<input type="text" class="form-control rounded" name = "searchData"
-								placeholder="내용을 검색해보세요!" required="required"/>
-						</div>
-						</div>
-						<div class="col-xs-12 col-sm-1 col-md-2 btn-search">
-							<input class="btn btn-dark" type="submit" name = "search" value = "검색"/>
-						</div>
-					</div>
-				
-				</form>
+ 
 				<br />
 <!-- ------------------------------------------------------------------------------------ -->
-				<div class = "row col-sm-9 divide" style="float: left">
-					<a href ="<%=request.getContextPath()%>/community/comBoardList">최신순</a>
-					 &nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp;
-					<a href = "<%=request.getContextPath()%>/community/comBoardReply">댓글순</a>
-					&nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp;
-					<a href ="<%=request.getContextPath()%>/community/comBoardRead">조회수순</a>
-				</div>
+ 
 				
 				<c:if test="${sessionScope.memberNickname != manager && boardid != 4 }">
 				<div class="mb-2" style="float: right">

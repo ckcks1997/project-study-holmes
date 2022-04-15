@@ -82,7 +82,18 @@ public class GroupBoardDao {
 			} 
 			return null;
 	  }
-	  
+	  public GroupBoard groupBoardOne2(int board_num) {
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+			try {
+					
+			return sqlSession.selectOne(NS+"groupBoardOne2",board_num);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			} 
+			return null;
+	  } 
 	  /*조회수 증가*/
 	  public void groupReadCountUp(int board_num) {
 		  SqlSession sqlSession = MybatisConnection.getConnection();
@@ -93,6 +104,22 @@ public class GroupBoardDao {
 			 } finally {
 				 MybatisConnection.close(sqlSession);
 			 }
+		  
+	  }
+	  
+	  
+	  public int groupBoardUpdate(GroupBoard gb) {
+		  SqlSession sqlSession = MybatisConnection.getConnection();
+		  
+		  try {
+		  return sqlSession.update(NS+"groupBoardUpdate", gb);
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  } finally {
+			  MybatisConnection.close(sqlSession);
+		  }
+		  
+		  return 0;
 		  
 	  }
 }

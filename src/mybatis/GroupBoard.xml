@@ -23,11 +23,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <select id = "groupBoardOne" resultType = "groupBoard" parameterType ="map">
 	select * from group_board where s_board_num = #{s_board_num} and  board_num = #{boardid}
 </select>
- 
+<select id = "groupBoardOne2" resultType = "groupBoard" parameterType ="int">
+	select * from group_board where board_num = #{board_num}
+</select>
  
 <!-- 조회수 증가 -->
 <update id= "groupReadCountUp" parameterType= "int">
 	update group_board set readcnt = readcnt + 1 where board_num = #{board_num}
 </update>
+ 
+ <update id = "groupBoardUpdate" parameterType = "groupBoard">
+	update group_board set title = #{title}, content = #{content} where board_num = #{board_num}
+</update>
+ 
  
 </mapper>

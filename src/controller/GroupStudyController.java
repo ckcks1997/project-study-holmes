@@ -17,6 +17,7 @@ import model.GroupMember;
 import model.Reply;
 import model.ReputationEstimate;
 import model.StudyMember;
+import model.StudyMenu;
 import model.group.GroupInList;
 import service.AttendDao;
 import service.CommunityBoardDao;
@@ -25,6 +26,7 @@ import service.GroupMemberDao;
 import service.ReplyDao;
 import service.ReputationEstimateDao;
 import service.StudyMemberDao;
+import service.StudyMenuDao;
 
 //group
 public class GroupStudyController extends MskimRequestMapping {
@@ -69,7 +71,14 @@ public class GroupStudyController extends MskimRequestMapping {
       
       GroupMemberDao gmd = new GroupMemberDao();
       List<GroupMember> groupMemberList = gmd.groupListByBoardnum(boardnum);
+      int total = groupMemberList.size();
+      
+      StudyMenuDao sd = new StudyMenuDao();
+      StudyMenu smenu = sd.menuBoardOne(Integer.parseInt(boardnum));
+      
       request.setAttribute("groupMemberList", groupMemberList);
+      request.setAttribute("total", total); 
+      request.setAttribute("studyMenuInfo", smenu);
       return "/view/group/groupStudyInfo.jsp";
     }
     
@@ -182,7 +191,7 @@ public class GroupStudyController extends MskimRequestMapping {
    * 아래 코드에서도 두 board_num 속성이 혼용되고 있습니다 ㅠㅠ(whimsical을 확인해보시면 이해가 가실겁니다..)
    * 
    * 초기에는 두 board_num의 이름이 혼용되었지만
-   * 이후 group_board의 board_num은 s_board_num으로 선언하여 처리하고 있으니 참고하세요..
+   * 이후 Study_menu(=group_member)의 board_num은 s_board_num으로 선언하여 처리하고 있으니 참고하세요..
    * 
    * */
   @RequestMapping("groupBoard")
@@ -492,6 +501,80 @@ public class GroupStudyController extends MskimRequestMapping {
 	    request.setAttribute("filename", filename);
 	    return "/single/picturePro2.jsp";
 	}
-  
-  
+	
+  //게시글 수정페이지
+	  @RequestMapping("groupBoardUpdateForm")
+	  public String comBoardUpdateForm(HttpServletRequest request,  HttpServletResponse response) {
+		  
+		  HttpSession session = request.getSession();
+		  String msg = "로그인이 필요합니다";
+		  String url = request.getContextPath()+"/studymember/loginForm";
+		  
+		  if(session.getAttribute("memberNickname")!= null) {
+			  
+			  
+		 	  int board_num = Integer.parseInt(request.getParameter("board_num"));
+		 	  System.out.println(board_num+"==");
+		 	  GroupBoardDao gbd = new GroupBoardDao();
+		 	  GroupBoard gb = gbd.groupBoardOne2(board_num);
+		 	  
+		 	  if(gb.getNickname().equals(session.getAttribute("memberNickname") )){
+			 	  request.setAttribute("gb", gb);
+			 	  return "/view/group/groupBoardUpdateForm.jsp";
+		 	  }
+		  }
+		  
+	      msg= "권한이 없습니다.";
+	      url= "main";
+
+	    request.setAttribute("msg", msg);
+	    request.setAttribute("url", url);
+	     
+	    return "/view/alert.jsp";  
+	    }
+	  
+	  //게시글 수정
+	  @RequestMapping("groupBoardUpdatePro")
+	  public String comBoardUpdatePro(HttpServletRequest request, HttpServletResponse response) {
+		  
+		  String path = request.getServletContext().getRealPath("/")+"/comboardupload/";
+		  
+		  int size = 10*10*1024;
+		  MultipartRequest multi = null;
+		  try {
+			multi = new MultipartRequest(request, path, size, "utf-8");
+		  } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		  }
+		  GroupBoard com = new GroupBoard();
+		  com.setboard_num(Integer.parseInt(multi.getParameter("board_num")));
+		  com.setTitle(multi.getParameter("title"));
+		  com.setContent(multi.getParameter("content"));
+		  
+		  GroupBoardDao cbd = new GroupBoardDao();
+		  
+		  String msg = "";
+		  String url = "";
+		  
+		
+		  
+		  //Community newcom = cbd.comBoardOne(com.getNum());
+		  if(cbd.groupBoardUpdate(com)>0) {
+			   msg = "수정되었습니다";
+			   url = request.getContextPath()+"/group/groupBoardInfo?board_num="+com.getboard_num();
+			 
+		  } else {
+			  msg = "수정이 실패하였습니다";
+		  }
+		 
+		  
+		  request.setAttribute("msg", msg);
+		  request.setAttribute("url", url);
+		 
+		  
+		  return "/view/alert.jsp";
+		  
+	  }
+	  
 }

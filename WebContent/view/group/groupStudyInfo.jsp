@@ -97,10 +97,10 @@ h2, h3, h5 {
 				<hr align="left" width="250px" style="background-color: #c47100; height:1px;" />
 				<br>
 				<div class="container container-css  p-5">
-				<h3> 스터디 목록 </h3>
+				<h3>  ${studyMenuInfo.title}</h3>
 			        <div class="row">
 	                    <div class="col">
-	                      <h5>스터디 멤버</h5>
+	                      <h5>스터디 멤버:  ${total} / ${studyMenuInfo.pernum} 명</h5>
 	                    </div>
 	                </div>
 	                    <hr>
