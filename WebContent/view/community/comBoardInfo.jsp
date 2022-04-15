@@ -230,7 +230,7 @@ body {
 						onclick="location.href ='comBoardList'">목록으로</button>
 						
 						
-					<!-- 1)로그인 된 회원 2)글 작성자와 다른 회원만 신고버튼 활성화 -->	
+					<!-- 1)로그인 된 회원이고 2)글 작성자와 다른 회원만 신고버튼 활성화 -->	
 					<c:if test="${memberNickname != null && memberNickname != com.nickname}">	
 						<c:set var = "nickList" value = "${nicknameList}" />
 						<c:choose>
