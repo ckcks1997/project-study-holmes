@@ -140,7 +140,7 @@ a:hover {
 				<c:if test="${sessionScope.memberNickname != manager && boardid != 4 }">
 				<div class="mb-2" style="float: right">
 					<button type="button" class="btn btn-dark"
-						onclick="location.href='<%=request.getContextPath()%>/group/groupBoardWriteForm'">글쓰기
+						onclick="location.href='<%=request.getContextPath()%>/group/groupBoardWriteForm?boardid=${boardid}'">글쓰기
 					</button>
 				</div>
 				</c:if>

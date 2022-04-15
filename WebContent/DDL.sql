@@ -105,7 +105,7 @@ create sequence reply_seq;
 
  
 -----group table
-
+create SEQUENCE GROUP_MEMBER_SEQ;
 drop table GROUP_MEMBER;
 
 create table GROUP_MEMBER

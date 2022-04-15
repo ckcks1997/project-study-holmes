@@ -374,7 +374,9 @@ public class GroupStudyController extends MskimRequestMapping {
 	  String url = request.getContextPath()+"/studymember/loginForm";
 	  
 	  if(session.getAttribute("memberNickname")!= null) {
-		  
+		   String paramid = request.getParameter("boardid");
+		   if(paramid != null)
+			   session.setAttribute("boardid", paramid);
 		return "/view/group/groupBoardWriteForm.jsp";
 	  }
 	  
@@ -429,7 +431,7 @@ public class GroupStudyController extends MskimRequestMapping {
 		GroupBoardDao gbd = new GroupBoardDao();
 		int res = gbd.groupInsertBoard(gb);
 		System.out.println("result="+res);
-		return "redirect:/view/group/groupBoard?boardnum="+boardnum;
+		return "redirect:/view/group/groupBoard?boardnum="+boardnum+"&pageNum=1";
 	  }
 	  
 	  request.setAttribute("msg", msg);
