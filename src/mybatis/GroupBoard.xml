@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select> 
 
 <insert id = "groupInsertBoard"  parameterType = "groupBoard">
-	insert into group_board values(group_member_seq.nextval, #{s_board_num}, 
+	insert into group_board values(board_seq.nextval, #{s_board_num}, 
 	#{title}, #{content},0,#{boardid}, sysdate,null,0,#{nickname})
 </insert> 
   
