@@ -98,10 +98,10 @@ body {
 								${groupBoard.nickname} · ${groupBoard.regdate}
 
 
-								<c:if test="${loginNick eq groupBoard.nickname}">
+								<c:if test="${memberNickname eq groupBoard.nickname}">
 									<span class="txt_bar">|</span>
 									<a
-										href="<%=request.getContextPath()%>/community/comBoardUpdateForm?board_num=${groupBoard.board_num}">수정</a>
+										href="<%=request.getContextPath()%>/group/groupBoardUpdateForm?board_num=${groupBoard.board_num}">수정</a>
 								</c:if>
 							</p>
 						</div>
