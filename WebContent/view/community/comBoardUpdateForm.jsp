@@ -82,10 +82,43 @@ body {
 
 
 	<script>
-		$('.summernote').summernote({
-			height : 150,
-			lang : "ko-KR"
-		});
+	$('.summernote').summernote({
+		height : 350,
+		lang : "ko-KR",
+		callbacks : { //썸머노트가 실행되면
+			onImageUpload : function(files, editor, welEditable) {
+				for (var i = 0; i < files.length; i++) {
+					sendFile(files[i], this); //sendFile()실행
+				}
+			}
+		}
+	});
+	
+	function sendFile(file, el) {
+		var form_data = new FormData(); // FormData : 페이지 전환없이 ajax로 form data 전송을 가능하게 해주는 객체
+		form_data.append('file',file); // append()로 key, value를 넣어줌 == <input name = "file" value = "file"> 과 같다 
+		$.ajax({
+			data: form_data,
+			type: "post",
+			url: '<%=request.getContextPath()%>/community/comImageUpload',
+			cache: false,
+			contentType: false,
+			enctype: 'multipart/form-data',
+			processData: false,
+			success: function(url) { //sendFile()가 정상적으로 ajax통신이 되면
+				
+				let imagePath = url;
+				console.log(imagePath);
+				
+				imagePath = url.trim();
+				console.log(imagePath);
+				$(el).summernote('insertImage',imagePath,function($image){ // 썸머노트에 이미지 삽입
+					$image.css('width',"40%");
+					
+				})
+			}
+		})
+	}
 	</script>
 
 

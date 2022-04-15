@@ -105,6 +105,7 @@ body {
 				enctype : 'multipart/form-data', 
 				processData : false,
 				success : function(url) { 
+					
 					 let res = url.trim();
 					 console.log(res)
 					$(el).summernote('insertImage', res, function($image) {
