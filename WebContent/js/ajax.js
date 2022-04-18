@@ -11,3 +11,6 @@ function ajax(url, params, callback, method){
     xhttp.onreadystatechange = callback
 }
  
+ 
+ 
+ 

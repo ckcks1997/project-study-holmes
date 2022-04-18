@@ -1,39 +1,42 @@
 package model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class Attend {
 
   private String id;
   
-  private Date day; 
+  private String gift;
   
-  public Attend() { 
-  }
-   
-  public Attend(String id, Date day) { 
-    this.id = id;
-    this.day = day;
-  } 
-  public String getId() {
-    return id;
-  }
-  public void setId(String id) {
-    this.id = id;
-  }
-  public Date getDate() {
-    return day;
-  }
-  public void setDate(Date day) {
-    this.day = day;
-  } 
   
-  @Override
-  public String toString() {
-    SimpleDateFormat df = new SimpleDateFormat("yyyy-M-dd");
-    String strNowDate = df.format(day);
 
-    return "{\"id\":\"" + id + "\", \"day\":\"" + strNowDate + "\"}";
-  } 
+public String getId() {
+	return id;
+}
+
+public void setId(String id) {
+	this.id = id;
+}
+
+public String getGift() {
+	return gift;
+}
+
+public void setGift(String gift) {
+	this.gift = gift;
+}
+
+@Override
+public String toString() {
+	return "{\"id\":\"" + id + "\", \"gift\":\"" + gift + "\"}";
+}
+
+
+public Attend(String id, String gift) {
+	super();
+	this.id = id;
+	this.gift = gift;
+}
+  
+  
+  
+  
 }

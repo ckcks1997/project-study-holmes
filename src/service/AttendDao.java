@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+
 import model.Attend;
-import model.Community; 
 import util.MybatisConnection;
 
 public class AttendDao {
@@ -28,11 +28,11 @@ public class AttendDao {
            return null;
      }
 	  
-	  public int attendInsert(String id) {
+	  public int attendInsert(Attend at) {
 		
 		  SqlSession sqlSession = MybatisConnection.getConnection();
 			try {
-			return sqlSession.insert(NS+"attendInsert",id);
+			return sqlSession.insert(NS+"attendInsert",at);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -42,4 +42,6 @@ public class AttendDao {
 	  }
 	  
 	   
+	  
+
 }

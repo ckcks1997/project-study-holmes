@@ -111,7 +111,7 @@
 							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=2">자유게시판</a> 
 							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=3">정보공유</a> 
 							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">공지사항</a> 
-							<a class="dropdown-item" href="#">출석체크</a>
+					
 						</div></li>
 					
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/view/make/make.jsp">홈즈</a></li>
@@ -150,7 +150,7 @@
 											<a class="dropdown-item"
 												href="<%=request.getContextPath()%>/studymember/mypage">마이페이지</a>
                                             <a class="dropdown-item"
-                                                href="<%=request.getContextPath()%>/attend/check">출석체크</a>
+                                                href="<%=request.getContextPath()%>/attend/check">출석 이벤트</a>
 										</div>
 									</div>
 								</c:otherwise>

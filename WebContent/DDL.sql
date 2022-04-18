@@ -139,7 +139,7 @@ CREATE TABLE GROUP_BOARD
 
 create table attend
 ( id  varchar (50),
-day  date
+ gift varchar (200)	
 );
 
 
