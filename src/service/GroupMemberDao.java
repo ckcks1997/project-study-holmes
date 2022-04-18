@@ -90,4 +90,19 @@ public class GroupMemberDao {
 	               return 0;
 	         }
 	   
+	 	   public int isMemberInGroup(String boardid, String memid) {
+		        
+	 	         SqlSession sqlSession = MybatisConnection.getConnection();
+	 	           try {
+	 	        	   map.clear();
+	 	        	   map.put("boardnum", boardid);
+	 	        	   map.put("nickname", memid);
+	 	           return sqlSession.selectOne(NS+"isMemberInGroup", map);
+	 	           } catch (Exception e) {
+	 	               e.printStackTrace();
+	 	           } finally {
+	 	               MybatisConnection.close(sqlSession);
+	 	           } 
+	 	           return 0;
+	 	     }
 }

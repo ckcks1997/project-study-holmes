@@ -25,11 +25,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update notice set isread = 1 where nickname_to = #{id}
 	</update>
 
+	<!--스터디요청 알림  --> 
 	<insert id="noticeWrite" parameterType="map">
         insert into notice 
         values(notice_seq.nextval, #{to}, #{from}, null, #{boardid}, 0, sysdate )
 	</insert>
-
+	
+	<!-- 신고알림  -->
+	<insert id="noticeReportWrite" parameterType="map">
+        insert into notice 
+        values(notice_seq.nextval, #{to}, #{from}, #{info}, #{board_num}, 0, sysdate )
+	</insert>
+	
+	
     <select id="noticeGetByNoticeNum" parameterType="int" resultType="notice">
         select * from notice where notice_num = #{notice_num} 
     </select>

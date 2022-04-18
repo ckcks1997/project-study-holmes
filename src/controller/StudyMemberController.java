@@ -11,17 +11,19 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 
-
-
+import model.Community;
 import model.GroupMember;
 import model.MemberTag;
 import model.Notice;
+import model.Report;
 import model.ReputationEstimate;
 import model.StudyMember;
 import model.StudyMenu;
+import service.CommunityBoardDao;
 import service.GroupMemberDao;
 import service.MemberTagDao;
 import service.NoticeDao;
+import service.ReportDao;
 import service.ReputationEstimateDao;
 import service.StudyMemberDao;
 import service.StudyMenuDao;
@@ -58,24 +60,50 @@ public class StudyMemberController extends MskimRequestMapping {
   @RequestMapping("noticeInfo")
   public String noticeInfo(HttpServletRequest request, HttpServletResponse response) {
 
+	  System.out.println("================");
     String id = (String) request.getSession().getAttribute("memberNickname");
     String msg = "로그인이 필요합니다";
     String url = request.getContextPath()+"/studymember/loginForm";
-    if(id != null) {
+    
+    if(id != null) { //현재 로그인 된 유저라면
       NoticeDao nd = new NoticeDao();
-      StudyMenuDao md = new StudyMenuDao(); 
       int noticeNum = Integer.parseInt(request.getParameter("noticeNum"));
+      
+      //noticeNum에 해당하는 notice정보 가져오기
       Notice n = nd.noticeGetByNoticeNum(noticeNum);
-      StudyMenu menu = md.menuBoardOne(Integer.parseInt(n.getInfo2()));
-      String title = menu.getTitle();
-      if(n.getNickname_to().equals(id)) {
-        request.setAttribute("notice", n);
-        request.setAttribute("title", title);
-        return "/view/member/memberNoticeInfo.jsp";
+      if(n.getNickname_to().equals(id)) { //알림의 수신자와 현재 닉네임이 같으면
+      
+    	  if(n.getInfo() == null) {//Info이 없으면 Info2 이용해서 title 채워보내기
+    		  StudyMenuDao md = new StudyMenuDao(); 
+    		  StudyMenu menu = md.menuBoardOne(Integer.parseInt(n.getInfo2()));
+    		  String title = menu.getTitle();  
+    		  request.setAttribute("title", title);
+         
+    	  }  else { //Info가 있으면
+    		  //신고사유 가져오기
+    		  ReportDao rd = new ReportDao();
+    		  int board_num = Integer.parseInt(n.getInfo2());
+    		  List<String> reportReason = rd.reportReason(board_num);
+    		  request.setAttribute("reportReason", reportReason);
+    		  
+    		  //report테이블에서 원 글 정보가져오기 
+    		  Report report = rd.reportOne(board_num);
+    		  request.setAttribute("report", report);
+    		
+    	
+    		  
+    		 
+    		  
+    	  }
+      // notice 보내기
+     
+     request.setAttribute("notice", n);  
+     return "/view/member/memberNoticeInfo.jsp";
       }      
     }
     request.setAttribute("msg", msg);
     request.setAttribute("url", url);
+    
     return "/view/alert.jsp";
   }
   

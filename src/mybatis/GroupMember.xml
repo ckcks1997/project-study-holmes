@@ -28,4 +28,9 @@ select * from GROUP_MEMBER where BOARDNUM = #{id}
     delete from group_member where boardnum = #{boardnum} and nickname = #{nickname} 
 </delete>
 
+
+<select id = "isMemberInGroup"  parameterType = "map" resultType="int">
+    select count(*) from group_member where boardnum = #{boardnum} and nickname = #{nickname} 
+</select> 
+
 </mapper>

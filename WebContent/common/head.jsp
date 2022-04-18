@@ -113,7 +113,7 @@
 							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">공지사항</a> 
 					
 						</div></li>
-
+					
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/view/make/make.jsp">홈즈</a></li>
 
 				</ul>

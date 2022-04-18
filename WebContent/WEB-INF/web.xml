@@ -108,5 +108,29 @@
         <servlet-name>ChatController</servlet-name>
         <url-pattern>/chat/*</url-pattern>
     </servlet-mapping>
+    
+    
+    
+    <servlet>
+        <servlet-name>ReportController</servlet-name>
+        <servlet-class>controller.ReportController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ReportController</servlet-name>
+        <url-pattern>/report/*</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+     <servlet>
+        <servlet-name>PlaceController</servlet-name>
+        <servlet-class>controller.PlaceController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>PlaceController</servlet-name>
+        <url-pattern>/place/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>

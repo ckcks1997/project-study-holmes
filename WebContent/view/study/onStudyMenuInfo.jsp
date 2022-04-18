@@ -177,7 +177,7 @@ a:hover{
 				<br>
                 <br>
                 <br> 전체 스터디 인원: ${s.pernum} 명 <br>
-                <c:if test="${loginNick != null}">
+                <c:if test="${loginNick != null && loginNick ne s.nickname}">
                 <form action="<%=request.getContextPath()%>/studymenu/studyIn" method="post">
                     <input type="hidden" name="board_name" value="onStudyMenuList">
 	                <input type="hidden" name="board_num" value="${s.board_num}">

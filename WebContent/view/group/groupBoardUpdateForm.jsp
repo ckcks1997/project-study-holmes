@@ -41,7 +41,7 @@ body {
 		<div class="row pt-5">
 <!----------- 왼쪽 사이드 메뉴 ------------------------------------------------------------------------------------->
 			<%--aside부분 --%>
-                <%@include file="/common/community_menu.jsp" %>
+                <%@include file="/common/groupboard_menu.jsp" %>
 <!-- -------------------메인 ------------------------------------------------------------------------------------------ -->
 			<div class="main col-lg-9">
 				<h1>글쓰기</h1>
@@ -50,29 +50,29 @@ body {
 
 
 				<form name="cf"
-					action="<%=request.getContextPath()%>/community/comBoardUpdatePro"
+					action="<%=request.getContextPath()%>/group/groupBoardUpdatePro"
 					enctype="multipart/form-data" method="post">
-					<input type = "hidden" name = "board_num" value = "${com.board_num}">
+					<input type = "hidden" name = "board_num" value = "${gb.board_num}">
 					<br /> <br />
 					
 					
 					<div class="form-group">
 						<label>제목</label> <input type="text" class="form-control"
-							name="title" placeholder="제목을 입력해주세요" value = "${com.title}"/>
+							name="title" placeholder="제목을 입력해주세요" value = "${gb.title}"/>
 					</div>
 
 					
 					<div class="form-group">
 						<label>내용 :</label>
 						<textarea class="summernote" name="content"
-							placeholder="Leave a comment here" id="content">${com.content}</textarea>
+							placeholder="Leave a comment here" id="content">${gb.content}</textarea>
 						
 					</div>
 
 
 
 					<div class="d-grid gap-2 " style="float: right;">
-						<button class="btn btn-dark" type="button" onclick="location.href ='comBoardInfo?board_num=${com.board_num}'">취소</button>
+						<button class="btn btn-dark" type="button" onclick="location.href ='groupBoardInfo?board_num=${gb.board_num}'">취소</button>
 						<button class="btn btn-dark" type="submit">수정</button>
 					</div>
 				</form>
@@ -82,45 +82,43 @@ body {
 
 
 	<script>
-	$('.summernote').summernote({
-		height : 350,
-		lang : "ko-KR",
-		callbacks : { //썸머노트가 실행되면
-			onImageUpload : function(files, editor, welEditable) {
-				for (var i = 0; i < files.length; i++) {
-					sendFile(files[i], this); //sendFile()실행
+		$('.summernote').summernote({
+			height : 350,
+			lang : "ko-KR",
+			callbacks : {   
+				onImageUpload : function(files, editor, welEditable) {       
+					for (var i = 0; i < files.length; i++) {
+						sendFile(files[i], this);
+					}
 				}
-			}
-		}
-	});
-	
-	function sendFile(file, el) {
-		var form_data = new FormData(); // FormData : 페이지 전환없이 ajax로 form data 전송을 가능하게 해주는 객체
-		form_data.append('file',file); // append()로 key, value를 넣어줌 == <input name = "file" value = "file"> 과 같다 
-		$.ajax({
-			data: form_data,
-			type: "post",
-			url: '<%=request.getContextPath()%>/community/comImageUpload',
-			cache: false,
-			contentType: false,
-			enctype: 'multipart/form-data',
-			processData: false,
-			success: function(url) { //sendFile()가 정상적으로 ajax통신이 되면
-				
-				let imagePath = url;
-				console.log(imagePath);
-				
-				imagePath = url.trim();
-				console.log(imagePath);
-				$(el).summernote('insertImage',imagePath,function($image){ // 썸머노트에 이미지 삽입
-					$image.css('width',"40%");
-					
-				})
-			}
-		})
-	}
-	</script>
+			} 
 
+
+		});
+		
+		function sendFile(file, el) {
+			var form_data = new FormData();
+			form_data.append('file', file);
+			$.ajax({  
+				data : form_data,
+				type : "POST",
+				url : '<%=request.getContextPath()%>/group/imageUpload',
+				cache : false,
+				contentType : false,
+				enctype : 'multipart/form-data', 
+				processData : false,
+				success : function(url) { 
+					 let res = url.trim();
+					 console.log(res)
+					$(el).summernote('insertImage', res, function($image) {
+						$image.css('width', "25%");
+					});
+				}
+			});
+		} 
+
+
+	</script>
 
 </body>
 </html>

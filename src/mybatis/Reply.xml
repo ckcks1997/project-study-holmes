@@ -40,11 +40,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 
-<!-- 원글에 댓글 수 하나씩 저장하기 -->
+<!-- 원글의 댓글 수 업데이트 -->
 <update id = "comReplyCountUp" parameterType = "int">
-	update community set replycnt = replycnt + 1
+	update community
+	set replycnt = (select count(*) from reply  where board_num = #{board_num})
 	where board_num = #{board_num}
 </update>
 
-
+<update id = "groupReplyCountUp" parameterType = "int">
+	update GROUP_BOARD
+	set replycnt = (select count(*) from reply  where board_num = #{board_num})
+	where board_num = #{board_num}
+</update>
 </mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groupBoard">
+
+<select id = "groupBoardCount" resultType ="int" parameterType = "map">
+    select count(*) from group_board where s_board_num = #{boardnum} and boardid = #{boardid}    
+</select> 
+
+<insert id = "groupInsertBoard"  parameterType = "groupBoard">
+	insert into group_board values(board_seq.nextval, #{s_board_num}, 
+	#{title}, #{content},0,#{boardid}, sysdate,null,0,#{nickname})
+</insert> 
+  
+ <select id = "groupBoardList" resultType = "groupBoard"  parameterType = "map">
+	select  * from (select rownum rnum, a.* from (
+	select * from group_board where boardid = #{boardid} and s_board_num = #{s_board_num} order by board_num desc) a)
+	where rnum between #{start} and #{end}
+</select> 
+
+ <select id = "groupBoardOne" resultType = "groupBoard" parameterType ="map">
+	select * from group_board where s_board_num = #{s_board_num} and  board_num = #{boardid}
+</select>
+<select id = "groupBoardOne2" resultType = "groupBoard" parameterType ="int">
+	select * from group_board where board_num = #{board_num}
+</select>
+ 
+<!-- 조회수 증가 -->
+<update id= "groupReadCountUp" parameterType= "int">
+	update group_board set readcnt = readcnt + 1 where board_num = #{board_num}
+</update>
+ 
+ <update id = "groupBoardUpdate" parameterType = "groupBoard">
+	update group_board set title = #{title}, content = #{content} where board_num = #{board_num}
+</update>
+ 
+ 
+</mapper>

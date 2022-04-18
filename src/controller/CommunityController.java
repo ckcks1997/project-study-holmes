@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import model.Community;
 import model.Reply;
 import service.CommunityBoardDao;
 import service.ReplyDao;
+import service.ReportDao;
  
 
 
@@ -333,7 +335,7 @@ public class CommunityController extends MskimRequestMapping{
 	      file.mkdir();
 	    }
 	    
-	  int size = 10*1024*1024;
+	  int size = 10*10*1024*10*10;
 	  MultipartRequest multi = null;
 	  try {
 		multi = new MultipartRequest(request, path, size,"utf-8");
@@ -352,20 +354,13 @@ public class CommunityController extends MskimRequestMapping{
 	  
 	  //썸머노트는 텍스트를 <p></p>태그 붙여서 데이터저장함 -- p태그 제거하고 db저장 
 	  String content = multi.getParameter("content");
-	  //맨앞 맨뒤 p태그 제거 
-	  String content1 = content.substring(3,content.length()-4);
-	  //p태그 자체를 공백으로 
-	  String content2 = content.replaceAll("<p>", " ");
-	  String content3 = content2.replaceAll("</p>", " ");
 	  
-	  
+	  //content1 == 맨앞 맨뒤 p태그 제거한 내용 
+	  String content1 = content.substring(3,content.length()-4);	  
 	  com.setContent(content1);
-	  
 	  com.setIp(request.getLocalAddr());
 	  
 	  
-	  
-	 
 	  String boardid = (String)session.getAttribute("boardid");
 	  	if(boardid ==null) { boardid ="1"; }
 	  com.setBoardid(boardid);
@@ -394,6 +389,10 @@ public class CommunityController extends MskimRequestMapping{
 	  
 	  //글 일부만 보여주기----수정해야함 --------------------------------------------------
 	  //글자수 길이 조건 걸기 추가해야함 
+	 
+	  //p태그 자체를 공백으로 , content3 == 모든 <p></p>태그를 공백으로 만든 내용
+	  String content2 = content.replaceAll("<p>", " ");
+	  String content3 = content2.replaceAll("</p>", " ");
 	 
 	  System.out.println(content3);
 	  
@@ -425,11 +424,12 @@ public class CommunityController extends MskimRequestMapping{
 	  //조회수 올리기
 	  cbd.comReadCountUp(board_num);
 	  
+	  //신고한 유저 닉네임 리스트 세팅
+	  ReportDao report_d = new ReportDao();
+	  List<String> nicknameList = report_d.reportNickname(board_num);
+	  request.setAttribute("nicknameList", nicknameList);
 	  
-	  //session의 닉네임 가져오기
-	  HttpSession session = request.getSession();
-	  String loginNick = (String)session.getAttribute("memberNickname");
-	  request.setAttribute("loginNick", loginNick);
+	  
 	  
 	  //댓글보여주기
 	  ReplyDao rd = new ReplyDao();
@@ -469,15 +469,16 @@ public class CommunityController extends MskimRequestMapping{
   //게시글 수정
   @RequestMapping("comBoardUpdatePro")
   public String comBoardUpdatePro(HttpServletRequest request, HttpServletResponse response) {
-	  
+	  System.out.println("==================");
 	  String path = request.getServletContext().getRealPath("/")+"/comboardupload/";
 	  
-	  int size = 10*10*1024;
+	  int size = 10*10*1024*10*10;
 	  MultipartRequest multi = null;
 	  try {
 		multi = new MultipartRequest(request, path, size, "utf-8");
 	  } catch (Exception e) {
 		// TODO Auto-generated catch block
+		  System.out.println("error   ============");
 		e.printStackTrace();
 	  }
 	  Community com = new Community();
@@ -648,6 +649,32 @@ public class CommunityController extends MskimRequestMapping{
    return "/view/community/comSearchList.jsp";
  }
   
+  
+  
+  //이미지 업로드 ajax가 보내는 url 받는 메서드
+  @RequestMapping("comImageUpload")
+  public String comImageUpload(HttpServletRequest request, HttpServletResponse response) {
+	  String path = getServletContext().getRealPath("/") + "comboardupload";
+	  File file = new File(path);
+	  if(!file.exists()) {
+		  file.mkdir();
+	  }
+	  String filename = null;
+	  MultipartRequest multi = null;
+	  try {
+		   multi = new MultipartRequest(request, path, 10*1024*1024, "utf-8");
+		   
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  
+	  filename = multi.getFilesystemName("file"); // ajax에서 FormData로 보낸 file 값 찾기
+	  System.out.println("------controller확인 filename=" + filename);
+	  request.setAttribute("filename", filename);
+	  return "/single/comBoardPicture.jsp";
+	  
+  }
   
   
   

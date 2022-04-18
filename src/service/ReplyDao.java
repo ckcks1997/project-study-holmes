@@ -12,7 +12,7 @@ import util.MybatisConnection;
 public class ReplyDao {
 	
 	private static final String NS = "reply.";
-	  //private Map<String, Object> map = new HashMap<>();
+	 // private Map<String, Object> map = new HashMap<>();
 	
 	  
 	  /*댓글등록*/
@@ -103,7 +103,9 @@ public class ReplyDao {
 		  
 		  SqlSession sqlSession = MybatisConnection.getConnection();
 		  try {
-			  return sqlSession.update(NS+"comReplyCountUp", board_num);
+			  int communityTable = sqlSession.update(NS+"comReplyCountUp", board_num);
+			  int groupTable = sqlSession.update(NS+"groupReplyCountUp", board_num);
+			  return communityTable+groupTable;
 		  } catch(Exception e) {
 			  e.printStackTrace();
 		  } finally {

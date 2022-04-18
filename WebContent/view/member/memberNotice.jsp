@@ -56,10 +56,10 @@
 	                                        </div>
 	                                    </div>
 	                                    <div class="">
-	                                    <c:if test="${i.info2 == null}">
+	                                    <c:if test="${i.info != null}">
 	                                        내용: ${i.info}
 	                                    </c:if>
-	                                    <c:if test="${i.info2 != null}">
+	                                    <c:if test="${i.info == null}">
 	                                        내용: 스터디 초대요청 
 	                                    </c:if>
 	                                    </div>
