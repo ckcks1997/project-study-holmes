@@ -20,7 +20,6 @@ body {
 	background-color: #333b3d;
 }
 
- 
 .reaction {
 	display: flex;
 	justify-content: center;
@@ -33,46 +32,42 @@ body {
 	left: 0;
 	width: 80%;
 	height: 100%;
-	
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.page-item > a{
-    color:#f55555; 
+.page-item>a {
+	color: #f55555;
 }
-.page-item > a:hover{
-    color:#f55555; 
+
+.page-item>a:hover {
+	color: #f55555;
 }
-.active2 > a{
-    background-color:#f55555 !important; 
-    border: 1px solid #f55555 !important; 
-} 
+
+.active2>a {
+	background-color: #f55555 !important;
+	border: 1px solid #f55555 !important;
+}
 
 .reactions {
 	font-size: 13px;
 }
 
 .divide {
-	font-weight:700;
-    color: #777;
+	font-weight: 700;
+	color: #777;
 }
-
 
 a {
-	color:black;
+	color: black;
 }
-
 
 a:hover {
-    color:#f55555;
-    text-decoration: none;
+	color: #f55555;
+	text-decoration: none;
 }
-
-
-
 </style>
 <title>스터디 홈즈</title>
 </head>
@@ -91,92 +86,111 @@ a:hover {
 
 	<div class="container">
 		<div class="row pt-5">
-<!------------------------- 왼쪽 사이드메뉴 -----------------					---------------------------------------------------->
+			<!------------------------- 왼쪽 사이드메뉴 -----------------					---------------------------------------------------->
 			<%--aside부분 --%>
-                <%@include file="/common/community_menu.jsp" %>
-                
-                
-<!-- ---------------------------메인검색-------------------------------------------------------- -->
+			<%@include file="/common/community_menu.jsp"%>
+
+
+			<!-- ---------------------------메인검색-------------------------------------------------------- -->
 			<div class="main col-lg-9">
 				<h2 style="font-weight: bold">${boardName}</h2>
 
-				<hr align="left" width="170px" style="background-color: #c47100; height:1px;" />
+				<hr align="left" width="170px"
+					style="background-color: #c47100; height: 1px;" />
 
 
-				<form action = "<%=request.getContextPath()%>/community/comSearch" method = post>
-					<input type = "hidden" name = "boardid" value = "${boardid}"/>
-					
+				<form action="<%=request.getContextPath()%>/community/comSearch"
+					method=post>
+					<input type="hidden" name="boardid" value="${boardid}" />
+
 					<div class="row">
 						<div class="col-xs-12 col-sm-11 col-md-10">
-						<div class = "d-flex flex-row align-items-center">
-						<div class = "col-md-2">
-						<select class="custom-select" name="part">
-									    <option value="title">제목</option>
-									    <option value="content">내용</option>						
+							<div class="d-flex flex-row align-items-center">
+								<div class="col-md-2">
+									<select class="custom-select" name="part">
+										<option value="title">제목</option>
+										<option value="content">내용</option>
 									</select>
-						
-						
-						</div>
-							<input type="text" class="form-control rounded" name = "searchData"
-								placeholder="내용을 검색해보세요!" required="required"/>
-						</div>
+
+
+								</div>
+								<input type="text" class="form-control rounded"
+									name="searchData" placeholder="내용을 검색해보세요!" required="required" />
+							</div>
 						</div>
 						<div class="col-xs-12 col-sm-1 col-md-2 btn-search">
-							<input class="btn btn-dark" type="submit" name = "search" value = "검색"/>
+							<input class="btn btn-dark" type="submit" name="search"
+								value="검색" />
 						</div>
 					</div>
-				
+
 				</form>
 				<br />
-<!-- ------------------------------------------------------------------------------------ -->
-				<div class = "row col-sm-9 divide" style="float: left">
-					<a href ="<%=request.getContextPath()%>/community/comBoardList">최신순</a>
-					 &nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp;
-					<a href = "<%=request.getContextPath()%>/community/comBoardReply">댓글순</a>
-					&nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp;
-					<a href ="<%=request.getContextPath()%>/community/comBoardRead">조회수순</a>
+				<!-- ------------------------------------------------------------------------------------ -->
+				<div class="row col-sm-9 divide" style="float: left">
+					<a href="<%=request.getContextPath()%>/community/comBoardList">최신순</a>
+					&nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp; <a
+						href="<%=request.getContextPath()%>/community/comBoardReply">댓글순</a>
+					&nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp; <a
+						href="<%=request.getContextPath()%>/community/comBoardRead">조회수순</a>
 				</div>
-				
-				<c:if test="${sessionScope.memberNickname != manager && boardid != 4 }">
-				<div class="mb-2" style="float: right">
-					<button type="button" class="btn btn-dark"
-						onclick="location.href='<%=request.getContextPath()%>/community/comWriteForm'">글쓰기
-					</button>
-				</div>
-				</c:if>
 
+
+				<c:choose>
+				<c:when test="${memberNickname != '관리자' }">
+					<%--만약 1)일반유저이고 --%>
+					<c:if test="${boardid != 4 }">
+						<%--게시판이 4(공지)가 아니면 --%>
+						<%--글쓰기 버튼을 띄운다 --%>
+						<div class="mb-2" style="float: right">
+							<button type="button" class="btn btn-dark"
+								onclick="location.href='<%=request.getContextPath()%>/community/comWriteForm'">글쓰기
+							</button>
+						</div>
+					</c:if>
+				</c:when>
+				
+				<c:otherwise>
+				<%--아니면 유저가 관리자이고 --%>
+					<c:if test = "${boardid == 4 }" >
+					<%--공지게시판이면 --%>
+					<%--글쓰기 버튼을 띄운다 --%>
+					<div class="mb-2" style="float: right">
+							<button type="button" class="btn btn-dark"
+								onclick="location.href='<%=request.getContextPath()%>/community/comWriteForm'">글쓰기
+							</button>
+						</div>
+					</c:if>
+				</c:otherwise>
+			</c:choose>
 				<br />
 
 
 				<!-------------메인 커뮤니티 게시판 --------------------------------------------------------------------------------------------------------- -->
 				<div class="container">
 					<table class="table">
-						<c:if test = "${empty list }"> <!-- list.size() 가 0이면 -->
+						<c:if test="${empty list }">
+							<!-- list.size() 가 0이면 -->
 							<hr align="left" />
-								<p>작성된 글이 없습니다.</p>
-				
+							<p>작성된 글이 없습니다.</p>
+
 						</c:if>
-					
+
 						<c:forEach var="com" items="${list}">
 							<tr>
 								<td>
 									<div class="row">
 
 										<div class="col-sm-9">
-										<input type = "hidden" name = "board_num" value = "${com.board_num}">
-											<a
+											<input type="hidden" name="board_num"
+												value="${com.board_num}"> <a
 												href="<%=request.getContextPath() %>/community/comBoardInfo?board_num=${com.board_num}"
 												style="color: black">
-												<p style = "font-size: 17px; font-weight: bold;">
-													${com.title}
-												</p>
-												<p style = "font-size: 17px; font-weight: bold;">
-													${preContent}
-												</p>
-												
-												
-												 <br />
-												<h6 style = "color: gray;">
+												<p style="font-size: 17px; font-weight: bold;">
+													${com.title}</p>
+												<p style="font-size: 17px; font-weight: bold;">
+													${preContent}</p> <br />
+												<h6 style="color: gray;">
 													<small>${com.nickname} · ${com.regdate} </small>
 												</h6>
 											</a>
@@ -203,8 +217,8 @@ a:hover {
 																	d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
 													</svg>
 														</span>${com.readcnt }읽음
-														</div>
-													
+													</div>
+
 													<div class="comment">
 														<span> <svg xmlns="http://www.w3.org/2000/svg"
 																width="16" height="16" fill="currentColor"
