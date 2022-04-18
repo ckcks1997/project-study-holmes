@@ -233,7 +233,7 @@ const rLayerPopup = (num) => {
 	    console.log("resp", resp, respJson)
 	    return respJson // [[PromiseValue]]를 꺼내 다음 then으로 전송
 	}).then(data => {
-	    console.log(data)
+	    console.log(data) //성공시, 데이터 출력
 	}).catch(excResp => {
 	    console.log(excResp)
 	})
