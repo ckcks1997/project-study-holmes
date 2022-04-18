@@ -130,7 +130,7 @@ create table GROUP_MEMBER
 
 create table attend
 ( id  varchar (50),
-day  date
+ gift varchar (200)	
 );
 
 

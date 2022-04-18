@@ -23,7 +23,7 @@ public class AttendCheckController extends MskimRequestMapping {
       AttendDao ad = new AttendDao();
       List<Attend> result = ad.attendGet(id);
       request.setAttribute("result", result);
-      return "/view/check/attendCheck.jsp";
+      return "/view/check/event.jsp";
     }
     
     request.setAttribute("msg", msg);
@@ -32,18 +32,13 @@ public class AttendCheckController extends MskimRequestMapping {
     return "/view/alert.jsp";
   }
  
-  /*
-   * 날짜 체크
-   * */
-  @RequestMapping("check_pro")
-  public String check_pro(HttpServletRequest request, HttpServletResponse response) {
- 
+  @RequestMapping("sendGift")
+  public String sendGood(HttpServletRequest request, HttpServletResponse response) {
     
     String id = (String) request.getSession().getAttribute("memberID");
-    AttendDao ad = new AttendDao();
-    int result = ad.attendInsert(id);
-    String url = request.getContextPath() +"/attend/check";
-    request.setAttribute("url", url);
+    String gift = request.getParameter("gift");
+    System.out.println(gift);
+     
     return "/view/alert.jsp";
   }
   
