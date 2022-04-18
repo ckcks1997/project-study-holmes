@@ -38,8 +38,8 @@ public class AttendCheckController extends MskimRequestMapping {
     String id = (String) request.getSession().getAttribute("memberID");
     String gift = request.getParameter("gift");
     System.out.println(gift);
-     
-    return "/view/alert.jsp";
+     request.setAttribute("num", gift);
+    return "/single/alert_ajax.jsp";
   }
   
 }

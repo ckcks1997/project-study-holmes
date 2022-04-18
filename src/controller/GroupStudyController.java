@@ -213,7 +213,7 @@ public class GroupStudyController extends MskimRequestMapping {
     	  
     	  String boardid = "";
 		  int pageInt = 1;
-		  int limit = 4;
+		  int limit = 5;
 		  
 		  if(request.getParameter("boardid")!= null) {
 			  session.setAttribute("boardid", request.getParameter("boardid"));	  
@@ -304,7 +304,7 @@ public class GroupStudyController extends MskimRequestMapping {
     	  
     	  String boardid = "";
 		  int pageInt = 1;
-		  int limit = 4;
+		  int limit = 5;
 		  
 		  if(request.getParameter("boardid")!= null) {
 			  session.setAttribute("boardid", request.getParameter("boardid"));	  

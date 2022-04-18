@@ -224,10 +224,19 @@ const rLayerPopup = (num) => {
     default:
       alert("꽝!! 아쉽게도 이벤트 당첨되지 않았습니다");
   }
-  
-  let gift =  this.responseText.trim();
-  console.log(gift);
-  ajax("<%=request.getContextPath()%>/attend/sendGift?gift="+gift, "", "", 'get');
+    
+  console.log(num);
+  fetch("<%=request.getContextPath()%>/attend/sendGift?gift="+ num, {
+	    method: "get"
+	}).then(resp => {
+	    const respJson = resp.json()
+	    console.log("resp", resp, respJson)
+	    return respJson // [[PromiseValue]]를 꺼내 다음 then으로 전송
+	}).then(data => {
+	    console.log(data)
+	}).catch(excResp => {
+	    console.log(excResp)
+	})
   
   
 };
