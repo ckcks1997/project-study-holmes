@@ -225,7 +225,8 @@ const rLayerPopup = (num) => {
       alert("꽝!! 아쉽게도 이벤트 당첨되지 않았습니다");
   }
   
-  let gift =  "${num}"
+  let gift =  this.responseText.trim();
+  console.log(gift);
   ajax("<%=request.getContextPath()%>/attend/sendGift?gift="+gift, "", "", 'get');
   
   
