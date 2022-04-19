@@ -107,10 +107,11 @@
 						</div></li>
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 커뮤니티 </a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=1">질문&답글</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=1">질문 & 답변</a> 
 							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=2">자유게시판</a> 
-							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=3">정보공유</a> 
-							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">공지사항</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=3">정보를 나눠요</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=4">공지</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/community/comBoardList?boardid=5">문의사항</a> 
 					
 						</div></li>
 					
