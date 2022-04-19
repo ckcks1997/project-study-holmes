@@ -127,42 +127,58 @@ a:hover {
 				</form>
 				<br />
 				<!-- ------------------------------------------------------------------------------------ -->
+
 				<div class="row col-sm-9 divide" style="float: left">
 					<a href="<%=request.getContextPath()%>/community/comBoardList">최신순</a>
+					&nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp;
+
+					<c:choose>
+						<c:when test="${boardid == 5}">
+							<%--문의게시판은 내 글 보기 활성화 --%>
+							<a href="<%=request.getContextPath()%>/community/comBoardMyAsk">내
+								문의글 보기</a>
+						</c:when>
+						<c:when test="${boardid == 4 }">
+							<%--공지게시판은 조회수순 활성화 --%>
+							<a href="<%=request.getContextPath()%>/community/comBoardRead">조회수순</a>
+						</c:when>
+						<c:otherwise>
+							<%--그 외 게시판은 댓글순, 조회수순 활성화 --%>
+							<a href="<%=request.getContextPath()%>/community/comBoardReply">댓글순</a>
 					&nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp; <a
-						href="<%=request.getContextPath()%>/community/comBoardReply">댓글순</a>
-					&nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp; <a
-						href="<%=request.getContextPath()%>/community/comBoardRead">조회수순</a>
+								href="<%=request.getContextPath()%>/community/comBoardRead">조회수순</a>
+						</c:otherwise>
+					</c:choose>
 				</div>
 
 
 				<c:choose>
-				<c:when test="${memberNickname != '관리자' }">
-					<%--만약 1)일반유저이고 --%>
-					<c:if test="${boardid != 4 }">
-						<%--게시판이 4(공지)가 아니면 --%>
-						<%--글쓰기 버튼을 띄운다 --%>
-						<div class="mb-2" style="float: right">
-							<button type="button" class="btn btn-dark"
-								onclick="location.href='<%=request.getContextPath()%>/community/comWriteForm'">글쓰기
-							</button>
-						</div>
-					</c:if>
-				</c:when>
-				
-				<c:otherwise>
-				<%--아니면 유저가 관리자이고 --%>
-					<c:if test = "${boardid == 4 }" >
-					<%--공지게시판이면 --%>
-					<%--글쓰기 버튼을 띄운다 --%>
-					<div class="mb-2" style="float: right">
-							<button type="button" class="btn btn-dark"
-								onclick="location.href='<%=request.getContextPath()%>/community/comWriteForm'">글쓰기
-							</button>
-						</div>
-					</c:if>
-				</c:otherwise>
-			</c:choose>
+					<c:when test="${memberNickname != '관리자' }">
+						<%--만약 1)일반유저이고 --%>
+						<c:if test="${boardid != 4 }">
+							<%--공지게시판이 아니면 --%>
+							<%--글쓰기 버튼을 띄운다 --%>
+							<div class="mb-2" style="float: right">
+								<button type="button" class="btn btn-dark"
+									onclick="location.href='<%=request.getContextPath()%>/community/comWriteForm'">글쓰기
+								</button>
+							</div>
+						</c:if>
+					</c:when>
+
+					<c:otherwise>
+						<%--아니면 유저가 관리자이고 --%>
+						<c:if test="${boardid == 4 }">
+							<%--공지게시판이면 --%>
+							<%--글쓰기 버튼을 띄운다 --%>
+							<div class="mb-2" style="float: right">
+								<button type="button" class="btn btn-dark"
+									onclick="location.href='<%=request.getContextPath()%>/community/comWriteForm'">글쓰기
+								</button>
+							</div>
+						</c:if>
+					</c:otherwise>
+				</c:choose>
 				<br />
 
 
@@ -198,6 +214,9 @@ a:hover {
 										<div class="col-sm-3 reaction">
 											<div class="circle">
 												<div class="reactions">
+												
+												<c:if test = "${boardid != 5 && boardid != 4}">
+												<%--공지와 문의 외의 게시판에 좋아요 출력 --%>
 													<div class="likes">
 														<span> <svg xmlns="http://www.w3.org/2000/svg"
 																width="16" height="16" fill="#de2a2a"
@@ -207,6 +226,9 @@ a:hover {
 													</svg>
 														</span> 좋아요
 													</div>
+												</c:if>
+													
+													
 													<div class="readcnt">
 														<span> <svg xmlns="http://www.w3.org/2000/svg"
 																width="16" height="16" fill="currentColor"

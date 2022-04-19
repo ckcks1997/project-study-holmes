@@ -27,11 +27,78 @@ import service.ReportDao;
 
 public class CommunityController extends MskimRequestMapping{
   
+	//문의게시판에서 내가 쓴 문의글 보기
+	@RequestMapping("comBoardMyAsk")
+	public String comBoardMyAsk(HttpServletRequest request, HttpServletResponse response) {
+
+		HttpSession session = request.getSession();
+	
+	  String boardid = ""; 
+	  int pageInt = 1;
+	  int limit = 4;
+	  
+	  
+	  if(request.getParameter("boardid")!= null) {
+		  session.setAttribute("boardid", "5");
+		  session.setAttribute("pageNum", "1");		  
+	  }
+	  
+	  boardid = (String)session.getAttribute("boardid");
+	  if(boardid == null) {
+		  boardid ="5";
+	  }
+	  
+	  
+	  if (request.getParameter("pageNum")!=null) {
+		  session.setAttribute("pageNum", request.getParameter("pageNum"));
+	  }
+	  
+	  String pageNum =(String)session.getAttribute("pageNum");
+	  if(pageNum == null) {
+		  pageNum = "1";
+	  }
+	  
+	  pageInt = Integer.parseInt(pageNum);
+	  
+	  CommunityBoardDao cbd = new CommunityBoardDao();
+	  int boardcount = cbd.comBoardCount(boardid); 
+	  String nickname = (String) session.getAttribute("memberNickname");
+	  List<Community> list = cbd.comBoardMyAsk(pageInt, limit, boardcount, nickname);
+	  
+	  
+	  System.out.println("boardid: "+boardid +"---"+ nickname); //값 확인
+	  int boardnum = boardcount - limit * (pageInt-1);
+	  int bottomLine = 3;
+	  int startPage = (pageInt-1)/bottomLine * bottomLine + 1;
+	  int endPage = startPage + bottomLine -1;
+	  int maxPage = (boardcount/limit)+(boardcount % limit==0? 0:1);
+	  if(endPage > maxPage) endPage = maxPage;
+	  
+	  String boardName = "문의사항";
+	
+	   request.setAttribute("boardName",boardName);
+	   request.setAttribute("pageInt",pageInt);
+	   request.setAttribute("boardid",boardid);
+	   request.setAttribute("boardcount",boardcount);
+	   request.setAttribute("list",list);
+	   request.setAttribute("boardnum",boardnum);
+	   request.setAttribute("startPage",startPage);
+	   request.setAttribute("bottomLine", bottomLine);
+	   request.setAttribute("endPage",endPage);
+	   request.setAttribute("maxPage",maxPage);
+	   
+	  
+    return "/view/community/comBoardList.jsp";
+	}
+	
+	
 	
 	//최신순 나열
 	@RequestMapping("comBoardList")
    public String comBoardList(HttpServletRequest request, HttpServletResponse response) {
-	  HttpSession session = request.getSession();
+	  
+		HttpSession session = request.getSession();
+	
 	  String boardid = "";
 	  int pageInt = 1;
 	  int limit = 4;
@@ -417,9 +484,11 @@ public class CommunityController extends MskimRequestMapping{
   @RequestMapping("comBoardInfo")
   public String comBoardInfo(HttpServletRequest request, HttpServletResponse response) {
 	  
+	  
 	  int board_num = Integer.parseInt(request.getParameter("board_num"));
 	  CommunityBoardDao cbd = new CommunityBoardDao();
 	  Community com = cbd.comBoardOne(board_num);
+	  
 	  request.setAttribute("com", com);
 	  //조회수 올리기
 	  cbd.comReadCountUp(board_num);
@@ -433,14 +502,13 @@ public class CommunityController extends MskimRequestMapping{
 	  
 	  //댓글보여주기
 	  ReplyDao rd = new ReplyDao();
-	 
-	
 	  List<Reply> reply_list = rd.replyWriteList(board_num);
 	  int reply_count = rd.replyCount(board_num);
 	  
 	  request.setAttribute("reply_list", reply_list);
 	  request.setAttribute("reply_count", reply_count);
 	  
+	 
 	  return "/view/community/comBoardInfo.jsp";
 	  
 	  

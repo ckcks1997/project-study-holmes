@@ -27,12 +27,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where rnum between #{start} and #{end}
 </select> 
 
-<!-- 조회수순 출력, 초회수가 같으면 최신순으로 출력 -->
+<!-- 조회수순 출력, 조회수가 같으면 최신순으로 출력 -->
 <select id = "comBoardRead" resultType = "community"  parameterType = "map">
 	select  * from (select rownum rnum, a.* from (
 	select * from community where boardid = #{boardid} order by readcnt desc, board_num desc) a)
 	where rnum between #{start} and #{end}
 </select>
+
+<!-- 내가 쓴 문의글 출력, 최신순으로 출력 -->
+<select id = "comBoardMyAsk" resultType = "community"  parameterType = "map">
+	select  * from (select rownum rnum, a.* from (
+	select * from community where boardid = 5 and nickname = #{nickname} order by board_num desc) a)
+	where rnum between #{start} and #{end}
+</select>
+
 
 
 

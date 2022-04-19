@@ -126,7 +126,24 @@ public class CommunityBoardDao {
 				return null;
 		  }
 	  	
-	  
+	  //내가 쓴 문의글 나열 
+		public List<Community> comBoardMyAsk(int pageInt, int limit, int boardcount,String nickname) {
+			  
+			  SqlSession sqlSession = MybatisConnection.getConnection();
+				try {
+					map.clear();
+					map.put("nickname", nickname);
+					map.put("start", (pageInt-1)*limit+1);
+					map.put("end", pageInt*limit);
+						
+				return sqlSession.selectList(NS+"comBoardMyAsk",map);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					MybatisConnection.close(sqlSession);
+				} 
+				return null;
+		  }
 	  
 	  
 	  
