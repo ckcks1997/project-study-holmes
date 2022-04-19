@@ -340,7 +340,7 @@ a {
 								<p class="b-price"> ${s.price } 원</p>
 								</c:if>
 								<p class="b-people">
-									<i class="fa-solid fa-user-group"></i> ${s.pernum}
+									<i class="fa-solid fa-user-group"></i> ${s.pernum} / ${s.count}
 								</p>
 								<p class="b-p">지역: ${s.region }</p>
 								<div>

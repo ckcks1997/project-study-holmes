@@ -94,6 +94,23 @@ public class StudyMenuDao {
 		return null;
 	}
 	
+	/*추가됨*/
+	public List<StudyMenu> menuList2(int pageInt, int limit, int menucount, String menuid) {
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			map.clear();
+			map.put("menuid", menuid);
+			map.put("start", (pageInt - 1) * limit + 1);
+			map.put("end", pageInt * limit);
+			return sqlSession.selectList(NS + "menuList2", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		return null;
+	}
+	
 
 	
 	public int menuNextNum() {
@@ -297,7 +314,6 @@ public class StudyMenuDao {
 			return searchlist;
 		}
 	 
-	 
 	 public int offAllSearchCount(String menuid, String part, String searchData) {
 			SqlSession sqlSession = MybatisConnection.getConnection();
 			try {
@@ -422,6 +438,22 @@ public class StudyMenuDao {
 			return null;
 	 }	 
  
+	 /*추가*/
+	 public List<StudyMenu> offallList2(int pageInt, int limit, int menuAllCount, String menuid) {
+			SqlSession sqlSession = MybatisConnection.getConnection();
+			try {
+				map.clear();
+				map.put("menuid", menuid);
+				map.put("start", (pageInt - 1) * limit + 1);
+				map.put("end", pageInt * limit);
+				return sqlSession.selectList(NS + "offallList2", map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				MybatisConnection.close(sqlSession);
+			}
+			return null;
+	 }	
 	 
 	 public List<StudyMenu> onoffallList(int pageInt, int limit, int menuAllCount, String menuid) {
 			SqlSession sqlSession = MybatisConnection.getConnection();
