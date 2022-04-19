@@ -34,6 +34,15 @@
 		where rnum BETWEEN #{start} and #{end}
 	</select>
 	
+	<!-- 추가됨 -->
+	<select id="menuList2" resultType="studymenu" parameterType="map">
+		select * from (
+		select rownum rnum, a.*, b.count from (
+		select * from study_menu where menuid = #{menuid} order by regdate desc)
+    	a left join (select BOARDNUM, count(*) as count from GROUP_MEMBER group by BOARDNUM) b on a.BOARD_NUM = b.BOARDNUM)
+		where rnum BETWEEN #{start} and #{end}
+	</select>
+	
 	<select id="onallList" resultType="studymenu" parameterType="map">
 		select * from ( select rownum rnum, a.* from (
 		select * from study_menu where menuid between 9 and 14 order by regdate desc) a)
@@ -43,6 +52,15 @@
 	<select id="offallList" resultType="studymenu" parameterType="map">
 		select * from ( select rownum rnum, a.* from (
 		select * from study_menu where menuid between 2 and 7 order by regdate desc) a)
+		where rnum BETWEEN #{start} and #{end}
+	</select>
+	
+	<!-- 추가됨 -->
+	<select id="offallList2" resultType="studymenu" parameterType="map">
+		select * from (
+		select rownum rnum, a.*, b.count from (
+		select * from study_menu where menuid between 2 and 7 order by regdate desc)
+    	a left join (select BOARDNUM, count(*) as count from GROUP_MEMBER group by BOARDNUM) b on a.BOARD_NUM = b.BOARDNUM)
 		where rnum BETWEEN #{start} and #{end}
 	</select>
 	

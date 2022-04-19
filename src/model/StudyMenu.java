@@ -16,14 +16,16 @@ public class StudyMenu {
 	private Date regdate;
 	private String latitude; //위도 
 	private String longitude; //경도\
-	
+	private int count;
 	public StudyMenu() {
 		
 	}
 
+ 
+
 	public StudyMenu(int board_num, String nickname, String title, String subject, String price, int pernum,
-			String region, String content, String menuid, Date regdate, String latitude, String longitude) {
-		super();
+			String region, String content, String menuid, Date regdate, String latitude, String longitude, int count) {
+ 
 		this.board_num = board_num;
 		this.nickname = nickname;
 		this.title = title;
@@ -36,7 +38,10 @@ public class StudyMenu {
 		this.regdate = regdate;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.count = count;
 	}
+
+
 
 	public int getBoard_num() {
 		return board_num;
@@ -134,17 +139,22 @@ public class StudyMenu {
 		this.longitude = longitude;
 	}
 
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	@Override
 	public String toString() {
 		return "{\"board_num\":\"" + board_num + "\", \"nickname\":\"" + nickname + "\", \"title\":\"" + title
 				+ "\", \"subject\":\"" + subject + "\", \"price\":\"" + price + "\", \"pernum\":\"" + pernum
 				+ "\", \"region\":\"" + region + "\", \"content\":\"" + content + "\", \"menuid\":\"" + menuid
 				+ "\", \"regdate\":\"" + regdate + "\", \"latitude\":\"" + latitude + "\", \"longitude\":\"" + longitude
-				+ "\"}";
+				+ "\", \"count\":\"" + count + "\"}";
 	}
 
-	
-	
-	
 	
 }
