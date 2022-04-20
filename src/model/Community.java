@@ -7,13 +7,13 @@ public class Community {
 	private int board_num;
 	private String title;
 	private String content;
-	private int likes;
 	private String boardid;
 	private Date regdate;
 	private String ip;
 	private int readcnt;
 	private String nickname;
 	private int replycnt;
+	private String pic_mini;
 	
 	
 	public Community() {
@@ -21,26 +21,31 @@ public class Community {
 	}
 
 	
-	
-	
-	public Community(int board_num, String title, String content, int likes, String boardid, Date regdate, String ip,
-			int readcnt, String nickname, int replycnt) {
+
+
+	public Community(int board_num, String title, String content, String boardid, Date regdate, String ip, int readcnt,
+			String nickname, int replycnt, String pic_mini) {
 		super();
 		this.board_num = board_num;
 		this.title = title;
 		this.content = content;
-		this.likes = likes;
 		this.boardid = boardid;
 		this.regdate = regdate;
 		this.ip = ip;
 		this.readcnt = readcnt;
 		this.nickname = nickname;
 		this.replycnt = replycnt;
+		this.pic_mini = pic_mini;
 	}
 
 
-	
-	
+
+
+
+
+
+
+
 
 
 	public int getBoard_num() {
@@ -80,20 +85,6 @@ public class Community {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-
-
-
-	public int getLikes() {
-		return likes;
-	}
-
-
-
-
-	public void setLikes(int likes) {
-		this.likes = likes;
 	}
 
 
@@ -184,12 +175,30 @@ public class Community {
 
 
 
+	public String getPic_mini() {
+		return pic_mini;
+	}
+
+
+
+
+	public void setPic_mini(String pic_mini) {
+		this.pic_mini = pic_mini;
+	}
+
+
+
+
 	@Override
 	public String toString() {
-		return "Community [board_num=" + board_num + ", title=" + title + ", content=" + content + ", likes=" + likes
-				+", boardid=" + boardid + ", regdate=" + regdate + ", ip=" + ip + ", readcnt="
-				+ readcnt + ",nickname=" + nickname + ", replycnt=" + replycnt + "]";
+		return "{\"board_num\":\"" + board_num + "\", \"title\":\"" + title + "\", \"content\":\"" + content
+				+ "\", \"boardid\":\"" + boardid + "\", \"regdate\":\"" + regdate + "\", \"ip\":\"" + ip
+				+ "\", \"readcnt\":\"" + readcnt + "\", \"nickname\":\"" + nickname + "\", \"replycnt\":\"" + replycnt
+				+ "\", \"pic_mini\":\"" + pic_mini + "\"}";
 	}
+
+
+
 
 	
 	

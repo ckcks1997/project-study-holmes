@@ -45,6 +45,12 @@ a {
 a:hover {
 	color: black;
 }
+
+.pic_mini {
+	width: 25px;
+	height: 25px;
+	border-radius: 70%;
+}
 </style>
 <body>
 
@@ -94,6 +100,15 @@ a:hover {
 						<div class="postInfo">
 
 							<p>
+								<c:if test="${com.pic_mini == 'profile_empty.jpg' }">
+									<img class="pic_mini"
+										src="<%=request.getContextPath()%>/img/profile_empty.jpg">
+								</c:if>
+								<c:if test="${com.pic_mini != 'profile_empty.jpg' }">
+									<img class="pic_mini"
+										src="<%=request.getContextPath()%>/upload/${com.pic_mini}">
+								</c:if>
+
 								${com.nickname} · ${com.regdate}
 
 
@@ -174,7 +189,8 @@ a:hover {
 										<div class="col-md-10" id="replyInfo">
 											<input type="hidden" id="reply_num" name="reply_num"
 												value="${reply.reply_num}">
-											<p>${reply.nickname}·${reply.regdate2}</p>
+
+											<p>${reply.nickname} · ${reply.regdate2}</p>
 										</div>
 
 										<c:if test="${memberNickname eq reply.nickname}">

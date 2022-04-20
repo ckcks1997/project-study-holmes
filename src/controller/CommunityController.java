@@ -13,9 +13,11 @@ import com.oreilly.servlet.MultipartRequest;
 
 import model.Community;
 import model.Reply;
+import model.StudyMember;
 import service.CommunityBoardDao;
 import service.ReplyDao;
 import service.ReportDao;
+import service.StudyMemberDao;
 
 public class CommunityController extends MskimRequestMapping {
 
@@ -112,6 +114,8 @@ public class CommunityController extends MskimRequestMapping {
 		pageInt = Integer.parseInt(pageNum);
 
 		CommunityBoardDao cbd = new CommunityBoardDao();
+		
+		
 		int boardcount = cbd.comBoardCount(boardid);
 		List<Community> list = cbd.comBoardList(pageInt, limit, boardcount, boardid);
 		int boardnum = boardcount - limit * (pageInt - 1);
@@ -378,7 +382,7 @@ public class CommunityController extends MskimRequestMapping {
 			file.mkdir();
 		}
 
-		int size = 10 * 10 * 1024 * 10 * 10;
+		int size = 10 * 10 * 1024 * 10 * 10; 
 		MultipartRequest multi = null;
 		try {
 			multi = new MultipartRequest(request, path, size, "utf-8");
@@ -391,7 +395,8 @@ public class CommunityController extends MskimRequestMapping {
 
 		// 세션에 저장된 닉네임 가져와서 커뮤니티 닉네임으로 저장하기
 		HttpSession session = request.getSession();
-		com.setNickname(String.valueOf(session.getAttribute("memberNickname")));
+		com.setNickname((String)session.getAttribute("memberNickname"));
+		
 		com.setTitle(multi.getParameter("title"));
 
 		// 썸머노트는 텍스트를 <p></p>태그 붙여서 데이터저장함 -- p태그 제거하고 db저장
@@ -400,6 +405,7 @@ public class CommunityController extends MskimRequestMapping {
 		// content1 == 맨앞 맨뒤 p태그 제거한 내용
 		String content1 = content.substring(3, content.length() - 4);
 		com.setContent(content1);
+		
 		com.setIp(request.getLocalAddr());
 
 		String boardid = (String) session.getAttribute("boardid");
@@ -410,7 +416,20 @@ public class CommunityController extends MskimRequestMapping {
 
 		CommunityBoardDao cbd = new CommunityBoardDao();
 		com.setBoard_num(cbd.comNextNum());
-
+		
+		//닉네임에 해당하는 프로필 사진 가져와서 com에 넣기 
+		StudyMemberDao smd = new StudyMemberDao();
+		StudyMember mem = smd.studyMemberOneByNick((String)session.getAttribute("memberNickname"));
+		if(mem.getPicture()==null) {//프로필 사진 없으면 기본사진으로 
+			com.setPic_mini("profile_empty.jpg");
+		} else { //있으면 그걸 받아오기 
+		com.setPic_mini(mem.getPicture());
+		}
+		
+		
+		
+		
+		//셋팅한 com으로 insert하기 
 		int num = cbd.comInsertBoard(com);
 
 		String msg = "게시물이 등록되지 않습니다.";
@@ -454,8 +473,10 @@ public class CommunityController extends MskimRequestMapping {
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		CommunityBoardDao cbd = new CommunityBoardDao();
 		Community com = cbd.comBoardOne(board_num);
-
 		request.setAttribute("com", com);
+		
+	
+		
 
 		String msg;
 		String url;

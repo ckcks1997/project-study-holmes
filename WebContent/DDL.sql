@@ -58,13 +58,13 @@ create table community
 	board_num 	    number 		    primary key,
 	title	    varchar2(100)	not null,
 	content	    varchar2(4000),
-	likes	    number,
 	boardid	    varchar2(1),
 	regdate	    date,
 	ip	        varchar(20),
 	readcnt	    number,
 	nickname    varchar(10),
-	replycnt    number
+	replycnt    number,
+	pic_mini    varchar(200)
 );
 
 create sequence board_seq;
