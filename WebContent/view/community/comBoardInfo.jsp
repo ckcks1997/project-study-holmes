@@ -100,7 +100,7 @@ a:hover {
 								<c:if test="${memberNickname eq com.nickname}">
 									<span class="txt_bar">|</span>
 									<a
-										href="<%=request.getContextPath()%>/community/comBoardUpdateForm?boardid=${com.boardid }&board_num=${com.board_num}">수정</a>
+										href="<%=request.getContextPath()%>/community/comBoardUpdateForm?board_num=${com.board_num}">수정</a>
 								</c:if>
 							</p>
 						</div>

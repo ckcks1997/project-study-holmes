@@ -74,7 +74,7 @@ body {
 
 
 					<div class="d-grid gap-2 " style="float: right;">
-						<button class="btn btn-dark" type="button" onclick="location.href ='comBoardInfo?boardid=${boardid}&board_num=${com.board_num}'">취소</button>
+						<button class="btn btn-dark" type="button" onclick="location.href ='comBoardInfo?board_num=${com.board_num}'">취소</button>
 						<button class="btn btn-dark" type="submit">수정</button>
 					</div>
 				</form>

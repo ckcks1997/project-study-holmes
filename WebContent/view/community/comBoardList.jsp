@@ -203,7 +203,7 @@ a:hover {
 												value="${com.board_num}">
 											<%--community컨트롤러 comBoardList()에 의해 boardid 가져오기 가능 --%>
 											<a
-												href="<%=request.getContextPath() %>/community/comBoardInfo?boardid=${boardid }&board_num=${com.board_num}"
+												href="<%=request.getContextPath() %>/community/comBoardInfo?board_num=${com.board_num}"
 												style="color: black">
 												<p style="font-size: 17px; font-weight: bold;">
 													${com.title}</p>

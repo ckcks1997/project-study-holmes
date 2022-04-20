@@ -461,7 +461,8 @@ public class CommunityController extends MskimRequestMapping {
 		String url;
 
 		// 문의 게시판 검증단계
-		String boardid = (String) request.getParameter("boardid");
+		//String boardid = (String) request.getParameter("boardid");
+		String boardid = com.getBoardid();
 		System.out.println(boardid + "---글:" + com.getNickname() + "---현재:" + session.getAttribute("memberNickname")); // 값 확인
 			
 		
@@ -574,11 +575,11 @@ public class CommunityController extends MskimRequestMapping {
 		// Community newcom = cbd.comBoardOne(com.getNum());
 		if (cbd.comBoardUpdate(com) > 0) {
 			msg = "수정되었습니다";
-			url = request.getContextPath() + "/community/comBoardInfo?boardid="+com.getBoardid()+"&board_num=" + com.getBoard_num();
+			url = request.getContextPath() + "/community/comBoardInfo?board_num=" + com.getBoard_num();
 
 		} else {
 			msg = "수정이 실패하였습니다";
-			url = request.getContextPath()+"/community/comBoardInfo?boardid="+com.getBoardid()+"&board_num=" + com.getBoard_num();
+			url = request.getContextPath()+"/community/comBoardInfo?board_num=" + com.getBoard_num();
 		}
 
 		request.setAttribute("msg", msg);
@@ -606,7 +607,7 @@ public class CommunityController extends MskimRequestMapping {
 			url = request.getContextPath() + "/community/comBoardList";
 		} else {
 			msg = "삭제가 불가능합니다";
-			url = request.getContextPath() + "/community/comBoardInfo?boardid="+com.getBoardid()+"&board_num=" + com.getBoard_num();
+			url = request.getContextPath() + "/community/comBoardInfo?board_num=" + com.getBoard_num();
 		}
 
 		request.setAttribute("msg", msg);
