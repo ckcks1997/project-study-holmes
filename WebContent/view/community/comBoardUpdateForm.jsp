@@ -53,6 +53,8 @@ body {
 					action="<%=request.getContextPath()%>/community/comBoardUpdatePro"
 					enctype="multipart/form-data" method="post">
 					<input type = "hidden" name = "board_num" value = "${com.board_num}">
+					<input type = "hidden" name = "boardid" value = "${com.boardid}">
+					
 					<br /> <br />
 					
 					
@@ -72,7 +74,7 @@ body {
 
 
 					<div class="d-grid gap-2 " style="float: right;">
-						<button class="btn btn-dark" type="button" onclick="location.href ='comBoardInfo?board_num=${com.board_num}'">취소</button>
+						<button class="btn btn-dark" type="button" onclick="location.href ='comBoardInfo?boardid=${boardid}&board_num=${com.board_num}'">취소</button>
 						<button class="btn btn-dark" type="submit">수정</button>
 					</div>
 				</form>

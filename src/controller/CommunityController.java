@@ -463,11 +463,14 @@ public class CommunityController extends MskimRequestMapping {
 		// 문의 게시판 검증단계
 		String boardid = (String) request.getParameter("boardid");
 		System.out.println(boardid + "---글:" + com.getNickname() + "---현재:" + session.getAttribute("memberNickname")); // 값 확인
-					
+			
+		
 		
 		if (boardid.equals("5")) {// 문의 게시판이면
-			System.out.println("------문의게시판------");
-			if ((String)session.getAttribute("memberNickname")==null) {// 로그인이 아예 안 되어있으면
+			//System.out.println("------문의게시판------");// 확인
+			if (session.getAttribute("memberNickname")==null) {// 로그인이 아예 안 되어있으면
+				//(String)session.getAttribute("memberNickname")==null --ok 
+				//(String)session.getAttribute("memberNickname").equals(null) -- 앞에꺼가 애초에 null이어서 equals를 못 부름 
 				msg = "로그인을 먼저 해주세요";
 				url = request.getContextPath() + "/studymember/loginForm";
 
@@ -499,10 +502,10 @@ public class CommunityController extends MskimRequestMapping {
 				url = request.getContextPath() + "/community/comBoardList"; // community컨트롤러 타서 다시 comBoardList()로 back
 			}
 			request.setAttribute("msg", msg);
-			System.out.println("----------------------" + msg); //값 확인
+			//System.out.println("----------------------" + msg); //값 확인
 			request.setAttribute("url", url);
 
-		} else { // 문의 게시판이 아닌 다른 게시판은 검증 거치지 않고 바로 열람 가능
+		} else { // 문의 게시판이 아닌 다른 게시판은 검증 거치지 않고 바로 열람 가능 
 			System.out.println("---문의 게시판이 아닌 다른 게시판 ---");
 			// 조회수 올리기
 			cbd.comReadCountUp(board_num);
@@ -522,8 +525,8 @@ public class CommunityController extends MskimRequestMapping {
 			return "/view/community/comBoardInfo.jsp"; // 바로 jsp로 보내주기
 
 		}
-		System.out.println(msg);
-		System.out.println(url);
+		//System.out.println(msg); //확인
+		//System.out.println(url); //확인
 		return "/view/alert.jsp";
 
 	}
@@ -558,6 +561,7 @@ public class CommunityController extends MskimRequestMapping {
 			e.printStackTrace();
 		}
 		Community com = new Community();
+		com.setBoardid(multi.getParameter("boardid"));
 		com.setBoard_num(Integer.parseInt(multi.getParameter("board_num")));
 		com.setTitle(multi.getParameter("title"));
 		com.setContent(multi.getParameter("content"));
@@ -570,10 +574,11 @@ public class CommunityController extends MskimRequestMapping {
 		// Community newcom = cbd.comBoardOne(com.getNum());
 		if (cbd.comBoardUpdate(com) > 0) {
 			msg = "수정되었습니다";
-			url = request.getContextPath() + "/community/comBoardInfo?board_num=" + com.getBoard_num();
+			url = request.getContextPath() + "/community/comBoardInfo?boardid="+com.getBoardid()+"&board_num=" + com.getBoard_num();
 
 		} else {
 			msg = "수정이 실패하였습니다";
+			url = request.getContextPath()+"/community/comBoardInfo?boardid="+com.getBoardid()+"&board_num=" + com.getBoard_num();
 		}
 
 		request.setAttribute("msg", msg);
@@ -601,7 +606,7 @@ public class CommunityController extends MskimRequestMapping {
 			url = request.getContextPath() + "/community/comBoardList";
 		} else {
 			msg = "삭제가 불가능합니다";
-			url = request.getContextPath() + "/community/comBoardInfo";
+			url = request.getContextPath() + "/community/comBoardInfo?boardid="+com.getBoardid()+"&board_num=" + com.getBoard_num();
 		}
 
 		request.setAttribute("msg", msg);

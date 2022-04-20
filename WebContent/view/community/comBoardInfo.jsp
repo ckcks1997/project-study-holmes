@@ -100,7 +100,7 @@ a:hover {
 								<c:if test="${memberNickname eq com.nickname}">
 									<span class="txt_bar">|</span>
 									<a
-										href="<%=request.getContextPath()%>/community/comBoardUpdateForm?board_num=${com.board_num}">수정</a>
+										href="<%=request.getContextPath()%>/community/comBoardUpdateForm?boardid=${com.boardid }&board_num=${com.board_num}">수정</a>
 								</c:if>
 							</p>
 						</div>
@@ -110,7 +110,7 @@ a:hover {
 
 					<div class="col-sm-2">
 
-						<c:if test="${boardid != 5 && boardid != 4}">
+						<c:if test="${com.boardid != 5 && com.boardid != 4}">
 							<%--공지와 문의 외의 게시판에 좋아요 출력 --%>
 							<div class="likes">
 								<span> <svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -162,7 +162,8 @@ a:hover {
 				<!-- ------------------댓글 ------------------------------------------------------------------------ -->
 
 				<div class="col-md-10">
-					<c:if test="${boardid != 4 }"> <%-- 댓글은 공지 게시판 외에서만 사용가능 || 공지게시판 댓글 사용불가 --%>
+					<c:if test="${com.boardid != 4 }">
+						<%-- 댓글은 공지 게시판 외에서만 사용가능 || 공지게시판 댓글 사용불가 --%>
 						<h5 style="font-weight: bold">댓글 ${reply_count}</h5>
 						<hr align="left" style="background-color: #c47100; height: 0.7px;" />
 						<div id="replyList">
@@ -173,7 +174,7 @@ a:hover {
 										<div class="col-md-10" id="replyInfo">
 											<input type="hidden" id="reply_num" name="reply_num"
 												value="${reply.reply_num}">
-											<p>${reply.nickname}· ${reply.regdate2}</p>
+											<p>${reply.nickname}·${reply.regdate2}</p>
 										</div>
 
 										<c:if test="${memberNickname eq reply.nickname}">
@@ -197,14 +198,14 @@ a:hover {
 						</div>
 
 						<!-- 로그인이 되어있으면 댓글 이용 가능 -->
-						<c:if test="${sessionScope.memberNickname != null}">
+						<c:if test="${memberNickname != null}">
 
 							<div class="row">
 								<div class="col-md-10">
 									<input type="hidden" id="board_num" name="board_num"
 										value="${com.board_num}"> <input type="hidden"
 										name="reply_nickname" id="reply_nickname"
-										value="${sessionScope.memberNickname}">
+										value="${memberNickname}">
 
 									<textarea class="col-md-12" rows="5" cols="80"
 										name="reply_content" placeholder="댓글을 달아주세요"
@@ -220,20 +221,22 @@ a:hover {
 
 
 						<!-- 로그인이 안되어있으면 댓글 이용불가 -->
-						<c:if test="${sessionScope.memberNickname == null}">
+						<c:if test="${memberNickname == null}">
 							<div class="row">
 								<div class="col-md-10">
 									<p style="font-weight: bold;">로그인 후 댓글 이용이 가능합니다</p>
 								</div>
 							</div>
 						</c:if>
-					</c:if> <%--공지게시판은 댓글 사용불가로 막아놓음 --%>
+					</c:if>
+					<%--공지게시판은 댓글 사용불가로 막아놓음 --%>
 
 
 					<button type="button" class="btn btn-dark mt-3"
 						onclick="location.href ='comBoardList'">목록으로</button>
 
-					<c:if test="${boardid != 4 && boardid != 5}"><%--공지, 문의게시판 외에서만 사용가능 || 공지, 문의게시판은 신고 불가--%>
+					<c:if test="${com.boardid != 4 && com.boardid != 5}">
+						<%--공지, 문의게시판 외에서만 신고 사용가능 || 공지, 문의게시판은 신고 불가--%>
 						<!-- 1)로그인 된 회원이고 2)글 작성자와 다른 회원만 신고버튼 활성화 -->
 						<c:if
 							test="${memberNickname != null && memberNickname != com.nickname}">
@@ -252,7 +255,8 @@ a:hover {
 										class="btn btn-danger mt-3">신고</button>
 								</c:otherwise>
 							</c:choose>
-						</c:if><%--공지, 문의게시판은 신고 불가로 막아놓음 --%>
+						</c:if>
+						<%--공지, 문의게시판은 신고 불가로 막아놓음 --%>
 
 					</c:if>
 
@@ -433,7 +437,7 @@ a:hover {
 
 	<!-- -----------------------------댓글 자바스크립트-------------------------------------------- -->
 	<script>
-//댓글입력
+//댓글달기
 $("#writeReply").on("click", function(){
 	var reply_content = document.querySelector("#reply_content")
 	
@@ -539,12 +543,13 @@ function deleteReply(num){
 			})
 
 		}
-		$('#deleteReply').on("click", function() {
-			var reply_num = document.querySelector("#reply_num")
+		
+$('#deleteReply').on("click", function() {
+		var reply_num = document.querySelector("#reply_num")
 
-		})
+	})
 		
-		
+	
 //신고 전달 --------------------------------------------------------------------------
 //자바스크립트 질문 ㅠㅠ 
 function reasonOption(){
@@ -566,8 +571,7 @@ $("#sendReport").on("click",function(){
 	
 	$.ajax({
 		type: "post",
-		url: "<%=request.getContextPath()%>
-		/report/sendReport",
+		url: "<%=request.getContextPath()%>/report/sendReport",
 				data : report,
 				dataType : 'text',
 				success : function(result) {

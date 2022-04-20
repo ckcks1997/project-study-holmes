@@ -131,7 +131,8 @@ a:hover {
 				<div class="row col-sm-9 divide" style="float: left">
 					<a href="<%=request.getContextPath()%>/community/comBoardList">최신순</a>
 					&nbsp;&nbsp;<strong> · </strong>&nbsp;&nbsp;
-
+					
+					<%--community컨트롤러 comBoardList()에 의해 boardid 가져오기 가능 --%>
 					<c:choose>
 						<c:when test="${boardid == 5}">
 							<%--문의게시판은 내 글 보기 활성화 --%>
@@ -200,9 +201,7 @@ a:hover {
 										<div class="col-sm-9">
 											<input type="hidden" name="board_num"
 												value="${com.board_num}">
-												
-											<c:choose>
-											<c:when test="${boardid =='5' }"><%--문의 게시판 comBoardMyAsk에서 boardid =5 가 넘어왔으면--%>
+											<%--community컨트롤러 comBoardList()에 의해 boardid 가져오기 가능 --%>
 											<a
 												href="<%=request.getContextPath() %>/community/comBoardInfo?boardid=${boardid }&board_num=${com.board_num}"
 												style="color: black">
@@ -215,21 +214,7 @@ a:hover {
 												</h6>
 											</a>
 											
-											</c:when>
-											<c:otherwise><%--문의게시판 외의 게시판들 --%>
-											<a
-												href="<%=request.getContextPath() %>/community/comBoardInfo?board_num=${com.board_num}"
-												style="color: black">
-												<p style="font-size: 17px; font-weight: bold;">
-													${com.title}</p>
-												<p style="font-size: 17px; font-weight: bold;">
-													${preContent}</p> <br />
-												<h6 style="color: gray;">
-													<small>${com.nickname} · ${com.regdate} </small>
-												</h6>
-											</a>
-											</c:otherwise>
-											</c:choose>
+											
 										</div>
 										<div class="col-sm-3 reaction">
 											<div class="circle">
