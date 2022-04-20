@@ -462,20 +462,20 @@ public class CommunityController extends MskimRequestMapping {
 
 		// 문의 게시판 검증단계
 		String boardid = (String) request.getParameter("boardid");
-		System.out.println(boardid + "---" + com.getNickname() + "---" + session.getAttribute("memberNickname")); // 값 확인
-																													
-
-		if (boardid == "5") {// 문의 게시판이면
-
-			if (session.getAttribute("memberNickname")==null) {// 로그인이 안되어있으면
+		System.out.println(boardid + "---글:" + com.getNickname() + "---현재:" + session.getAttribute("memberNickname")); // 값 확인
+					
+		
+		if (boardid.equals("5")) {// 문의 게시판이면
+			System.out.println("------문의게시판------");
+			if ((String)session.getAttribute("memberNickname")==null) {// 로그인이 아예 안 되어있으면
 				msg = "로그인을 먼저 해주세요";
 				url = request.getContextPath() + "/studymember/loginForm";
 
 			}
 
-			// 1)로그인 된 닉네임과 게시글 작성자가 같거나 2)관리자이면
+			// 로그인 되어있는데 1)닉네임과 게시글 작성자가 같거나 2)관리자이면
 			else if (com.getNickname().equals(session.getAttribute("memberNickname"))
-					|| session.getAttribute("memberNickname") == "admin") {
+					|| session.getAttribute("memberNickname").equals("관리자")) {
 
 				// 조회수 올리기
 				cbd.comReadCountUp(board_num);
@@ -503,7 +503,7 @@ public class CommunityController extends MskimRequestMapping {
 			request.setAttribute("url", url);
 
 		} else { // 문의 게시판이 아닌 다른 게시판은 검증 거치지 않고 바로 열람 가능
-
+			System.out.println("---문의 게시판이 아닌 다른 게시판 ---");
 			// 조회수 올리기
 			cbd.comReadCountUp(board_num);
 
@@ -522,7 +522,8 @@ public class CommunityController extends MskimRequestMapping {
 			return "/view/community/comBoardInfo.jsp"; // 바로 jsp로 보내주기
 
 		}
-
+		System.out.println(msg);
+		System.out.println(url);
 		return "/view/alert.jsp";
 
 	}
