@@ -417,14 +417,7 @@ public class CommunityController extends MskimRequestMapping {
 		CommunityBoardDao cbd = new CommunityBoardDao();
 		com.setBoard_num(cbd.comNextNum());
 		
-		//닉네임에 해당하는 프로필 사진 가져와서 com에 넣기 
-		StudyMemberDao smd = new StudyMemberDao();
-		StudyMember mem = smd.studyMemberOneByNick((String)session.getAttribute("memberNickname"));
-		if(mem.getPicture()==null) {//프로필 사진 없으면 기본사진으로 
-			com.setPic_mini("profile_empty.jpg");
-		} else { //있으면 그걸 받아오기 
-		com.setPic_mini(mem.getPicture());
-		}
+		
 		
 		
 		

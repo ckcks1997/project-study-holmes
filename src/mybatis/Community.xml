@@ -15,9 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 최신순 출력 -->
 <select id = "comBoardList" resultType = "community"  parameterType = "map">
-	select  * from (select rownum rnum, a.* from (
-	select * from community where boardid = #{boardid} order by board_num desc) a)
-	where rnum between #{start} and #{end}
+	select * from(
+  	select rownum rnum, a.* from 
+  	(select * from (select * from community where boardid = #{boardid} order by board_num desc) com
+  	left join (select nickname, picture from STUDY_MEMBER) study on com.nickname = study.nickname) a )where rnum between #{start} and #{end}
 </select> 
 
 <!-- 댓글순 출력, 댓글수가 같으면 최신순으로 출력 -->
@@ -52,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <insert id = "comInsertBoard" parameterType = "community">
 	insert into community  values (#{board_num}, #{title}, #{content}, #{boardid}
-			,sysdate,#{ip},0,#{nickname},0,#{pic_mini})
+			,sysdate,#{ip},0,#{nickname},0)
 </insert>
 
 <select id = "comNextNum" resultType = "int">

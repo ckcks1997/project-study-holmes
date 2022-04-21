@@ -100,13 +100,13 @@ a:hover {
 						<div class="postInfo">
 
 							<p>
-								<c:if test="${com.pic_mini == 'profile_empty.jpg' }">
+								<c:if test="${picutre eq null }">
 									<img class="pic_mini"
 										src="<%=request.getContextPath()%>/img/profile_empty.jpg">
 								</c:if>
-								<c:if test="${com.pic_mini != 'profile_empty.jpg' }">
+								<c:if test="${picture ne null }">
 									<img class="pic_mini"
-										src="<%=request.getContextPath()%>/upload/${com.pic_mini}">
+										src="<%=request.getContextPath()%>/upload/${picture}">
 								</c:if>
 
 								${com.nickname} · ${com.regdate}

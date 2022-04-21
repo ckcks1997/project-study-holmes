@@ -291,6 +291,8 @@ public class StudyMemberController extends MskimRequestMapping {
     }
     
     StudyMemberDao md = new StudyMemberDao();
+    //String picture = request.getParameter("picture");
+   //System.out.println("------프로필사진"+picture);
     int result = md.insertStudyMember(request);
     
     String msg = "가입 실패";

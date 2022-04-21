@@ -63,8 +63,7 @@ create table community
 	ip	        varchar(20),
 	readcnt	    number,
 	nickname    varchar(10),
-	replycnt    number,
-	pic_mini    varchar(200)
+	replycnt    number
 );
 
 create sequence board_seq;
