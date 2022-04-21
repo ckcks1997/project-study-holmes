@@ -220,7 +220,7 @@ a:hover {
 														<img class="pic_mini"
 															src="<%=request.getContextPath()%>/img/profile_empty.jpg">
 													</c:if>
-													<c:if test="${com.picture != null }">
+													<c:if test="${com.picture ne null }">
 														<img class="pic_mini"
 															src="<%=request.getContextPath()%>/upload/${com.picture}">
 													</c:if>
