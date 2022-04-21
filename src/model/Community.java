@@ -13,6 +13,7 @@ public class Community {
 	private int readcnt;
 	private String nickname;
 	private int replycnt;
+	private String picture;
 	
 	
 	
@@ -24,7 +25,7 @@ public class Community {
 
 
 	public Community(int board_num, String title, String content, String boardid, Date regdate, String ip, int readcnt,
-			String nickname, int replycnt) {
+			String nickname, int replycnt, String picture) {
 		super();
 		this.board_num = board_num;
 		this.title = title;
@@ -35,7 +36,12 @@ public class Community {
 		this.readcnt = readcnt;
 		this.nickname = nickname;
 		this.replycnt = replycnt;
+		this.picture = picture;
 	}
+
+
+
+
 
 
 
@@ -168,15 +174,34 @@ public class Community {
 
 
 
+	
+
+	public String getPicture() {
+		return picture;
+	}
+
+
+
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+
+
 
 	@Override
 	public String toString() {
 		return "{\"board_num\":\"" + board_num + "\", \"title\":\"" + title + "\", \"content\":\"" + content
 				+ "\", \"boardid\":\"" + boardid + "\", \"regdate\":\"" + regdate + "\", \"ip\":\"" + ip
 				+ "\", \"readcnt\":\"" + readcnt + "\", \"nickname\":\"" + nickname + "\", \"replycnt\":\"" + replycnt
-				+ "\"}";
+				+ "\", \"picture\":\"" + picture + "\"}";
 	}
 
+
+
+
+	
 
 
 

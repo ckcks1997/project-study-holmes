@@ -216,13 +216,13 @@ a:hover {
 												<p style="font-size: 17px; font-weight: bold;">
 													${preContent}</p> <br />
 												<h6 style="color: gray;">
-													<c:if test="${picture eq null }">
+													<c:if test="${com.picture eq null }">
 														<img class="pic_mini"
 															src="<%=request.getContextPath()%>/img/profile_empty.jpg">
 													</c:if>
-													<c:if test="${picture != null }">
+													<c:if test="${com.picture != null }">
 														<img class="pic_mini"
-															src="<%=request.getContextPath()%>/upload/${picture}">
+															src="<%=request.getContextPath()%>/upload/${com.picture}">
 													</c:if>
 													<small> ${com.nickname} · ${com.regdate} </small>
 												</h6>
